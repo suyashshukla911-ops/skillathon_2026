@@ -1,0 +1,5 @@
+source_file,source_column,canonical_field
+example.xlsx,DISTRICT_NAME,district
+example.xlsx,JOB_ROLE,occupation
+example.xlsx,VACANCIES,demand
+example.xlsx,FIN_YEAR,year

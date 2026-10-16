@@ -1,0 +1,27 @@
+KSISU DATA INTELLIGENCE WORKBENCH — START HERE
+
+1. Run setup.bat once.
+2. Run run.bat.
+3. Click "Discover Sources".
+4. Click "Ingest All Discovered".
+5. Open "1. Source Registry" to see file_id, checksum, version, schema, district hint and status.
+6. Open "2. Data Quality" to inspect missingness and duplicates.
+7. Open "3. Schema Mapper" to see heterogeneous columns mapped to the common schema.
+8. Open "4. Harmonisation" and import official LGD/NIC/NCO masters when you have them.
+9. Click "Build Curated Layer" to create:
+   - training_supply
+   - skill_demand
+   - economic_activity
+   - labour_supply
+   - curated_fact
+10. Click "Run Skill Gap" to produce district × industry × occupation intelligence.
+11. Click "Export Bundle" to write outputs into runtime/exports.
+
+ARCHITECTURE
+Source artifacts → Ingestion → Raw Store → Registry/Metadata → Quality → Schema Mapper → LGD/NCO/NIC → Curated Data → Skill Gap → Evidence for KSI
+
+IMPORTANT
+• The 31 district Excel files are simulated source artifacts for demonstration.
+• Their numeric values are synthetic.
+• The app does NOT claim to implement an official Karnataka Skill Index formula.
+• Production should use authoritative masters and publicly available, non-personal datasets.
