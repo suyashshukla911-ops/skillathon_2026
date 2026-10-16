@@ -1,7 +1,0 @@
-source_id,title,grain,year,format,district_match,status
-SRC-LGD-2026,"Local Government Directory - Download Directory (District, Karnataka)",district,2026,directory export (CSV target),31/31 names aligned; live export not retrievable in sandbox,AMBER
-SRC-UDYAM-EMP-2022,Karnataka Economic Survey 2022-23 - Udyam registrations / employment up to Nov 2022,district,2022,PDF table -> CSV transcription,31/31,GREEN
-SRC-PLFS-MFG-2022,PLFS Annual Report 2022-23 - Karnataka manufacturing worker share,state,2022-23,PDF-derived CSV,N/A (state),GREEN
-SRC-DGT-ITI-2020,"DGT/Karnataka Monitoring and Evaluation Authority tracer study - ITI seats, admissions and pass-outs",division,2020-21,PDF table -> CSV transcription,4 divisions only,AMBER
-SRC-UDYAM-TOTAL-2026,Karnataka Udyam district registrations - June 2026 reconciliation,district,2026,public table transcription / reconciliation,31/31,AMBER
-SRC-UDYAM-SHARE-2023,Karnataka Economic Survey 2023-24 - Udyam employment district shares,district,2023,PDF/table transcription,31/31,AMBER

@@ -1,2 +1,2 @@
-clean_rows,corrupted_rows,matched_rows,unmatched_rows,duplicates_removed,match_recovery_rate
-31,33,31,2,2,1.0
+clean_districts,corrupted_rows,matched_unique_districts,matching_recovery_rate,duplicates_removed,status
+31,33,30,0.967741935483871,2,REVIEW

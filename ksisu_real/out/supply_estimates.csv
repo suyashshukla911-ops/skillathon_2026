@@ -1,187 +1,94 @@
-district,year,industry,nco_group_2digit,occupation_label,seats_proxy,supply_low,supply_central,supply_high,supply_evidence_tier,source_file_ids
-Bagalkot,2020,Manufacturing,21,Engineering / science professionals,60.60899079959517,3.0304495399797586,8.759590059544562,15.273465681497981,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Bagalkot,2020,Manufacturing,31,Engineering technicians / associate professionals,60.60899079959517,3.0304495399797586,8.759590059544562,15.273465681497981,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Bagalkot,2020,Manufacturing,72,"Metal, machinery and related trades",678.8206969554659,33.941034847773295,98.10740866689912,171.06281563277741,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Bagalkot,2020,Manufacturing,74,Electrical and electronic trades,315.16675215789485,15.758337607894743,45.54986830963173,79.42202154378951,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Bagalkot,2020,Manufacturing,81,Plant and machine operators / assemblers,72.7307889595142,3.6365394479757103,10.511508071453477,18.32815881779758,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Bagalkot,2020,Manufacturing,93,Manufacturing labourers / elementary occupations,12.121798159919033,0.6060899079959516,1.7519180119089124,3.0546931362995964,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Ballari,2020,Manufacturing,21,Engineering / science professionals,58.72914762680147,2.9364573813400736,8.4879033782013,14.799745201953971,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Ballari,2020,Manufacturing,31,Engineering technicians / associate professionals,58.72914762680147,2.9364573813400736,8.4879033782013,14.799745201953971,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Ballari,2020,Manufacturing,72,"Metal, machinery and related trades",657.7664534201764,32.88832267100882,95.06451783585455,165.75714626188446,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Ballari,2020,Manufacturing,74,Electrical and electronic trades,305.39156765936764,15.269578382968383,44.13709756664675,76.95867505016065,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Ballari,2020,Manufacturing,81,Plant and machine operators / assemblers,70.47497715216176,3.523748857608088,10.185484053841558,17.75969424234476,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Ballari,2020,Manufacturing,93,Manufacturing labourers / elementary occupations,11.745829525360293,0.5872914762680147,1.6975806756402596,2.9599490403907938,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Belagavi,2020,Manufacturing,21,Engineering / science professionals,125.53998823423048,6.276999411711524,18.14382352360917,31.63607703502608,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Belagavi,2020,Manufacturing,31,Engineering technicians / associate professionals,125.53998823423048,6.276999411711524,18.14382352360917,31.63607703502608,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Belagavi,2020,Manufacturing,72,"Metal, machinery and related trades",1406.0478682233813,70.30239341116906,203.2108234644227,354.3240627922921,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Belagavi,2020,Manufacturing,74,Electrical and electronic trades,652.8079388179984,32.640396940899926,94.34788232276769,164.50760058213564,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Belagavi,2020,Manufacturing,81,Plant and machine operators / assemblers,150.64798588107655,7.532399294053828,21.772588228331006,37.96329244203129,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Belagavi,2020,Manufacturing,93,Manufacturing labourers / elementary occupations,25.107997646846094,1.2553998823423047,3.6287647047218345,6.327215407005216,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Bengaluru Rural,2020,Manufacturing,21,Engineering / science professionals,61.856252992852326,3.0928126496426165,8.939852185106538,15.587775754198786,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Bengaluru Rural,2020,Manufacturing,31,Engineering technicians / associate professionals,61.856252992852326,3.0928126496426165,8.939852185106538,15.587775754198786,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Bengaluru Rural,2020,Manufacturing,72,"Metal, machinery and related trades",692.7900335199461,34.6395016759973,100.12634447319321,174.58308844702643,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Bengaluru Rural,2020,Manufacturing,74,Electrical and electronic trades,321.6525155628321,16.082625778141605,46.487231362554,81.0564339218337,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Bengaluru Rural,2020,Manufacturing,81,Plant and machine operators / assemblers,74.22750359142277,3.7113751795711387,10.727822622127844,18.70533090503854,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Bengaluru Rural,2020,Manufacturing,93,Manufacturing labourers / elementary occupations,12.371250598570464,0.6185625299285232,1.7879704370213074,3.117555150839757,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Bengaluru Urban,2020,Manufacturing,21,Engineering / science professionals,248.32885943713146,12.416442971856574,35.89003842377236,62.578872578157124,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Bengaluru Urban,2020,Manufacturing,31,Engineering technicians / associate professionals,248.32885943713146,12.416442971856574,35.89003842377236,62.578872578157124,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Bengaluru Urban,2020,Manufacturing,72,"Metal, machinery and related trades",2781.283225695872,139.06416128479358,401.96843034625033,700.8833728753598,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Bengaluru Urban,2020,Manufacturing,74,Electrical and electronic trades,1291.3100690730835,64.56550345365417,186.62819980361624,325.41013740641705,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Bengaluru Urban,2020,Manufacturing,81,Plant and machine operators / assemblers,297.9946313245577,14.899731566227885,43.06804610852682,75.09464709378855,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Bengaluru Urban,2020,Manufacturing,93,Manufacturing labourers / elementary occupations,49.66577188742628,2.4832885943713143,7.17800768475447,12.515774515631422,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Bidar,2020,Manufacturing,21,Engineering / science professionals,36.49029900206162,1.824514950103081,5.2738060177435395,9.195555348519528,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Bidar,2020,Manufacturing,31,Engineering technicians / associate professionals,36.49029900206162,1.824514950103081,5.2738060177435395,9.195555348519528,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Bidar,2020,Manufacturing,72,"Metal, machinery and related trades",408.6913488230901,20.434567441154506,59.066627398727654,102.99021990341869,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Bidar,2020,Manufacturing,74,Electrical and electronic trades,189.7495548107204,9.48747774053602,27.42379129226641,47.816887812301545,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Bidar,2020,Manufacturing,81,Plant and machine operators / assemblers,43.78835880247394,2.189417940123697,6.328567221292247,11.034666418223432,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Bidar,2020,Manufacturing,93,Manufacturing labourers / elementary occupations,7.298059800412323,0.3649029900206162,1.054761203548708,1.8391110697039055,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Chamarajanagar,2020,Manufacturing,21,Engineering / science professionals,7.448780023969192,0.37243900119845963,1.0765442320173142,1.8770925660402362,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Chamarajanagar,2020,Manufacturing,31,Engineering technicians / associate professionals,7.448780023969192,0.37243900119845963,1.0765442320173142,1.8770925660402362,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Chamarajanagar,2020,Manufacturing,72,"Metal, machinery and related trades",83.42633626845495,4.171316813422748,12.057295398593917,21.02343673965065,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Chamarajanagar,2020,Manufacturing,74,Electrical and electronic trades,38.7336561246398,1.93668280623199,5.598030006490035,9.760881343409231,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Chamarajanagar,2020,Manufacturing,81,Plant and machine operators / assemblers,8.93853602876303,0.44692680143815156,1.291853078420777,2.2525110792482836,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Chamarajanagar,2020,Manufacturing,93,Manufacturing labourers / elementary occupations,1.4897560047938383,0.07448780023969191,0.21530884640346287,0.3754185132080472,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Chikkaballapur,2020,Manufacturing,21,Engineering / science professionals,12.686356910644218,0.6343178455322109,1.8335115701523255,3.1969619414823427,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Chikkaballapur,2020,Manufacturing,31,Engineering technicians / associate professionals,12.686356910644218,0.6343178455322109,1.8335115701523255,3.1969619414823427,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Chikkaballapur,2020,Manufacturing,72,"Metal, machinery and related trades",142.08719739921523,7.104359869960762,20.535329585706037,35.80597374460224,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Chikkaballapur,2020,Manufacturing,74,Electrical and electronic trades,65.96905593534993,3.2984527967674966,9.534260164792089,16.62420209570818,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Chikkaballapur,2020,Manufacturing,81,Plant and machine operators / assemblers,15.223628292773059,0.761181414638653,2.20021388418279,3.8363543297788105,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Chikkaballapur,2020,Manufacturing,93,Manufacturing labourers / elementary occupations,2.5372713821288433,0.12686356910644217,0.366702314030465,0.6393923882964685,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Chikkamagaluru,2020,Manufacturing,21,Engineering / science professionals,17.53831554622529,0.8769157773112646,2.5347469491423555,4.419655517648773,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Chikkamagaluru,2020,Manufacturing,31,Engineering technicians / associate professionals,17.53831554622529,0.8769157773112646,2.5347469491423555,4.419655517648773,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Chikkamagaluru,2020,Manufacturing,72,"Metal, machinery and related trades",196.42913411772324,9.821456705886163,28.389165830394376,49.50014179766626,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Chikkamagaluru,2020,Manufacturing,74,Electrical and electronic trades,91.19924084037152,4.559962042018576,13.180684135540247,22.98220869177362,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Chikkamagaluru,2020,Manufacturing,81,Plant and machine operators / assemblers,21.045978655470346,1.0522989327735173,3.041696338970826,5.303586621178527,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Chikkamagaluru,2020,Manufacturing,93,Manufacturing labourers / elementary occupations,3.507663109245058,0.17538315546225292,0.506949389828471,0.8839311035297546,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Chitradurga,2020,Manufacturing,21,Engineering / science professionals,26.160791508493165,1.3080395754246583,3.7809210518836953,6.592519460140278,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Chitradurga,2020,Manufacturing,31,Engineering technicians / associate professionals,26.160791508493165,1.3080395754246583,3.7809210518836953,6.592519460140278,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Chitradurga,2020,Manufacturing,72,"Metal, machinery and related trades",293.0008648951234,14.650043244756171,42.34631578109738,73.8362179535711,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Chitradurga,2020,Manufacturing,74,Electrical and electronic trades,136.03611584416444,6.8018057922082225,19.660789469795212,34.28110119272944,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Chitradurga,2020,Manufacturing,81,Plant and machine operators / assemblers,31.39294981019179,1.5696474905095896,4.537105262260433,7.91102335216833,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Chitradurga,2020,Manufacturing,93,Manufacturing labourers / elementary occupations,5.232158301698632,0.26160791508493164,0.756184210376739,1.3185038920280554,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Dakshina Kannada,2020,Manufacturing,21,Engineering / science professionals,45.96488831063181,2.2982444155315904,6.643132865637087,11.583151854279215,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Dakshina Kannada,2020,Manufacturing,31,Engineering technicians / associate professionals,45.96488831063181,2.2982444155315904,6.643132865637087,11.583151854279215,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Dakshina Kannada,2020,Manufacturing,72,"Metal, machinery and related trades",514.8067490790762,25.740337453953813,74.40308809513537,129.7313007679272,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Dakshina Kannada,2020,Manufacturing,74,Electrical and electronic trades,239.0174192152854,11.95087096076427,34.544290901312856,60.23238964225192,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Dakshina Kannada,2020,Manufacturing,81,Plant and machine operators / assemblers,55.15786597275816,2.7578932986379083,7.9717594387645025,13.899782225135056,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Dakshina Kannada,2020,Manufacturing,93,Manufacturing labourers / elementary occupations,9.19297766212636,0.459648883106318,1.3286265731274172,2.316630370855843,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Davanagere,2020,Manufacturing,21,Engineering / science professionals,19.078052019899573,0.9539026009949787,2.757279285206356,4.807669109014693,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Davanagere,2020,Manufacturing,31,Engineering technicians / associate professionals,19.078052019899573,0.9539026009949787,2.757279285206356,4.807669109014693,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Davanagere,2020,Manufacturing,72,"Metal, machinery and related trades",213.6741826228752,10.683709131143761,30.881527994311188,53.84589402096455,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Davanagere,2020,Manufacturing,74,Electrical and electronic trades,99.20587050347777,4.960293525173888,14.33785228307305,24.9998793668764,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Davanagere,2020,Manufacturing,81,Plant and machine operators / assemblers,22.893662423879483,1.1446831211939743,3.308735142247627,5.76920293081763,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Davanagere,2020,Manufacturing,93,Manufacturing labourers / elementary occupations,3.815610403979914,0.19078052019899572,0.5514558570412711,0.9615338218029383,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Dharwad,2020,Manufacturing,21,Engineering / science professionals,62.26082154663573,3.1130410773317867,8.99832296040526,15.689727029752204,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Dharwad,2020,Manufacturing,31,Engineering technicians / associate professionals,62.26082154663573,3.1130410773317867,8.99832296040526,15.689727029752204,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Dharwad,2020,Manufacturing,72,"Metal, machinery and related trades",697.3212013223201,34.866060066116006,100.78121715653889,175.72494273322468,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Dharwad,2020,Manufacturing,74,Electrical and electronic trades,323.75627204250577,16.18781360212529,46.79127939410734,81.58658055471146,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Dharwad,2020,Manufacturing,81,Plant and machine operators / assemblers,74.71298585596286,3.735649292798143,10.797987552486308,18.827672435702638,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Dharwad,2020,Manufacturing,93,Manufacturing labourers / elementary occupations,12.452164309327145,0.6226082154663573,1.7996645920810515,3.1379454059504406,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Gadag,2020,Manufacturing,21,Engineering / science professionals,16.46083397791836,0.8230416988959179,2.379022580355358,4.148130162435426,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Gadag,2020,Manufacturing,31,Engineering technicians / associate professionals,16.46083397791836,0.8230416988959179,2.379022580355358,4.148130162435426,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Gadag,2020,Manufacturing,72,"Metal, machinery and related trades",184.36134055268562,9.218067027634282,26.645052899980012,46.45905781927678,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Gadag,2020,Manufacturing,74,Electrical and electronic trades,85.59633668517546,4.2798168342587735,12.37091741784786,21.570276844664214,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Gadag,2020,Manufacturing,81,Plant and machine operators / assemblers,19.753000773502027,0.9876500386751014,2.8548270964264293,4.977756194922511,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Gadag,2020,Manufacturing,93,Manufacturing labourers / elementary occupations,3.2921667955836718,0.1646083397791836,0.47580451607107155,0.8296260324870852,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Hassan,2020,Manufacturing,21,Engineering / science professionals,40.76450503166103,2.0382252515830515,5.891540980088013,10.27265526797858,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Hassan,2020,Manufacturing,31,Engineering technicians / associate professionals,40.76450503166103,2.0382252515830515,5.891540980088013,10.27265526797858,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Hassan,2020,Manufacturing,72,"Metal, machinery and related trades",456.5624563546035,22.828122817730176,65.98525897698575,115.05373900136009,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Hassan,2020,Manufacturing,74,Electrical and electronic trades,211.97542616463733,10.598771308231868,30.636013096457667,53.4178073934886,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Hassan,2020,Manufacturing,81,Plant and machine operators / assemblers,48.917406037993224,2.4458703018996615,7.069849176105614,12.327186321574294,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Hassan,2020,Manufacturing,93,Manufacturing labourers / elementary occupations,8.152901006332206,0.4076450503166103,1.1783081960176027,2.054531053595716,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Haveri,2020,Manufacturing,21,Engineering / science professionals,41.75938818207769,2.0879694091038847,6.035327709413597,10.52336582188358,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Haveri,2020,Manufacturing,31,Engineering technicians / associate professionals,41.75938818207769,2.0879694091038847,6.035327709413597,10.52336582188358,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Haveri,2020,Manufacturing,72,"Metal, machinery and related trades",467.7051476392701,23.385257381963505,67.59567034543227,117.86169720509606,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Haveri,2020,Manufacturing,74,Electrical and electronic trades,217.148818546804,10.8574409273402,31.3837040889507,54.721502273794606,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Haveri,2020,Manufacturing,81,Plant and machine operators / assemblers,50.11126581849322,2.5055632909246612,7.242393251296315,12.628038986260293,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Haveri,2020,Manufacturing,93,Manufacturing labourers / elementary occupations,8.351877636415537,0.4175938818207769,1.2070655418827192,2.1046731643767154,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Kalaburagi,2020,Manufacturing,21,Engineering / science professionals,40.09066541317449,2.0045332706587247,5.794153468005212,10.102847684119972,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Kalaburagi,2020,Manufacturing,31,Engineering technicians / associate professionals,40.09066541317449,2.0045332706587247,5.794153468005212,10.102847684119972,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Kalaburagi,2020,Manufacturing,72,"Metal, machinery and related trades",449.0154526275543,22.450772631377717,64.89451884165837,113.15189406214368,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Kalaburagi,2020,Manufacturing,74,Electrical and electronic trades,208.47146014850733,10.423573007425368,30.1295980336271,52.53480795742385,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Kalaburagi,2020,Manufacturing,81,Plant and machine operators / assemblers,48.10879849580938,2.4054399247904694,6.952984161606252,12.123417220943963,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Kalaburagi,2020,Manufacturing,93,Manufacturing labourers / elementary occupations,8.018133082634897,0.40090665413174487,1.1588306936010422,2.020569536823994,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Kodagu,2020,Manufacturing,21,Engineering / science professionals,8.499094225079922,0.42495471125399614,1.2283422031445534,2.14177174472014,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Kodagu,2020,Manufacturing,31,Engineering technicians / associate professionals,8.499094225079922,0.42495471125399614,1.2283422031445534,2.14177174472014,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Kodagu,2020,Manufacturing,72,"Metal, machinery and related trades",95.18985532089512,4.759492766044756,13.757432675218997,23.98784354086557,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Kodagu,2020,Manufacturing,74,Electrical and electronic trades,44.195289970415594,2.2097644985207796,6.3873794563516775,11.13721307254473,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Kodagu,2020,Manufacturing,81,Plant and machine operators / assemblers,10.198913070095905,0.5099456535047953,1.474010643773464,2.570126093664168,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Kodagu,2020,Manufacturing,93,Manufacturing labourers / elementary occupations,1.6998188450159843,0.08499094225079923,0.24566844062891066,0.428354348944028,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Kolar,2020,Manufacturing,21,Engineering / science professionals,31.122120043137496,1.556106002156875,4.497963252073168,7.842774250870649,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Kolar,2020,Manufacturing,31,Engineering technicians / associate professionals,31.122120043137496,1.556106002156875,4.497963252073168,7.842774250870649,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Kolar,2020,Manufacturing,72,"Metal, machinery and related trades",348.56774448313996,17.428387224157,50.377188423219486,87.83907160975127,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Kolar,2020,Manufacturing,74,Electrical and electronic trades,161.83502422431496,8.09175121121575,23.389408910780475,40.78242610452737,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Kolar,2020,Manufacturing,81,Plant and machine operators / assemblers,37.346544051764994,1.8673272025882497,5.3975559024878015,9.411329101044778,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Kolar,2020,Manufacturing,93,Manufacturing labourers / elementary occupations,6.224424008627499,0.31122120043137497,0.8995926504146335,1.5685548501741298,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Koppal,2020,Manufacturing,21,Engineering / science professionals,35.71717154000049,1.7858585770000248,5.162068806117229,9.000727228080125,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Koppal,2020,Manufacturing,31,Engineering technicians / associate professionals,35.71717154000049,1.7858585770000248,5.162068806117229,9.000727228080125,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Koppal,2020,Manufacturing,72,"Metal, machinery and related trades",400.0323212480055,20.001616062400274,57.81517062851295,100.80814495449738,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Koppal,2020,Manufacturing,74,Electrical and electronic trades,185.72929200800255,9.286464600400128,26.842757791809586,46.80378158601664,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Koppal,2020,Manufacturing,81,Plant and machine operators / assemblers,42.86060584800058,2.143030292400029,6.194482567340673,10.800872673696148,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Koppal,2020,Manufacturing,93,Manufacturing labourers / elementary occupations,7.1434343080000975,0.3571717154000049,1.0324137612234454,1.8001454456160246,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Mandya,2020,Manufacturing,21,Engineering / science professionals,21.31823941252149,1.0659119706260745,3.081045164773832,5.372196331955416,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Mandya,2020,Manufacturing,31,Engineering technicians / associate professionals,21.31823941252149,1.0659119706260745,3.081045164773832,5.372196331955416,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Mandya,2020,Manufacturing,72,"Metal, machinery and related trades",238.76428142024068,11.938214071012034,34.507705845466916,60.16859891790065,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Mandya,2020,Manufacturing,74,Electrical and electronic trades,110.85484494511174,5.542742247255587,16.021434856823927,27.935420926168156,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Mandya,2020,Manufacturing,81,Plant and machine operators / assemblers,25.581887295025783,1.2790943647512893,3.697254197728598,6.4466355983464965,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Mandya,2020,Manufacturing,93,Manufacturing labourers / elementary occupations,4.263647882504298,0.2131823941252149,0.6162090329547664,1.0744392663910831,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Mysuru,2020,Manufacturing,21,Engineering / science professionals,67.07306488293115,3.3536532441465576,9.693818436185472,16.902412350498647,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Mysuru,2020,Manufacturing,31,Engineering technicians / associate professionals,67.07306488293115,3.3536532441465576,9.693818436185472,16.902412350498647,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Mysuru,2020,Manufacturing,72,"Metal, machinery and related trades",751.2183266888288,37.560916334441444,108.57076648527728,189.30701832558486,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Mysuru,2020,Manufacturing,74,Electrical and electronic trades,348.77993739124196,17.4389968695621,50.407855868164454,87.89254422259297,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Mysuru,2020,Manufacturing,81,Plant and machine operators / assemblers,80.48767785951736,4.024383892975869,11.632582123422564,20.282894820598372,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Mysuru,2020,Manufacturing,93,Manufacturing labourers / elementary occupations,13.414612976586229,0.6707306488293114,1.9387636872370941,3.3804824700997296,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Raichur,2020,Manufacturing,21,Engineering / science professionals,51.05165896781963,2.5525829483909814,7.378304745189039,12.865018059890545,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Raichur,2020,Manufacturing,31,Engineering technicians / associate professionals,51.05165896781963,2.5525829483909814,7.378304745189039,12.865018059890545,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Raichur,2020,Manufacturing,72,"Metal, machinery and related trades",571.7785804395797,28.588929021978988,82.63701314611724,144.0882022707741,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Raichur,2020,Manufacturing,74,Electrical and electronic trades,265.46862663266205,13.273431331633104,38.367184674983,66.89809391143083,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Raichur,2020,Manufacturing,81,Plant and machine operators / assemblers,61.261990761383544,3.0630995380691775,8.853965694226845,15.438021671868652,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Raichur,2020,Manufacturing,93,Manufacturing labourers / elementary occupations,10.210331793563924,0.5105165896781962,1.4756609490378076,2.573003611978109,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Ramanagara,2020,Manufacturing,21,Engineering / science professionals,9.102061916116416,0.4551030958058208,1.3154868614361592,2.2937196028613367,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Ramanagara,2020,Manufacturing,31,Engineering technicians / associate professionals,9.102061916116416,0.4551030958058208,1.3154868614361592,2.2937196028613367,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Ramanagara,2020,Manufacturing,72,"Metal, machinery and related trades",101.94309346050385,5.097154673025193,14.733452848084982,25.689659552046965,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Ramanagara,2020,Manufacturing,74,Electrical and electronic trades,47.33072196380536,2.366536098190268,6.840531679468026,11.927341934878951,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Ramanagara,2020,Manufacturing,81,Plant and machine operators / assemblers,10.922474299339697,0.5461237149669849,1.5785842337233909,2.7524635234336037,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Ramanagara,2020,Manufacturing,93,Manufacturing labourers / elementary occupations,1.820412383223283,0.09102061916116416,0.2630973722872318,0.45874392057226737,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Shivamogga,2020,Manufacturing,21,Engineering / science professionals,27.032190118104342,1.3516095059052171,3.9068610237913286,6.812111909762294,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Shivamogga,2020,Manufacturing,31,Engineering technicians / associate professionals,27.032190118104342,1.3516095059052171,3.9068610237913286,6.812111909762294,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Shivamogga,2020,Manufacturing,72,"Metal, machinery and related trades",302.7605293227686,15.138026466138431,43.75684346646287,76.29565338933769,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Shivamogga,2020,Manufacturing,74,Electrical and electronic trades,140.56738861414257,7.028369430707129,20.315677323714905,35.42298193076393,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Shivamogga,2020,Manufacturing,81,Plant and machine operators / assemblers,32.438628141725204,1.6219314070862603,4.688233228549593,8.174534291714751,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Shivamogga,2020,Manufacturing,93,Manufacturing labourers / elementary occupations,5.406438023620868,0.2703219011810434,0.7813722047582656,1.3624223819524588,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Tumakuru,2020,Manufacturing,21,Engineering / science professionals,32.37604681332565,1.6188023406662826,4.679188583936149,8.158763796958064,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Tumakuru,2020,Manufacturing,31,Engineering technicians / associate professionals,32.37604681332565,1.6188023406662826,4.679188583936149,8.158763796958064,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Tumakuru,2020,Manufacturing,72,"Metal, machinery and related trades",362.6117243092473,18.130586215462365,52.40691214008488,91.37815452593031,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Tumakuru,2020,Manufacturing,74,Electrical and electronic trades,168.3554434292934,8.41777217146467,24.331780636467975,42.42557174418194,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Tumakuru,2020,Manufacturing,81,Plant and machine operators / assemblers,38.85125617599078,1.942562808799539,5.615026300723379,9.790516556349676,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Tumakuru,2020,Manufacturing,93,Manufacturing labourers / elementary occupations,6.4752093626651295,0.3237604681332565,0.9358377167872297,1.6317527593916126,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Udupi,2020,Manufacturing,21,Engineering / science professionals,17.895663826143423,0.8947831913071712,2.5863931554109327,4.509707284188142,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Udupi,2020,Manufacturing,31,Engineering technicians / associate professionals,17.895663826143423,0.8947831913071712,2.5863931554109327,4.509707284188142,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Udupi,2020,Manufacturing,72,"Metal, machinery and related trades",200.43143485280635,10.021571742640319,28.967603340602448,50.5087215829072,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Udupi,2020,Manufacturing,74,Electrical and electronic trades,93.0574518959458,4.65287259479729,13.449244408136854,23.450477877778344,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Udupi,2020,Manufacturing,81,Plant and machine operators / assemblers,21.474796591372105,1.0737398295686054,3.10367178649312,5.41164874102577,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Udupi,2020,Manufacturing,93,Manufacturing labourers / elementary occupations,3.5791327652286844,0.17895663826143424,0.5172786310821866,0.9019414568376285,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Uttara Kannada,2020,Manufacturing,21,Engineering / science professionals,25.852428379906694,1.292621418995335,3.7363544857643634,6.514811951736487,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Uttara Kannada,2020,Manufacturing,31,Engineering technicians / associate professionals,25.852428379906694,1.292621418995335,3.7363544857643634,6.514811951736487,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Uttara Kannada,2020,Manufacturing,72,"Metal, machinery and related trades",289.54719785495496,14.47735989274775,41.847170240560864,72.96589385944864,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Uttara Kannada,2020,Manufacturing,74,Electrical and electronic trades,134.4326275755148,6.72163137877574,19.42904332597469,33.87702214902973,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Uttara Kannada,2020,Manufacturing,81,Plant and machine operators / assemblers,31.02291405588803,1.5511457027944016,4.483625382917236,7.817774342083784,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Uttara Kannada,2020,Manufacturing,93,Manufacturing labourers / elementary occupations,5.170485675981339,0.25852428379906695,0.7472708971528726,1.3029623903472975,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Vijayanagara,2020,Manufacturing,21,Engineering / science professionals,3.8136808031533973,0.19068404015766988,0.5511769790729061,0.9610475623946559,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Vijayanagara,2020,Manufacturing,31,Engineering technicians / associate professionals,3.8136808031533973,0.19068404015766988,0.5511769790729061,0.9610475623946559,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Vijayanagara,2020,Manufacturing,72,"Metal, machinery and related trades",42.71322499531804,2.1356612497659024,6.173182165616548,10.763732698820148,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Vijayanagara,2020,Manufacturing,74,Electrical and electronic trades,19.831140176397664,0.9915570088198833,2.866120291179112,4.997447324452211,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Vijayanagara,2020,Manufacturing,81,Plant and machine operators / assemblers,4.576416963784076,0.22882084818920378,0.6614123748874873,1.153257074873587,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Vijayanagara,2020,Manufacturing,93,Manufacturing labourers / elementary occupations,0.7627361606306794,0.03813680803153397,0.11023539581458121,0.1922095124789312,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Vijayapura,2020,Manufacturing,21,Engineering / science professionals,51.33830359661702,2.566915179830851,7.41973241801299,12.93725250634749,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Vijayapura,2020,Manufacturing,31,Engineering technicians / associate professionals,51.33830359661702,2.566915179830851,7.41973241801299,12.93725250634749,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Vijayapura,2020,Manufacturing,72,"Metal, machinery and related trades",574.9890002821105,28.749450014105527,83.10100308174547,144.89722807109186,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Vijayapura,2020,Manufacturing,74,Electrical and electronic trades,266.95917870240845,13.347958935120424,38.58260857366755,67.27371303300693,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Vijayapura,2020,Manufacturing,81,Plant and machine operators / assemblers,61.60596431594041,3.0802982157970207,8.903678901615589,15.524703007616985,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Vijayapura,2020,Manufacturing,93,Manufacturing labourers / elementary occupations,10.267660719323402,0.5133830359661701,1.4839464836025977,2.5874505012694975,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Yadgir,2020,Manufacturing,21,Engineering / science professionals,22.26775400547948,1.113387700273974,3.218274946694617,5.611474009380829,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Yadgir,2020,Manufacturing,31,Engineering technicians / associate professionals,22.26775400547948,1.113387700273974,3.218274946694617,5.611474009380829,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Yadgir,2020,Manufacturing,72,"Metal, machinery and related trades",249.39884486137012,12.469942243068507,36.0446794029797,62.84850890506527,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Yadgir,2020,Manufacturing,74,Electrical and electronic trades,115.79232082849327,5.789616041424664,16.735029722812005,29.179664848780302,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Yadgir,2020,Manufacturing,81,Plant and machine operators / assemblers,26.721304806575368,1.3360652403287685,3.8619299360335395,6.733768811256993,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
-Yadgir,2020,Manufacturing,93,Manufacturing labourers / elementary occupations,4.453550801095895,0.2226775400547948,0.6436549893389234,1.1222948018761656,division-actual + district-proxy,SRC-DGT-ITI-2020;SRC-UDYAM-EMP-2022
+district,lgd_code,year,nco_group_2digit,occupation_label,proxy_seats,actual_seats,supply_basis,supply_p10,supply_median,supply_p90
+Bagalkot,524,2022-23,72,Metal machinery and related trades,6304.170034518362,,district-proxy,608.4609723871217,817.6843548465454,1080.920119658631
+Bagalkot,524,2022-23,74,Electrical and electronic trades,2926.9360874549534,,district-proxy,282.49973717973506,379.63916475018175,501.85576984150714
+Bagalkot,524,2022-23,81,Stationary plant and machine operators / assemblers,675.4467894126816,,district-proxy,65.19224704147733,87.60903801927273,115.81286996342473
+Ballari,528,2022-23,72,Metal machinery and related trades,6108.640446528601,,district-proxy,589.588999932814,792.3231282087183,1047.394395496776
+Ballari,528,2022-23,74,Electrical and electronic trades,2836.154493031136,,district-proxy,273.7377499688064,367.8643095254763,486.2902550520745
+Ballari,528,2022-23,81,Stationary plant and machine operators / assemblers,654.497190699493,,district-proxy,63.17024999280149,84.89176373664839,112.22082808894028
+Belagavi,527,2022-23,72,Metal machinery and related trades,13057.888302032405,,district-proxy,1260.311090924449,1693.67750448396,2238.9202874665566
+Belagavi,527,2022-23,74,Electrical and electronic trades,6062.590997372187,,district-proxy,585.1444350720656,786.3502699389813,1039.4987048951868
+Belagavi,527,2022-23,81,Stationary plant and machine operators / assemblers,1399.0594609320433,,district-proxy,135.03333117047669,181.46544690899572,239.8843165142739
+Bengaluru Rural,526,2022-23,72,Metal machinery and related trades,6433.902485763399,,district-proxy,620.9823880536569,834.5113431920563,1103.1641923843927
+Bengaluru Rural,526,2022-23,74,Electrical and electronic trades,2987.1690112472925,,district-proxy,288.31325159634065,387.4516950534547,512.1833750356109
+Bengaluru Rural,526,2022-23,81,Stationary plant and machine operators / assemblers,689.3466949032213,,district-proxy,66.53382729146324,89.41192962772033,118.19616346975634
+Bengaluru Urban,525,2022-23,72,Metal machinery and related trades,25829.62253151628,,district-proxy,2493.0033859912264,3350.2393050897917,4428.776274216866
+Bengaluru Urban,525,2022-23,74,Electrical and electronic trades,11992.324746775414,,district-proxy,1157.4658577816408,1555.4682487916884,2056.2175558864014
+Bengaluru Urban,525,2022-23,81,Stationary plant and machine operators / assemblers,2767.4595569481726,,district-proxy,267.10750564191704,358.9542112596205,474.51174366609274
+Bidar,529,2022-23,72,Metal machinery and related trades,3795.4938118017412,,district-proxy,366.33051500404673,492.2957172528533,650.7796589800852
+Bidar,529,2022-23,74,Electrical and electronic trades,1762.1935554793797,,district-proxy,170.0820248233074,228.56586872453906,302.1476988121824
+Bidar,529,2022-23,81,Stationary plant and machine operators / assemblers,406.66005126447226,,district-proxy,39.24969803614786,52.74596970566286,69.72639203358054
+Chamarajanagar,530,2022-23,72,Metal machinery and related trades,774.7757420362658,,district-proxy,74.77920151266297,100.49253102451868,132.84392445078265
+Chamarajanagar,530,2022-23,74,Electrical and electronic trades,359.71730880255194,,district-proxy,34.718914988022085,46.657246547097955,61.67753635214908
+Chamarajanagar,530,2022-23,81,Stationary plant and machine operators / assemblers,83.01168664674276,,district-proxy,8.012057304928174,10.767056895484146,14.23327761972671
+Chikkaballapur,531,2022-23,72,Metal machinery and related trades,1319.5558947307597,,district-proxy,127.3598679018463,171.1534118780017,226.25254519131894
+Chikkaballapur,531,2022-23,74,Electrical and electronic trades,612.6509511249956,,district-proxy,59.13136724014293,79.46408408621507,105.04582455311237
+Chikkaballapur,531,2022-23,81,Stationary plant and machine operators / assemblers,141.38098872115282,,district-proxy,13.645700132340675,18.337865558357322,24.241344127641323
+Chikkamagaluru,532,2022-23,72,Metal machinery and related trades,1824.2264367678522,,district-proxy,176.069266135342,236.61186308032296,312.78392675304696
+Chikkamagaluru,532,2022-23,74,Electrical and electronic trades,846.9622742136455,,district-proxy,81.74644499140877,109.85550785872138,145.22110884962893
+Chikkamagaluru,532,2022-23,81,Stationary plant and machine operators / assemblers,195.4528325108413,,district-proxy,18.864564228786637,25.35127104432032,33.5125635806836
+Chitradurga,533,2022-23,72,Metal machinery and related trades,2721.0827260338842,,district-proxy,262.63134280369553,352.93888983612806,466.5599198182624
+Chitradurga,533,2022-23,74,Electrical and electronic trades,1263.3598370871605,,district-proxy,121.93598058743007,163.86448456677374,216.61710562990757
+Chitradurga,533,2022-23,81,Stationary plant and machine operators / assemblers,291.5445777893447,,district-proxy,28.139072443253088,37.81488105387086,49.98856283767097
+Dakshina Kannada,534,2022-23,72,Metal machinery and related trades,4780.981628385798,,district-proxy,461.4470603813334,620.1187241039415,819.752513898575
+Dakshina Kannada,534,2022-23,74,Electrical and electronic trades,2219.7414703219774,,district-proxy,214.24327803419047,287.9122647625442,380.59938145290977
+Dakshina Kannada,534,2022-23,81,Stationary plant and machine operators / assemblers,512.2480316127641,,district-proxy,49.44075646942858,66.44129186827945,87.83062648913302
+Davanagere,535,2022-23,72,Metal machinery and related trades,1984.3802425041654,,district-proxy,191.5268663961605,257.38466276730367,340.2440793048343
+Davanagere,535,2022-23,74,Electrical and electronic trades,921.3193983055052,,district-proxy,88.92318796964592,119.50002199910526,157.9704653915302
+Davanagere,535,2022-23,81,Stationary plant and machine operators / assemblers,212.612168839732,,district-proxy,20.52073568530291,27.576928153639678,36.45472278266082
+Dharwad,536,2022-23,72,Metal machinery and related trades,6475.983188972976,,district-proxy,625.0439005847968,839.9694340219368,1110.3793973201032
+Dharwad,536,2022-23,74,Electrical and electronic trades,3006.7064805945956,,district-proxy,290.1989538429413,389.98580865304206,515.5332916129049
+Dharwad,536,2022-23,81,Stationary plant and machine operators / assemblers,693.855341675676,,district-proxy,66.96898934837108,89.99672507377893,118.96922114143959
+Gadag,537,2022-23,72,Metal machinery and related trades,1712.1535095329082,,district-proxy,165.25229865028666,222.07540884446092,293.5677759744387
+Gadag,537,2022-23,74,Electrical and electronic trades,794.9284151402787,,district-proxy,76.72428151620451,103.10643982064258,136.2993245595608
+Gadag,537,2022-23,81,Stationary plant and machine operators / assemblers,183.44501887852587,,district-proxy,17.705603426816428,23.79379380476367,31.45369028297558
+Hassan,538,2022-23,72,Metal machinery and related trades,4240.070123297399,,district-proxy,409.23978510808416,549.9596274035822,727.0072158492732
+Hassan,538,2022-23,74,Electrical and electronic trades,1968.6039858166494,,district-proxy,190.0041859430391,255.3383984373774,337.53906450144825
+Hassan,538,2022-23,81,Stationary plant and machine operators / assemblers,454.2932274961499,,district-proxy,43.84711983300902,58.92424579324094,77.89363026956498
+Haveri,539,2022-23,72,Metal machinery and related trades,4343.551677138845,,district-proxy,419.2275371087021,563.381734854373,744.7502800350891
+Haveri,539,2022-23,74,Electrical and electronic trades,2016.6489929573204,,district-proxy,194.64135651475453,261.5700911823874,345.776915730577
+Haveri,539,2022-23,81,Stationary plant and machine operators / assemblers,465.38053683630477,,district-proxy,44.91723611878952,60.362328734397096,79.79467286090238
+Kalaburagi,540,2022-23,72,Metal machinery and related trades,4169.981519694343,,district-proxy,402.4750278651699,540.8687630541978,714.989744655048
+Kalaburagi,540,2022-23,74,Electrical and electronic trades,1936.062848429516,,district-proxy,186.86340579454318,251.11763998944892,331.95952430412933
+Kalaburagi,540,2022-23,81,Stationary plant and machine operators / assemblers,446.78373425296525,,district-proxy,43.12232441412536,57.95022461294976,76.6060440701837
+Kodagu,541,2022-23,72,Metal machinery and related trades,884.0228888063712,,district-proxy,85.3234325201211,114.66246651744106,151.57556371693835
+Kodagu,541,2022-23,74,Electrical and electronic trades,410.43919837438654,,district-proxy,39.61445081291336,53.236145168811916,70.3743688685785
+Kodagu,541,2022-23,81,Stationary plant and machine operators / assemblers,94.7167380863969,,district-proxy,9.141796341441545,12.285264269725825,16.240238969671964
+Kolar,542,2022-23,72,Metal machinery and related trades,3237.129244328899,,district-proxy,312.4387186516667,419.87286561286214,555.0418391273256
+Kolar,542,2022-23,74,Electrical and electronic trades,1502.9528634384171,,district-proxy,145.06083365970235,194.9409733202574,257.69799673768676
+Kolar,542,2022-23,81,Stationary plant and machine operators / assemblers,346.83527617809625,,district-proxy,33.47557699839286,44.98637845852093,59.468768477927725
+Koppal,543,2022-23,72,Metal machinery and related trades,3715.0779046089497,,district-proxy,358.5689951183198,481.86534674693456,636.9914566395164
+Koppal,543,2022-23,74,Electrical and electronic trades,1724.8575985684406,,district-proxy,166.47846201921985,223.72319670393387,295.7460334397755
+Koppal,543,2022-23,81,Stationary plant and machine operators / assemblers,398.0440612081017,,district-proxy,38.41810661981997,51.62843000860013,68.24908463994818
+Mandya,544,2022-23,72,Metal machinery and related trades,2217.3905937071627,,district-proxy,214.01637795643558,287.6073435726678,380.1962974913614
+Mandya,544,2022-23,74,Electrical and electronic trades,1029.502775649754,,district-proxy,99.36474690834508,133.5319809444529,176.51970954956064
+Mandya,544,2022-23,81,Stationary plant and machine operators / assemblers,237.5775636114817,,district-proxy,22.930326209618098,30.815072525642982,40.73531758836015
+Mysuru,545,2022-23,72,Metal machinery and related trades,6976.522792738941,,district-proxy,673.3545921362773,904.8920805780249,1196.2024835367054
+Mysuru,545,2022-23,74,Electrical and electronic trades,3239.099868057365,,district-proxy,312.6289177775573,420.12846598265435,555.3797244991846
+Mysuru,545,2022-23,81,Stationary plant and machine operators / assemblers,747.4845849363151,,district-proxy,72.14513487174402,96.95272291907409,128.16455180750413
+Raichur,546,2022-23,72,Metal machinery and related trades,5310.075855602742,,district-proxy,512.51376483475,688.7450570654654,910.4716081270865
+Raichur,546,2022-23,74,Electrical and electronic trades,2465.3923615298445,,district-proxy,237.95281938756256,319.7744907803946,422.71896091614724
+Raichur,546,2022-23,81,Stationary plant and machine operators / assemblers,568.9366988145795,,district-proxy,54.9121890894375,73.79411325701415,97.55052944218782
+Ramanagara,547,2022-23,72,Metal machinery and related trades,946.7398355739517,,district-proxy,91.37669793117514,122.79718780109886,162.32908229804312
+Ramanagara,547,2022-23,74,Electrical and electronic trades,439.5577808021918,,district-proxy,42.424895468045605,57.01298005051018,75.36707392409143
+Ramanagara,547,2022-23,81,Stationary plant and machine operators / assemblers,101.43641095435196,,district-proxy,9.790360492625908,13.156841550117734,17.39240167479033
+Shivamogga,548,2022-23,72,Metal machinery and related trades,2811.720186423151,,district-proxy,271.3794185981591,364.69505011060096,482.1007212232178
+Shivamogga,548,2022-23,74,Electrical and electronic trades,1305.4415151250344,,district-proxy,125.99758720628815,169.3227018370647,223.8324777107797
+Shivamogga,548,2022-23,81,Stationary plant and machine operators / assemblers,301.2557342596233,,district-proxy,29.076366278374184,39.07446965470724,51.65364870248763
+Tumakuru,549,2022-23,72,Metal machinery and related trades,3367.5549033905804,,district-proxy,325.02704081023376,436.78976669600917,577.4047700488547
+Tumakuru,549,2022-23,74,Electrical and electronic trades,1563.507633717055,,district-proxy,150.90541180475134,202.79524882314706,268.08078609411115
+Tumakuru,549,2022-23,81,Stationary plant and machine operators / assemblers,360.809453934705,,district-proxy,34.824325801096464,46.79890357457241,61.86479679094871
+Udupi,550,2022-23,72,Metal machinery and related trades,1861.3955809563017,,district-proxy,179.65672863902887,241.43289860435172,319.15699022750914
+Udupi,550,2022-23,74,Electrical and electronic trades,864.2193768725685,,district-proxy,83.41205258240626,112.09384578059186,148.18003117705777
+Udupi,550,2022-23,81,Stationary plant and machine operators / assemblers,199.43524081674659,,district-proxy,19.24893521132452,25.867810564751966,34.19539181009026
+Uttara Kannada,551,2022-23,72,Metal machinery and related trades,2689.008712437239,,district-proxy,259.53564814531643,348.77871982619655,461.060473194046
+Uttara Kannada,551,2022-23,74,Electrical and electronic trades,1248.4683307744322,,district-proxy,120.49869378175401,161.93297706216265,214.06379112580703
+Uttara Kannada,551,2022-23,81,Stationary plant and machine operators / assemblers,288.1080763325613,,district-proxy,27.807390872712467,37.36914855280676,49.39933641364779
+Vijayanagara,552,2022-23,72,Metal machinery and related trades,396.6753434313601,,district-proxy,38.286001783687745,51.450900039371206,68.0144027429001
+Vijayanagara,552,2022-23,74,Electrical and electronic trades,184.17069516456002,,district-proxy,17.77564368528359,23.88791787542234,31.57811555920361
+Vijayanagara,552,2022-23,81,Stationary plant and machine operators / assemblers,42.50092965336001,,district-proxy,4.10207161968083,5.512596432789771,7.287257436739297
+Vijayapura,553,2022-23,72,Metal machinery and related trades,5339.890846012255,,district-proxy,515.3914248529527,692.6122197632146,915.5837200822859
+Vijayapura,553,2022-23,74,Electrical and electronic trades,2479.2350356485467,,district-proxy,239.28887582458518,321.5699591757782,425.09244146677554
+Vijayapura,553,2022-23,81,Stationary plant and machine operators / assemblers,572.1311620727415,,district-proxy,55.2205098056735,74.20845211748727,98.09825572310206
+Yadgir,554,2022-23,72,Metal machinery and related trades,2316.153192544291,,district-proxy,223.54866953405474,300.41737748211574,397.1302443183495
+Yadgir,554,2022-23,74,Electrical and electronic trades,1075.3568393955636,,district-proxy,103.7904537122397,139.47949668812515,184.38189914780514
+Yadgir,554,2022-23,81,Stationary plant and machine operators / assemblers,248.15927062974546,,district-proxy,23.951643164363006,32.18757615879811,42.549669034108874
