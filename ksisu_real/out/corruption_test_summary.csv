@@ -1,0 +1,2 @@
+clean_rows,corrupted_rows,matched_rows,unmatched_rows,duplicates_removed,match_recovery_rate
+31,33,31,2,2,1.0

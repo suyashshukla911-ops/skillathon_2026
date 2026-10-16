@@ -1,0 +1,9 @@
+file_id,path,sha256,version,source_url,accessed,grain,status
+FILE-DEB50F3C08,raw/file_registry.csv,deb50f3c083c2fbf2b4451eda32bd6c751a1736b0b29e8edc1ac36961d91fba0,1.0,see raw/source_registry.csv,2026-10-16,see source_registry,captured
+FILE-374EABDC75,raw/iti_division_training_2020_21.csv,374eabdc75b7fc4dd84dfc50a3ea15d52b79c41c500f4468b66582f4011db7af,1.0,see raw/source_registry.csv,2026-10-16,see source_registry,captured
+FILE-9C80951F83,raw/karnataka_udyam_employment_nov2022.csv,9c80951f83d8385aada601588f5f5ffbac80f600b550fbe80bc544d069aa33a9,1.0,see raw/source_registry.csv,2026-10-16,see source_registry,captured
+FILE-61F2C26E8B,raw/karnataka_udyam_employment_share_2023.csv,61f2c26e8be4f7471b89547bb2177053383adf9fef32a441bd409f17c221709e,1.0,see raw/source_registry.csv,2026-10-16,see source_registry,captured
+FILE-BF7DC33597,raw/lgd_districts.csv,bf7dc335978141a6f405a708eaf53d813b59702dac0ca33affdd0ea6423f7021,1.0,see raw/source_registry.csv,2026-10-16,see source_registry,captured
+FILE-633F0996E4,raw/plfs_karnataka_industry_share_2022_23.csv,633f0996e4bac1c83ba1e5a7050494e9bfe7781902014fc17cfb576a060434bc,1.0,see raw/source_registry.csv,2026-10-16,see source_registry,captured
+FILE-C4FB423650,raw/source_registry.csv,c4fb42365072e43452fc7738270ca5b9bd32b3f794e98a5807848f70855fa91e,1.0,see raw/source_registry.csv,2026-10-16,see source_registry,captured
+FILE-1C9F35D023,raw/udyam_karnataka_district_totals_jun2026.csv,1c9f35d0231200287add612a843eb51e263f9d7e205c5d2e35b1d0bb998132ec,1.0,see raw/source_registry.csv,2026-10-16,see source_registry,captured

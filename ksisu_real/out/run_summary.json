@@ -1,0 +1,25 @@
+{
+  "run_id": "RUN-20261016-165144",
+  "generated_on": "2026-10-16",
+  "districts": 31,
+  "focus_districts": [
+    "Tumakuru",
+    "Kalaburagi"
+  ],
+  "udyam_employment_total": 5081047,
+  "manufacturing_share_plfs_2022_23": 0.104,
+  "iti_state_sanctioned_seats_2020_21": 28116,
+  "iti_state_admitted": 22855,
+  "iti_state_passed_out": 13545,
+  "fill_mode": 0.8128823445724854,
+  "completion_mode": 0.5926493108728943,
+  "corruption_match_recovery": 1.0,
+  "duplicates_removed": 2,
+  "sanity_median_abs_error_pp": 0.25284167219866294,
+  "important_limitations": [
+    "No verified district-level PLFS occupation-by-industry microdata was available without restricted microdata registration/download.",
+    "District ITI seats were not directly verified; real DGT/DITE division totals are allocated within division to districts using a transparent Udyam-employment share proxy.",
+    "Occupation mix and course-to-NCO mapping are analyst priors, not observed district data.",
+    "Udyam employment is a registered-enterprise employment proxy, not a complete district employment census."
+  ]
+}

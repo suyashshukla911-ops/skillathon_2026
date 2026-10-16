@@ -1,0 +1,34 @@
+raw_district,matched_district,match_method,confidence
+Bagalkot,Bagalkot,exact,1.0
+Bellary,Ballari,alias,0.98
+Belagavi,Belagavi,exact,1.0
+Bengaluru Rura,Bengaluru Rural,fuzzy,0.9655172413793104
+Bangalore,Bengaluru Urban,alias,0.98
+Bidar,Bidar,exact,1.0
+Chamarajanagar,Chamarajanagar,exact,1.0
+Chikkaballapur,Chikkaballapur,exact,1.0
+Chikkamagaluru,Chikkamagaluru,exact,1.0
+Chitradurga,Chitradurga,exact,1.0
+Dakshina Kannad,Dakshina Kannada,fuzzy,0.967741935483871
+Davanagere,Davanagere,exact,1.0
+Dharwad,Dharwad,exact,1.0
+Gadag,Gadag,exact,1.0
+Hassan,Hassan,exact,1.0
+Haveri,Haveri,exact,1.0
+Gulbarga,Kalaburagi,alias,0.98
+Kodag,Kodagu,fuzzy,0.9090909090909091
+Kolar,Kolar,exact,1.0
+Koppal,Koppal,exact,1.0
+Mandya,Mandya,exact,1.0
+Mysore,Mysuru,alias,0.98
+Raichur,Raichur,exact,1.0
+Ramanagara,Ramanagara,exact,1.0
+Shimog,,review,0.75
+Tumkur,Tumakuru,alias,0.98
+Udupi,Udupi,exact,1.0
+Uttara Kannada,Uttara Kannada,exact,1.0
+Vijayanagara,Vijayanagara,exact,1.0
+Bijapu,,review,0.625
+Yadgir,Yadgir,exact,1.0
+Bagalkot,Bagalkot,exact,1.0
+Dharwad,Dharwad,exact,1.0

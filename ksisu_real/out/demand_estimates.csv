@@ -1,0 +1,187 @@
+district,year,industry,nco_group_2digit,occupation_label,base_manufacturing_workers_proxy,demand_low,demand_central,demand_high,demand_evidence_tier,source_file_ids
+Bagalkot,2022,Manufacturing,21,Engineering / science professionals,1480.596,74.02980000000001,125.85066,177.67152,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Bagalkot,2022,Manufacturing,31,Engineering technicians / associate professionals,2220.894,111.04469999999999,188.77599,266.50728,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Bagalkot,2022,Manufacturing,72,"Metal, machinery and related trades",3701.49,185.0745,314.62665,444.17879999999997,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Bagalkot,2022,Manufacturing,74,Electrical and electronic trades,2220.894,111.04469999999999,188.77599,266.50728,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Bagalkot,2022,Manufacturing,81,Plant and machine operators / assemblers,2961.192,148.05960000000002,251.70132,355.34304,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Bagalkot,2022,Manufacturing,93,Manufacturing labourers / elementary occupations,2220.894,111.04469999999999,188.77599,266.50728,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Ballari,2022,Manufacturing,21,Engineering / science professionals,1669.304,83.46520000000001,141.89084000000003,200.31648,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Ballari,2022,Manufacturing,31,Engineering technicians / associate professionals,2503.956,125.19780000000002,212.83626000000004,300.47472,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Ballari,2022,Manufacturing,72,"Metal, machinery and related trades",4173.26,208.663,354.72710000000006,500.7912,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Ballari,2022,Manufacturing,74,Electrical and electronic trades,2503.956,125.19780000000002,212.83626000000004,300.47472,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Ballari,2022,Manufacturing,81,Plant and machine operators / assemblers,3338.608,166.93040000000002,283.78168000000005,400.63296,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Ballari,2022,Manufacturing,93,Manufacturing labourers / elementary occupations,2503.956,125.19780000000002,212.83626000000004,300.47472,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Belagavi,2022,Manufacturing,21,Engineering / science professionals,3066.7728,153.33864000000003,260.67568800000004,368.012736,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Belagavi,2022,Manufacturing,31,Engineering technicians / associate professionals,4600.1592,230.00796000000003,391.01353200000005,552.019104,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Belagavi,2022,Manufacturing,72,"Metal, machinery and related trades",7666.932,383.3466,651.68922,920.03184,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Belagavi,2022,Manufacturing,74,Electrical and electronic trades,4600.1592,230.00796000000003,391.01353200000005,552.019104,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Belagavi,2022,Manufacturing,81,Plant and machine operators / assemblers,6133.5456,306.67728000000005,521.3513760000001,736.025472,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Belagavi,2022,Manufacturing,93,Manufacturing labourers / elementary occupations,4600.1592,230.00796000000003,391.01353200000005,552.019104,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Bengaluru Rural,2022,Manufacturing,21,Engineering / science professionals,3682.5464,184.12732000000003,313.01644400000004,441.905568,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Bengaluru Rural,2022,Manufacturing,31,Engineering technicians / associate professionals,5523.8196,276.19098,469.524666,662.858352,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Bengaluru Rural,2022,Manufacturing,72,"Metal, machinery and related trades",9206.366,460.3183,782.54111,1104.7639199999999,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Bengaluru Rural,2022,Manufacturing,74,Electrical and electronic trades,5523.8196,276.19098,469.524666,662.858352,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Bengaluru Rural,2022,Manufacturing,81,Plant and machine operators / assemblers,7365.0928,368.25464000000005,626.0328880000001,883.811136,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Bengaluru Rural,2022,Manufacturing,93,Manufacturing labourers / elementary occupations,5523.8196,276.19098,469.524666,662.858352,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Bengaluru Urban,2022,Manufacturing,21,Engineering / science professionals,14783.9952,739.19976,1256.639592,1774.0794239999998,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Bengaluru Urban,2022,Manufacturing,31,Engineering technicians / associate professionals,22175.992799999996,1108.79964,1884.9593879999998,2661.1191359999993,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Bengaluru Urban,2022,Manufacturing,72,"Metal, machinery and related trades",36959.988,1847.9994,3141.59898,4435.19856,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Bengaluru Urban,2022,Manufacturing,74,Electrical and electronic trades,22175.992799999996,1108.79964,1884.9593879999998,2661.1191359999993,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Bengaluru Urban,2022,Manufacturing,81,Plant and machine operators / assemblers,29567.9904,1478.39952,2513.279184,3548.1588479999996,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Bengaluru Urban,2022,Manufacturing,93,Manufacturing labourers / elementary occupations,22175.992799999996,1108.79964,1884.9593879999998,2661.1191359999993,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Bidar,2022,Manufacturing,21,Engineering / science professionals,1037.192,51.8596,88.16132,124.46303999999999,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Bidar,2022,Manufacturing,31,Engineering technicians / associate professionals,1555.788,77.7894,132.24198,186.69456,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Bidar,2022,Manufacturing,72,"Metal, machinery and related trades",2592.98,129.649,220.40330000000003,311.1576,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Bidar,2022,Manufacturing,74,Electrical and electronic trades,1555.788,77.7894,132.24198,186.69456,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Bidar,2022,Manufacturing,81,Plant and machine operators / assemblers,2074.384,103.7192,176.32264,248.92607999999998,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Bidar,2022,Manufacturing,93,Manufacturing labourers / elementary occupations,1555.788,77.7894,132.24198,186.69456,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Chamarajanagar,2022,Manufacturing,21,Engineering / science professionals,320.84,16.041999999999998,27.2714,38.5008,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Chamarajanagar,2022,Manufacturing,31,Engineering technicians / associate professionals,481.25999999999993,24.063,40.9071,57.75119999999999,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Chamarajanagar,2022,Manufacturing,72,"Metal, machinery and related trades",802.0999999999999,40.105,68.1785,96.25199999999998,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Chamarajanagar,2022,Manufacturing,74,Electrical and electronic trades,481.25999999999993,24.063,40.9071,57.75119999999999,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Chamarajanagar,2022,Manufacturing,81,Plant and machine operators / assemblers,641.68,32.083999999999996,54.5428,77.0016,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Chamarajanagar,2022,Manufacturing,93,Manufacturing labourers / elementary occupations,481.25999999999993,24.063,40.9071,57.75119999999999,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Chikkaballapur,2022,Manufacturing,21,Engineering / science professionals,755.2688,37.76344,64.19784800000001,90.632256,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Chikkaballapur,2022,Manufacturing,31,Engineering technicians / associate professionals,1132.9032,56.645160000000004,96.296772,135.948384,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Chikkaballapur,2022,Manufacturing,72,"Metal, machinery and related trades",1888.172,94.4086,160.49462000000003,226.58064,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Chikkaballapur,2022,Manufacturing,74,Electrical and electronic trades,1132.9032,56.645160000000004,96.296772,135.948384,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Chikkaballapur,2022,Manufacturing,81,Plant and machine operators / assemblers,1510.5376,75.52688,128.39569600000002,181.264512,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Chikkaballapur,2022,Manufacturing,93,Manufacturing labourers / elementary occupations,1132.9032,56.645160000000004,96.296772,135.948384,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Chikkamagaluru,2022,Manufacturing,21,Engineering / science professionals,755.4248,37.77124,64.21110800000001,90.650976,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Chikkamagaluru,2022,Manufacturing,31,Engineering technicians / associate professionals,1133.1372,56.656859999999995,96.316662,135.976464,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Chikkamagaluru,2022,Manufacturing,72,"Metal, machinery and related trades",1888.562,94.4281,160.52777,226.62743999999998,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Chikkamagaluru,2022,Manufacturing,74,Electrical and electronic trades,1133.1372,56.656859999999995,96.316662,135.976464,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Chikkamagaluru,2022,Manufacturing,81,Plant and machine operators / assemblers,1510.8496,75.54248,128.42221600000002,181.301952,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Chikkamagaluru,2022,Manufacturing,93,Manufacturing labourers / elementary occupations,1133.1372,56.656859999999995,96.316662,135.976464,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Chitradurga,2022,Manufacturing,21,Engineering / science professionals,1126.8192,56.340959999999995,95.77963199999999,135.218304,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Chitradurga,2022,Manufacturing,31,Engineering technicians / associate professionals,1690.2287999999999,84.51144,143.669448,202.82745599999998,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Chitradurga,2022,Manufacturing,72,"Metal, machinery and related trades",2817.048,140.8524,239.44908,338.04576,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Chitradurga,2022,Manufacturing,74,Electrical and electronic trades,1690.2287999999999,84.51144,143.669448,202.82745599999998,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Chitradurga,2022,Manufacturing,81,Plant and machine operators / assemblers,2253.6384,112.68191999999999,191.55926399999998,270.436608,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Chitradurga,2022,Manufacturing,93,Manufacturing labourers / elementary occupations,1690.2287999999999,84.51144,143.669448,202.82745599999998,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Dakshina Kannada,2022,Manufacturing,21,Engineering / science professionals,1979.8376,98.99188000000001,168.28619600000002,237.580512,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Dakshina Kannada,2022,Manufacturing,31,Engineering technicians / associate professionals,2969.7563999999998,148.48782,252.429294,356.37076799999994,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Dakshina Kannada,2022,Manufacturing,72,"Metal, machinery and related trades",4949.594,247.4797,420.71549000000005,593.95128,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Dakshina Kannada,2022,Manufacturing,74,Electrical and electronic trades,2969.7563999999998,148.48782,252.429294,356.37076799999994,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Dakshina Kannada,2022,Manufacturing,81,Plant and machine operators / assemblers,3959.6752,197.98376000000002,336.57239200000004,475.161024,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Dakshina Kannada,2022,Manufacturing,93,Manufacturing labourers / elementary occupations,2969.7563999999998,148.48782,252.429294,356.37076799999994,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Davanagere,2022,Manufacturing,21,Engineering / science professionals,821.7456000000001,41.08728000000001,69.84837600000002,98.60947200000001,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Davanagere,2022,Manufacturing,31,Engineering technicians / associate professionals,1232.6184,61.63092,104.77256400000002,147.914208,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Davanagere,2022,Manufacturing,72,"Metal, machinery and related trades",2054.364,102.71820000000001,174.62094000000002,246.52367999999998,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Davanagere,2022,Manufacturing,74,Electrical and electronic trades,1232.6184,61.63092,104.77256400000002,147.914208,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Davanagere,2022,Manufacturing,81,Plant and machine operators / assemblers,1643.4912000000002,82.17456000000001,139.69675200000003,197.21894400000002,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Davanagere,2022,Manufacturing,93,Manufacturing labourers / elementary occupations,1232.6184,61.63092,104.77256400000002,147.914208,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Dharwad,2022,Manufacturing,21,Engineering / science professionals,1520.948,76.04740000000001,129.28058000000001,182.51376,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Dharwad,2022,Manufacturing,31,Engineering technicians / associate professionals,2281.422,114.0711,193.92087,273.77064,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Dharwad,2022,Manufacturing,72,"Metal, machinery and related trades",3802.37,190.1185,323.20145,456.28439999999995,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Dharwad,2022,Manufacturing,74,Electrical and electronic trades,2281.422,114.0711,193.92087,273.77064,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Dharwad,2022,Manufacturing,81,Plant and machine operators / assemblers,3041.896,152.09480000000002,258.56116000000003,365.02752,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Dharwad,2022,Manufacturing,93,Manufacturing labourers / elementary occupations,2281.422,114.0711,193.92087,273.77064,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Gadag,2022,Manufacturing,21,Engineering / science professionals,402.116,20.105800000000002,34.17986,48.253919999999994,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Gadag,2022,Manufacturing,31,Engineering technicians / associate professionals,603.174,30.1587,51.26979,72.38087999999999,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Gadag,2022,Manufacturing,72,"Metal, machinery and related trades",1005.29,50.2645,85.44965,120.63479999999998,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Gadag,2022,Manufacturing,74,Electrical and electronic trades,603.174,30.1587,51.26979,72.38087999999999,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Gadag,2022,Manufacturing,81,Plant and machine operators / assemblers,804.232,40.211600000000004,68.35972,96.50783999999999,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Gadag,2022,Manufacturing,93,Manufacturing labourers / elementary occupations,603.174,30.1587,51.26979,72.38087999999999,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Hassan,2022,Manufacturing,21,Engineering / science professionals,1755.8424,87.79212000000001,149.24660400000002,210.701088,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Hassan,2022,Manufacturing,31,Engineering technicians / associate professionals,2633.7635999999998,131.68818,223.869906,316.051632,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Hassan,2022,Manufacturing,72,"Metal, machinery and related trades",4389.606,219.4803,373.11651,526.75272,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Hassan,2022,Manufacturing,74,Electrical and electronic trades,2633.7635999999998,131.68818,223.869906,316.051632,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Hassan,2022,Manufacturing,81,Plant and machine operators / assemblers,3511.6848,175.58424000000002,298.49320800000004,421.402176,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Hassan,2022,Manufacturing,93,Manufacturing labourers / elementary occupations,2633.7635999999998,131.68818,223.869906,316.051632,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Haveri,2022,Manufacturing,21,Engineering / science professionals,1020.1256,51.006280000000004,86.710676,122.415072,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Haveri,2022,Manufacturing,31,Engineering technicians / associate professionals,1530.1883999999998,76.50941999999999,130.066014,183.62260799999996,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Haveri,2022,Manufacturing,72,"Metal, machinery and related trades",2550.314,127.5157,216.77669,306.03767999999997,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Haveri,2022,Manufacturing,74,Electrical and electronic trades,1530.1883999999998,76.50941999999999,130.066014,183.62260799999996,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Haveri,2022,Manufacturing,81,Plant and machine operators / assemblers,2040.2512,102.01256000000001,173.421352,244.830144,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Haveri,2022,Manufacturing,93,Manufacturing labourers / elementary occupations,1530.1883999999998,76.50941999999999,130.066014,183.62260799999996,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Kalaburagi,2022,Manufacturing,21,Engineering / science professionals,1139.528,56.976400000000005,96.85988,136.74336,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Kalaburagi,2022,Manufacturing,31,Engineering technicians / associate professionals,1709.2919999999997,85.46459999999999,145.28982,205.11503999999996,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Kalaburagi,2022,Manufacturing,72,"Metal, machinery and related trades",2848.8199999999997,142.441,242.1497,341.85839999999996,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Kalaburagi,2022,Manufacturing,74,Electrical and electronic trades,1709.2919999999997,85.46459999999999,145.28982,205.11503999999996,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Kalaburagi,2022,Manufacturing,81,Plant and machine operators / assemblers,2279.056,113.95280000000001,193.71976,273.48672,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Kalaburagi,2022,Manufacturing,93,Manufacturing labourers / elementary occupations,1709.2919999999997,85.46459999999999,145.28982,205.11503999999996,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Kodagu,2022,Manufacturing,21,Engineering / science professionals,366.08,18.304,31.1168,43.92959999999999,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Kodagu,2022,Manufacturing,31,Engineering technicians / associate professionals,549.1199999999999,27.455999999999996,46.6752,65.89439999999999,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Kodagu,2022,Manufacturing,72,"Metal, machinery and related trades",915.1999999999999,45.76,77.792,109.82399999999998,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Kodagu,2022,Manufacturing,74,Electrical and electronic trades,549.1199999999999,27.455999999999996,46.6752,65.89439999999999,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Kodagu,2022,Manufacturing,81,Plant and machine operators / assemblers,732.16,36.608,62.2336,87.85919999999999,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Kodagu,2022,Manufacturing,93,Manufacturing labourers / elementary occupations,549.1199999999999,27.455999999999996,46.6752,65.89439999999999,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Kolar,2022,Manufacturing,21,Engineering / science professionals,1852.8224,92.64112,157.48990400000002,222.338688,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Kolar,2022,Manufacturing,31,Engineering technicians / associate professionals,2779.2335999999996,138.96167999999997,236.23485599999998,333.50803199999996,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Kolar,2022,Manufacturing,72,"Metal, machinery and related trades",4632.056,231.6028,393.72476,555.8467199999999,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Kolar,2022,Manufacturing,74,Electrical and electronic trades,2779.2335999999996,138.96167999999997,236.23485599999998,333.50803199999996,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Kolar,2022,Manufacturing,81,Plant and machine operators / assemblers,3705.6448,185.28224,314.97980800000005,444.677376,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Kolar,2022,Manufacturing,93,Manufacturing labourers / elementary occupations,2779.2335999999996,138.96167999999997,236.23485599999998,333.50803199999996,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Koppal,2022,Manufacturing,21,Engineering / science professionals,1015.2168,50.76084,86.293428,121.826016,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Koppal,2022,Manufacturing,31,Engineering technicians / associate professionals,1522.8252,76.14126,129.440142,182.739024,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Koppal,2022,Manufacturing,72,"Metal, machinery and related trades",2538.042,126.9021,215.73357000000001,304.56503999999995,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Koppal,2022,Manufacturing,74,Electrical and electronic trades,1522.8252,76.14126,129.440142,182.739024,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Koppal,2022,Manufacturing,81,Plant and machine operators / assemblers,2030.4336,101.52168,172.586856,243.652032,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Koppal,2022,Manufacturing,93,Manufacturing labourers / elementary occupations,1522.8252,76.14126,129.440142,182.739024,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Mandya,2022,Manufacturing,21,Engineering / science professionals,918.2368000000001,45.91184000000001,78.05012800000002,110.18841600000002,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Mandya,2022,Manufacturing,31,Engineering technicians / associate professionals,1377.3552,68.86776,117.075192,165.282624,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Mandya,2022,Manufacturing,72,"Metal, machinery and related trades",2295.592,114.77960000000002,195.12532000000002,275.47104,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Mandya,2022,Manufacturing,74,Electrical and electronic trades,1377.3552,68.86776,117.075192,165.282624,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Mandya,2022,Manufacturing,81,Plant and machine operators / assemblers,1836.4736000000003,91.82368000000002,156.10025600000003,220.37683200000004,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Mandya,2022,Manufacturing,93,Manufacturing labourers / elementary occupations,1377.3552,68.86776,117.075192,165.282624,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Mysuru,2022,Manufacturing,21,Engineering / science professionals,2889.0264,144.45132,245.56724400000004,346.683168,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Mysuru,2022,Manufacturing,31,Engineering technicians / associate professionals,4333.5396,216.67698000000001,368.35086600000005,520.024752,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Mysuru,2022,Manufacturing,72,"Metal, machinery and related trades",7222.566,361.1283,613.9181100000001,866.70792,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Mysuru,2022,Manufacturing,74,Electrical and electronic trades,4333.5396,216.67698000000001,368.35086600000005,520.024752,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Mysuru,2022,Manufacturing,81,Plant and machine operators / assemblers,5778.0528,288.90264,491.1344880000001,693.366336,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Mysuru,2022,Manufacturing,93,Manufacturing labourers / elementary occupations,4333.5396,216.67698000000001,368.35086600000005,520.024752,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Raichur,2022,Manufacturing,21,Engineering / science professionals,1451.0808,72.55404,123.341868,174.129696,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Raichur,2022,Manufacturing,31,Engineering technicians / associate professionals,2176.6211999999996,108.83105999999998,185.01280199999997,261.19454399999995,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Raichur,2022,Manufacturing,72,"Metal, machinery and related trades",3627.7019999999998,181.3851,308.35467,435.32424,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Raichur,2022,Manufacturing,74,Electrical and electronic trades,2176.6211999999996,108.83105999999998,185.01280199999997,261.19454399999995,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Raichur,2022,Manufacturing,81,Plant and machine operators / assemblers,2902.1616,145.10808,246.683736,348.259392,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Raichur,2022,Manufacturing,93,Manufacturing labourers / elementary occupations,2176.6211999999996,108.83105999999998,185.01280199999997,261.19454399999995,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Ramanagara,2022,Manufacturing,21,Engineering / science professionals,541.8816,27.094080000000005,46.05993600000001,65.02579200000001,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Ramanagara,2022,Manufacturing,31,Engineering technicians / associate professionals,812.8223999999999,40.64112,69.08990399999999,97.53868799999998,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Ramanagara,2022,Manufacturing,72,"Metal, machinery and related trades",1354.704,67.7352,115.14984,162.56447999999997,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Ramanagara,2022,Manufacturing,74,Electrical and electronic trades,812.8223999999999,40.64112,69.08990399999999,97.53868799999998,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Ramanagara,2022,Manufacturing,81,Plant and machine operators / assemblers,1083.7632,54.18816000000001,92.11987200000002,130.05158400000002,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Ramanagara,2022,Manufacturing,93,Manufacturing labourers / elementary occupations,812.8223999999999,40.64112,69.08990399999999,97.53868799999998,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Shivamogga,2022,Manufacturing,21,Engineering / science professionals,1164.3528000000001,58.21764000000001,98.96998800000001,139.722336,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Shivamogga,2022,Manufacturing,31,Engineering technicians / associate professionals,1746.5292,87.32646,148.454982,209.58350399999998,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Shivamogga,2022,Manufacturing,72,"Metal, machinery and related trades",2910.882,145.54410000000001,247.42497000000003,349.30584,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Shivamogga,2022,Manufacturing,74,Electrical and electronic trades,1746.5292,87.32646,148.454982,209.58350399999998,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Shivamogga,2022,Manufacturing,81,Plant and machine operators / assemblers,2328.7056000000002,116.43528000000002,197.93997600000003,279.444672,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Shivamogga,2022,Manufacturing,93,Manufacturing labourers / elementary occupations,1746.5292,87.32646,148.454982,209.58350399999998,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Tumakuru,2022,Manufacturing,21,Engineering / science professionals,1927.4736000000003,96.37368000000002,163.83525600000004,231.29683200000002,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Tumakuru,2022,Manufacturing,31,Engineering technicians / associate professionals,2891.2104,144.56052,245.75288400000002,346.945248,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Tumakuru,2022,Manufacturing,72,"Metal, machinery and related trades",4818.684,240.93420000000003,409.58814000000007,578.24208,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Tumakuru,2022,Manufacturing,74,Electrical and electronic trades,2891.2104,144.56052,245.75288400000002,346.945248,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Tumakuru,2022,Manufacturing,81,Plant and machine operators / assemblers,3854.9472000000005,192.74736000000004,327.6705120000001,462.59366400000005,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Tumakuru,2022,Manufacturing,93,Manufacturing labourers / elementary occupations,2891.2104,144.56052,245.75288400000002,346.945248,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Udupi,2022,Manufacturing,21,Engineering / science professionals,770.8168000000001,38.54084,65.519428,92.498016,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Udupi,2022,Manufacturing,31,Engineering technicians / associate professionals,1156.2251999999999,57.81126,98.279142,138.74702399999998,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Udupi,2022,Manufacturing,72,"Metal, machinery and related trades",1927.042,96.35210000000001,163.79857,231.24504,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Udupi,2022,Manufacturing,74,Electrical and electronic trades,1156.2251999999999,57.81126,98.279142,138.74702399999998,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Udupi,2022,Manufacturing,81,Plant and machine operators / assemblers,1541.6336000000001,77.08168,131.038856,184.996032,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Udupi,2022,Manufacturing,93,Manufacturing labourers / elementary occupations,1156.2251999999999,57.81126,98.279142,138.74702399999998,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Uttara Kannada,2022,Manufacturing,21,Engineering / science professionals,631.54,31.576999999999998,53.6809,75.78479999999999,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Uttara Kannada,2022,Manufacturing,31,Engineering technicians / associate professionals,947.31,47.3655,80.52135,113.67719999999998,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Uttara Kannada,2022,Manufacturing,72,"Metal, machinery and related trades",1578.85,78.9425,134.20225,189.462,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Uttara Kannada,2022,Manufacturing,74,Electrical and electronic trades,947.31,47.3655,80.52135,113.67719999999998,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Uttara Kannada,2022,Manufacturing,81,Plant and machine operators / assemblers,1263.08,63.153999999999996,107.3618,151.56959999999998,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Uttara Kannada,2022,Manufacturing,93,Manufacturing labourers / elementary occupations,947.31,47.3655,80.52135,113.67719999999998,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Vijayanagara,2022,Manufacturing,21,Engineering / science professionals,108.39920000000001,5.4199600000000006,9.213932000000002,13.007904,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Vijayanagara,2022,Manufacturing,31,Engineering technicians / associate professionals,162.59879999999998,8.12994,13.820898,19.511855999999998,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Vijayanagara,2022,Manufacturing,72,"Metal, machinery and related trades",270.998,13.549900000000001,23.03483,32.51976,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Vijayanagara,2022,Manufacturing,74,Electrical and electronic trades,162.59879999999998,8.12994,13.820898,19.511855999999998,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Vijayanagara,2022,Manufacturing,81,Plant and machine operators / assemblers,216.79840000000002,10.839920000000001,18.427864000000003,26.015808,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Vijayanagara,2022,Manufacturing,93,Manufacturing labourers / elementary occupations,162.59879999999998,8.12994,13.820898,19.511855999999998,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Vijayapura,2022,Manufacturing,21,Engineering / science professionals,1254.1256,62.70628000000001,106.600676,150.495072,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Vijayapura,2022,Manufacturing,31,Engineering technicians / associate professionals,1881.1883999999998,94.05941999999999,159.901014,225.74260799999996,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Vijayapura,2022,Manufacturing,72,"Metal, machinery and related trades",3135.314,156.7657,266.50169,376.23767999999995,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Vijayapura,2022,Manufacturing,74,Electrical and electronic trades,1881.1883999999998,94.05941999999999,159.901014,225.74260799999996,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Vijayapura,2022,Manufacturing,81,Plant and machine operators / assemblers,2508.2512,125.41256000000001,213.201352,300.990144,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Vijayapura,2022,Manufacturing,93,Manufacturing labourers / elementary occupations,1881.1883999999998,94.05941999999999,159.901014,225.74260799999996,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Yadgir,2022,Manufacturing,21,Engineering / science professionals,632.9336,31.64668,53.799356,75.95203199999999,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Yadgir,2022,Manufacturing,31,Engineering technicians / associate professionals,949.4003999999999,47.47002,80.699034,113.92804799999998,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Yadgir,2022,Manufacturing,72,"Metal, machinery and related trades",1582.3339999999998,79.1167,134.49839,189.88007999999996,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Yadgir,2022,Manufacturing,74,Electrical and electronic trades,949.4003999999999,47.47002,80.699034,113.92804799999998,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Yadgir,2022,Manufacturing,81,Plant and machine operators / assemblers,1265.8672,63.29336,107.598712,151.90406399999998,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022
+Yadgir,2022,Manufacturing,93,Manufacturing labourers / elementary occupations,949.4003999999999,47.47002,80.699034,113.92804799999998,state-prior + district-proxy,SRC-UDYAM-EMP-2022;SRC-PLFS-MFG-2022

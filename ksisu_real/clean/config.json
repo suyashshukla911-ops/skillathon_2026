@@ -1,0 +1,39 @@
+{
+  "project": "KSISU Real-Data Skill Gap Prototype",
+  "sector": "Manufacturing",
+  "reference_fy": "2022-23",
+  "year_aging_threshold_years": 2,
+  "district_fuzzy_threshold": 0.9,
+  "opening_rate": {
+    "low": 0.05,
+    "mode": 0.085,
+    "high": 0.12
+  },
+  "seat_fill_rate": {
+    "low": 0.5,
+    "mode": 0.813,
+    "high": 0.9,
+    "basis": "statewide ITI admissions / sanctioned seats from DGT tracer study"
+  },
+  "completion_rate": {
+    "low": 0.5,
+    "mode": 0.593,
+    "high": 0.7,
+    "basis": "statewide ITI pass-outs / admissions from DGT tracer study"
+  },
+  "sector_entry_rate": {
+    "low": 0.2,
+    "mode": 0.3,
+    "high": 0.4,
+    "basis": "explicit model prior; sector-specific placement is not verified in available district data"
+  },
+  "monte_carlo_draws": 5000,
+  "random_seed": 20261016,
+  "interval": [
+    0.1,
+    0.9
+  ],
+  "gap_rule": "entire 80 percent interval below 1 => gap; entire interval above 1 => surplus; else needs data",
+  "min_count_suppression": 5,
+  "assumption_note": "Occupation mix and course-to-NCO crosswalk are analyst priors for the worked illustration. Replace with PLFS microdata and district MIS/DSDP as they become available."
+}

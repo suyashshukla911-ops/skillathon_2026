@@ -1,0 +1,18 @@
+KSISU REAL-DATA PACKAGE - START HERE
+
+1) Open this folder.
+2) Run: python run_gap.py
+3) Outputs appear in out/.
+4) Read MODEL_METHOD.md before presenting results.
+5) The included PDF is a DRAFT submission note based on real public inputs + explicitly labeled model assumptions.
+6) Do not call the estimates official KSI values.
+7) Before final submission, re-download the LGD district directory live, verify the 31 codes, and replace the occupation-mix prior with PLFS microdata if access is available.
+
+Main outputs:
+- out/KSISU_Skillathon_2026_Draft_Submission.pdf
+- out/ratio_intervals.csv
+- out/district_priority.csv
+- out/focus_districts.csv
+- out/traffic_light.csv
+- out/corruption_test_summary.csv
+- out/sanity_summary.csv

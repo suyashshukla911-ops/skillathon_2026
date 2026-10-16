@@ -1,0 +1,6 @@
+{"run_id": "RUN-20261016-165144", "step": "ingest", "status": "PASS", "detail": "6 public/derived source files captured; source registry built"}
+{"run_id": "RUN-20261016-165144", "step": "harmonise", "status": "PASS", "detail": "31/31 canonical district names matched; corruption test recovered 31/31"}
+{"run_id": "RUN-20261016-165144", "step": "demand", "status": "PASS", "detail": "State manufacturing share + district Udyam employment proxy + explicit opening range"}
+{"run_id": "RUN-20261016-165144", "step": "supply", "status": "PASS", "detail": "DGT division-level ITI seats allocated within DGT divisions by district Udyam-employment shares; explicit fill/completion/sector-entry ranges"}
+{"run_id": "RUN-20261016-165144", "step": "monte_carlo", "status": "PASS", "detail": "5000 triangular draws per district/occupation; fixed seed 20261016"}
+{"run_id": "RUN-20261016-165144", "step": "priority", "status": "PASS", "detail": "SCI and VOI computed; high-uncertainty/high-stakes districts ranked for onboarding"}

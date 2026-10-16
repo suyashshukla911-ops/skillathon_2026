@@ -1,0 +1,3 @@
+district,skill_coverage_index,annual_openings_central,weighted_interval_width,voi,priority_rank,recommended_action,context_label,annual_demand,annual_supply,ratio_median,ratio_p10,ratio_p90,confidence
+Kalaburagi,0.10724290950550139,968.5988,0.07458140585537129,72.23946021382561,13,Monitor / onboard after high-priority districts,lagging / lower-base pilot,968.5988,114.72423866650318,0.09364408899147585,0.06678546093323086,0.13183541483018943,69.21399876531709
+Tumakuru,0.05128022974100062,1638.3525600000003,0.034990297414602946,57.32644334437612,16,Monitor / onboard after high-priority districts,industrial / manufacturing-linked pilot,1638.3525600000003,92.64793396193576,0.044666258107050806,0.03206985336865011,0.06253483989795784,73.42889370199474
