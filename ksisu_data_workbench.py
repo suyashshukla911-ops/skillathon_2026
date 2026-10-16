@@ -9,7 +9,6 @@ import os
 import re
 import shutil
 import sqlite3
-import threading
 import webbrowser
 from collections import defaultdict
 from datetime import datetime
@@ -404,7 +403,7 @@ class Registry:
 
     def export_csv(self,path):
         rows=self.rows()
-        cols=[d[0] for d in self.conn.execute("PRAGMA table_info(source_files)").fetchall()]
+        cols=[d[1] for d in self.conn.execute("PRAGMA table_info(source_files)").fetchall()]
         pd.DataFrame(rows,columns=cols).to_csv(path,index=False,encoding="utf-8-sig")
 
 class MappingEngine:
@@ -1007,7 +1006,7 @@ IMPORTANT
     def refresh_registry(self):
         if not hasattr(self,"registry_tree"): return
         self.registry_tree.delete(*self.registry_tree.get_children())
-        cols=[d[0] for d in self.engine.registry.conn.execute("PRAGMA table_info(source_files)").fetchall()]
+        cols=[d[1] for d in self.engine.registry.conn.execute("PRAGMA table_info(source_files)").fetchall()]
         for row in self.engine.registry.rows():
             r=dict(zip(cols,row))
             self.registry_tree.insert("",tk.END,values=(r["file_id"],r["source_name"],r["dataset_name"],r["district_hint"],r["format"],r["record_count"],r["checksum"][:10],r["version"],r["privacy_level"],r["status"]))
@@ -1129,18 +1128,30 @@ IMPORTANT
             messagebox.showerror("Schema override import failed",str(e))
 
     def ingest_all(self):
+        """Ingest discovered source files on the Tkinter main thread.
+
+        The previous implementation launched ingestion in a background thread while
+        reusing the Registry's SQLite connection created by the Tkinter thread.
+        Python's sqlite3 driver correctly rejected that cross-thread use.
+        Ingestion is intentionally kept synchronous here because the bundled demo
+        contains only a small number of source artifacts; this guarantees that the
+        SQLite connection and all UI state remain on one thread.
+        """
         if not self.discovered:
             self.discovered=self.engine.discover()
-        self.set_status("Ingesting, cataloguing and copying raw artifacts…")
-        def worker():
-            try:
-                files,rows=self.engine.ingest(self.discovered)
-                self.engine.audit_log("INGEST",f"files={files};rows={rows}")
-                self.root.after(0,lambda:self.after_action(f"Ingested {files} artifacts / {rows} rows.",0))
-            except Exception as e:
-                self.root.after(0,lambda:messagebox.showerror("Ingestion failed",str(e)))
-                self.root.after(0,lambda:self.set_status("Ingestion failed"))
-        threading.Thread(target=worker,daemon=True).start()
+        if not self.discovered:
+            messagebox.showwarning("No sources found", "No supported source files were discovered in the configured input folder.")
+            return
+        self.set_status(f"Ingesting {len(self.discovered)} source artifacts…")
+        self.root.update_idletasks()
+        try:
+            files,rows=self.engine.ingest(self.discovered)
+            self.engine.audit_log("INGEST",f"files={files};rows={rows}")
+            self.after_action(f"Ingested {files} artifacts / {rows} rows.",0)
+            messagebox.showinfo("Ingestion complete", f"Source artifacts ingested: {files}\nRecords loaded: {rows}")
+        except Exception as e:
+            self.set_status("Ingestion failed")
+            messagebox.showerror("Ingestion failed", f"{type(e).__name__}: {e}")
 
     def after_action(self,msg,tab_index=None):
         self.refresh_all(); self.set_status(msg)
