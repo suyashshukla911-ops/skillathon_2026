@@ -1,3 +1,0 @@
-KSISU Real-Data Intelligence Pilot
-GUI build: FIXED-2026-10-16
-Fixes: results-table decision column; GUI Path handling; no matplotlib dependency in GUI.
