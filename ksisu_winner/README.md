@@ -81,3 +81,17 @@ The proxy-only SCI is shown relative to the statewide median SCI (`relative_SCI_
 
 ## Validation scale
 The corruption test now runs 100 seeded corruptions plus a 5% duplicate batch. It reports typo recovery, unseen-alias review, duplicate detection, and preserved review rows.
+
+
+V5 critical fixes
+- Partial evidence retains allocation and proxy-seat uncertainty; observed partial rows are floors, not exact district totals.
+- Full actual gate requires all 31 raw LGD districts / 30 analytical geographies x both modeled NCO groups and <=5% unmapped seat share.
+- District allocation uses populated historical 2022 district ITI-count weights from an official Rajya Sabha CTS table, scaled to the NCVT statewide seat magnitude.
+- Demand includes independent per-district lognormal allocation uncertainty (sigma 0.35, configuration assumption).
+- District ranking is by uncapped median R; SCI is reported separately.
+- Conservation is compared with the triangular-mean expectation, not the mode.
+- GUI and PDF use the same model outputs and configuration.
+
+
+### Annexure-IV evidence
+All 30 positive historical analytical geography ITI weights are checked against the official Rajya Sabha Q131 Annexure-IV table. The project stores the government/private split and a project-generated evidence transcription in `raw/rajya_sabha_annexure_iv_page6_evidence.pdf` and `.png`. The official source remains the authoritative document.

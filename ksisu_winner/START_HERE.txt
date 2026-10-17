@@ -49,3 +49,6 @@ KSISU REAL-DATA EVIDENCE WORKBENCH — START HERE
 
 
 IMPORTANT: A bundled NCVT partial sample is handled as observed seats + uncertain remainder (floor treatment). It is not treated as a complete district census. To unlock a provisional policy call, load a complete district x trade file and mark rows coverage_status=full_district_extract.
+
+V5 TEST CHECKS
+10 automated tests pass. The conservation check is against the triangular-mean expected statewide supply, not the mode. The full-actual gate is regression-tested with both a valid 31 raw LGD x2 file and a file with >5% UNMAPPED seats.

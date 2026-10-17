@@ -135,10 +135,10 @@ class KSISUGUI(tk.Tk):
 
     def _priority_tab(self):
         self.priority_tree = self._tree(self.t_priority,[
-            ("rank","Priority",60),("district","District",160),("sci","SCI",80),("relative","Rel. to median",105),("openings","Openings",115),
+            ("rank","R rank",55),("district","District",145),("ratio","Median R",85),("relative_r","R / median",95),("sci","SCI",75),("openings","Openings",105),
             ("voi","VOI",115),("priority","Data priority",120),("confidence","Evidence",95),("actual","Full actual",90),("needs","Needs data",90)
         ])
-        ttk.Label(self.t_priority,text="VOI = interval width × annual openings. Data priority also discounts already-strong evidence, so this is not simply a population ranking.",wraplength=1200).pack(fill="x",padx=6,pady=5)
+        ttk.Label(self.t_priority,text="R rank is the uncapped ratio ranking. SCI is the capped coverage index. VOI and Data priority are only for deciding where KSISU should collect better district data first.",wraplength=1200).pack(fill="x",padx=6,pady=5)
 
     def _sens_tab(self):
         self.sens_text=tk.Text(self.t_sens,height=7,wrap="word")
@@ -157,7 +157,7 @@ class KSISUGUI(tk.Tk):
 
 1. Run Proxy Baseline. Say: "This is what KSISU can infer before complete district ITI supply is available. Mathematical ratios are shown, but policy status remains NEEDS DATA."
 
-2. Open District Priority. Use SCI and VOI only as a data-collection prioritisation view; do not call the proxy ranking a district skill-gap finding.
+2. Open District Priority. The ranking table is ordered by the uncapped median ratio R; SCI is shown separately. Use both only as a data-collection prioritisation view; do not call the proxy ranking a district skill-gap finding.
 
 3. Click Load Official NCVT Sample. The bundled File 1171 rows are an indexed partial sample for Tumakuru and Kalaburagi - not a downloaded complete district extract.
 
@@ -194,6 +194,7 @@ THE ONE-SENTENCE STORY
             ("NCVT state ITI magnitude",RAW/"ncvtmis_karnataka_state_2022.csv","state","2022"),
             ("DGT historical division rates",RAW/"iti_division_training_2020_21.csv","division","2020-21"),
             ("NCVT File 1171 real partial",RAW/"ncvtmis_file1171_real_partial.csv","district×trade","historical"),
+            ("Historical district ITI-count weights",CLEAN/"district_iti_counts.csv","district weight","2022"),
             ("Occupation prior",CLEAN/"occupation_mix_prior.csv","state prior","2022-23"),
             ("Human-reviewed course→NCO crosswalk",CLEAN/"crosswalk.csv","course→NCO","versioned")
         ]
@@ -265,7 +266,7 @@ THE ONE-SENTENCE STORY
         self.status.set(msg)
         self.results_note.set(f"{len(d)} districts × {r.nco_group_2digit.nunique()} NCO groups • {r.decision_status.value_counts().to_dict()} • Actual supply loaded: {res['audit']['actual_supply_loaded']}")
         self._fill(self.results_tree, r, lambda x:(x.district,x.nco_group_2digit,x.occupation_label,f"{x.ratio_p10:.3f}",f"{x.ratio_median:.3f}",f"{x.ratio_p90:.3f}",f"{x.interval_width:.3f}",f"{x.confidence_score:.2f}",x.decision_status,x.supply_basis))
-        self._fill(self.priority_tree, d, lambda x:(x.priority_rank,x.district,f"{x.SCI:.3f}",f"{x.relative_SCI_vs_state_median:.2f}x",f"{x.total_annual_openings:,.0f}",f"{x.VOI:,.0f}",f"{x.data_collection_priority:,.0f}",f"{x.mean_confidence:.2f}",x.actual_cells,x.needs_data_cells))
+        self._fill(self.priority_tree, d, lambda x:(x.ratio_rank,x.district,f"{x.uncapped_ratio_median:.3f}",f"{x.relative_uncapped_ratio_vs_state_median:.2f}x",f"{x.SCI:.3f}",f"{x.total_annual_openings:,.0f}",f"{x.VOI:,.0f}",f"{x.data_collection_priority:,.0f}",f"{x.mean_confidence:.2f}",x.actual_cells,x.needs_data_cells))
         self.sens_text.delete("1.0","end")
         self.sens_text.insert("1.0", "Sensitivity now reports rank stability across the shared Monte Carlo draws. This tests whether district priority is stable under common system-level uncertainty; it does not simply restate the width of arbitrary parameter ranges.\n")
         self._fill(self.sens_tree, s, lambda x:(x.district,int(x.baseline_rank),f"{x.rank_p10:.0f}",f"{x.rank_median:.0f}",f"{x.rank_p90:.0f}",f"{x.top5_frequency*100:.1f}%",f"{x.global_rank_stability_median_rho:.3f}"))
@@ -279,7 +280,7 @@ THE ONE-SENTENCE STORY
             ("Selected occupation share",f"{res['audit']['occupation_share_sum_selected']:.2f}","72 + 74 only; not normalized"),
             ("Selected course weight",f"{res['audit']['selected_course_weight_sum']:.2f}","72 + 74 only; not normalized"),
             ("Monte Carlo draws",res['audit']['monte_carlo_draws'],"PASS"),
-            ("Relative SCI", "SCI / statewide median", "PRIORITY INDEX"),
+            ("Relative uncapped ratio", "Median R / statewide median R", "PRIORITY INDEX"),
             ("Proxy allocation diagnostic",f"{res['audit'].get('district_supply_proxy_correlation',float('nan')):.3f}","NOT VALIDATION"),
         ]
         demo=res.get("interval_demo")

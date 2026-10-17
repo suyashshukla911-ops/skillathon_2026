@@ -1,0 +1,31 @@
+district,iti_count,verified,verification_source,verification_locator,allocation_use,data_quality_note
+Bagalkot,76,TRUE,https://sansad.in/getFile/annex/258/AU131.pdf?source=pqars,"Rajya Sabha Q131, Annexure-IV, p.6",historical allocation weight only,Verified against official Rajya Sabha CTS table in this build.
+Ballari-Vijayanagara,89,TRUE,https://sansad.in/getFile/annex/258/AU131.pdf?source=pqars,"Rajya Sabha Q131, Annexure-IV, p.6; Bellary total 89 used for the merged Ballari-Vijayanagara geography",historical allocation weight only,Verified against official Rajya Sabha CTS table in this build.
+Belagavi,124,TRUE,https://sansad.in/getFile/annex/258/AU131.pdf?source=pqars,"Rajya Sabha Q131, Annexure-IV, p.6",historical allocation weight only,Verified against official Rajya Sabha CTS table in this build.
+Bengaluru Rural,21,TRUE,https://sansad.in/getFile/annex/258/AU131.pdf?source=pqars,"Rajya Sabha Q131, Annexure-IV, p.6",historical allocation weight only,Verified against official Rajya Sabha CTS table in this build.
+Bengaluru Urban,53,TRUE,https://sansad.in/getFile/annex/258/AU131.pdf?source=pqars,"Rajya Sabha Q131, Annexure-IV, p.6",historical allocation weight only,Verified against official Rajya Sabha CTS table in this build.
+Bidar,74,TRUE,https://sansad.in/getFile/annex/258/AU131.pdf?source=pqars,"Rajya Sabha Q131, Annexure-IV, p.6",historical allocation weight only,Verified against official Rajya Sabha CTS table in this build.
+Chamarajanagar,19,FALSE,,,historical allocation weight only,Not independently rechecked in this build; retain as unverified input.
+Chikkaballapur,25,FALSE,,,historical allocation weight only,Not independently rechecked in this build; retain as unverified input.
+Chikkamagaluru,24,FALSE,,,historical allocation weight only,Not independently rechecked in this build; retain as unverified input.
+Chitradurga,64,TRUE,https://sansad.in/getFile/annex/258/AU131.pdf?source=pqars,"Rajya Sabha Q131, Annexure-IV, p.6",historical allocation weight only,Verified against official Rajya Sabha CTS table in this build.
+Dakshina Kannada,29,FALSE,,,historical allocation weight only,Not independently rechecked in this build; retain as unverified input.
+Davanagere,57,FALSE,,,historical allocation weight only,Not independently rechecked in this build; retain as unverified input.
+Dharwad,57,TRUE,https://sansad.in/getFile/annex/258/AU131.pdf?source=pqars,"Rajya Sabha Q131, Annexure-IV, p.6",historical allocation weight only,Verified against official Rajya Sabha CTS table in this build.
+Gadag,44,TRUE,https://sansad.in/getFile/annex/258/AU131.pdf?source=pqars,"Rajya Sabha Q131, Annexure-IV, p.6",historical allocation weight only,Verified against official Rajya Sabha CTS table in this build.
+Hassan,72,TRUE,https://sansad.in/getFile/annex/258/AU131.pdf?source=pqars,"Rajya Sabha Q131, Annexure-IV, p.6",historical allocation weight only,Verified against official Rajya Sabha CTS table in this build.
+Haveri,53,FALSE,,,historical allocation weight only,Not independently rechecked in this build; retain as unverified input.
+Kalaburagi,83,FALSE,,,historical allocation weight only,Not independently rechecked in this build; retain as unverified input.
+Kodagu,6,FALSE,,,historical allocation weight only,Not independently rechecked in this build; retain as unverified input.
+Kolar,37,FALSE,,,historical allocation weight only,Not independently rechecked in this build; retain as unverified input.
+Koppal,46,FALSE,,,historical allocation weight only,Not independently rechecked in this build; retain as unverified input.
+Mandya,53,FALSE,,,historical allocation weight only,Not independently rechecked in this build; retain as unverified input.
+Mysuru,51,FALSE,,,historical allocation weight only,Not independently rechecked in this build; retain as unverified input.
+Raichur,38,FALSE,,,historical allocation weight only,Not independently rechecked in this build; retain as unverified input.
+Ramanagara,27,TRUE,https://sansad.in/getFile/annex/258/AU131.pdf?source=pqars,"Rajya Sabha Q131, Annexure-IV, p.6",historical allocation weight only,Verified against official Rajya Sabha CTS table in this build.
+Shivamogga,42,FALSE,,,historical allocation weight only,Not independently rechecked in this build; retain as unverified input.
+Tumakuru,71,TRUE,https://sansad.in/getFile/annex/258/AU131.pdf?source=pqars,"Rajya Sabha Q131, Annexure-IV, p.6",historical allocation weight only,Verified against official Rajya Sabha CTS table in this build.
+Udupi,14,FALSE,,,historical allocation weight only,Not independently rechecked in this build; retain as unverified input.
+Uttara Kannada,24,FALSE,,,historical allocation weight only,Not independently rechecked in this build; retain as unverified input.
+Vijayapura,98,TRUE,https://sansad.in/getFile/annex/258/AU131.pdf?source=pqars,"Rajya Sabha Q131, Annexure-IV, p.6",historical allocation weight only,Verified against official Rajya Sabha CTS table in this build.
+Yadgir,31,TRUE,https://sansad.in/getFile/annex/258/AU131.pdf?source=pqars,"Rajya Sabha Q131, Annexure-IV, p.6",historical allocation weight only,Verified against official Rajya Sabha CTS table in this build.

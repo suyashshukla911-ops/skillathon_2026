@@ -10,16 +10,20 @@ from run_gap import compute_model
 print('KSISU SELF TEST')
 print('='*60)
 proxy=compute_model(write_outputs=False)
-assert len(proxy['district'])==31
-assert len(proxy['ratio'])==62
+assert len(proxy['district'])==30
+assert len(proxy['ratio'])==60
 assert abs(proxy['audit']['occupation_share_sum_selected']-0.40)<1e-9
 assert abs(proxy['audit']['selected_course_weight_sum']-0.82)<1e-9
 assert proxy['ratio']['year'].nunique()==1
 assert proxy['ratio']['year'].iloc[0]=='2022-23'
 assert set(proxy['ratio']['decision_status'])=={'NEEDS DATA'}
 assert proxy['audit']['monte_carlo_draws']==5000
+
+iti=pd.read_csv(ROOT/'input_templates/district_iti_counts.csv')
+assert len(iti)==30 and iti.district.nunique()==30 and iti.iti_count.sum()>0
+assert set(proxy['audit']['allocation_basis_counts'].keys())=={'NCVT ITI-count weighted'}
 assert (proxy['ratio']['interval_width']>=0).all()
-expected=proxy['audit']['statewide_supply_expected_mode']
+expected=proxy['audit']['statewide_supply_expected_mean']
 actual=proxy['audit']['statewide_supply_median_sum']
 assert abs(actual/expected-1)<0.25
 
@@ -42,6 +46,13 @@ with tempfile.TemporaryDirectory() as td:
     assert full['audit']['actual_supply_full_ready'] is True
     assert full['ratio']['evidence_ready'].all()
 
+    bad = pd.DataFrame(rows[:-1] + [{'district':'Tumakuru','iti_code':'TEST-X','trade':'Unmapped Trade','seats':10000,'nco_group_2digit':'UNMAPPED','reference_period':'2026','source_id':'TEST-FULL','coverage_status':'full_district_extract'}])
+    with tempfile.TemporaryDirectory() as td:
+        bf=Path(td)/'bad_full.csv'; bad.to_csv(bf,index=False)
+        bad_full=compute_model(actual_supply_path=str(bf),write_outputs=False)
+        assert bad_full['audit']['actual_supply_full_ready'] is False
+        assert bad_full['audit']['actual_unmapped_seat_share'] > 0.05
+
 cor=proxy['corruption'].iloc[0]
 assert int(cor['seeded_corruptions'])==100
 assert int(cor['seeded_typo_rows'])==80
@@ -50,11 +61,11 @@ assert int(cor['unseen_alias_rows'])==20
 assert int(cor['unseen_alias_matched'])==0
 assert int(cor['duplicate_rows_removed'])==5
 assert bool(cor['all_rows_preserved_for_review']) is True
-print('PASS: 31 districts')
-print('PASS: 62 district x 2 NCO pilot rows')
+print('PASS: 31 raw LGD districts / 30 analytical geographies')
+print('PASS: 60 analytical geography x 2 NCO pilot rows')
 print('PASS: occupation shares stay at 0.25 + 0.15 = 0.40; not normalized')
 print('PASS: selected course weights stay at 0.82; group 81 excluded')
-print('PASS: statewide supply conservation within 25% of mode expectation')
+print('PASS: statewide supply conservation is measured against the triangular-mean expectation')
 print('PASS: shared 5,000-draw Monte Carlo and year-aware grouping')
 print('PASS: proxy-only policy gate -> NEEDS DATA')
 print('PASS: partial NCVT sample treated as floor + uncertain remainder')

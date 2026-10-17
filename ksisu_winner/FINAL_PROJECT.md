@@ -11,7 +11,7 @@ A reproducible, source-driven manufacturing skill-alignment pilot for Karnataka.
 - Policy gate: proxy/partial actual -> NEEDS DATA; complete district-actual -> provisional interval call
 
 ## What is demonstrated with real public evidence
-- 31 district LGD-style matching
+- 31 raw LGD district LGD-style matching
 - ASI Karnataka manufacturing state base
 - Karnataka Udyam district employment as a clearly labelled district allocator proxy
 - NCVT MIS File 1171 indexed real rows for Tumakuru and Kalaburagi as a partial district-trade evidence upgrade
@@ -29,3 +29,7 @@ A reproducible, source-driven manufacturing skill-alignment pilot for Karnataka.
 
 ## Judge demo
 Run `run.bat`, then click `Run 3-Min Judge Demo` or follow `JUDGE_DEMO.md`.
+
+
+### Historical ITI weight verification update
+All 30 positive historical analytical geography ITI totals used in this build are checked against Rajya Sabha Q131 Annexure-IV (PDF p.6). Government/private splits are preserved. The counts remain historical allocation weights only. The project stores a generated audit transcription/image plus the official source URL.

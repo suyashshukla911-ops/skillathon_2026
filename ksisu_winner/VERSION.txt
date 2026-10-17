@@ -1,8 +1,1 @@
-KSISU Real-Data Evidence Workbench
-Build: 2026-10-17 Final Bug-Fix Revision 3
-Status: competition-facing research prototype
-Scope: Manufacturing; NCO 72, 74
-Monte Carlo: 5,000 shared draws; fixed seed 20261016
-Policy gate: proxy/partial_floor -> NEEDS DATA; complete full_actual district coverage -> provisional interval call allowed
-Bundled real evidence: official NCVT MIS File 1171 indexed partial rows for Tumakuru + Kalaburagi; explicitly not a complete district extract
-Diagnostics: state-total supply conservation, district-allocation diagnostic, 100-case linkage/review/duplicate test, rank stability
+KSISU Winner Build V7 - data-quality harmonisation patch

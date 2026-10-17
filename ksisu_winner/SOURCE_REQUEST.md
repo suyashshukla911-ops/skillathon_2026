@@ -79,3 +79,9 @@ Build this as one Python script, `run_gap.py`. I can write it once you tell me w
     - *Expected:* one line like “district matching recovered X of 31 and duplicates removed Y of Z.” Put this number in the PDF.
 14. **Run a sanity check.** Compare your downscaled district shares against a known district total, such as Census or Economic Census.&#x20;
     - *Expected:* one error figure, for example “median error 12%”.
+
+## V7 data-quality status
+- Analytical geography count: 30 (31 raw LGD districts; Ballari + Vijayanagara merged analytically).
+- Historical CTS ITI weights: 30/30 analytical weights supported by an explicit source check in this build; 16 remain unverified.
+- Gadag (44) and Ramanagara (27) are independently checked against Rajya Sabha Q131 Annexure-IV.
+- All historical weights are allocation weights only, not current district seat totals.

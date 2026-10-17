@@ -53,7 +53,7 @@
   "min_count_suppression": 5,
   "occupation_share_note": "Selected NCO shares are fractions of total manufacturing employment. 0.25 + 0.15 = 0.40 is modeled; 0.60 remains outside the two-group pilot scope.",
   "supply_note": "Pilot is restricted to NCO groups 72 and 74. Group 81 is intentionally excluded because the current ITI crosswalk support is weak for a defensible trade-to-occupation demonstration.",
-  "proxy_supply_note": "District proxy supply is allocated from historical DGT division pools. If clean/district_iti_counts.csv contains complete NCVT district ITI counts, those counts are used as within-division weights; otherwise the model uses an explicitly labelled equal-within-division fallback. Proxy district ranking is for data-collection prioritisation only.",
+  "proxy_supply_note": "District proxy supply is allocated from 2022 official district ITI counts (CTS) as within-division weights, scaled to the current NCVT state seat magnitude. These are historical weights, not current district seat totals. Full current NCVT district trade data should replace them for policy calls.",
   "actual_supply_note": "The bundled NCVT file is an indexed partial sample, not a downloaded complete extract. Full district-wide policy eligibility requires a supplied file marked coverage_status=full_district_extract and covering all 31 districts and modeled NCO groups.",
   "sensitivity_parameters": [
     "opening_rate",
@@ -85,5 +85,16 @@
     }
   },
   "headline_note": "Proxy-only SCI is a relative prioritisation index; it is not a district skill-gap finding. Partial NCVT evidence is treated as a floor plus uncertain remainder. Only full district coverage can unlock a provisional policy call.",
-  "proxy_allocation_method": "district_iti_count_when_available_else_equal_within_division"
+  "proxy_allocation_method": "official_2022_district_iti_count_weight",
+  "demand_allocation_uncertainty": {
+    "lognormal_sigma": 0.35,
+    "basis": "Analyst uncertainty prior for district allocation of state manufacturing demand; replaced by district actual employment when available."
+  },
+  "max_unmapped_supply_share": 0.05,
+  "analytical_district_merges": {
+    "Ballari": "Ballari-Vijayanagara",
+    "Vijayanagara": "Ballari-Vijayanagara"
+  },
+  "analytical_geography_note": "Raw LGD has 31 districts; proxy analysis uses 30 analytical geographies by merging Ballari and Vijayanagara because the 2022 CTS source reports historical Bellary as one geography.",
+  "iti_weight_verification_note": "14/30 analytical ITI weights are supported in this build: 13 district counts directly checked in Annexure-IV plus the Ballari-Vijayanagara merged weight using the official Bellary total 89. The remaining 16 analytical weights are unverified in this build."
 }

@@ -20,13 +20,13 @@ def test_scope_not_normalized():
 
 def test_supply_conserves_state_total():
     r=compute_model(write_outputs=False)
-    exp=r['audit']['statewide_supply_expected_mode']
+    exp=r['audit']['statewide_supply_expected_mean']
     med=r['audit']['statewide_supply_median_sum']
     assert abs(med/exp-1)<0.25
 
 def test_proxy_conservative_policy_gate():
     r=compute_model(write_outputs=False)
-    assert len(r['ratio'])==62
+    assert len(r['ratio'])==60
     assert set(r['ratio'].decision_status.unique())=={'NEEDS DATA'}
 
 def test_actual_sample_is_partial_and_does_not_overclaim():
@@ -66,3 +66,24 @@ def test_reproducible():
     b=compute_model(write_outputs=False)
     cols=['district','nco_group_2digit','ratio_p10','ratio_median','ratio_p90','confidence_score']
     pd.testing.assert_frame_equal(a['ratio'][cols].reset_index(drop=True),b['ratio'][cols].reset_index(drop=True))
+
+
+def test_district_iti_weights_used():
+    r=compute_model(write_outputs=False)
+    assert set(r['audit']['allocation_basis_counts']) == {'NCVT ITI-count weighted'}
+    assert len(r['district']) == 30
+
+
+def test_unmapped_full_extract_fails_gate():
+    import tempfile
+    lgd=pd.read_csv(ROOT/'raw/lgd_districts.csv')
+    rows=[]
+    for district in lgd.district_name:
+        for g in ['72','74']:
+            rows.append({'district':district,'iti_code':f'TEST-{district[:3]}-{g}','trade':'Fitter' if g=='72' else 'Electrician','seats':100,'nco_group_2digit':g,'reference_period':'2026','source_id':'TEST-FULL','coverage_status':'full_district_extract'})
+    rows.append({'district':'Tumakuru','iti_code':'TEST-UNMAPPED','trade':'Unmapped Trade','seats':10000,'nco_group_2digit':'UNMAPPED','reference_period':'2026','source_id':'TEST-FULL','coverage_status':'full_district_extract'})
+    with tempfile.TemporaryDirectory() as td:
+        f=Path(td)/'bad.csv'; pd.DataFrame(rows).to_csv(f,index=False)
+        r=compute_model(actual_supply_path=str(f),write_outputs=False)
+        assert r['audit']['actual_supply_full_ready'] is False
+        assert r['audit']['actual_unmapped_seat_share'] > 0.05

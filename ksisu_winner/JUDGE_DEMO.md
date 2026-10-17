@@ -88,3 +88,12 @@ Show:
 ## Final competition upgrade
 
 Before submission, replace the bundled partial file with the **complete current NCVT MIS/DGT/Karnataka district×trade seat extract** and re-run. Do not type or fabricate missing seats.
+
+## V5 technical gates the demo now enforces
+
+- District proxy allocation uses the populated historical 2022 district ITI-count weights; these are allocation weights only, not current district seat totals.
+- District ranking is by the uncapped median ratio R. SCI is shown separately because it is capped at 1.
+- Full district-actual evidence requires all 31 raw LGD districts / 30 analytical geographies x both modeled NCO groups (72, 74) and no more than 5% of input seats unmapped.
+- If the real file contains trades outside the human crosswalk, they remain `UNMAPPED`; they are not silently dropped. Exceeding the 5% threshold keeps the policy gate closed.
+- Full supply evidence does not upgrade demand evidence: district demand is still a proxy until district employment / DSDP / MIS evidence is loaded.
+- Demand allocation has its own shared per-district lognormal uncertainty (sigma 0.35; documented as an analyst assumption) so demand uncertainty is not accidentally treated as zero.
