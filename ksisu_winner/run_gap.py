@@ -71,6 +71,26 @@ def load_config() -> dict:
 CONFIG = load_config()
 
 
+def suppress_small(df: pd.DataFrame, count_col: str, k: int | None = None) -> pd.DataFrame:
+    """Suppress public supply/demand/ratio values when the source count is below the configured threshold.
+
+    This is an aggregation/privacy guardrail, not a model transformation. Institutional seat
+    rows contain no personal data, but small-cell suppression is still applied consistently
+    to public exports so the pipeline has a visible publication rule.
+    """
+    out = df.copy()
+    if count_col not in out.columns:
+        raise KeyError(f"Missing suppression count column: {count_col}")
+    threshold = int(CONFIG.get("min_count_suppression", 5) if k is None else k)
+    counts = pd.to_numeric(out[count_col], errors="coerce")
+    mask = counts < threshold
+    value_cols = [c for c in out.columns if c.startswith(("supply", "demand", "ratio"))]
+    if value_cols:
+        out.loc[mask, value_cols] = pd.NA
+    out["suppressed"] = mask
+    return out
+
+
 ANALYTICAL_MERGES = {
     "Ballari": "Ballari-Vijayanagara",
     "Vijayanagara": "Ballari-Vijayanagara",
@@ -164,6 +184,7 @@ def source_registry(paths: dict[str, Path] | None = None) -> pd.DataFrame:
     path_to_meta = {
         "lgd_districts.csv": ("SRC-LGD-2026", "district"),
         "karnataka_udyam_employment_nov2022.csv": ("SRC-UDYAM-EMP-2022", "district"),
+        "udyam_karnataka_district_totals_jun2026.csv": ("SRC-UDYAM-TOTAL-2026", "district"),
         "asi_karnataka_manufacturing_2022_23.csv": ("SRC-ASI-KA-2022-23", "state"),
         "ncvtmis_karnataka_state_2022.csv": ("SRC-NCVT-KA-2022", "state"),
         "iti_division_training_2020_21.csv": ("SRC-DGT-TRACER-2020-21", "division"),
@@ -205,6 +226,8 @@ def load_inputs(paths: dict[str, Path] | None = None):
     paths = paths or {}
     lgd = pd.read_csv(paths.get("lgd", RAW / "lgd_districts.csv"))
     emp = pd.read_csv(paths.get("employment", RAW / "karnataka_udyam_employment_nov2022.csv"))
+    udyam_totals_path = paths.get("udyam_totals", RAW / "udyam_karnataka_district_totals_jun2026.csv")
+    udyam_totals = pd.read_csv(udyam_totals_path) if udyam_totals_path.exists() else None
     asi = pd.read_csv(paths.get("asi", RAW / "asi_karnataka_manufacturing_2022_23.csv"))
     ncvt = pd.read_csv(paths.get("ncvt", RAW / "ncvtmis_karnataka_state_2022.csv"))
     mix = pd.read_csv(paths.get("occupation_mix", CLEAN / "occupation_mix_prior.csv"))
@@ -213,10 +236,10 @@ def load_inputs(paths: dict[str, Path] | None = None):
     dmap = pd.read_csv(paths.get("division_map", CLEAN / "district_dgt_division_map.csv"))
     iti_counts_path = paths.get("iti_counts", CLEAN / "district_iti_counts.csv")
     iti_counts = pd.read_csv(iti_counts_path) if iti_counts_path.exists() else None
-    return lgd, emp, asi, ncvt, mix, cw, dgt, dmap, iti_counts
+    return lgd, emp, udyam_totals, asi, ncvt, mix, cw, dgt, dmap, iti_counts
 
 
-def prepare_model_data(lgd, emp, asi, ncvt, mix, cw, dgt, dmap, selected_groups, iti_counts=None, threshold=0.90):
+def prepare_model_data(lgd, emp, udyam_totals, asi, ncvt, mix, cw, dgt, dmap, selected_groups, iti_counts=None, threshold=0.90, demand_allocation_method="udyam_employment"):
     emp = emp.copy()
     emp_match = match_districts(emp["district"], lgd, threshold)
     emp = pd.concat([emp.reset_index(drop=True), emp_match.drop(columns=["raw_district"])], axis=1)
@@ -235,10 +258,58 @@ def prepare_model_data(lgd, emp, asi, ncvt, mix, cw, dgt, dmap, selected_groups,
         .rename(columns={"analytical_district": "matched_district"})
     )
     emp["district"] = emp["matched_district"]
-    emp["district_proxy_share"] = emp["udyam_employment"].clip(lower=0) / max(emp["udyam_employment"].sum(), 1e-9)
+    emp["udyam_employment_share"] = emp["udyam_employment"].clip(lower=0) / max(emp["udyam_employment"].sum(), 1e-9)
+
+    # Independent Udyam-enterprise-count allocator (June 2026 OGD source).
+    # It is deliberately kept separate from employment because the two measures
+    # represent different notions of district scale.
+    if udyam_totals is not None and not udyam_totals.empty:
+        ut = udyam_totals.copy()
+        ut_match = match_districts(ut["district"], lgd, threshold)
+        ut = pd.concat([ut.reset_index(drop=True), ut_match.drop(columns=["raw_district"])], axis=1)
+        ut = ut[ut["matched_district"].ne("")].copy()
+        ut["analytical_district"] = ut["matched_district"].map(apply_analytical_merge)
+        unit_col = "total_enterprises" if "total_enterprises" in ut.columns else None
+        if unit_col is None:
+            raise ValueError("Udyam district totals file must contain total_enterprises.")
+        ut[unit_col] = pd.to_numeric(ut[unit_col], errors="coerce").fillna(0.0)
+        ut = ut.groupby("analytical_district", as_index=False)[unit_col].sum()
+        ut = ut.rename(columns={"analytical_district": "matched_district", unit_col: "udyam_units"})
+        emp = emp.merge(ut, on="matched_district", how="left")
+        emp["udyam_units"] = pd.to_numeric(emp["udyam_units"], errors="coerce")
+    else:
+        emp["udyam_units"] = np.nan
+
+    unit_total = float(emp["udyam_units"].fillna(0).sum())
+    emp["udyam_units_share"] = np.where(
+        unit_total > 0,
+        emp["udyam_units"].fillna(0).clip(lower=0) / unit_total,
+        np.nan,
+    )
+
+    if demand_allocation_method == "udyam_employment":
+        demand_share = emp["udyam_employment_share"].copy()
+    elif demand_allocation_method == "udyam_units":
+        if emp["udyam_units_share"].isna().any() or not np.isfinite(emp["udyam_units_share"]).all():
+            missing = emp.loc[emp["udyam_units_share"].isna(), "matched_district"].tolist()
+            raise ValueError(f"Udyam unit-share allocator is missing districts: {missing}")
+        demand_share = emp["udyam_units_share"].copy()
+    elif demand_allocation_method == "blend":
+        if emp["udyam_units_share"].isna().any() or not np.isfinite(emp["udyam_units_share"]).all():
+            missing = emp.loc[emp["udyam_units_share"].isna(), "matched_district"].tolist()
+            raise ValueError(f"Udyam blend allocator is missing districts: {missing}")
+        demand_share = 0.5 * (emp["udyam_employment_share"] + emp["udyam_units_share"])
+    else:
+        raise ValueError(f"Unknown demand_allocation_method: {demand_allocation_method}")
+
+    demand_share = demand_share.clip(lower=0).astype(float)
+    demand_share = demand_share / max(float(demand_share.sum()), 1e-12)
+    emp["demand_allocation_method"] = demand_allocation_method
+    emp["demand_allocation_share"] = demand_share
 
     state_mfg_workers = float(asi.loc[asi["state"].astype(str).str.upper().eq("KARNATAKA"), "persons_engaged"].iloc[0])
-    emp["district_mfg_employment_proxy"] = state_mfg_workers * emp["district_proxy_share"]
+    emp["district_proxy_share"] = emp["demand_allocation_share"]
+    emp["district_mfg_employment_proxy"] = state_mfg_workers * emp["demand_allocation_share"]
 
     mix = mix.copy()
     mix["nco_group_2digit"] = mix["nco_group_2digit"].astype(str)
@@ -608,9 +679,15 @@ def compute_model(paths=None, overrides=None, actual_supply_path=None, output_di
     selected_groups = [str(x) for x in cfg.get("selected_nco_groups", ["72", "74"])]
     fuzzy_threshold = float(cfg.get("district_fuzzy_threshold", cfg.get("fuzzy_threshold", 0.90)))
 
-    lgd, emp, asi, ncvt, mix, cw, dgt, dmap, iti_counts = load_inputs(paths)
+    demand_allocation_method = str(cfg.get("demand_allocation_method", "udyam_employment"))
+    valid_demand_methods = {"udyam_employment", "udyam_units", "blend"}
+    if demand_allocation_method not in valid_demand_methods:
+        raise ValueError(f"Unknown demand_allocation_method: {demand_allocation_method}")
+
+    lgd, emp, udyam_totals, asi, ncvt, mix, cw, dgt, dmap, iti_counts = load_inputs(paths)
     emp, mix, dmap, group_weights, state_mfg_workers, total_current_seats, emp_match, emp_review = prepare_model_data(
-        lgd, emp, asi, ncvt, mix, cw, dgt, dmap, selected_groups, iti_counts=iti_counts, threshold=fuzzy_threshold
+        lgd, emp, udyam_totals, asi, ncvt, mix, cw, dgt, dmap, selected_groups,
+        iti_counts=iti_counts, threshold=fuzzy_threshold, demand_allocation_method=demand_allocation_method
     )
 
     actual_supply = load_actual_supply(Path(actual_supply_path) if actual_supply_path else None, selected_groups)
@@ -865,6 +942,10 @@ def compute_model(paths=None, overrides=None, actual_supply_path=None, output_di
                 "nco_group_2digit": group, "occupation_label": meta["occupation_label"],
                 "state_mfg_employment_base": state_mfg_workers,
                 "district_proxy_share": d["district_proxy_share"],
+                "udyam_employment_share": d.get("udyam_employment_share", np.nan),
+                "udyam_units_share": d.get("udyam_units_share", np.nan),
+                "demand_allocation_share": d.get("demand_allocation_share", np.nan),
+                "demand_allocation_method": demand_allocation_method,
                 "occupation_share_of_total_mfg": occ_share,
                 "occupation_share_low": float(meta["share_low"]),
                 "occupation_share_high": float(meta["share_high"]),
@@ -890,6 +971,8 @@ def compute_model(paths=None, overrides=None, actual_supply_path=None, output_di
             results.append({
                 "district": district, "lgd_code": d["lgd_code"], "year": year, "industry": "Manufacturing",
                 "nco_group_2digit": group, "occupation_label": meta["occupation_label"],
+                "demand_allocation_method": demand_allocation_method,
+                "demand_allocation_share": float(d.get("demand_allocation_share", np.nan)),
                 "supply_basis": supply_basis, "supply_coverage": coverage,
                 "allocation_basis": dm["allocation_basis"].iloc[0],
                 "ratio_p10": float(p10), "ratio_median": float(p50), "ratio_p90": float(p90),
@@ -1003,6 +1086,44 @@ def compute_model(paths=None, overrides=None, actual_supply_path=None, output_di
     focus_order = [d for d in ["Tumakuru", "Kalaburagi", "Bengaluru Rural", "Raichur"] if d in set(district_df.district)]
     focus_df = district_df[district_df.district.isin(focus_order)].copy()
 
+    demand_allocator_rank_stability = pd.DataFrame()
+    if not _internal:
+        scenario_rank = {}
+        demand_methods = list(cfg.get("demand_allocation_methods", ["udyam_employment", "udyam_units", "blend"]))
+        for method in demand_methods:
+            if method == demand_allocation_method:
+                scenario_rank[method] = district_df[["district", "ratio_rank"]].copy()
+            else:
+                scen = compute_model(
+                    paths=paths,
+                    overrides={"demand_allocation_method": method},
+                    actual_supply_path=actual_supply_path,
+                    output_dir=output_dir,
+                    write_outputs=False,
+                    _internal=True,
+                )
+                scenario_rank[method] = scen["district"][["district", "ratio_rank"]].copy()
+
+        merged = None
+        for method, sdf in scenario_rank.items():
+            sdf = sdf.rename(columns={"ratio_rank": f"rank_{method}"})
+            merged = sdf if merged is None else merged.merge(sdf, on="district", how="outer")
+        rank_cols = [c for c in merged.columns if c.startswith("rank_")]
+        for c in rank_cols:
+            merged[c] = pd.to_numeric(merged[c], errors="coerce")
+        merged["rank_min"] = merged[rank_cols].min(axis=1)
+        merged["rank_max"] = merged[rank_cols].max(axis=1)
+        merged["rank_range"] = merged["rank_max"] - merged["rank_min"]
+        top5_cols = []
+        for method in demand_methods:
+            c = f"rank_{method}"
+            tc = f"top5_{method}"
+            merged[tc] = merged[c].le(5)
+            top5_cols.append(tc)
+        merged["top5_all_methods"] = merged[top5_cols].all(axis=1)
+        merged["top5_methods_count"] = merged[top5_cols].sum(axis=1)
+        demand_allocator_rank_stability = merged.sort_values(["rank_range", "district"]).reset_index(drop=True)
+
     corruption = run_corruption_test(lgd, lgd[['district_name']].rename(columns={'district_name':'district'}))
     sanity = run_sanity_check(emp)
     sensitivity = rank_stability.copy()
@@ -1022,7 +1143,11 @@ def compute_model(paths=None, overrides=None, actual_supply_path=None, output_di
         "seed": seed,
         "monte_carlo_draws": draws,
         "demand_allocation_log_normal_sigma": demand_sigma,
+        "demand_allocation_method": demand_allocation_method,
+        "demand_allocation_methods": list(cfg.get("demand_allocation_methods", ["udyam_employment", "udyam_units", "blend"])),
+        "demand_allocator_share_sum": float(emp["demand_allocation_share"].sum()),
         "selected_nco_groups": selected_groups,
+        "min_count_suppression": int(cfg.get("min_count_suppression", 5)),
         "actual_supply_loaded": bool(actual_supply_loaded),
         "actual_supply_rows": int(len(actual_supply)) if actual_supply is not None else 0,
         "actual_unmapped_share": float(unmapped_share),
@@ -1066,6 +1191,9 @@ def compute_model(paths=None, overrides=None, actual_supply_path=None, output_di
         "unique_sci_values": int(district_df["SCI"].round(6).nunique()),
         "district_supply_proxy_correlation": proxy_share_correlation,
         "proxy_allocation_method": allocation_method,
+        "demand_allocation_method": demand_allocation_method,
+        "demand_allocator_rank_range_mean": float(demand_allocator_rank_stability["rank_range"].mean()) if not demand_allocator_rank_stability.empty else None,
+        "demand_allocator_robust_top5_count": int(demand_allocator_rank_stability["top5_all_methods"].sum()) if not demand_allocator_rank_stability.empty else 0,
         "dgt_share_allocation_concentration": float(cfg.get("dgt_share_allocation_uncertainty", {}).get("concentration", 12.0)) if allocation_method == "dgt_2026_seat_share" else None,
         "proxy_vs_dgt_spearman": proxy_vs_dgt_spearman,
         "dgt_matrix_iti_total": float(dmap["dgt_itis_in_matrix"].sum()) if "dgt_itis_in_matrix" in dmap.columns else 0.0,
@@ -1092,6 +1220,7 @@ def compute_model(paths=None, overrides=None, actual_supply_path=None, output_di
         sanity[1].to_csv(output_dir / "sanity_summary.csv", index=False)
         sensitivity.to_csv(output_dir / "rank_stability.csv", index=False)
         sensitivity.to_csv(output_dir / "sensitivity.csv", index=False)
+        demand_allocator_rank_stability.to_csv(output_dir / "demand_allocator_rank_stability.csv", index=False)
         interval_demo.to_csv(output_dir / "interval_evidence_update.csv", index=False)
         interval_demo.to_csv(output_dir / "interval_shrink_demo.csv", index=False)
         proxy_share_check.to_csv(output_dir / "district_supply_independence.csv", index=False)
@@ -1122,6 +1251,12 @@ def compute_model(paths=None, overrides=None, actual_supply_path=None, output_di
             "actual_scale_warning": bool(actual_supply_loaded and actual_scale_ratio < float(cfg.get("dgt_scale_warning_threshold", 0.5))),
             "proxy_vs_dgt_spearman": float(proxy_vs_dgt_spearman),
             "allocation_method": allocation_method,
+            "demand_allocation_method": demand_allocation_method,
+            "demand_allocation_methods": list(cfg.get("demand_allocation_methods", ["udyam_employment", "udyam_units", "blend"])),
+            "min_count_suppression": int(cfg.get("min_count_suppression", 5)),
+            "demand_allocator_share_sum": float(emp["demand_allocation_share"].sum()),
+            "demand_allocator_rank_range_mean": float(demand_allocator_rank_stability["rank_range"].mean()) if not demand_allocator_rank_stability.empty else None,
+            "demand_allocator_robust_top5_count": int(demand_allocator_rank_stability["top5_all_methods"].sum()) if not demand_allocator_rank_stability.empty else 0,
             "dgt_share_allocation_concentration": audit.get("dgt_share_allocation_concentration"),
             "proxy_vs_dgt_spearman": audit.get("proxy_vs_dgt_spearman"),
             "statewide_supply_mean_conservation_ratio": float(statewide_supply_draw_mean_sum / max(expected_mean_supply, 1e-9)),
@@ -1162,6 +1297,7 @@ def compute_model(paths=None, overrides=None, actual_supply_path=None, output_di
         "audit": audit,
         "district_variation": district_variation,
         "proxy_share_check": proxy_share_check,
+        "demand_allocator_rank_stability": demand_allocator_rank_stability,
     }
 
 
@@ -1171,9 +1307,16 @@ def main():
     ap.add_argument("--actual-supply", help="CSV containing district supply evidence")
     ap.add_argument("--out", help="Output directory (default: out)")
     ap.add_argument("--proxy-allocation-method", choices=["official_2022_district_iti_count_weight", "dgt_2026_seat_share"], help="Supply allocation mode")
+    ap.add_argument("--demand-allocation-method", choices=["udyam_employment", "udyam_units", "blend"], help="Demand district allocation basis")
     args = ap.parse_args()
     out_dir = Path(args.out) if args.out else OUT
-    overrides = {"proxy_allocation_method": args.proxy_allocation_method} if args.proxy_allocation_method else None
+    overrides = {}
+    if args.proxy_allocation_method:
+        overrides["proxy_allocation_method"] = args.proxy_allocation_method
+    if args.demand_allocation_method:
+        overrides["demand_allocation_method"] = args.demand_allocation_method
+    if not overrides:
+        overrides = None
     res = compute_model(actual_supply_path=args.actual_supply, overrides=overrides, output_dir=out_dir)
     print(json.dumps({
         "districts": len(res["district"]),

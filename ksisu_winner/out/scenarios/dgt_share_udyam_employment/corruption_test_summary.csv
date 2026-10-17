@@ -1,0 +1,2 @@
+clean_districts,seeded_corruptions,rows_before_dedupe,rows_after_dedupe,seeded_typo_rows,seeded_typo_correct,seeded_typo_recovery_rate,unseen_alias_rows,unseen_alias_matched,unseen_alias_review_rows,review_queue_rows,unmatched_review_rows,duplicate_rows_injected,duplicate_rows_removed,all_rows_preserved_for_review,status,note
+31,100,105,100,80,80,1.0,20,0,20,20,20,5,5,True,PASS,"80 seeded typos + 20 unseen aliases, with a real deduplication pass; unseen aliases are expected to route to review rather than count as successful matches."

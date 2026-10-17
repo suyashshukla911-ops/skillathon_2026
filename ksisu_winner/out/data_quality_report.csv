@@ -1,0 +1,19 @@
+path,hash_status,schema_status,row_count_status,statewide_seats_status,anomaly,action,message
+raw/lgd_districts.csv,UNCHANGED,SKIPPED,SKIPPED,NOT APPLICABLE,False,SKIP,Hash matches file_registry.csv; no refresh validation needed.
+raw/karnataka_udyam_employment_nov2022.csv,UNCHANGED,SKIPPED,SKIPPED,NOT APPLICABLE,False,SKIP,Hash matches file_registry.csv; no refresh validation needed.
+raw/asi_karnataka_manufacturing_2022_23.csv,UNCHANGED,SKIPPED,SKIPPED,NOT APPLICABLE,False,SKIP,Hash matches file_registry.csv; no refresh validation needed.
+raw/ncvtmis_karnataka_state_2022.csv,UNCHANGED,SKIPPED,SKIPPED,UNCHANGED,False,SKIP,Hash matches file_registry.csv; no refresh validation needed.
+raw/iti_division_training_2020_21.csv,UNCHANGED,SKIPPED,SKIPPED,NOT APPLICABLE,False,SKIP,Hash matches file_registry.csv; no refresh validation needed.
+raw/ncvtmis_file1171_real_partial.csv,UNCHANGED,SKIPPED,SKIPPED,NOT APPLICABLE,False,SKIP,Hash matches file_registry.csv; no refresh validation needed.
+clean/occupation_mix_prior.csv,UNCHANGED,SKIPPED,SKIPPED,NOT APPLICABLE,False,SKIP,Hash matches file_registry.csv; no refresh validation needed.
+clean/crosswalk.csv,UNCHANGED,SKIPPED,SKIPPED,NOT APPLICABLE,False,SKIP,Hash matches file_registry.csv; no refresh validation needed.
+raw/rajya_sabha_annexure_iv_page6_PROJECT_TRANSCRIPTION_not_official.pdf,UNCHANGED,SKIPPED,SKIPPED,NOT APPLICABLE,False,SKIP,Hash matches file_registry.csv; no refresh validation needed.
+raw/rajya_sabha_annexure_iv_page6_PROJECT_TRANSCRIPTION_not_official.png,UNCHANGED,SKIPPED,SKIPPED,NOT APPLICABLE,False,SKIP,Hash matches file_registry.csv; no refresh validation needed.
+raw/RAJYA_SABHA_ANNEXURE_IV_EVIDENCE_README.txt,UNCHANGED,SKIPPED,SKIPPED,NOT APPLICABLE,False,SKIP,Hash matches file_registry.csv; no refresh validation needed.
+raw/rajya_sabha_annexure_iv_official_url.txt,UNCHANGED,SKIPPED,SKIPPED,NOT APPLICABLE,False,SKIP,Hash matches file_registry.csv; no refresh validation needed.
+raw/rajya_sabha_annexure_iv_official_text_extract.md,UNCHANGED,SKIPPED,SKIPPED,NOT APPLICABLE,False,SKIP,Hash matches file_registry.csv; no refresh validation needed.
+raw/rajya_sabha_annexure_iv_cts_as_printed.csv,UNCHANGED,SKIPPED,SKIPPED,NOT APPLICABLE,False,SKIP,Hash matches file_registry.csv; no refresh validation needed.
+raw/dgt_cts_2026_provisional_seat_matrix.pdf,UNCHANGED,SKIPPED,SKIPPED,NOT APPLICABLE,False,SKIP,Hash matches file_registry.csv; no refresh validation needed.
+raw/dgt_cts_2026_karnataka_provisional.csv,UNCHANGED,SKIPPED,SKIPPED,NOT APPLICABLE,False,SKIP,Hash matches file_registry.csv; no refresh validation needed.
+clean/dgt_cts_2026_karnataka_supply_nco.csv,UNCHANGED,SKIPPED,SKIPPED,NOT APPLICABLE,False,SKIP,Hash matches file_registry.csv; no refresh validation needed.
+clean/dgt_trade_nco_crosswalk.csv,UNCHANGED,SKIPPED,SKIPPED,NOT APPLICABLE,False,SKIP,Hash matches file_registry.csv; no refresh validation needed.

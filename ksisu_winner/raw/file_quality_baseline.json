@@ -1,0 +1,195 @@
+{
+  "created_utc": "2026-10-17T11:44:09.206859+00:00",
+  "files": {
+    "raw/lgd_districts.csv": {
+      "row_count": 31,
+      "columns": [
+        "district_name",
+        "lgd_code",
+        "state",
+        "code_status"
+      ],
+      "statewide_seats": null
+    },
+    "raw/karnataka_udyam_employment_nov2022.csv": {
+      "row_count": 31,
+      "columns": [
+        "district",
+        "udyam_units",
+        "udyam_employment",
+        "reference_period",
+        "source_file_id"
+      ],
+      "statewide_seats": null
+    },
+    "raw/asi_karnataka_manufacturing_2022_23.csv": {
+      "row_count": 1,
+      "columns": [
+        "state",
+        "persons_engaged",
+        "reference_period",
+        "source_file_id",
+        "source_note"
+      ],
+      "statewide_seats": null
+    },
+    "raw/ncvtmis_karnataka_state_2022.csv": {
+      "row_count": 1,
+      "columns": [
+        "state",
+        "iti_count",
+        "trade_count",
+        "seats_available_2022",
+        "reference_period",
+        "source_file_id",
+        "source_note"
+      ],
+      "statewide_seats": 216788.0
+    },
+    "raw/iti_division_training_2020_21.csv": {
+      "row_count": 4,
+      "columns": [
+        "division",
+        "one_year_sanctioned",
+        "one_year_admitted",
+        "one_year_passed_out",
+        "two_year_sanctioned",
+        "two_year_admitted",
+        "two_year_passed_out"
+      ],
+      "statewide_seats": null
+    },
+    "raw/ncvtmis_file1171_real_partial.csv": {
+      "row_count": 9,
+      "columns": [
+        "district",
+        "iti_code",
+        "iti_name",
+        "trade",
+        "seats",
+        "nco_group_2digit",
+        "reference_period",
+        "source_id",
+        "coverage_status"
+      ],
+      "statewide_seats": null
+    },
+    "clean/occupation_mix_prior.csv": {
+      "row_count": 3,
+      "columns": [
+        "nco_group_2digit",
+        "occupation_label",
+        "share_within_manufacturing",
+        "source_type",
+        "source_note"
+      ],
+      "statewide_seats": null
+    },
+    "clean/crosswalk.csv": {
+      "row_count": 11,
+      "columns": [
+        "course_or_trade",
+        "nco_group_2digit",
+        "nco_group_label",
+        "statewide_course_weight",
+        "basis"
+      ],
+      "statewide_seats": null
+    },
+    "raw/rajya_sabha_annexure_iv_page6_PROJECT_TRANSCRIPTION_not_official.pdf": {
+      "row_count": null,
+      "columns": [],
+      "statewide_seats": null
+    },
+    "raw/rajya_sabha_annexure_iv_page6_PROJECT_TRANSCRIPTION_not_official.png": {
+      "row_count": null,
+      "columns": [],
+      "statewide_seats": null
+    },
+    "raw/RAJYA_SABHA_ANNEXURE_IV_EVIDENCE_README.txt": {
+      "row_count": null,
+      "columns": [],
+      "statewide_seats": null
+    },
+    "raw/rajya_sabha_annexure_iv_official_url.txt": {
+      "row_count": null,
+      "columns": [],
+      "statewide_seats": null
+    },
+    "raw/rajya_sabha_annexure_iv_official_text_extract.md": {
+      "row_count": null,
+      "columns": [],
+      "statewide_seats": null
+    },
+    "raw/rajya_sabha_annexure_iv_cts_as_printed.csv": {
+      "row_count": 32,
+      "columns": [
+        "sl_no",
+        "source_label",
+        "govt_iti",
+        "private_iti",
+        "total",
+        "analytical_geography"
+      ],
+      "statewide_seats": null
+    },
+    "raw/dgt_cts_2026_provisional_seat_matrix.pdf": {
+      "row_count": null,
+      "columns": [],
+      "statewide_seats": null
+    },
+    "raw/dgt_cts_2026_karnataka_provisional.csv": {
+      "row_count": 1734,
+      "columns": [
+        "sno",
+        "state",
+        "source_district",
+        "iti_mis_code",
+        "iti_name",
+        "trade",
+        "trade_duration",
+        "seat_capacity",
+        "pdf_page",
+        "source_period",
+        "source_id",
+        "coverage_status",
+        "district"
+      ],
+      "statewide_seats": null
+    },
+    "clean/dgt_cts_2026_karnataka_supply_nco.csv": {
+      "row_count": 1734,
+      "columns": [
+        "district",
+        "source_district",
+        "iti_mis_code",
+        "iti_name",
+        "trade",
+        "trade_duration",
+        "seats",
+        "nco_group_2digit",
+        "mapping_method",
+        "mapping_status",
+        "coverage_status",
+        "source_period",
+        "source_id",
+        "pdf_page",
+        "source_note"
+      ],
+      "statewide_seats": null
+    },
+    "clean/dgt_trade_nco_crosswalk.csv": {
+      "row_count": 46,
+      "columns": [
+        "course_or_trade",
+        "nco_group_2digit",
+        "nco_group_label",
+        "mapping_method",
+        "basis",
+        "reviewed_by",
+        "reviewed_on"
+      ],
+      "statewide_seats": null
+    }
+  }
+}

@@ -1,0 +1,4 @@
+demand_allocation_method,proxy_output,dgt_share_output,proxy_policy,dgt_share_policy,proxy_top5,dgt_share_top5
+udyam_employment,out/scenarios/proxy_udyam_employment,out/scenarios/dgt_share_udyam_employment,"{""NEEDS DATA"": 60}","{""NEEDS DATA"": 60}","Gadag, Ramanagara, Tumakuru, Vijayapura, Chikkaballapur","Gadag, Ramanagara, Uttara Kannada, Vijayapura, Davanagere"
+udyam_units,out/scenarios/proxy_udyam_units,out/scenarios/dgt_share_udyam_units,"{""NEEDS DATA"": 60}","{""NEEDS DATA"": 60}","Tumakuru, Vijayapura, Kolar, Bidar, Bagalkot","Bagalkot, Vijayapura, Kolar, Tumakuru, Gadag"
+blend,out/scenarios/proxy_blend,out/scenarios/dgt_share_blend,"{""NEEDS DATA"": 60}","{""NEEDS DATA"": 60}","Tumakuru, Gadag, Vijayapura, Ramanagara, Bidar","Gadag, Vijayapura, Tumakuru, Ramanagara, Bagalkot"

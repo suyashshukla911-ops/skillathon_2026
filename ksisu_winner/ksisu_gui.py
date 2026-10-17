@@ -39,6 +39,7 @@ class KSISUGUI(tk.Tk):
         self.seed = tk.StringVar(value=str(CONFIG["random_seed"]))
         self.draws = tk.StringVar(value=str(CONFIG["monte_carlo_draws"]))
         self.supply_path = tk.StringVar(value="")
+        self.demand_method = tk.StringVar(value=str(CONFIG.get("demand_allocation_method", "udyam_employment")))
 
         self._style()
         self._header()
@@ -100,7 +101,9 @@ class KSISUGUI(tk.Tk):
 
         right = ttk.LabelFrame(self.t_inputs, text="Model controls", padding=8)
         right.pack(side="right", fill="y", padx=(6,0), pady=6)
-        ttk.Label(right, text="Scope: Manufacturing / NCO 72, 74", font=("Segoe UI",10,"bold")).pack(anchor="w", pady=(0,8))
+        ttk.Label(right, text="Scope: Manufacturing / NCO 72, 74", font=("Segoe UI",10,"bold")).pack(anchor="w", pady=(0,4))
+        ttk.Label(right, text="Demand allocator", font=("Segoe UI",9,"bold")).pack(anchor="w")
+        ttk.Combobox(right, textvariable=self.demand_method, state="readonly", values=("udyam_employment","udyam_units","blend"), width=28).pack(anchor="w", pady=(2,8))
         self._rate_inputs(right, "Opening rate", self.open_low, self.open_mode, self.open_high)
         self._rate_inputs(right, "Seat fill rate", self.fill_low, self.fill_mode, self.fill_high)
         self._rate_inputs(right, "Completion rate", self.comp_low, self.comp_mode, self.comp_high)
@@ -158,7 +161,7 @@ class KSISUGUI(tk.Tk):
 
 1. Run Proxy Baseline. Say: "This is what KSISU can infer before complete district ITI supply is available. Mathematical ratios are shown, but policy status remains NEEDS DATA."
 
-2. Open District Priority. The ranking table is a data-collection queue, not a district skill-gap leaderboard.
+2. Open District Priority. The ranking table is a data-collection queue, not a district skill-gap leaderboard. Use the Demand allocator selector to show employment, enterprise-unit, or blended demand shares.
 
 3. Click Load DGT 2026 Real Supply. This loads the official DGT CTS-2026 provisional dynamic seat matrix extracted from the uploaded public PDF. It contains real Karnataka ITI/trade seat-capacity rows, but the source is provisional and does not cover every analytical geography in this build.
 
@@ -168,9 +171,9 @@ class KSISUGUI(tk.Tk):
 
 6. Open Gap Results. Show that the DGT-share ranking can change relative to the proxy baseline while the decision remains NEEDS DATA.
 
-7. Open District Priority and Sensitivity. Show that the output is a data-collection queue and rank-stability diagnostic, not a validated shortage leaderboard.
+7. Open District Priority and Sensitivity. Show that the output is a data-collection queue and rank-stability diagnostic, not a validated shortage leaderboard. Compare the employment, enterprise-unit and blended demand allocators.
 
-8. Open Validation & Linkage. Show 80 seeded typos, 20 unseen aliases routed to review, duplicate removal, proxy-vs-DGT Spearman, and source lineage.
+8. Open Validation & Linkage. Show 80 seeded typos, 20 unseen aliases routed to review, duplicate removal, proxy-vs-DGT Spearman, allocator rank range, and source lineage.
 
 THE ONE-SENTENCE STORY
 "We use real DGT seat distribution with coverage-weighted shrinkage toward the historical proxy, keep the statewide level anchored to the NCVT benchmark, retain uncertainty for sparse or missing areas, and only unlock district policy calls when complete evidence is available."
@@ -211,7 +214,7 @@ THE ONE-SENTENCE STORY
             "seat_fill_rate":{"low":float(self.fill_low.get()),"mode":float(self.fill_mode.get()),"high":float(self.fill_high.get())},
             "completion_rate":{"low":float(self.comp_low.get()),"mode":float(self.comp_mode.get()),"high":float(self.comp_high.get())},
             "sector_entry_rate":{"low":float(self.entry_low.get()),"mode":float(self.entry_mode.get()),"high":float(self.entry_high.get())},
-            "random_seed":int(self.seed.get()),"monte_carlo_draws":int(self.draws.get())
+            "random_seed":int(self.seed.get()),"monte_carlo_draws":int(self.draws.get()), "demand_allocation_method": self.demand_method.get()
         }
 
     def run_proxy(self):
@@ -304,7 +307,7 @@ THE ONE-SENTENCE STORY
     def _display(self,res,msg):
         r=res["ratio"]; d=res["district"]; s=res["sensitivity"]; c=res["corruption"]
         self.status.set(msg)
-        self.results_note.set(f"{len(d)} districts × {r.nco_group_2digit.nunique()} NCO groups • {r.decision_status.value_counts().to_dict()} • Actual supply loaded: {res['audit']['actual_supply_loaded']}")
+        self.results_note.set(f"{len(d)} districts × {r.nco_group_2digit.nunique()} NCO groups • {r.decision_status.value_counts().to_dict()} • Actual supply loaded: {res['audit']['actual_supply_loaded']} • Demand allocator: {res['audit'].get('demand_allocation_method', self.demand_method.get())}")
         self._fill(self.results_tree, r, lambda x:(x.district,x.nco_group_2digit,x.occupation_label,f"{x.ratio_p10:.3f}",f"{x.ratio_median:.3f}",f"{x.ratio_p90:.3f}",f"{x.interval_width:.3f}",f"{x.confidence_score:.2f}",x.decision_status,x.supply_basis))
         self._fill(self.priority_tree, d, lambda x:(x.ratio_rank,x.district,f"{x.uncapped_ratio_median:.3f}",f"{x.relative_uncapped_ratio_vs_state_median:.2f}x",f"{x.SCI:.3f}",f"{x.total_annual_openings:,.0f}",f"{x.VOI:,.0f}",f"{x.data_collection_priority:,.0f}",f"{x.mean_confidence:.2f}",x.actual_cells,x.needs_data_cells))
         self.sens_text.delete("1.0","end")
@@ -325,7 +328,10 @@ THE ONE-SENTENCE STORY
             ("Proxy allocation diagnostic",f"{res['audit'].get('district_supply_proxy_correlation',float('nan')):.3f}","NOT VALIDATION"),
             ("DGT vs ITI-count Spearman",f"{res['audit'].get('proxy_vs_dgt_spearman',float('nan')):.3f}","PROXY DIAGNOSTIC"),
             ("DGT / NCVT seat scale",f"{res['audit'].get('actual_to_state_seat_ratio',0.0):.3f}","SCALE CHECK"),
-            ("Allocation method",res['audit'].get('proxy_allocation_method',''),"MODEL CONTROL"),
+            ("Supply allocation method",res['audit'].get('proxy_allocation_method',''),"MODEL CONTROL"),
+            ("Demand allocation method",res['audit'].get('demand_allocation_method',self.demand_method.get()),"MODEL CONTROL"),
+            ("Demand allocator rank range mean",f"{res['audit'].get('demand_allocator_rank_range_mean',float('nan')):.2f}","STRUCTURAL SENSITIVITY"),
+            ("Robust top-5 districts",int(res['audit'].get('demand_allocator_robust_top5_count',0)),"ALL ALLOCATORS"),
             ("Mean supply conservation",f"{res['audit'].get('statewide_supply_mean_conservation_ratio',float('nan')):.3f}","CONSERVATION"),
         ]
         demo=res.get("interval_demo")

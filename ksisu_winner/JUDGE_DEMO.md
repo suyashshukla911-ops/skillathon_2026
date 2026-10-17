@@ -2,7 +2,7 @@
 
 ## 0. Start
 
-Run `run.bat`. In the GUI, `Run 3-Min Judge Demo` performs the baseline → real-evidence comparison automatically; the step-by-step buttons remain available for manual demonstration.
+Run `RUN_ALL.bat` once to build and validate the full package. Then launch the GUI with `python ksisu_gui.py` for the interactive three-minute demonstration.
 
 The GUI starts in **proxy baseline** mode and does not permit manual invention of supply numbers.
 
@@ -81,6 +81,10 @@ Show:
 - no unmatched rows dropped;
 - provenance and source file registry.
 
+## Demand-allocation robustness
+
+Open `out/demand_allocator_rank_stability.csv`. Explain that this compares district rank under employment-share, enterprise-unit-share and blended demand allocators. Treat a district as structurally robust only when it remains highly ranked across these alternatives.
+
 ## Closing line
 
 > “The product is not the dashboard. The product is a reproducible evidence pipeline that tells KSISU what it can infer today, what it cannot infer, and which district evidence to collect first.”
@@ -97,3 +101,8 @@ Before submission, replace/augment the bundled provisional DGT matrix with the *
 - If the real file contains trades outside the 72/74 pilot, label them `OUT_OF_SCOPE` and report their seats separately. Only truly `UNMAPPED` seats count toward the 5% mapping gate.
 - Full supply evidence does not upgrade demand evidence: district demand is still a proxy until district employment / DSDP / MIS evidence is loaded.
 - Demand allocation has its own shared per-district lognormal uncertainty (sigma 0.35; documented as an analyst assumption) so demand uncertainty is not accidentally treated as zero.
+
+### Six-scenario robustness (preferred judge statement)
+Open `out/scenario_robustness.csv` (also copied to `public_export/scenario_robustness.csv`). `out/run_summary.json` records the robust district(s) and the number of districts whose rank range exceeds 5. This combines the six model scenarios: proxy supply × three demand allocators, and DGT-share supply × the same three allocators. Use the `top5_appearances`, `rank_range`, and `top5_all_six` columns. A district is structurally robust only when it remains highly ranked across all six scenarios. The current build has one district in the top five in all six scenarios; most ordering changes with assumptions.
+
+The 50/50 demand blend is an arbitrary midpoint sensitivity case, not an empirically calibrated estimator. Udyam enterprise units and Udyam employment measure different underlying concepts. The within-allocator demand sigma of 0.35 is also an explicit analyst assumption with no district-level calibration yet.

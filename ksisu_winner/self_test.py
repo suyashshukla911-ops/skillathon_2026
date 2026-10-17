@@ -19,6 +19,27 @@ assert proxy['ratio']['year'].iloc[0]=='2022-23'
 assert set(proxy['ratio']['decision_status'])=={'NEEDS DATA'}
 assert proxy['audit']['monte_carlo_draws']==5000
 
+small = pd.DataFrame([{"supply_seats": 4, "demand_openings": 8, "ratio_median": 0.5}])
+from run_gap import suppress_small
+small_checked = suppress_small(small, "supply_seats")
+assert bool(small_checked.loc[0, "suppressed"]) is True
+assert pd.isna(small_checked.loc[0, "supply_seats"])
+assert pd.isna(small_checked.loc[0, "demand_openings"])
+assert pd.isna(small_checked.loc[0, "ratio_median"])
+print('PASS: public small-cell suppression blanks supply/demand/ratio values below configured threshold')
+
+# Structural demand-allocation sensitivity: employment, enterprise units, and 50/50 blend.
+assert abs(float(proxy['audit']['demand_allocator_share_sum']) - 1.0) < 1e-9
+das = proxy['demand_allocator_rank_stability']
+assert set(["udyam_employment","udyam_units","blend"]).issubset(
+    {c.removeprefix("rank_") for c in das.columns if c.startswith("rank_")}
+)
+top5_emp = set(das.loc[das["rank_udyam_employment"] <= 5, "district"])
+top5_units = set(das.loc[das["rank_udyam_units"] <= 5, "district"])
+assert top5_emp != top5_units
+assert (das["rank_range"] >= 0).all()
+assert proxy['audit']['monte_carlo_draws']==5000
+
 iti=pd.read_csv(ROOT/'input_templates/district_iti_counts.csv')
 assert len(iti)==30 and iti.district.nunique()==30 and iti.iti_count.sum()>0
 assert set(proxy['audit']['allocation_basis_counts'].keys())=={'NCVT ITI-count weighted'}
@@ -125,6 +146,7 @@ print('PASS: occupation shares stay at 0.25 + 0.15 = 0.40; not normalized')
 print('PASS: selected course weights stay at 0.82; group 81 excluded')
 print('PASS: statewide supply conservation is measured against the triangular-mean expectation')
 print('PASS: shared 5,000-draw Monte Carlo and year-aware grouping')
+print('PASS: demand allocator shares sum to 1.0 and employment vs units top-5 sets differ')
 print('PASS: proxy-only policy gate -> NEEDS DATA')
 print('PASS: partial NCVT sample treated as floor + uncertain remainder')
 print('PASS: DGT CTS-2026 real provisional supply loaded: 1,734 rows / 45,416 seats / 29 published districts; 58/60 analytical pairs; 0.0% UNMAPPED; 12.0% OUT_OF_SCOPE; full gate remains closed')

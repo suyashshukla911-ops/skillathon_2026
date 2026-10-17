@@ -1,14 +1,23 @@
 @echo off
 setlocal
 cd /d "%~dp0"
+python refresh_pipeline.py
+if errorlevel 1 goto :fail
 python run_gap.py --out out\proxy_baseline
 if errorlevel 1 goto :fail
 python run_gap.py --actual-supply clean\dgt_cts_2026_karnataka_supply_nco.csv --out out\dgt_run
 if errorlevel 1 goto :fail
 python run_gap.py --actual-supply clean\dgt_cts_2026_karnataka_supply_nco.csv --proxy-allocation-method dgt_2026_seat_share --out out\dgt_share_run
 if errorlevel 1 goto :fail
+python run_demand_scenarios.py
+if errorlevel 1 goto :fail
+python public_export.py
+if errorlevel 1 goto :fail
 echo.
-echo PROXY + DGT ACTUAL EVIDENCE + DGT SHARE RUNS COMPLETE
+echo KSISU JUDGE PACKAGE READY
+echo Public exports: public_export\
+echo Robustness summary: out\run_summary.json
+echo To open the GUI separately: python ksisu_gui.py
 exit /b 0
 :fail
 echo.

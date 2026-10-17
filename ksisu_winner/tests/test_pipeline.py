@@ -3,7 +3,7 @@ from pathlib import Path
 import pandas as pd
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT))
-from run_gap import compute_model
+from run_gap import compute_model, suppress_small
 
 def test_31_districts():
     df=pd.read_csv(ROOT/'raw/lgd_districts.csv')
@@ -76,6 +76,29 @@ def test_corruption_rows_are_preserved_and_deduped():
     assert c['unseen_alias_matched']==0
     assert c['duplicate_rows_removed']==5
     assert bool(c['all_rows_preserved_for_review'])
+
+
+def test_demand_allocator_methods_change_rankings_and_share_sum():
+    r=compute_model(write_outputs=False)
+    a=r['audit']
+    assert a['demand_allocation_method']=='udyam_employment'
+    assert abs(float(a['demand_allocator_share_sum'])-1.0)<1e-9
+    das=r['demand_allocator_rank_stability']
+    assert set(['rank_udyam_employment','rank_udyam_units','rank_blend']).issubset(das.columns)
+    assert abs(float(das['rank_udyam_employment'].min())-1.0)<1e-9
+    emp_top=set(das.loc[das['rank_udyam_employment']<=5,'district'])
+    units_top=set(das.loc[das['rank_udyam_units']<=5,'district'])
+    assert emp_top != units_top
+    assert (das['rank_range']>=0).all()
+
+
+def test_demand_allocator_share_totals_for_each_method():
+    methods=['udyam_employment','udyam_units','blend']
+    for method in methods:
+        r=compute_model(overrides={'demand_allocation_method':method},write_outputs=False)
+        assert r['audit']['demand_allocation_method']==method
+        assert abs(float(r['audit']['demand_allocator_share_sum'])-1.0)<1e-9
+        assert (r['demand']['demand_allocation_share'].between(0,1)).all()
 
 def test_reproducible():
     a=compute_model(write_outputs=False)
@@ -165,3 +188,42 @@ def test_dgt_share_uses_coverage_and_changes_signal_shape():
     p=dgt['district'].set_index('district')['uncapped_ratio_median'].rank()
     q=proxy['district'].set_index('district')['uncapped_ratio_median'].rank()
     assert float(p.corr(q)) < 0.99
+
+
+def test_scenario_robustness_file_covers_all_six_runs():
+    path=ROOT/'out/scenario_robustness.csv'
+    assert path.exists()
+    df=pd.read_csv(path)
+    expected_cols={
+        'district',
+        'rank_proxy_udyam_employment',
+        'rank_proxy_udyam_units',
+        'rank_proxy_blend',
+        'rank_dgt_share_udyam_employment',
+        'rank_dgt_share_udyam_units',
+        'rank_dgt_share_blend',
+        'rank_min','rank_max','rank_range','top5_appearances','top5_all_six'
+    }
+    assert expected_cols.issubset(df.columns)
+    assert len(df)==30
+    assert int(df['top5_appearances'].max())==6
+    assert int(df['top5_all_six'].sum())==1
+
+
+def test_public_suppression_guardrail_blanks_small_seat_cells():
+    df = pd.DataFrame([
+        {"district": "Test", "trade": "Tiny Trade", "supply_seats": 4, "demand_openings": 12, "ratio_median": 0.2},
+        {"district": "Test", "trade": "Enough Trade", "supply_seats": 5, "demand_openings": 12, "ratio_median": 0.8},
+    ])
+    out = suppress_small(df, "supply_seats")
+    assert bool(out.loc[0, "suppressed"]) is True
+    assert pd.isna(out.loc[0, "supply_seats"])
+    assert pd.isna(out.loc[0, "demand_openings"])
+    assert pd.isna(out.loc[0, "ratio_median"])
+    assert bool(out.loc[1, "suppressed"]) is False
+    assert float(out.loc[1, "supply_seats"]) == 5.0
+
+
+def test_suppression_threshold_is_read_from_config():
+    r = compute_model(write_outputs=False)
+    assert int(r['audit']['min_count_suppression']) == 5

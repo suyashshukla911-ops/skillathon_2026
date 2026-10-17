@@ -1,52 +1,35 @@
-KSISU REAL-DATA EVIDENCE WORKBENCH - START HERE
+KSISU REAL-DATA EVIDENCE WORKBENCH - JUDGE START HERE
 
-1) Install:
+1) Install the pinned core data stack:
    python -m pip install -r requirements.txt
 
-2) Run self-test:
-   python self_test.py
-   Expected: all PASS.
+2) Run the full judge package (refresh QA + baseline + DGT runs + six scenarios + public export):
+   RUN_ALL.bat
 
-3) Run proxy baseline:
-   python run_gap.py --out out/proxy_baseline
-
-4) Run DGT real evidence upgrade:
-   python run_gap.py --actual-supply clean/dgt_cts_2026_karnataka_supply_nco.csv --out out/dgt_run
-
-5) Run tests:
+3) Run the tests:
    python -m pytest -q
 
-6) Regenerate the 10-page PDF from the two runs:
-   python make_submission_pdf.py
+4) Run the compact self-test:
+   python self_test.py
 
-7) Open GUI:
+5) Public machine-readable outputs:
+   public_export/district_indicators.csv
+   public_export/district_indicators.json
+   public_export/scenario_robustness.csv
+   public_export/data_dictionary.csv
+   public_export/iti_trade_rows.csv
+   public_export/district_trade_seats.csv
+   public_export/suppression_check.csv
+
+6) Refresh QA outputs:
+   out/data_quality_report.csv
+   out/review_queue.csv
+
+7) Six-scenario summary:
+   out/run_summary.json
+
+Guardrail note: seat data in the public exports are institutional aggregate data, not personal data.
+Rows below min_count_suppression (5) are flagged and their public supply/demand/ratio values are blanked.
+
+Interactive GUI after RUN_ALL completes:
    python ksisu_gui.py
-
-GUI demo:
-   A. Run Proxy Baseline.
-   B. Show Gap Results.
-   C. Show District Priority.
-   D. Load DGT 2026 Real Supply.
-   E. Run With Loaded Supply.
-   F. Show Tumakuru/Kalaburagi in Gap Results.
-   G. Show Sensitivity.
-   H. Show Validation & Linkage.
-   I. Use Judge Demo as the presentation script.
-
-DGT 2026 public supply:
-   1,734 Karnataka ITI-trade rows / 588 ITIs / 45,416 provisional seats.
-   58/60 analytical district-group pairs are covered.
-   12.0% of published seats are OUT_OF_SCOPE for the NCO 72/74 pilot; UNMAPPED is reported separately.
-   The full policy gate remains closed until full analytical coverage and full evidence status are supplied.
-
-Source discipline:
-   observed = directly from public source
-   proxy = derived using an explicit rule
-   prior = analyst assumption pending better data
-   partial_floor = real district evidence but incomplete coverage
-   OUT_OF_SCOPE = trade deliberately outside the NCO 72/74 pilot
-   UNMAPPED = trade still awaiting a mapping decision
-
-V11 additions:
-- python run_gap.py --actual-supply clean/dgt_cts_2026_karnataka_supply_nco.csv --proxy-allocation-method dgt_2026_seat_share --out out/dgt_share_run
-- DGT share mode uses real DGT district/group seat shares to set the district distribution, falls back to historical ITI-count weights for missing district/group cells, and remains policy-gated.

@@ -1,0 +1,11 @@
+{
+  "scenario_count": 6,
+  "robust_priority": [
+    "Vijayapura"
+  ],
+  "robust_priority_count": 1,
+  "districts_rank_range_above_5": 16,
+  "scenario_robustness_file": "out/scenario_robustness.csv",
+  "top5_threshold": 5,
+  "rank_range_threshold": 5
+}

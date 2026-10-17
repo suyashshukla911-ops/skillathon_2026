@@ -49,7 +49,7 @@
   "decision_rule": "GAP if p90<1; SURPLUS if p10>1; otherwise NEEDS DATA",
   "sci_formula": "weighted share of openings covered at R=min(S/D,1)",
   "voi_formula": "interval width x annual openings",
-  "assumption_note": "State manufacturing employment comes from ASI; districts are allocated with Udyam employment shares as a proxy. NCO mix is an analyst prior until PLFS unit-level occupation-by-industry data is loaded. District ITI supply is proxy unless an NCVT MIS district/trade extract is supplied.",
+  "assumption_note": "State manufacturing employment comes from ASI. District demand is allocated using one of three transparent Udyam bases: employment share, enterprise-unit share, or their 50/50 blend. Allocator choice is structural uncertainty; rank stability is reported across all three. NCO mix is an analyst prior until PLFS unit-level occupation-by-industry data is loaded. District ITI supply remains provisional/partial in the public DGT evidence.",
   "min_count_suppression": 5,
   "occupation_share_note": "Selected NCO shares are fractions of total manufacturing employment. 0.25 + 0.15 = 0.40 is modeled; 0.60 remains outside the two-group pilot scope.",
   "supply_note": "Pilot is restricted to NCO groups 72 and 74. Group 81 is intentionally excluded because the current ITI crosswalk support is weak for a defensible trade-to-occupation demonstration.",
@@ -62,7 +62,8 @@
     "sector_entry_rate",
     "occupation_prior_uncertainty",
     "allocation_uncertainty",
-    "proxy_seat_uncertainty"
+    "proxy_seat_uncertainty",
+    "demand_allocation_method"
   ],
   "allocation_uncertainty": {
     "concentration": 50.0
@@ -89,7 +90,7 @@
   "proxy_allocation_method": "official_2022_district_iti_count_weight",
   "demand_allocation_uncertainty": {
     "lognormal_sigma": 0.35,
-    "basis": "Analyst uncertainty prior for district allocation of state manufacturing demand; replaced by district actual employment when available."
+    "basis": "Within-allocator district allocation uncertainty prior; sigma 0.35 has no empirical district calibration. Structural allocator uncertainty is assessed separately across employment, enterprise-unit and blended shares."
   },
   "max_unmapped_supply_share": 0.05,
   "analytical_district_merges": {
@@ -108,5 +109,12 @@
     "basis": "Dirichlet concentration 18 with 75% retention of the blended evidence-weighted mean; analyst choice to widen uncertainty without collapsing small districts to zero.",
     "mean_retention": 0.75
   },
-  "dgt_share_note": "DGT 2026 district/group seats are blended toward the historical 2022 ITI-count proxy using district matrix coverage = DGT ITIs in matrix / 2022 ITI count. This prevents sparse matrix coverage from creating artificial zero-supply districts. The blended distribution is still provisional and remains NEEDS DATA."
+  "dgt_share_note": "DGT 2026 district/group seats are blended toward the historical 2022 ITI-count proxy using district matrix coverage = DGT ITIs in matrix / 2022 ITI count. This prevents sparse matrix coverage from creating artificial zero-supply districts. The blended distribution is still provisional and remains NEEDS DATA.",
+  "demand_allocation_method": "udyam_employment",
+  "demand_allocation_methods": [
+    "udyam_employment",
+    "udyam_units",
+    "blend"
+  ],
+  "demand_allocation_source_note": "Demand allocator sensitivity compares Udyam employment shares, Udyam enterprise-unit shares (June 2026), and their 50/50 blend. The blend is an arbitrary midpoint sensitivity case, not an empirically calibrated estimator; the two bases measure different underlying concepts. Allocator choice is structural uncertainty; district priority is robust only when the rank persists across the alternatives."
 }

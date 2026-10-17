@@ -1,0 +1,31 @@
+district,rank_udyam_employment,rank_udyam_units,rank_blend,rank_min,rank_max,rank_range,top5_udyam_employment,top5_udyam_units,top5_blend,top5_all_methods,top5_methods_count
+Bengaluru Rural,28,28,27,27,28,1,False,False,False,False,0
+Bengaluru Urban,30,30,29,29,30,1,False,False,False,False,0
+Chikkamagaluru,23,24,24,23,24,1,False,False,False,False,0
+Dharwad,20,21,20,20,21,1,False,False,False,False,0
+Kodagu,29,29,30,29,30,1,False,False,False,False,0
+Yadgir,17,17,16,16,17,1,False,False,False,False,0
+Ballari-Vijayanagara,14,12,13,12,14,2,False,False,False,False,0
+Belagavi,16,18,18,16,18,2,False,False,False,False,0
+Bidar,7,6,5,5,7,2,False,False,True,False,1
+Chitradurga,12,11,10,10,12,2,False,False,False,False,0
+Haveri,9,9,11,9,11,2,False,False,False,False,0
+Mysuru,26,27,25,25,27,2,False,False,False,False,0
+Raichur,24,22,23,22,24,2,False,False,False,False,0
+Shivamogga,22,23,21,21,23,2,False,False,False,False,0
+Tumakuru,3,4,2,2,4,2,True,True,True,True,3
+Vijayapura,4,2,3,2,4,2,True,True,True,True,3
+Udupi,25,26,28,25,28,3,False,False,False,False,0
+Gadag,1,5,1,1,5,4,True,True,True,True,3
+Kalaburagi,6,10,7,6,10,4,False,False,False,False,0
+Koppal,18,13,14,13,18,5,False,False,False,False,0
+Ramanagara,2,8,4,2,8,6,True,False,True,False,2
+Dakshina Kannada,27,20,26,20,27,7,False,False,False,False,0
+Davanagere,8,16,12,8,16,8,False,False,False,False,0
+Mandya,11,19,15,11,19,8,False,False,False,False,0
+Uttara Kannada,19,14,22,14,22,8,False,False,False,False,0
+Bagalkot,10,1,8,1,10,9,False,True,False,False,1
+Chikkaballapur,5,15,6,5,15,10,True,False,False,False,1
+Chamarajanagar,13,25,19,13,25,12,False,False,False,False,0
+Kolar,15,3,9,3,15,12,False,True,False,False,1
+Hassan,21,7,17,7,21,14,False,False,False,False,0

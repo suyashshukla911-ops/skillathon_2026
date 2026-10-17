@@ -1,5 +1,5 @@
 {
-  "run_id": "RUN-20261017-105939",
+  "run_id": "RUN-20261017-114834",
   "districts": 30,
   "rows": 60,
   "analytical_shortfall_signals": 12,
@@ -17,6 +17,16 @@
   "actual_scale_warning": true,
   "proxy_vs_dgt_spearman": 0.5309997310650879,
   "allocation_method": "dgt_2026_seat_share",
+  "demand_allocation_method": "udyam_employment",
+  "demand_allocation_methods": [
+    "udyam_employment",
+    "udyam_units",
+    "blend"
+  ],
+  "min_count_suppression": 5,
+  "demand_allocator_share_sum": 1.0,
+  "demand_allocator_rank_range_mean": 5.4,
+  "demand_allocator_robust_top5_count": 2,
   "dgt_share_allocation_concentration": 18.0,
   "statewide_supply_mean_conservation_ratio": 0.9990510555998896,
   "statewide_supply_median_conservation_ratio": 0.9189476455145092,

@@ -1,0 +1,101 @@
+case_id,clean_district,district,corruption_type,source_case_id,raw_district,matched_district,lgd_code,match_method,match_confidence,match_status
+T001,Dakshina Kannada,Daksxina Kannada,seeded_typo,T001,Daksxina Kannada,Dakshina Kannada,534,fuzzy,0.9375,matched
+T002,Chamarajanagar,Chamarajaxagar,seeded_typo,T002,Chamarajaxagar,Chamarajanagar,530,fuzzy,0.9286,matched
+T003,Uttara Kannada,Uttara Knanada,seeded_typo,T003,Uttara Knanada,Uttara Kannada,551,fuzzy,0.9286,matched
+T004,Dakshina Kannada,Dkashina Kannada,seeded_typo,T004,Dkashina Kannada,Dakshina Kannada,534,fuzzy,0.9375,matched
+T005,Dakshina Kannada,Dakshina Kxnnada,seeded_typo,T005,Dakshina Kxnnada,Dakshina Kannada,534,fuzzy,0.9375,matched
+T006,Chikkaballapur,Chikkbaallapur,seeded_typo,T006,Chikkbaallapur,Chikkaballapur,531,fuzzy,0.9286,matched
+T007,Chitradurga,Chitraxurga,seeded_typo,T007,Chitraxurga,Chitradurga,533,fuzzy,0.9091,matched
+T008,Dakshina Kannada,Dakshin aKannada,seeded_typo,T008,Dakshin aKannada,Dakshina Kannada,534,fuzzy,0.9375,matched
+T009,Chitradurga,Chixradurga,seeded_typo,T009,Chixradurga,Chitradurga,533,fuzzy,0.9091,matched
+T010,Chamarajanagar,Chamaraajnagar,seeded_typo,T010,Chamaraajnagar,Chamarajanagar,530,fuzzy,0.9286,matched
+T011,Chamarajanagar,Chamxrajanagar,seeded_typo,T011,Chamxrajanagar,Chamarajanagar,530,fuzzy,0.9286,matched
+T012,Chitradurga,Chitraduxga,seeded_typo,T012,Chitraduxga,Chitradurga,533,fuzzy,0.9091,matched
+T013,Bengaluru Rural,Benglauru Rural,seeded_typo,T013,Benglauru Rural,Bengaluru Rural,526,fuzzy,0.9333,matched
+T014,Chikkaballapur,Chikkaballxpur,seeded_typo,T014,Chikkaballxpur,Chikkaballapur,531,fuzzy,0.9286,matched
+T015,Vijayanagara,Vijaynaagara,seeded_typo,T015,Vijaynaagara,Vijayanagara,552,fuzzy,0.9167,matched
+T016,Chitradurga,Chitrxdurga,seeded_typo,T016,Chitrxdurga,Chitradurga,533,fuzzy,0.9091,matched
+T017,Bengaluru Rural,Begnaluru Rural,seeded_typo,T017,Begnaluru Rural,Bengaluru Rural,526,fuzzy,0.9333,matched
+T018,Chamarajanagar,Chamaraajnagar,seeded_typo,T018,Chamaraajnagar,Chamarajanagar,530,fuzzy,0.9286,matched
+T019,Uttara Kannada,UttaraK annada,seeded_typo,T019,UttaraK annada,Uttara Kannada,551,fuzzy,0.9286,matched
+T020,Dakshina Kannada,Dakshina Kxnnada,seeded_typo,T020,Dakshina Kxnnada,Dakshina Kannada,534,fuzzy,0.9375,matched
+T021,Chikkamagaluru,Chkikamagaluru,seeded_typo,T021,Chkikamagaluru,Chikkamagaluru,532,fuzzy,0.9286,matched
+T022,Chamarajanagar,Chamaraajnagar,seeded_typo,T022,Chamaraajnagar,Chamarajanagar,530,fuzzy,0.9286,matched
+T023,Dakshina Kannada,Dakshnia Kannada,seeded_typo,T023,Dakshnia Kannada,Dakshina Kannada,534,fuzzy,0.9375,matched
+T024,Bengaluru Urban,Begnaluru Urban,seeded_typo,T024,Begnaluru Urban,Bengaluru Urban,525,fuzzy,0.9333,matched
+T025,Uttara Kannada,Uttara Kanxada,seeded_typo,T025,Uttara Kanxada,Uttara Kannada,551,fuzzy,0.9286,matched
+T026,Vijayanagara,Vijayaxagara,seeded_typo,T026,Vijayaxagara,Vijayanagara,552,fuzzy,0.9167,matched
+T027,Chikkaballapur,Chikkaballaupr,seeded_typo,T027,Chikkaballaupr,Chikkaballapur,531,fuzzy,0.9286,matched
+T028,Chamarajanagar,Chamaxajanagar,seeded_typo,T028,Chamaxajanagar,Chamarajanagar,530,fuzzy,0.9286,matched
+T029,Chikkaballapur,Chikkaballaxur,seeded_typo,T029,Chikkaballaxur,Chikkaballapur,531,fuzzy,0.9286,matched
+T030,Chikkamagaluru,Chikkamagxluru,seeded_typo,T030,Chikkamagxluru,Chikkamagaluru,532,fuzzy,0.9286,matched
+T031,Bengaluru Urban,Bengxluru Urban,seeded_typo,T031,Bengxluru Urban,Bengaluru Urban,525,fuzzy,0.9333,matched
+T032,Chikkamagaluru,Chikkxmagaluru,seeded_typo,T032,Chikkxmagaluru,Chikkamagaluru,532,fuzzy,0.9286,matched
+T033,Uttara Kannada,Uttara Kannxda,seeded_typo,T033,Uttara Kannxda,Uttara Kannada,551,fuzzy,0.9286,matched
+T034,Chitradurga,Chitardurga,seeded_typo,T034,Chitardurga,Chitradurga,533,fuzzy,0.9091,matched
+T035,Chikkaballapur,Chikkaballpaur,seeded_typo,T035,Chikkaballpaur,Chikkaballapur,531,fuzzy,0.9286,matched
+T036,Chitradurga,Chitradruga,seeded_typo,T036,Chitradruga,Chitradurga,533,fuzzy,0.9091,matched
+T037,Chitradurga,Chitradruga,seeded_typo,T037,Chitradruga,Chitradurga,533,fuzzy,0.9091,matched
+T038,Chikkaballapur,Chikkaabllapur,seeded_typo,T038,Chikkaabllapur,Chikkaballapur,531,fuzzy,0.9286,matched
+T039,Uttara Kannada,Uttara Kxnnada,seeded_typo,T039,Uttara Kxnnada,Uttara Kannada,551,fuzzy,0.9286,matched
+T040,Bengaluru Rural,Bengaluru Ruarl,seeded_typo,T040,Bengaluru Ruarl,Bengaluru Rural,526,fuzzy,0.9333,matched
+T041,Chikkamagaluru,Chikkamagalruu,seeded_typo,T041,Chikkamagalruu,Chikkamagaluru,532,fuzzy,0.9286,matched
+T042,Dakshina Kannada,Dakshina Kxnnada,seeded_typo,T042,Dakshina Kxnnada,Dakshina Kannada,534,fuzzy,0.9375,matched
+T043,Chamarajanagar,Chaxarajanagar,seeded_typo,T043,Chaxarajanagar,Chamarajanagar,530,fuzzy,0.9286,matched
+T044,Chamarajanagar,Chamarajaangar,seeded_typo,T044,Chamarajaangar,Chamarajanagar,530,fuzzy,0.9286,matched
+T045,Chamarajanagar,Chamarajanaxar,seeded_typo,T045,Chamarajanaxar,Chamarajanagar,530,fuzzy,0.9286,matched
+T046,Bengaluru Urban,Bengalur uUrban,seeded_typo,T046,Bengalur uUrban,Bengaluru Urban,525,fuzzy,0.9333,matched
+T047,Uttara Kannada,Uttaxa Kannada,seeded_typo,T047,Uttaxa Kannada,Uttara Kannada,551,fuzzy,0.9286,matched
+T048,Bengaluru Urban,Benxaluru Urban,seeded_typo,T048,Benxaluru Urban,Bengaluru Urban,525,fuzzy,0.9333,matched
+T049,Chikkamagaluru,Chikkaxagaluru,seeded_typo,T049,Chikkaxagaluru,Chikkamagaluru,532,fuzzy,0.9286,matched
+T050,Dakshina Kannada,Dakshina xannada,seeded_typo,T050,Dakshina xannada,Dakshina Kannada,534,fuzzy,0.9375,matched
+T051,Dakshina Kannada,Dxkshina Kannada,seeded_typo,T051,Dxkshina Kannada,Dakshina Kannada,534,fuzzy,0.9375,matched
+T052,Chamarajanagar,Cahmarajanagar,seeded_typo,T052,Cahmarajanagar,Chamarajanagar,530,fuzzy,0.9286,matched
+T053,Vijayanagara,Vijayanaxara,seeded_typo,T053,Vijayanaxara,Vijayanagara,552,fuzzy,0.9167,matched
+T054,Uttara Kannada,Uttaxa Kannada,seeded_typo,T054,Uttaxa Kannada,Uttara Kannada,551,fuzzy,0.9286,matched
+T055,Bengaluru Urban,Bengalur uUrban,seeded_typo,T055,Bengalur uUrban,Bengaluru Urban,525,fuzzy,0.9333,matched
+T056,Chamarajanagar,Chamxrajanagar,seeded_typo,T056,Chamxrajanagar,Chamarajanagar,530,fuzzy,0.9286,matched
+T057,Chamarajanagar,Chamarajaangar,seeded_typo,T057,Chamarajaangar,Chamarajanagar,530,fuzzy,0.9286,matched
+T058,Chamarajanagar,Chamarjaanagar,seeded_typo,T058,Chamarjaanagar,Chamarajanagar,530,fuzzy,0.9286,matched
+T059,Chikkaballapur,Chikkaballaxur,seeded_typo,T059,Chikkaballaxur,Chikkaballapur,531,fuzzy,0.9286,matched
+T060,Vijayanagara,Vijaaynagara,seeded_typo,T060,Vijaaynagara,Vijayanagara,552,fuzzy,0.9167,matched
+T061,Chitradurga,Chitraduxga,seeded_typo,T061,Chitraduxga,Chitradurga,533,fuzzy,0.9091,matched
+T062,Chitradurga,Chitxadurga,seeded_typo,T062,Chitxadurga,Chitradurga,533,fuzzy,0.9091,matched
+T063,Uttara Kannada,Uttara Kxnnada,seeded_typo,T063,Uttara Kxnnada,Uttara Kannada,551,fuzzy,0.9286,matched
+T064,Chikkaballapur,Chikkaballapur,seeded_typo,T064,Chikkaballapur,Chikkaballapur,531,exact,1.0,matched
+T065,Chitradurga,Chitradugra,seeded_typo,T065,Chitradugra,Chitradurga,533,fuzzy,0.9091,matched
+T066,Dakshina Kannada,Dakshina Kaxnada,seeded_typo,T066,Dakshina Kaxnada,Dakshina Kannada,534,fuzzy,0.9375,matched
+T067,Vijayanagara,Vijaaynagara,seeded_typo,T067,Vijaaynagara,Vijayanagara,552,fuzzy,0.9167,matched
+T068,Uttara Kannada,Utatra Kannada,seeded_typo,T068,Utatra Kannada,Uttara Kannada,551,fuzzy,0.9286,matched
+T069,Bengaluru Urban,Bengaluru Urabn,seeded_typo,T069,Bengaluru Urabn,Bengaluru Urban,525,fuzzy,0.9333,matched
+T070,Bengaluru Rural,Bengalruu Rural,seeded_typo,T070,Bengalruu Rural,Bengaluru Rural,526,fuzzy,0.9333,matched
+T071,Dakshina Kannada,Dakshixa Kannada,seeded_typo,T071,Dakshixa Kannada,Dakshina Kannada,534,fuzzy,0.9375,matched
+T072,Vijayanagara,Vijxyanagara,seeded_typo,T072,Vijxyanagara,Vijayanagara,552,fuzzy,0.9167,matched
+T073,Chitradurga,Chitxadurga,seeded_typo,T073,Chitxadurga,Chitradurga,533,fuzzy,0.9091,matched
+T074,Chamarajanagar,Chamarajaxagar,seeded_typo,T074,Chamarajaxagar,Chamarajanagar,530,fuzzy,0.9286,matched
+T075,Bengaluru Urban,Bengaluxu Urban,seeded_typo,T075,Bengaluxu Urban,Bengaluru Urban,525,fuzzy,0.9333,matched
+T076,Vijayanagara,Vijayanagxra,seeded_typo,T076,Vijayanagxra,Vijayanagara,552,fuzzy,0.9167,matched
+T077,Bengaluru Rural,Bengaluru Rrual,seeded_typo,T077,Bengaluru Rrual,Bengaluru Rural,526,fuzzy,0.9333,matched
+T078,Uttara Kannada,Utatra Kannada,seeded_typo,T078,Utatra Kannada,Uttara Kannada,551,fuzzy,0.9286,matched
+T079,Chikkamagaluru,Chikkmaagaluru,seeded_typo,T079,Chikkmaagaluru,Chikkamagaluru,532,fuzzy,0.9286,matched
+T080,Dakshina Kannada,Dakshina Kannxda,seeded_typo,T080,Dakshina Kannxda,Dakshina Kannada,534,fuzzy,0.9375,matched
+A001,Davanagere,Davanagri,unseen_alias,A001,Davanagri,,,review,0.8421,review
+A002,Chikkaballapur,Chikkaballapur City,unseen_alias,A002,Chikkaballapur City,,,review,0.8485,review
+A003,Dakshina Kannada,Dakshina Kannada City,unseen_alias,A003,Dakshina Kannada City,,,review,0.8649,review
+A004,Bengaluru Urban,Bengaluru City,unseen_alias,A004,Bengaluru City,,,review,0.6897,review
+A005,Bengaluru Urban,Bengaluru City,unseen_alias,A005,Bengaluru City,,,review,0.6897,review
+A006,Vijayanagara,Vijayanagara City,unseen_alias,A006,Vijayanagara City,,,review,0.8276,review
+A007,Mandya,Mandya City,unseen_alias,A007,Mandya City,,,review,0.7059,review
+A008,Udupi,Udupi City,unseen_alias,A008,Udupi City,,,review,0.6667,review
+A009,Koppal,Koppal City,unseen_alias,A009,Koppal City,,,review,0.7059,review
+A010,Gadag,Gadag City,unseen_alias,A010,Gadag City,,,review,0.6667,review
+A011,Chitradurga,Chitradurga City,unseen_alias,A011,Chitradurga City,,,review,0.8148,review
+A012,Vijayapura,Bijapur City,unseen_alias,A012,Bijapur City,,,review,0.5455,review
+A013,Raichur,Raichur City,unseen_alias,A013,Raichur City,,,review,0.7368,review
+A014,Chamarajanagar,Chamarajanagar City,unseen_alias,A014,Chamarajanagar City,,,review,0.8485,review
+A015,Chitradurga,Chitradurga City,unseen_alias,A015,Chitradurga City,,,review,0.8148,review
+A016,Bengaluru Urban,Bengaluru City,unseen_alias,A016,Bengaluru City,,,review,0.6897,review
+A017,Belagavi,Belagavi City,unseen_alias,A017,Belagavi City,,,review,0.7619,review
+A018,Tumakuru,Tumakuru City,unseen_alias,A018,Tumakuru City,,,review,0.7619,review
+A019,Udupi,Udupi City,unseen_alias,A019,Udupi City,,,review,0.6667,review
+A020,Bengaluru Urban,Bengaluru City,unseen_alias,A020,Bengaluru City,,,review,0.6897,review

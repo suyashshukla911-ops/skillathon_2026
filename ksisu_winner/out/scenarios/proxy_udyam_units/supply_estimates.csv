@@ -1,0 +1,61 @@
+district,lgd_code,year,nco_group_2digit,occupation_label,proxy_seats,actual_seats,supply_basis,supply_coverage,allocation_basis,supply_p10,supply_median,supply_p90,observed_supply_share,dgt_observed_seats_to_supply_median,dgt_itis_in_matrix,iti_2022_count,matrix_iti_coverage
+Bagalkot,524,2022-23,72,Metal machinery and related trades,5609.713567154561,,district-proxy,proxy,NCVT ITI-count weighted,405.3920241381268,695.3022202270613,1119.2730354813423,0.0,0.0,0.0,76.0,0.0
+Bagalkot,524,2022-23,74,Electrical and electronic trades,2604.5098704646175,,district-proxy,proxy,NCVT ITI-count weighted,188.21772549270173,322.8188879625642,519.6624807591946,0.0,0.0,0.0,76.0,0.0
+Ballari-Vijayanagara,528|552,2022-23,72,Metal machinery and related trades,5600.423092175708,,district-proxy,proxy,NCVT ITI-count weighted,458.1226648713942,714.0244116930648,1069.4958072967765,0.0,0.0,0.0,89.0,0.0
+Ballari-Vijayanagara,528|552,2022-23,74,Electrical and electronic trades,2600.196435653007,,district-proxy,proxy,NCVT ITI-count weighted,212.69980869029015,331.5113340003515,496.5516248163605,0.0,0.0,0.0,89.0,0.0
+Belagavi,527,2022-23,72,Metal machinery and related trades,9152.690556936392,,district-proxy,proxy,NCVT ITI-count weighted,737.6568260887635,1159.1025407014217,1745.0788665448201,0.0,0.0,0.0,124.0,0.0
+Belagavi,527,2022-23,74,Electrical and electronic trades,4249.463472863325,,district-proxy,proxy,NCVT ITI-count weighted,342.4835263983544,538.1547510399458,810.2151880386665,0.0,0.0,0.0,124.0,0.0
+Bengaluru Rural,526,2022-23,72,Metal machinery and related trades,3248.8109337506526,,district-proxy,proxy,NCVT ITI-count weighted,187.69617984796682,390.8238225102648,709.1997945027657,0.0,0.0,0.0,21.0,0.0
+Bengaluru Rural,526,2022-23,74,Electrical and electronic trades,1508.37650495566,,district-proxy,proxy,NCVT ITI-count weighted,87.14465492941315,181.45391759405146,329.2713331619984,0.0,0.0,0.0,21.0,0.0
+Bengaluru Urban,525,2022-23,72,Metal machinery and related trades,8199.379975656408,,district-proxy,proxy,NCVT ITI-count weighted,649.9257179632054,1035.547438275339,1587.5822983874818,0.0,0.0,0.0,53.0,0.0
+Bengaluru Urban,525,2022-23,74,Electrical and electronic trades,3806.8549886976175,,district-proxy,proxy,NCVT ITI-count weighted,301.7512261972026,480.7898820564073,737.0917813941878,0.0,0.0,0.0,53.0,0.0
+Bidar,529,2022-23,72,Metal machinery and related trades,4656.531559786545,,district-proxy,proxy,NCVT ITI-count weighted,360.71531024911735,587.9204948514619,900.0144084681602,0.0,0.0,0.0,74.0,0.0
+Bidar,529,2022-23,74,Electrical and electronic trades,2161.961081329467,,district-proxy,proxy,NCVT ITI-count weighted,167.47496547280448,272.96308689532157,417.8638325030743,0.0,0.0,0.0,74.0,0.0
+Chamarajanagar,530,2022-23,72,Metal machinery and related trades,1205.6579687664528,,district-proxy,proxy,NCVT ITI-count weighted,44.70550050645177,133.98656083634705,310.88154934630495,0.0,0.0,0.0,19.0,0.0
+Chamarajanagar,530,2022-23,74,Electrical and electronic trades,559.7697712129959,,district-proxy,proxy,NCVT ITI-count weighted,20.75612523513832,62.208046102589705,144.33786219649875,0.0,0.0,0.0,19.0,0.0
+Chikkaballapur,531,2022-23,72,Metal machinery and related trades,3867.6320639888713,,district-proxy,proxy,NCVT ITI-count weighted,238.65340144680803,464.2817804612418,831.2279469572619,0.0,0.0,0.0,25.0,0.0
+Chikkaballapur,531,2022-23,74,Electrical and electronic trades,1795.6863154234045,,district-proxy,proxy,NCVT ITI-count weighted,110.80336495744658,215.55939807129084,385.9272610873001,0.0,0.0,0.0,25.0,0.0
+Chikkamagaluru,532,2022-23,72,Metal machinery and related trades,1522.9363815997299,,district-proxy,proxy,NCVT ITI-count weighted,65.74869135235699,173.23421954809544,366.6946739048187,0.0,0.0,0.0,24.0,0.0
+Chikkamagaluru,532,2022-23,74,Electrical and electronic trades,707.0776057427316,,district-proxy,proxy,NCVT ITI-count weighted,30.526178127880023,80.43017336161574,170.25109859866586,0.0,0.0,0.0,24.0,0.0
+Chitradurga,533,2022-23,72,Metal machinery and related trades,4061.1636842659464,,district-proxy,proxy,NCVT ITI-count weighted,290.72995944044885,507.43092810930136,832.5645998323184,0.0,0.0,0.0,64.0,0.0
+Chitradurga,533,2022-23,74,Electrical and electronic trades,1885.540281980618,,district-proxy,proxy,NCVT ITI-count weighted,134.98176688306555,235.59293090788992,386.5478499221478,0.0,0.0,0.0,64.0,0.0
+Dakshina Kannada,534,2022-23,72,Metal machinery and related trades,1840.214794433007,,district-proxy,proxy,NCVT ITI-count weighted,92.25697771204155,213.04828236869932,435.64665079426567,0.0,0.0,0.0,29.0,0.0
+Dakshina Kannada,534,2022-23,74,Electrical and electronic trades,854.3854402724675,,district-proxy,proxy,NCVT ITI-count weighted,42.833596794876435,98.9152739568961,202.26451644019483,0.0,0.0,0.0,29.0,0.0
+Davanagere,535,2022-23,72,Metal machinery and related trades,3616.9739062993585,,district-proxy,proxy,NCVT ITI-count weighted,241.07729041757517,447.4507579118896,751.0641272875376,0.0,0.0,0.0,57.0,0.0
+Davanagere,535,2022-23,74,Electrical and electronic trades,1679.3093136389878,,district-proxy,proxy,NCVT ITI-count weighted,111.92874197958845,207.74499474480584,348.70834481207095,0.0,0.0,0.0,57.0,0.0
+Dharwad,536,2022-23,72,Metal machinery and related trades,4207.2851753659215,,district-proxy,proxy,NCVT ITI-count weighted,275.99016659737634,509.04798290342114,883.9785306419743,0.0,0.0,0.0,57.0,0.0
+Dharwad,536,2022-23,74,Electrical and electronic trades,1953.3824028484637,,district-proxy,proxy,NCVT ITI-count weighted,128.13829163449617,236.3437063480169,410.4186035123451,0.0,0.0,0.0,57.0,0.0
+Gadag,537,2022-23,72,Metal machinery and related trades,3247.7289073000097,,district-proxy,proxy,NCVT ITI-count weighted,190.9446241082388,391.09357793536697,716.4644308029334,0.0,0.0,0.0,44.0,0.0
+Gadag,537,2022-23,74,Electrical and electronic trades,1507.8741355321472,,district-proxy,proxy,NCVT ITI-count weighted,88.65286119311087,181.57916118427752,332.64420001564764,0.0,0.0,0.0,44.0,0.0
+Hassan,538,2022-23,72,Metal machinery and related trades,4568.80914479919,,district-proxy,proxy,NCVT ITI-count weighted,332.08432804172253,571.8593075331719,919.6811398120727,0.0,0.0,0.0,72.0,0.0
+Hassan,538,2022-23,74,Electrical and electronic trades,2121.232817228195,,district-proxy,proxy,NCVT ITI-count weighted,154.18200944794262,265.5061070689727,426.9948149127479,0.0,0.0,0.0,72.0,0.0
+Haveri,539,2022-23,72,Metal machinery and related trades,3912.0370928841025,,district-proxy,proxy,NCVT ITI-count weighted,255.34384682598554,483.76224524239706,846.4719087497692,0.0,0.0,0.0,53.0,0.0
+Haveri,539,2022-23,74,Electrical and electronic trades,1816.3029359819047,,district-proxy,proxy,NCVT ITI-count weighted,118.55250031206471,224.6038995768272,393.0048147766786,0.0,0.0,0.0,53.0,0.0
+Kalaburagi,540,2022-23,72,Metal machinery and related trades,5222.8664792200425,,district-proxy,proxy,NCVT ITI-count weighted,411.11302780085356,655.6289226091462,996.6329270277122,0.0,0.0,0.0,83.0,0.0
+Kalaburagi,540,2022-23,74,Electrical and electronic trades,2424.902293923591,,district-proxy,proxy,NCVT ITI-count weighted,190.873905764682,304.39914263996076,462.72243040572346,0.0,0.0,0.0,83.0,0.0
+Kodagu,541,2022-23,72,Metal machinery and related trades,380.73409539993247,,district-proxy,proxy,NCVT ITI-count weighted,2.350385036098031,27.838400880521924,121.2981617253244,0.0,0.0,0.0,6.0,0.0
+Kodagu,541,2022-23,74,Electrical and electronic trades,176.7694014356829,,district-proxy,proxy,NCVT ITI-count weighted,1.0912501953312284,12.924971837385177,56.317003658186316,0.0,0.0,0.0,6.0,0.0
+Kolar,542,2022-23,72,Metal machinery and related trades,5724.09545470353,,district-proxy,proxy,NCVT ITI-count weighted,420.2900000541657,713.0394701449347,1150.2478383356854,0.0,0.0,0.0,37.0,0.0
+Kolar,542,2022-23,74,Electrical and electronic trades,2657.6157468266388,,district-proxy,proxy,NCVT ITI-count weighted,195.13464288229125,331.0540397101482,534.0436392272826,0.0,0.0,0.0,37.0,0.0
+Koppal,543,2022-23,72,Metal machinery and related trades,2894.6006993267706,,district-proxy,proxy,NCVT ITI-count weighted,191.09819990755005,357.63350191569543,613.5362190388541,0.0,0.0,0.0,46.0,0.0
+Koppal,543,2022-23,74,Electrical and electronic trades,1343.9217532588577,,district-proxy,proxy,NCVT ITI-count weighted,88.72416424279109,166.04412588943006,284.85610169661084,0.0,0.0,0.0,46.0,0.0
+Mandya,544,2022-23,72,Metal machinery and related trades,3363.151176032737,,district-proxy,proxy,NCVT ITI-count weighted,225.02198149773787,415.44720606498765,709.8046524635033,0.0,0.0,0.0,53.0,0.0
+Mandya,544,2022-23,74,Electrical and electronic trades,1561.4630460151993,,district-proxy,proxy,NCVT ITI-count weighted,104.47449140966401,192.88620281588715,329.5521600723408,0.0,0.0,0.0,53.0,0.0
+Mysuru,545,2022-23,72,Metal machinery and related trades,3236.239810899426,,district-proxy,proxy,NCVT ITI-count weighted,211.4803557207686,395.7270442377975,689.2436211576286,0.0,0.0,0.0,51.0,0.0
+Mysuru,545,2022-23,74,Electrical and electronic trades,1502.539912203305,,district-proxy,proxy,NCVT ITI-count weighted,98.18730801321404,183.7304133961203,320.00596696604185,0.0,0.0,0.0,51.0,0.0
+Raichur,546,2022-23,72,Metal machinery and related trades,2391.1918820525493,,district-proxy,proxy,NCVT ITI-count weighted,148.93737223613806,287.5412498864729,514.0904644803442,0.0,0.0,0.0,38.0,0.0
+Raichur,546,2022-23,74,Electrical and electronic trades,1110.1962309529692,,district-proxy,proxy,NCVT ITI-count weighted,69.14949425249269,133.50129459014812,238.68485850873117,0.0,0.0,0.0,38.0,0.0
+Ramanagara,547,2022-23,72,Metal machinery and related trades,4177.042629107982,,district-proxy,proxy,NCVT ITI-count weighted,270.3425457995766,508.3244213933971,886.6285475275264,0.0,0.0,0.0,27.0,0.0
+Ramanagara,547,2022-23,74,Electrical and electronic trades,1939.3412206572773,,district-proxy,proxy,NCVT ITI-count weighted,125.51618197837483,236.00776707550574,411.64896849492294,0.0,0.0,0.0,27.0,0.0
+Shivamogga,548,2022-23,72,Metal machinery and related trades,2665.138667799527,,district-proxy,proxy,NCVT ITI-count weighted,164.4400291621155,322.705373743442,581.2973444286764,0.0,0.0,0.0,42.0,0.0
+Shivamogga,548,2022-23,74,Electrical and electronic trades,1237.3858100497803,,district-proxy,proxy,NCVT ITI-count weighted,76.34715639669646,149.82749495231235,269.88805277045685,0.0,0.0,0.0,42.0,0.0
+Tumakuru,549,2022-23,72,Metal machinery and related trades,10984.075061728396,,district-proxy,proxy,NCVT ITI-count weighted,925.7838461641209,1411.261601289645,2039.4273595989505,0.0,0.0,0.0,71.0,0.0
+Tumakuru,549,2022-23,74,Electrical and electronic trades,5099.749135802469,,district-proxy,proxy,NCVT ITI-count weighted,429.8282142904846,655.2286005987637,946.8769883852268,0.0,0.0,0.0,71.0,0.0
+Udupi,550,2022-23,72,Metal machinery and related trades,888.3795559331758,,district-proxy,proxy,NCVT ITI-count weighted,24.06631435308157,92.09043151366399,244.29418500222022,0.0,0.0,0.0,14.0,0.0
+Udupi,550,2022-23,74,Electrical and electronic trades,412.46193668326015,,district-proxy,proxy,NCVT ITI-count weighted,11.173645949645012,42.756271774201124,113.42230017960223,0.0,0.0,0.0,14.0,0.0
+Uttara Kannada,551,2022-23,72,Metal machinery and related trades,1771.4884948909146,,district-proxy,proxy,NCVT ITI-count weighted,73.83884511381015,203.1568624674976,444.2887237434365,0.0,0.0,0.0,24.0,0.0
+Uttara Kannada,551,2022-23,74,Electrical and electronic trades,822.4768011993531,,district-proxy,proxy,NCVT ITI-count weighted,34.28232094569757,94.32282900276672,206.27690745230979,0.0,0.0,0.0,24.0,0.0
+Vijayapura,553,2022-23,72,Metal machinery and related trades,7233.578020804567,,district-proxy,proxy,NCVT ITI-count weighted,558.6134324246297,912.3409123746567,1409.4910590686072,0.0,0.0,0.0,98.0,0.0
+Vijayapura,553,2022-23,74,Electrical and electronic trades,3358.4469382306916,,district-proxy,proxy,NCVT ITI-count weighted,259.3562364828638,423.58685217394776,654.4065631389961,0.0,0.0,0.0,98.0,0.0
+Yadgir,554,2022-23,72,Metal machinery and related trades,1950.7091669376061,,district-proxy,proxy,NCVT ITI-count weighted,113.6815171362402,235.4476321287187,437.8436794077247,0.0,0.0,0.0,31.0,0.0
+Yadgir,554,2022-23,74,Electrical and electronic trades,905.6863989353171,,district-proxy,proxy,NCVT ITI-count weighted,52.78070438468294,109.31497205976225,203.28456543930074,0.0,0.0,0.0,31.0,0.0

@@ -2,7 +2,7 @@
 
 ## 1. Research question
 
-This pilot is intentionally narrow: **manufacturing only**, focused on ITI-linked NCO groups **72, 74 and 81**.
+This pilot is intentionally narrow: **manufacturing only**, focused on ITI-linked NCO groups **72 and 74**.
 
 The operational question is:
 
@@ -15,13 +15,12 @@ The model distinguishes an **analytical signal** from a **policy decision**.
 Let d = district and o = selected NCO group.
 
 1. `M_state` is Karnataka manufacturing persons engaged from ASI 2022-23.
-2. `w_d` is the district share of Udyam employment. This is a transparent district allocator, **not manufacturing employment**.
-3. `M_d = M_state * w_d`.
+2. `w_d` is the configured district demand-allocation share. The supported bases are Udyam employment share (default), Udyam enterprise-unit share, and their 50/50 blend. These are transparent allocators, **not manufacturing employment**.
+3. `M_d = M_state * w_d`. The chosen allocator and its share sum are recorded in the audit log.
 4. The selected NCO occupation shares remain fractions of **total manufacturing employment**. They are not renormalised.
    - NCO 72 = 0.25
    - NCO 74 = 0.15
-   - NCO 81 = 0.20
-   - 0.40 remains outside this pilot scope.
+   - 0.40 remains outside this pilot scope; NCO 81 is intentionally excluded from the pilot.
 5. Annual openings:
    `O_d,o = M_d * m_o * r_open`
    where `r_open` is triangular(low, mode, high).
@@ -37,6 +36,10 @@ This avoids the previous basis error of multiplying all-sector Udyam employment 
 - `completion` converts enrolment to completion.
 - `sector_entry` is the share entering the selected sector.
 - `x(c→o)` is a versioned course/trade → NCO crosswalk.
+
+### Demand allocator sensitivity
+
+Three structurally different demand allocators are compared: `udyam_employment`, `udyam_units`, and `blend`. The output `demand_allocator_rank_stability.csv` records each district's rank under every allocator, its range across them, and whether it stays in the top five across all three. This is the main structural sensitivity for district ordering. The 0.35 lognormal term captures within-allocator allocation uncertainty only and has no empirical district calibration yet; it is an explicit assumption, not an observed Karnataka rate.
 
 ### Proxy supply
 
@@ -157,3 +160,7 @@ The source registry is never overwritten with blank URLs or `unknown` grain.
 4. Add an independent district employment benchmark for the downscaling sanity check.
 
 The prototype is therefore designed as a **reproducible evidence and data-onboarding system**, not a claim that the currently public proxy inputs are already the production KSISU dataset.
+
+### Six-scenario robustness
+
+`run_demand_scenarios.py` runs proxy and DGT-share supply modes under all three demand allocators and writes `out/scenario_robustness.csv`. A district is called robust only when it remains in the top five across all six scenarios. In the current evidence set, only a small number of districts are repeatedly high-priority across both supply routes and demand definitions; most ordering remains assumption-driven.

@@ -1,0 +1,5 @@
+district,nco_group_2digit,before_basis,after_basis,before_width,after_width,interval_width_change_pct,evidence_effect,after_ratio_p10,after_ratio_median,after_ratio_p90,policy_call_allowed
+Tumakuru,72,dgt-seat-share-calibrated,dgt-seat-share-calibrated,2.142755344140728,1.7612412471794827,17.804837029317376,NARROWER,0.7288136056650978,1.3406167978715022,2.4900548528445805,False
+Tumakuru,74,dgt-seat-share-calibrated,dgt-seat-share-calibrated,1.6300831911791192,1.3415115481590831,17.702878269132878,NARROWER,0.5671566486212012,1.0283638620016915,1.9086681967802843,False
+Kalaburagi,72,dgt-seat-share-calibrated,dgt-seat-share-calibrated,1.6834488568529953,1.5113184809366729,10.224865175773704,NARROWER,0.5743730725001467,1.0778777194075957,2.0856915534368197,False
+Kalaburagi,74,dgt-seat-share-calibrated,dgt-seat-share-calibrated,1.3162375976146818,1.1468023649336518,12.872693576606892,NARROWER,0.424019337865361,0.7953883379792178,1.5708217027990128,False

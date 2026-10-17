@@ -1,0 +1,2 @@
+check,threshold,district_rows_suppressed,iti_trade_rows_suppressed,demo_input_seats,demo_suppressed,demo_public_supply_value_is_blank,statement
+Configured min-count suppression,5,2,0,4,True,True,Institutional seat data only; no personal data. Rows below the threshold are flagged and their public supply/demand/ratio values are blanked.

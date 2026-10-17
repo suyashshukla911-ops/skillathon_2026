@@ -116,6 +116,10 @@ def make_pdf():
     cw=pd.read_csv(CLEAN/'crosswalk.csv')
     dgt_supply=pd.read_csv(CLEAN/'dgt_cts_2026_karnataka_supply_nco.csv')
     iti=pd.read_csv(CLEAN/'district_iti_counts.csv')
+    demand_stability_path = proxy_dir/'demand_allocator_rank_stability.csv'
+    demand_stability = pd.read_csv(demand_stability_path) if demand_stability_path.exists() else pd.DataFrame()
+    scenario_robustness_path = OUT/'scenario_robustness.csv'
+    scenario_robustness = pd.read_csv(scenario_robustness_path) if scenario_robustness_path.exists() else pd.DataFrame()
 
     selected_groups=[str(x) for x in cfg['selected_nco_groups']]
     selected_occ=mix[mix.nco_group_2digit.astype(str).isin(selected_groups)]
@@ -176,19 +180,27 @@ def make_pdf():
                    ['MC draws / seed','5,000 / 20261016','reproducible stochastic run']], [52*mm,55*mm,173*mm], font=6.55),PageBreak()]
 
     # PAGE 4
-    story += [P('3. Demand model - one basis, explicit uncertainty','H2b'),
-              P('District manufacturing employment is allocated from the Karnataka ASI manufacturing total using Udyam employment shares. This avoids multiplying an all-sector Udyam employment number by a manufacturing percentage. The district allocation remains a proxy and carries explicit uncertainty.'),
+    alloc_default = str(proxy_audit.get('demand_allocation_method', cfg.get('demand_allocation_method','udyam_employment')))
+    alloc_note = 'employment share (default)' if alloc_default == 'udyam_employment' else alloc_default
+    story += [P('3. Demand model - allocator choice is a structural sensitivity','H2b'),
+              P('District manufacturing employment is allocated from the Karnataka ASI manufacturing total using an explicit Udyam-based district share. The default run uses Udyam employment share; enterprise-unit share and a 50/50 blend are also tested because demand allocation is the weakest structural input.'),
               Spacer(1,3*mm),
               tbl([['NCO group','Share of total manufacturing employment','Status'],
                    ['72','0.25','modeled'],['74','0.15','modeled'],['Outside pilot','0.60','not modeled']], [48*mm,92*mm,140*mm], font=7.0),
-              Spacer(1,4*mm),
-              tbl([['Demand component','Low','Mode','High','Basis'],
-                   ['Opening rate',f"{cfg['opening_rate']['low']*100:.1f}%",f"{cfg['opening_rate']['mode']*100:.1f}%",f"{cfg['opening_rate']['high']*100:.1f}%",'analyst range'],
-                   ['Occupation prior multiplier',f"{cfg['occupation_prior_uncertainty']['low']:.2f}x",f"{cfg['occupation_prior_uncertainty']['mode']:.2f}x",f"{cfg['occupation_prior_uncertainty']['high']:.2f}x",'analyst uncertainty'],
-                   ['District allocation sigma', '','0.35','', 'lognormal analyst assumption; no district calibration yet']], [70*mm,35*mm,35*mm,35*mm,105*mm], font=6.8),
-              Spacer(1,4*mm),
-              P('<b>Demand formula:</b> D(d,o) = E\' (d, manufacturing) x m(o|industry); O(d,o) = D(d,o) x opening rate. The occupation prior is deliberately left at 0.25 + 0.15 = 0.40; it is not renormalized to 1.00.'),
-              P('<b>Weakest demand input:</b> the district Udyam allocation and occupation prior. The model therefore uses the relative index and data-collection priority as the safer district-level output until stronger district demand evidence arrives.'),PageBreak()]
+              Spacer(1,3*mm),
+              tbl([['Demand allocator','Definition','Use'],
+                   ['udyam_employment', 'Udyam employment share', 'default baseline'],
+                   ['udyam_units', 'Udyam enterprise-unit share (June 2026)', 'structural sensitivity'],
+                   ['blend', '50/50 average of the two normalized shares', 'structural sensitivity']], [50*mm,124*mm,106*mm], font=6.5),
+              Spacer(1,3*mm),
+              tbl([['Allocator stability diagnostic','Value'],
+                   ['Default allocator', alloc_note],
+                   ['Mean district rank range across allocators', f"{float(proxy_audit.get('demand_allocator_rank_range_mean', float('nan'))):.2f}"],
+                   ['Districts top-5 across all allocators', f"{int(proxy_audit.get('demand_allocator_robust_top5_count', 0))}"],
+                   ['Within-allocator lognormal sigma', '0.35 analyst assumption; no district calibration yet']], [100*mm,180*mm], font=6.6),
+              Spacer(1,3*mm),
+              P('<b>Demand formula:</b> D(d,o) = ASI manufacturing base × selected district allocator share × occupation share; O(d,o) = D(d,o) × opening rate. The selected NCO shares remain 0.25 + 0.15 = 0.40 and are not normalized.'),
+              P('<b>Interpretation:</b> a district priority is called structurally robust only when it remains high across the employment, enterprise-unit and blended demand allocators. The 0.35 lognormal term captures uncertainty within an allocator; allocator choice itself is tested separately.'),PageBreak()]
 
     # PAGE 5
     story += [P('4. Real DGT 2026 district x ITI x trade supply - evidence upgrade','H2b'),
@@ -236,11 +248,19 @@ def make_pdf():
               tbl([['Interpretation rule','Use'],['Median R','alignment signal; can be above or below 1'],['SCI','share of modeled openings covered at min(R,1)'],['VOI','interval width x annual openings'],['Data priority','VOI adjusted by evidence/confidence; onboarding queue']], [55*mm,195*mm], font=6.7),PageBreak()]
 
     # PAGE 8
+    robust_rows=[['District','Top-5 appearances / 6','Rank min-max','Robust across all six']]
+    if not scenario_robustness.empty:
+        top_rows=scenario_robustness.sort_values(['top5_appearances','rank_range','district'], ascending=[False,True,True]).head(5)
+        for _, r in top_rows.iterrows():
+            robust_rows.append([r['district'], str(int(r['top5_appearances'])), f"{int(r['rank_min'])}-{int(r['rank_max'])}", 'YES' if bool(r['top5_all_six']) else 'No'])
     story += [P('7. Sensitivity as rank stability','H2b'),
-              P('Shared Monte Carlo draws are used across districts. Rank stability is therefore a common-system uncertainty diagnostic rather than a re-scaling of arbitrary parameter ranges.'),
-              Spacer(1,2*mm), screenshot(SHOT/'page_07_rank_stability_sensitivity.png', max_w=282*mm, max_h=96*mm),
+              P('Shared Monte Carlo draws are used across districts. Rank stability is a common-system uncertainty diagnostic. The stronger judge-facing test is the six-scenario robustness table, which compares proxy and DGT-share supply routes under all three demand allocators.'),
+              Spacer(1,1.5*mm), screenshot(SHOT/'page_07_rank_stability_sensitivity.png', max_w=282*mm, max_h=77*mm),
               P('Figure 4. Rank stability under shared uncertainty. The same draw structure is used across districts so relative ranking is comparable.', 'Caption2'),
-              P(f"<b>Current demand allocation sigma:</b> 0.35. This is explicitly an analyst assumption with no empirical Karnataka district calibration yet. It should be replaced by district employment or DSDP/MIS evidence in production."),
+              Spacer(1,1.5*mm),
+              tbl(robust_rows, [80*mm,65*mm,50*mm,65*mm], font=6.9),
+              Spacer(1,2*mm),
+              P('<b>Six-scenario result:</b> a few districts repeat as high priority across both supply routes and all three demand definitions; most ordering remains assumption-driven. The 50/50 blend is an arbitrary midpoint sensitivity case, not an empirical estimator. The 0.35 lognormal demand term is an explicit assumption with no district-level calibration yet.'),
               PageBreak()]
 
     # PAGE 9
@@ -268,7 +288,7 @@ def make_pdf():
                    ['6. Sensitivity','Show whether priority is stable across shared draws.'],
                    ['7. Validation','Show typo recovery, review queue, dedupe and provenance.']], [70*mm,180*mm], font=6.6),
               Spacer(1,3*mm), P('<b>One-sentence story:</b> “We use real DGT district/group seat distribution to improve the allocation, keep uncertainty where coverage is incomplete, and only unlock a district policy call when the evidence gate is satisfied.”','Callout2'),
-              P('<b>Current blocker:</b> the public DGT 2026 matrix is provisional, covers 58/60 analytical district-group pairs, and its 45,416 published seats are only 20.9% of the 2022 NCVT state seat magnitude. The DGT-share run changes the district allocation using coverage-weighted DGT shares (588 DGT ITIs relative to the historical 2022 denominator), but it still makes no district policy claim because evidence coverage is incomplete.'),
+              P('<b>Current blocker:</b> the public DGT 2026 matrix is provisional, covers 58/60 analytical district-group pairs, and its 45,416 published seats are only 20.9% of the 2022 NCVT state seat magnitude. The DGT-share run changes the district allocation using coverage-weighted DGT shares (588 DGT ITIs relative to the historical 2022 denominator), while the demand allocator is stress-tested across Udyam employment, Udyam units and their blend. The model still makes no district policy claim because evidence coverage is incomplete.'),
               P('<b>Submission note:</b> SCI, VOI, confidence and evidence gates are proposed methodology for the Skillathon, not an official Karnataka formula. The DGT source is a provisional 2026 dynamic seat matrix, not a final frozen capacity table.','Small2x')]
 
     doc.build(story, onFirstPage=header_footer, onLaterPages=header_footer)

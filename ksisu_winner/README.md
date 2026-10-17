@@ -6,6 +6,16 @@ It is deliberately **not** a synthetic district dashboard. The core design is an
 
 `Ingest → Registry → Harmonise → Demand model → Supply model → Shared Monte Carlo → Alignment → Evidence score → VOI → Human review`
 
+## Judge-ready operating flow
+
+Run `RUN_ALL.bat` to perform refresh QA, rebuild the baseline/DGT outputs, run all six robustness scenarios, and create machine-readable public exports. The refresh step compares registered file hashes, validates changed CSV schema/row counts, flags statewide seat changes above 20%, and stops when human review is required.
+
+Public downloads are in `public_export/`: `district_indicators.csv`, `district_indicators.json`, `scenario_robustness.csv`, and `data_dictionary.csv`. The public export also includes `iti_trade_rows.csv`, `district_trade_seats.csv`, and `suppression_check.csv`.
+
+The public suppression threshold is `min_count_suppression = 5`. This is an institutional aggregate guardrail: no personal data is present, but small source cells are still flagged and their public supply/demand/ratio values are blanked.
+
+The six-scenario summary is `out/run_summary.json`; it records the district(s) that are top-five in all six scenarios and the count of districts whose rank range exceeds 5.
+
 ## What is real in this package
 
 - 31 Karnataka district rows from a bundled LGD-style district register.
@@ -36,7 +46,7 @@ Selected share = 0.40. The remaining 0.60 of manufacturing employment stays outs
 Seats, fill, completion and sector entry are separate terms in the supply model.
 
 ### No district share cancellation
-Demand uses Udyam share to downscale the ASI manufacturing state total. Proxy supply uses the historical DGT division pool with a district ITI-count weight when a complete NCVT district count file is supplied; otherwise the explicit equal-within-division fallback is used. The allocation draw is a multiplier with mean 1.0, so it cannot divide the district base twice.
+Demand uses a configurable district allocator: Udyam employment share, Udyam enterprise-unit share, or a 50/50 blend. The default is employment share. Structural allocator sensitivity is reported in `demand_allocator_rank_stability.csv`; a district priority is considered robust only when it remains high across these allocator choices. Proxy supply uses the historical DGT division pool with a district ITI-count weight. The allocation draw is a multiplier with mean 1.0, so it cannot divide the district base twice.
 
 ### Shared uncertainty
 The same Monte Carlo draw index is used across districts for global rates and allocation draws. District rank stability is reported from those shared draws.
@@ -56,8 +66,9 @@ python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 python -m pip install -r requirements.txt
 python self_test.py
-python run_gap.py --out out/proxy_baseline
-python run_gap.py --actual-supply clean/dgt_cts_2026_karnataka_supply_nco.csv --out out/dgt_run
+python run_gap.py --demand-allocation-method udyam_employment --out out/proxy_baseline
+python run_gap.py --actual-supply clean/dgt_cts_2026_karnataka_supply_nco.csv --proxy-allocation-method dgt_2026_seat_share --demand-allocation-method udyam_employment --out out/dgt_share_run
+python run_demand_scenarios.py
 python -m pytest -q
 python make_submission_pdf.py
 python ksisu_gui.py
@@ -140,3 +151,15 @@ python run_gap.py --actual-supply clean/dgt_cts_2026_karnataka_supply_nco.csv --
 ```
 
 The primary conservation benchmark is the mean across Monte Carlo draws; the prior median-of-cell-medians figure is retained separately for diagnostics.
+
+## Demand allocator structural sensitivity
+
+The model can allocate district manufacturing demand using:
+- `udyam_employment`: district Udyam employment shares (default);
+- `udyam_units`: district Udyam enterprise-unit shares from the June 2026 district totals file;
+- `blend`: the 50/50 average of the two normalized shares.
+
+Use `--demand-allocation-method` to choose a method. The default run writes `demand_allocator_rank_stability.csv`. It contains district ranks under all three allocators, the rank range, and a `top5_all_methods` flag. A robust district priority should remain high across the allocator alternatives. The 0.35 lognormal term remains a within-allocator uncertainty prior; it is an explicit assumption with no empirical district calibration. The 50/50 blend is an arbitrary midpoint sensitivity case because enterprise units and employment measure different concepts.
+
+### Six-scenario judge check
+Run `RUN_DEMAND_SCENARIOS.bat` to execute proxy and DGT-share supply routes under all three demand allocators. The combined `out/scenario_robustness.csv` is the judge-facing robustness table. A district is structurally robust only if it remains top-five across all six scenarios; otherwise describe the ordering as assumption-driven.
