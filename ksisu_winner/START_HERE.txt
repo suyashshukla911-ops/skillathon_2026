@@ -28,6 +28,9 @@ KSISU REAL-DATA EVIDENCE WORKBENCH - JUDGE START HERE
 7) Six-scenario summary:
    out/run_summary.json
 
+8) After a legitimate official source update, reset the refresh baseline before the next scheduled run:
+   python refresh_pipeline.py --make-baseline
+
 Guardrail note: seat data in the public exports are institutional aggregate data, not personal data.
 Rows below min_count_suppression (5) are flagged and their public supply/demand/ratio values are blanked.
 

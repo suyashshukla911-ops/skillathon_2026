@@ -143,8 +143,13 @@ def refresh(registry_path: Path = DEFAULT_REGISTRY, baseline_path: Path = DEFAUL
         rows.append(rec); review.append(rec)
 
     report = pd.DataFrame(rows)
-    review_df = pd.DataFrame(review)
+    review_columns = [
+        "path", "hash_status", "schema_status", "row_count_status",
+        "statewide_seats_status", "anomaly", "action", "message",
+    ]
+    review_df = pd.DataFrame(review, columns=review_columns)
     report_path.parent.mkdir(parents=True, exist_ok=True)
+    review_path.parent.mkdir(parents=True, exist_ok=True)
     report.to_csv(report_path, index=False)
     review_df.to_csv(review_path, index=False)
     return report, review_df

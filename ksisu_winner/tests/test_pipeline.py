@@ -227,3 +227,44 @@ def test_public_suppression_guardrail_blanks_small_seat_cells():
 def test_suppression_threshold_is_read_from_config():
     r = compute_model(write_outputs=False)
     assert int(r['audit']['min_count_suppression']) == 5
+
+
+def test_public_export_harmonises_ballari_and_marks_absent_districts():
+    from public_export import build_public_exports
+    import tempfile
+    with tempfile.TemporaryDirectory() as td:
+        build_public_exports(ROOT / 'out' / 'dgt_share_run', Path(td))
+        public = pd.read_csv(Path(td) / 'district_indicators.csv')
+        row = public.loc[public['district'] == 'Ballari-Vijayanagara'].iloc[0]
+        assert float(row['supply_seats']) == 2268.0
+        assert pd.notna(row['ratio_median'])
+        assert bool(row['not_observed']) is False
+        kodagu = public.loc[public['district'] == 'Kodagu'].iloc[0]
+        assert bool(kodagu['not_observed']) is True
+        assert 'no dgt rows' in str(kodagu['suppression_note']).lower()
+        trade = pd.read_csv(Path(td) / 'district_trade_seats.csv')
+        assert 'Ballari-Vijayanagara' in set(trade['district'])
+        dgt_districts = pd.read_csv(ROOT / 'clean' / 'dgt_cts_2026_karnataka_supply_nco.csv')
+        analytical = set(dgt_districts.loc[
+            dgt_districts['nco_group_2digit'].astype(str).isin(['72','74']), 'district'
+        ].map({'Ballari':'Ballari-Vijayanagara'}).fillna(dgt_districts.loc[
+            dgt_districts['nco_group_2digit'].astype(str).isin(['72','74']), 'district'
+        ]))
+        analytical &= set(public['district'])
+        check = public[public['district'].isin(analytical)]
+        assert (pd.to_numeric(check['supply_seats'], errors='coerce') > 0).all()
+
+
+def test_refresh_empty_review_file_has_headers(tmp_path):
+    from refresh_pipeline import refresh
+    registry = tmp_path / 'file_registry.csv'
+    source = tmp_path / 'fixture.csv'
+    source.write_text('state,seats_available_2022\nKarnataka,100\n')
+    import hashlib, json
+    h=hashlib.sha256(source.read_bytes()).hexdigest()
+    registry.write_text(f'path,{"sha256"}\n{source.as_posix()},{h}\n')
+    baseline = tmp_path / 'baseline.json'
+    baseline.write_text(json.dumps({'files': {source.as_posix(): {'row_count':1,'columns':['state','seats_available_2022'],'statewide_seats':100}}}))
+    review_path = tmp_path / 'review.csv'
+    refresh(registry, baseline, tmp_path/'report.csv', review_path)
+    assert review_path.read_text().splitlines()[0].startswith('path,hash_status')

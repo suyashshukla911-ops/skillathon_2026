@@ -1,1 +1,12 @@
-V15 - Judge-ready exports, suppression guardrail, refresh QA, six-scenario summary
+KSISU Skillathon 2026 - Judge Package
+Version: V16 final code freeze
+Date: 2026-10-17
+
+Scope of this freeze:
+- Public export geography harmonisation fix for Ballari-Vijayanagara
+- Explicit not_observed flag for absent DGT district rows (e.g. Kodagu)
+- Stable review_queue.csv header when empty
+- Refresh baseline update instruction
+- Component B refresh/human-review evidence added to submission PDF
+- Rajya Sabha Annexure-IV page 6 ITI transcription verified 30/30
+- Six-scenario robustness summary retained in out/run_summary.json

@@ -18,30 +18,32 @@
     "top5_appearances":3,
     "robust_priority":false,
     "supply_seats":2252.0,
+    "not_observed":false,
     "suppressed":false,
-    "suppression_note":"Not suppressed; institutional aggregate exceeds the configured threshold."
+    "suppression_note":"Observed institutional aggregate exceeds the configured threshold."
   },
   {
     "district":"Ballari-Vijayanagara",
-    "ratio_sci":null,
-    "ratio_median":null,
+    "ratio_sci":0.8672167165,
+    "ratio_median":0.8672167165,
     "mean_confidence":0.6154271232,
-    "demand_annual_openings":null,
-    "demand_voi":null,
-    "demand_data_collection_priority":null,
+    "demand_annual_openings":1229.7566477842,
+    "demand_voi":1490.2087620464,
+    "demand_data_collection_priority":577.5402079263,
     "needs_data_cells":2,
     "actual_cells":0,
     "dgt_itis_in_matrix":32.0,
     "iti_2022_count":89,
     "matrix_iti_coverage":0.3595505618,
-    "ratio_rank":null,
+    "ratio_rank":14.0,
     "policy_status":"NEEDS DATA",
     "rank_range":2,
     "top5_appearances":0,
     "robust_priority":false,
-    "supply_seats":null,
-    "suppressed":true,
-    "suppression_note":"Suppressed because observed institutional seat total is below the configured threshold."
+    "supply_seats":2268.0,
+    "not_observed":false,
+    "suppressed":false,
+    "suppression_note":"Observed institutional aggregate exceeds the configured threshold."
   },
   {
     "district":"Belagavi",
@@ -62,8 +64,9 @@
     "top5_appearances":0,
     "robust_priority":false,
     "supply_seats":3900.0,
+    "not_observed":false,
     "suppressed":false,
-    "suppression_note":"Not suppressed; institutional aggregate exceeds the configured threshold."
+    "suppression_note":"Observed institutional aggregate exceeds the configured threshold."
   },
   {
     "district":"Bengaluru Rural",
@@ -84,8 +87,9 @@
     "top5_appearances":0,
     "robust_priority":false,
     "supply_seats":760.0,
+    "not_observed":false,
     "suppressed":false,
-    "suppression_note":"Not suppressed; institutional aggregate exceeds the configured threshold."
+    "suppression_note":"Observed institutional aggregate exceeds the configured threshold."
   },
   {
     "district":"Bengaluru Urban",
@@ -106,8 +110,9 @@
     "top5_appearances":0,
     "robust_priority":false,
     "supply_seats":1604.0,
+    "not_observed":false,
     "suppressed":false,
-    "suppression_note":"Not suppressed; institutional aggregate exceeds the configured threshold."
+    "suppression_note":"Observed institutional aggregate exceeds the configured threshold."
   },
   {
     "district":"Bidar",
@@ -128,8 +133,9 @@
     "top5_appearances":2,
     "robust_priority":false,
     "supply_seats":352.0,
+    "not_observed":false,
     "suppressed":false,
-    "suppression_note":"Not suppressed; institutional aggregate exceeds the configured threshold."
+    "suppression_note":"Observed institutional aggregate exceeds the configured threshold."
   },
   {
     "district":"Chamarajanagar",
@@ -150,8 +156,9 @@
     "top5_appearances":0,
     "robust_priority":false,
     "supply_seats":408.0,
+    "not_observed":false,
     "suppressed":false,
-    "suppression_note":"Not suppressed; institutional aggregate exceeds the configured threshold."
+    "suppression_note":"Observed institutional aggregate exceeds the configured threshold."
   },
   {
     "district":"Chikkaballapur",
@@ -172,8 +179,9 @@
     "top5_appearances":1,
     "robust_priority":false,
     "supply_seats":900.0,
+    "not_observed":false,
     "suppressed":false,
-    "suppression_note":"Not suppressed; institutional aggregate exceeds the configured threshold."
+    "suppression_note":"Observed institutional aggregate exceeds the configured threshold."
   },
   {
     "district":"Chikkamagaluru",
@@ -194,8 +202,9 @@
     "top5_appearances":0,
     "robust_priority":false,
     "supply_seats":684.0,
+    "not_observed":false,
     "suppressed":false,
-    "suppression_note":"Not suppressed; institutional aggregate exceeds the configured threshold."
+    "suppression_note":"Observed institutional aggregate exceeds the configured threshold."
   },
   {
     "district":"Chitradurga",
@@ -216,8 +225,9 @@
     "top5_appearances":0,
     "robust_priority":false,
     "supply_seats":816.0,
+    "not_observed":false,
     "suppressed":false,
-    "suppression_note":"Not suppressed; institutional aggregate exceeds the configured threshold."
+    "suppression_note":"Observed institutional aggregate exceeds the configured threshold."
   },
   {
     "district":"Dakshina Kannada",
@@ -238,8 +248,9 @@
     "top5_appearances":0,
     "robust_priority":false,
     "supply_seats":2192.0,
+    "not_observed":false,
     "suppressed":false,
-    "suppression_note":"Not suppressed; institutional aggregate exceeds the configured threshold."
+    "suppression_note":"Observed institutional aggregate exceeds the configured threshold."
   },
   {
     "district":"Davanagere",
@@ -260,8 +271,9 @@
     "top5_appearances":1,
     "robust_priority":false,
     "supply_seats":1872.0,
+    "not_observed":false,
     "suppressed":false,
-    "suppression_note":"Not suppressed; institutional aggregate exceeds the configured threshold."
+    "suppression_note":"Observed institutional aggregate exceeds the configured threshold."
   },
   {
     "district":"Dharwad",
@@ -282,8 +294,9 @@
     "top5_appearances":0,
     "robust_priority":false,
     "supply_seats":1888.0,
+    "not_observed":false,
     "suppressed":false,
-    "suppression_note":"Not suppressed; institutional aggregate exceeds the configured threshold."
+    "suppression_note":"Observed institutional aggregate exceeds the configured threshold."
   },
   {
     "district":"Gadag",
@@ -304,8 +317,9 @@
     "top5_appearances":5,
     "robust_priority":false,
     "supply_seats":1224.0,
+    "not_observed":false,
     "suppressed":false,
-    "suppression_note":"Not suppressed; institutional aggregate exceeds the configured threshold."
+    "suppression_note":"Observed institutional aggregate exceeds the configured threshold."
   },
   {
     "district":"Hassan",
@@ -326,8 +340,9 @@
     "top5_appearances":0,
     "robust_priority":false,
     "supply_seats":1928.0,
+    "not_observed":false,
     "suppressed":false,
-    "suppression_note":"Not suppressed; institutional aggregate exceeds the configured threshold."
+    "suppression_note":"Observed institutional aggregate exceeds the configured threshold."
   },
   {
     "district":"Haveri",
@@ -348,8 +363,9 @@
     "top5_appearances":0,
     "robust_priority":false,
     "supply_seats":1424.0,
+    "not_observed":false,
     "suppressed":false,
-    "suppression_note":"Not suppressed; institutional aggregate exceeds the configured threshold."
+    "suppression_note":"Observed institutional aggregate exceeds the configured threshold."
   },
   {
     "district":"Kalaburagi",
@@ -370,30 +386,32 @@
     "top5_appearances":0,
     "robust_priority":false,
     "supply_seats":856.0,
+    "not_observed":false,
     "suppressed":false,
-    "suppression_note":"Not suppressed; institutional aggregate exceeds the configured threshold."
+    "suppression_note":"Observed institutional aggregate exceeds the configured threshold."
   },
   {
     "district":"Kodagu",
-    "ratio_sci":null,
-    "ratio_median":null,
+    "ratio_sci":0.2192721353,
+    "ratio_median":0.2192721353,
     "mean_confidence":0.6725744585,
-    "demand_annual_openings":null,
-    "demand_voi":null,
-    "demand_data_collection_priority":null,
+    "demand_annual_openings":253.4841731307,
+    "demand_voi":87.9017022988,
+    "demand_data_collection_priority":28.9673574559,
     "needs_data_cells":2,
     "actual_cells":0,
     "dgt_itis_in_matrix":0.0,
     "iti_2022_count":6,
     "matrix_iti_coverage":0.0,
-    "ratio_rank":null,
+    "ratio_rank":28.0,
     "policy_status":"NEEDS DATA",
     "rank_range":2,
     "top5_appearances":0,
     "robust_priority":false,
     "supply_seats":null,
-    "suppressed":true,
-    "suppression_note":"Suppressed because observed institutional seat total is below the configured threshold."
+    "not_observed":true,
+    "suppressed":false,
+    "suppression_note":"No DGT rows; value is modelled from the historical ITI weight."
   },
   {
     "district":"Kolar",
@@ -414,8 +432,9 @@
     "top5_appearances":2,
     "robust_priority":false,
     "supply_seats":1400.0,
+    "not_observed":false,
     "suppressed":false,
-    "suppression_note":"Not suppressed; institutional aggregate exceeds the configured threshold."
+    "suppression_note":"Observed institutional aggregate exceeds the configured threshold."
   },
   {
     "district":"Koppal",
@@ -436,8 +455,9 @@
     "top5_appearances":0,
     "robust_priority":false,
     "supply_seats":516.0,
+    "not_observed":false,
     "suppressed":false,
-    "suppression_note":"Not suppressed; institutional aggregate exceeds the configured threshold."
+    "suppression_note":"Observed institutional aggregate exceeds the configured threshold."
   },
   {
     "district":"Mandya",
@@ -458,8 +478,9 @@
     "top5_appearances":0,
     "robust_priority":false,
     "supply_seats":1400.0,
+    "not_observed":false,
     "suppressed":false,
-    "suppression_note":"Not suppressed; institutional aggregate exceeds the configured threshold."
+    "suppression_note":"Observed institutional aggregate exceeds the configured threshold."
   },
   {
     "district":"Mysuru",
@@ -480,8 +501,9 @@
     "top5_appearances":0,
     "robust_priority":false,
     "supply_seats":1616.0,
+    "not_observed":false,
     "suppressed":false,
-    "suppression_note":"Not suppressed; institutional aggregate exceeds the configured threshold."
+    "suppression_note":"Observed institutional aggregate exceeds the configured threshold."
   },
   {
     "district":"Raichur",
@@ -502,8 +524,9 @@
     "top5_appearances":0,
     "robust_priority":false,
     "supply_seats":432.0,
+    "not_observed":false,
     "suppressed":false,
-    "suppression_note":"Not suppressed; institutional aggregate exceeds the configured threshold."
+    "suppression_note":"Observed institutional aggregate exceeds the configured threshold."
   },
   {
     "district":"Ramanagara",
@@ -524,8 +547,9 @@
     "top5_appearances":4,
     "robust_priority":false,
     "supply_seats":836.0,
+    "not_observed":false,
     "suppressed":false,
-    "suppression_note":"Not suppressed; institutional aggregate exceeds the configured threshold."
+    "suppression_note":"Observed institutional aggregate exceeds the configured threshold."
   },
   {
     "district":"Shivamogga",
@@ -546,8 +570,9 @@
     "top5_appearances":0,
     "robust_priority":false,
     "supply_seats":1152.0,
+    "not_observed":false,
     "suppressed":false,
-    "suppression_note":"Not suppressed; institutional aggregate exceeds the configured threshold."
+    "suppression_note":"Observed institutional aggregate exceeds the configured threshold."
   },
   {
     "district":"Tumakuru",
@@ -568,8 +593,9 @@
     "top5_appearances":5,
     "robust_priority":false,
     "supply_seats":2804.0,
+    "not_observed":false,
     "suppressed":false,
-    "suppression_note":"Not suppressed; institutional aggregate exceeds the configured threshold."
+    "suppression_note":"Observed institutional aggregate exceeds the configured threshold."
   },
   {
     "district":"Udupi",
@@ -590,8 +616,9 @@
     "top5_appearances":0,
     "robust_priority":false,
     "supply_seats":864.0,
+    "not_observed":false,
     "suppressed":false,
-    "suppression_note":"Not suppressed; institutional aggregate exceeds the configured threshold."
+    "suppression_note":"Observed institutional aggregate exceeds the configured threshold."
   },
   {
     "district":"Uttara Kannada",
@@ -612,8 +639,9 @@
     "top5_appearances":1,
     "robust_priority":false,
     "supply_seats":1472.0,
+    "not_observed":false,
     "suppressed":false,
-    "suppression_note":"Not suppressed; institutional aggregate exceeds the configured threshold."
+    "suppression_note":"Observed institutional aggregate exceeds the configured threshold."
   },
   {
     "district":"Vijayapura",
@@ -634,8 +662,9 @@
     "top5_appearances":6,
     "robust_priority":true,
     "supply_seats":1860.0,
+    "not_observed":false,
     "suppressed":false,
-    "suppression_note":"Not suppressed; institutional aggregate exceeds the configured threshold."
+    "suppression_note":"Observed institutional aggregate exceeds the configured threshold."
   },
   {
     "district":"Yadgir",
@@ -656,7 +685,8 @@
     "top5_appearances":0,
     "robust_priority":false,
     "supply_seats":304.0,
+    "not_observed":false,
     "suppressed":false,
-    "suppression_note":"Not suppressed; institutional aggregate exceeds the configured threshold."
+    "suppression_note":"Observed institutional aggregate exceeds the configured threshold."
   }
 ]

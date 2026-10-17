@@ -253,6 +253,9 @@ def make_pdf():
         top_rows=scenario_robustness.sort_values(['top5_appearances','rank_range','district'], ascending=[False,True,True]).head(5)
         for _, r in top_rows.iterrows():
             robust_rows.append([r['district'], str(int(r['top5_appearances'])), f"{int(r['rank_min'])}-{int(r['rank_max'])}", 'YES' if bool(r['top5_all_six']) else 'No'])
+    robust_summary = json.loads((OUT/'run_summary.json').read_text(encoding='utf-8')) if (OUT/'run_summary.json').exists() else {}
+    robust_names = ', '.join(robust_summary.get('robust_priority', [])) or 'None'
+    rank_range_gt5 = int(robust_summary.get('districts_rank_range_above_5', 0))
     story += [P('7. Sensitivity as rank stability','H2b'),
               P('Shared Monte Carlo draws are used across districts. Rank stability is a common-system uncertainty diagnostic. The stronger judge-facing test is the six-scenario robustness table, which compares proxy and DGT-share supply routes under all three demand allocators.'),
               Spacer(1,1.5*mm), screenshot(SHOT/'page_07_rank_stability_sensitivity.png', max_w=282*mm, max_h=77*mm),
@@ -260,20 +263,36 @@ def make_pdf():
               Spacer(1,1.5*mm),
               tbl(robust_rows, [80*mm,65*mm,50*mm,65*mm], font=6.9),
               Spacer(1,2*mm),
-              P('<b>Six-scenario result:</b> a few districts repeat as high priority across both supply routes and all three demand definitions; most ordering remains assumption-driven. The 50/50 blend is an arbitrary midpoint sensitivity case, not an empirical estimator. The 0.35 lognormal demand term is an explicit assumption with no district-level calibration yet.'),
+              P(f'<b>Six-scenario result:</b> {robust_names} is top-five in all six scenarios; {rank_range_gt5} districts have a rank range above 5. A robust flag is therefore a stress-test result, not a declaration of a true skill shortage. The 50/50 blend is an arbitrary midpoint sensitivity case, not an empirical estimator. The 0.35 lognormal demand term is an explicit assumption with no district-level calibration yet.'),
               PageBreak()]
 
     # PAGE 9
-    story += [P('8. Validation, lineage and human review','H2b'),
-              P('The current model run is the source of truth for the validation numbers below. The GUI screenshot set is retained in the package for the live judge demonstration, but the PDF does not rely on a stale UI capture for these counts.'),
+    refresh_report_path=OUT/'data_quality_report.csv'
+    refresh_report=pd.read_csv(refresh_report_path) if refresh_report_path.exists() else pd.DataFrame()
+    refresh_review_path=OUT/'review_queue.csv'
+    refresh_review=pd.read_csv(refresh_review_path) if refresh_review_path.exists() else pd.DataFrame(columns=['path','action'])
+    refresh_checked=len(refresh_report)
+    refresh_unchanged=int((refresh_report['hash_status']=='UNCHANGED').sum()) if 'hash_status' in refresh_report.columns else 0
+    refresh_changed=int((refresh_report['hash_status']=='CHANGED').sum()) if 'hash_status' in refresh_report.columns else 0
+    iti_weight_check='30 / 30 exact'
+    story += [P('8. Component B - refresh automation, lineage and human review','H2b'),
+              P('Component B turns scheduled refresh from a narrative claim into an executable gate. Each registered source file is hashed, its schema and row count are checked, statewide NCVT seat movement is tested against a 20% anomaly threshold, and any review item stops publication until a human approves the update.'),
               Spacer(1,2*mm),
-              tbl([['Validation check','Current result'],
-                   ['Raw LGD districts','31'],['Analytical geographies','30'],
-                   ['Seeded typo cases','80 / 80 correct'],['Unseen aliases','20 / 20 routed to review'],
-                   ['Duplicates','5 injected / 5 removed'],['Rows silently dropped','0'],
-                   ['Monte Carlo','5,000 draws; fixed seed'],['DGT pair coverage','58 / 60'],
-                   ['DGT UNMAPPED share','0.0%'],['DGT OUT_OF_SCOPE share','12.0%']], [105*mm,145*mm], font=6.7),
-              Spacer(1,3*mm), P('Every source artifact is assigned a file_id, SHA-256, source URL, period and grain. The human-review queue is part of the pipeline rather than an error-handling afterthought.'),PageBreak()]
+              tbl([['Automation check','Current run','Judge meaning'],
+                   ['Registered files checked',f'{refresh_checked}','source registry is machine-audited'],
+                   ['Unchanged / skipped',f'{refresh_unchanged}','no unnecessary reprocessing'],
+                   ['Changed files in current baseline',f'{refresh_changed}','none in the frozen snapshot'],
+                   ['Statewide seat anomaly threshold','20%','a large source shift requires review'],
+                   ['Empty review queue output','header preserved','machine-readable even when no rows need review'],
+                   ['Legitimate source update','`python refresh_pipeline.py --make-baseline`','approved update resets the comparison baseline']], [76*mm,55*mm,129*mm], font=6.45),
+              Spacer(1,3*mm),
+              tbl([['Evidence claim','Verification'],
+                   ['Historical ITI allocation weights','30 / 30 analytical rows match Rajya Sabha Annexure-IV page 6; printed 275 Government + 1,227 Private = 1,502 total'],
+                   ['Ballari-Vijayanagara public export','2,268 observed NCO 72/74 DGT seats; ratio and rank remain visible'],
+                   ['Kodagu public export','No DGT rows; explicitly `not_observed` and retains modeled historical-ITI-weight supply'],
+                   ['Suppression guardrail','Institutional aggregate data only; no personal data is ingested. Threshold 5 is a safeguard for future finer-grained data']], [82*mm,178*mm], font=6.25),
+              Spacer(1,3*mm), P('The same refresh layer also records SHA-256 provenance, source URL, period and grain. Human review is a required publication step, not an exception path.'),
+              PageBreak()]
 
     # PAGE 10
     story += [P('9. Judge demo: what KSISU can see, and what it should collect next','H2b'),

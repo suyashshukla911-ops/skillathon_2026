@@ -17,8 +17,9 @@ rank_range,Maximum minus minimum district rank across the six scenarios,max(rank
 top5_appearances,Number of the six scenarios in which a district is top five,count(rank <= 5),district,On six-scenario run
 robust_priority,Structural robustness flag,top5_appearances = 6,district,On six-scenario run
 supply_seats,Observed institutional seat capacity used for public small-cell suppression,sum(source seat rows),district or ITI-trade,On DGT/NCVT source refresh
-suppressed,Small-cell suppression flag,supply_seats < 5,public row,On each public export
-suppression_note,Suppression Note,Derived from the six-scenario robustness output,scenario/district,On each six-scenario run
+not_observed,No selected DGT rows were observed for the analytical district,supply_seats is missing before suppression,district,On each public export
+suppressed,Small-cell suppression flag,supply_seats > 0 and supply_seats < 5,public row,On each public export
+suppression_note,Human-readable publication status,derived from not_observed and suppressed flags,public row,On each public export
 rank_proxy_udyam_employment,Rank Proxy Udyam Employment,Derived from the six-scenario robustness output,scenario/district,On each six-scenario run
 rank_dgt_share_udyam_employment,Rank Dgt Share Udyam Employment,Derived from the six-scenario robustness output,scenario/district,On each six-scenario run
 rank_proxy_udyam_units,Rank Proxy Udyam Units,Derived from the six-scenario robustness output,scenario/district,On each six-scenario run

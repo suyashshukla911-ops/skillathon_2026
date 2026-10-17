@@ -9,10 +9,11 @@ It is deliberately **not** a synthetic district dashboard. The core design is an
 ## Judge-ready operating flow
 
 Run `RUN_ALL.bat` to perform refresh QA, rebuild the baseline/DGT outputs, run all six robustness scenarios, and create machine-readable public exports. The refresh step compares registered file hashes, validates changed CSV schema/row counts, flags statewide seat changes above 20%, and stops when human review is required.
+When an official source file is intentionally updated, replace the file, then run `python refresh_pipeline.py --make-baseline` to reset the registered baseline before the next scheduled refresh.
 
 Public downloads are in `public_export/`: `district_indicators.csv`, `district_indicators.json`, `scenario_robustness.csv`, and `data_dictionary.csv`. The public export also includes `iti_trade_rows.csv`, `district_trade_seats.csv`, and `suppression_check.csv`.
 
-The public suppression threshold is `min_count_suppression = 5`. This is an institutional aggregate guardrail: no personal data is present, but small source cells are still flagged and their public supply/demand/ratio values are blanked.
+The public suppression threshold is `min_count_suppression = 5`. No personal data is ingested; suppression is a safeguard for future finer-grained data. Genuine observed cells below the threshold are flagged and their public supply/demand/ratio values are blanked. An absent source observation is reported separately with `not_observed`.
 
 The six-scenario summary is `out/run_summary.json`; it records the district(s) that are top-five in all six scenarios and the count of districts whose rank range exceeds 5.
 

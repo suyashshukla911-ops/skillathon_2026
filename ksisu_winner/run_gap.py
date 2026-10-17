@@ -91,10 +91,21 @@ def suppress_small(df: pd.DataFrame, count_col: str, k: int | None = None) -> pd
     return out
 
 
-ANALYTICAL_MERGES = {
-    "Ballari": "Ballari-Vijayanagara",
-    "Vijayanagara": "Ballari-Vijayanagara",
-}
+DISTRICT_BOUNDARY_HARMONISATION = CLEAN / "district_boundary_harmonisation.csv"
+
+def _load_boundary_harmonisation() -> dict[str, str]:
+    if DISTRICT_BOUNDARY_HARMONISATION.exists():
+        table = pd.read_csv(DISTRICT_BOUNDARY_HARMONISATION)
+        required = {"source_district", "analytical_district"}
+        if not required.issubset(table.columns):
+            raise ValueError("district_boundary_harmonisation.csv must contain source_district and analytical_district")
+        return dict(zip(table["source_district"].astype(str), table["analytical_district"].astype(str)))
+    return {
+        "Ballari": "Ballari-Vijayanagara",
+        "Vijayanagara": "Ballari-Vijayanagara",
+    }
+
+ANALYTICAL_MERGES = _load_boundary_harmonisation()
 
 def apply_analytical_merge(name: str) -> str:
     return ANALYTICAL_MERGES.get(str(name), str(name))
