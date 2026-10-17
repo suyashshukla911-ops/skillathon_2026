@@ -1,0 +1,2 @@
+source_pdf,pdf_page_range_with_karnataka,rows_extracted,published_districts,missing_analytical_geographies,unique_itis,unique_trades,total_provisional_seats,mapped_scope_seats,mapped_scope_share,unmapped_seats,unmapped_share,status
+raw/dgt_cts_2026_provisional_seat_matrix.pdf,"[376, 440]",1734,29,"['Kodagu', 'Vijayanagara']",588,46,45416.0,39984.0,0.8803945745992602,5432.0,0.11960542540073983,REAL_PUBLIC_DGT_SOURCE_PROVISIONAL

@@ -67,8 +67,8 @@ class KSISUGUI(tk.Tk):
         bar = tk.Frame(self, bg="#e6eef7")
         bar.pack(fill="x")
         ttk.Button(bar, text="Run Proxy Baseline", style="Primary.TButton", command=self.run_proxy).pack(side="left", padx=8, pady=8)
-        ttk.Button(bar, text="Load Official NCVT Sample", command=self.load_bundled_sample).pack(side="left", padx=3, pady=8)
-        ttk.Button(bar, text="Load Real District Supply CSV", command=self.load_real_supply).pack(side="left", padx=3, pady=8)
+        ttk.Button(bar, text="Load DGT 2026 Real Supply", command=self.load_dgt_supply).pack(side="left", padx=3, pady=8)
+        ttk.Button(bar, text="Load Other Real Supply CSV", command=self.load_real_supply).pack(side="left", padx=3, pady=8)
         ttk.Button(bar, text="Run With Loaded Supply", command=self.run_actual).pack(side="left", padx=3, pady=8)
         ttk.Button(bar, text="Run 3-Min Judge Demo", command=self.run_judge_demo).pack(side="left", padx=3, pady=8)
         ttk.Button(bar, text="Open Output", command=self.open_output).pack(side="left", padx=3, pady=8)
@@ -110,7 +110,7 @@ class KSISUGUI(tk.Tk):
         self.supply_label = ttk.Label(right, text="Not loaded", wraplength=330)
         self.supply_label.pack(anchor="w", pady=6)
         ttk.Button(right, text="Load real CSV...", command=self.load_real_supply).pack(fill="x")
-        ttk.Button(right, text="Use bundled official partial sample", command=self.load_bundled_sample).pack(fill="x", pady=4)
+        ttk.Button(right, text="Use DGT 2026 provisional real supply", command=self.load_dgt_supply).pack(fill="x", pady=4)
         ttk.Button(right, text="Clear actual supply", command=self.clear_supply).pack(fill="x")
         ttk.Label(right, text="Accepted columns:\ndistrict, seats + either nco_group_2digit or trade\n\nThe model never invents district seats.", foreground="#475c76", justify="left").pack(anchor="w", pady=10)
 
@@ -157,20 +157,20 @@ class KSISUGUI(tk.Tk):
 
 1. Run Proxy Baseline. Say: "This is what KSISU can infer before complete district ITI supply is available. Mathematical ratios are shown, but policy status remains NEEDS DATA."
 
-2. Open District Priority. The ranking table is ordered by the uncapped median ratio R; SCI is shown separately. Use both only as a data-collection prioritisation view; do not call the proxy ranking a district skill-gap finding.
+2. Open District Priority. The ranking table is a data-collection queue, not a district skill-gap leaderboard.
 
-3. Click Load Official NCVT Sample. The bundled File 1171 rows are an indexed partial sample for Tumakuru and Kalaburagi - not a downloaded complete district extract.
+3. Click Load DGT 2026 Real Supply. This loads the official DGT CTS-2026 provisional dynamic seat matrix extracted from the uploaded public PDF. It contains real Karnataka ITI/trade seat-capacity rows, but the source is provisional and does not cover every analytical geography in this build.
 
-4. Click Run With Loaded Supply. Explain the partial-floor logic: observed seats are treated as a lower bound plus an uncertain remainder. The interval may widen. That is an honest evidence update, not fake precision.
+4. Click Run With Loaded Supply. Explain that real district/trade observations replace the proxy where available, while missing geographies and unmapped trades remain uncertain and keep the policy gate closed.
 
-5. For the final competition demo, load a complete district x trade NCVT/DGT/Karnataka file marked coverage_status=full_district_extract. The gate then allows a provisional policy call only when all 31 districts and modeled groups are covered.
+5. Open Gap Results. Show the supply basis for Tumakuru / Kalaburagi or other covered districts, and the distinction between real provisional evidence and proxy supply.
 
 6. Open Sensitivity. Show rank stability across the shared Monte Carlo draws rather than a chart that merely reflects arbitrary parameter range widths.
 
-7. Open Validation & Linkage. Show 80 seeded typos, 20 unseen aliases routed to review, a real duplicate-removal pass, and the source lineage fields.
+7. Open Validation & Linkage. Show 80 seeded typos, 20 unseen aliases routed to review, duplicate removal, and source lineage.
 
 THE ONE-SENTENCE STORY
-"We do not force a district gap decision when public data cannot support it; we quantify the uncertainty, show which evidence changes the result, and tell KSISU where to collect better district data first."
+"We replace proxy supply with real DGT evidence wherever it exists, keep uncertainty where coverage is incomplete, and only unlock district policy calls when the evidence gate is satisfied."
 '''
         txt.insert('1.0',text); txt.configure(state='disabled')
 
@@ -193,7 +193,8 @@ THE ONE-SENTENCE STORY
             ("ASI manufacturing base",RAW/"asi_karnataka_manufacturing_2022_23.csv","state","2022-23"),
             ("NCVT state ITI magnitude",RAW/"ncvtmis_karnataka_state_2022.csv","state","2022"),
             ("DGT historical division rates",RAW/"iti_division_training_2020_21.csv","division","2020-21"),
-            ("NCVT File 1171 real partial",RAW/"ncvtmis_file1171_real_partial.csv","district×trade","historical"),
+            ("NCVT File 1171 indexed partial",RAW/"ncvtmis_file1171_real_partial.csv","district×trade","historical"),
+            ("DGT CTS-2026 provisional real supply",CLEAN/"dgt_cts_2026_karnataka_supply_nco.csv","district×ITI×trade×NCO","2026"),
             ("Historical district ITI-count weights",CLEAN/"district_iti_counts.csv","district weight","2022"),
             ("Occupation prior",CLEAN/"occupation_mix_prior.csv","state prior","2022-23"),
             ("Human-reviewed course→NCO crosswalk",CLEAN/"crosswalk.csv","course→NCO","versioned")
@@ -235,15 +236,24 @@ THE ONE-SENTENCE STORY
             self.status.set("Running 3-minute judge demo: proxy baseline → official partial NCVT evidence...")
             self.update_idletasks()
             self.proxy_last = compute_model(overrides=self._override_config())
-            self.actual_supply = RAW / "ncvtmis_file1171_real_partial.csv"
+            self.actual_supply = CLEAN / "dgt_cts_2026_karnataka_supply_nco.csv"
             self.supply_path.set(str(self.actual_supply))
-            self.supply_label.config(text=f"Bundled indexed NCVT sample loaded:\n{self.actual_supply.name}\nTumakuru + Kalaburagi; partial evidence only.")
+            self.supply_label.config(text=f"DGT 2026 provisional real supply loaded:\n{self.actual_supply.name}\n29 published districts; provisional; incomplete analytical coverage.")
             self.last = compute_model(actual_supply_path=str(self.actual_supply), overrides=self._override_config())
-            self._display(self.last, "Judge demo complete — proxy vs real-evidence interval change is ready to show.")
+            self._display(self.last, "Judge demo complete — proxy baseline vs DGT 2026 real provisional supply is ready to show.")
             self.nb.select(self.t_demo)
         except Exception as e:
             messagebox.showerror("Judge demo failed", str(e))
             self.status.set("Judge demo failed")
+
+    def load_dgt_supply(self):
+        p=CLEAN/"dgt_cts_2026_karnataka_supply_nco.csv"
+        if not p.exists():
+            messagebox.showerror("DGT supply missing", f"Expected bundled file not found:\n{p}")
+            return
+        self.actual_supply=p; self.supply_path.set(str(p))
+        self.supply_label.config(text=f"DGT 2026 provisional real supply loaded:\n{p.name}\n29 published districts; 1,734 rows; 45,416 seats; 88.0% mapped to NCO 72/74; provisional source.")
+        self.status.set("DGT 2026 provisional real supply selected. Click Run With Loaded Supply.")
 
     def load_bundled_sample(self):
         p=RAW/"ncvtmis_file1171_real_partial.csv"

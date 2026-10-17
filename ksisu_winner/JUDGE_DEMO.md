@@ -35,9 +35,9 @@ Say:
 
 ## 3. Load real district evidence
 
-Click **Load Official NCVT Sample** for the bundled demonstration, or **Load Real District Supply CSV** for the full current district x trade extract.
+Click **Load DGT 2026 Real Supply** for the bundled real public DGT evidence, or **Load Other Real Supply CSV** for a newer/current district x trade extract.
 
-The bundled file is an official NCVT MIS indexed subset containing real Tumakuru and Kalaburagi rows, but it is explicitly labelled partial and historical.
+The bundled DGT file is an extraction from the official CTS-2026 provisional dynamic seat matrix. It contains real Karnataka ITI/trade seat-capacity rows, but the source is provisional and incomplete for the 30 analytical geographies.
 
 ## 4. Re-run
 
@@ -59,7 +59,7 @@ Say:
 
 > “This experiment shows how the same model responds to better evidence. With a partial file the interval can widen; a complete district extract is the condition for a genuine uncertainty reduction.”
 
-For the bundled partial NCVT evidence, describe the result as a **lower-bound evidence update**. In this run the affected intervals widen because the observed subset is much smaller than the prior proxy; that is a diagnostic that the proxy is weak, not a reason to claim certainty. A full district extract is required before a strong district policy call.
+For the DGT 2026 evidence, describe the result as a **real but incomplete evidence update**. Mapped district×trade seats replace proxy supply where available; missing geographies and unmapped trades remain uncertain, so the policy gate stays NEEDS DATA.
 
 ## 6. Sensitivity
 
@@ -87,7 +87,7 @@ Show:
 
 ## Final competition upgrade
 
-Before submission, replace the bundled partial file with the **complete current NCVT MIS/DGT/Karnataka district×trade seat extract** and re-run. Do not type or fabricate missing seats.
+Before submission, replace/augment the bundled provisional DGT matrix with the **complete current district×trade seat extract** when available. Do not type or fabricate missing seats.
 
 ## V5 technical gates the demo now enforces
 

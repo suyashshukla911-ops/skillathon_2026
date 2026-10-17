@@ -31,6 +31,18 @@ actual=compute_model(actual_supply_path=str(ROOT/'raw/ncvtmis_file1171_real_part
 assert actual['audit']['actual_supply_loaded'] is True
 assert int(actual['audit']['actual_supply_rows'])==9
 assert (actual['ratio'].query("supply_coverage == 'partial_floor'")['decision_status']=='NEEDS DATA').all()
+
+# DGT CTS-2026 real public supply evidence. This is provisional and incomplete, so it must not unlock policy calls.
+dgt_path=ROOT/'clean/dgt_cts_2026_karnataka_supply_nco.csv'
+dgt=compute_model(actual_supply_path=str(dgt_path),write_outputs=False)
+assert dgt['audit']['actual_supply_loaded'] is True
+assert int(dgt['audit']['actual_supply_rows']) == 1734
+assert int(dgt['audit']['actual_total_input_seats']) == 45416
+assert abs(float(dgt['audit']['actual_unmapped_share']) - 0.11960542540073983) < 1e-9
+assert dgt['audit']['actual_supply_full_ready'] is False
+assert int(dgt['audit']['actual_covered_district_group_pairs']) == 58
+assert set(dgt['ratio']['decision_status']) == {'NEEDS DATA'}
+assert (dgt['ratio']['supply_coverage'].isin(['partial_floor','proxy'])).all()
 assert not actual['interval_demo'].empty
 assert set(actual['interval_demo'].district).issuperset({'Tumakuru','Kalaburagi'})
 
@@ -69,10 +81,11 @@ print('PASS: statewide supply conservation is measured against the triangular-me
 print('PASS: shared 5,000-draw Monte Carlo and year-aware grouping')
 print('PASS: proxy-only policy gate -> NEEDS DATA')
 print('PASS: partial NCVT sample treated as floor + uncertain remainder')
+print('PASS: DGT CTS-2026 real provisional supply loaded: 1,734 rows / 45,416 seats / 29 published districts; full gate remains closed')
 print('PASS: full-district extract unlocks evidence_ready gate')
 print('PASS: 80 seeded typo cases + 20 unseen aliases + 5 real dedupe removals')
 from verify_iti_counts import verify as verify_iti
 _iti_problems=verify_iti(write=False)
 assert not _iti_problems, _iti_problems
-print('PASS: 30/30 ITI weights (Govt/Private/Total) match the official Annexure-IV table as printed; 275 + 1,227 = 1,502')
+print('PASS: 30/30 ITI weights reproduce the bundled Annexure-IV transcription; independent PDF visual verification still required')
 print('PASS: pipeline completed without exception')

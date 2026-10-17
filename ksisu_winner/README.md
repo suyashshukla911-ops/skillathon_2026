@@ -101,3 +101,14 @@ All 30 positive historical analytical-geography ITI counts (Government, Private,
 - `raw/rajya_sabha_annexure_iv_page6_PROJECT_TRANSCRIPTION_not_official.*` is a project-made summary table. It is **not** the official document and is not evidence.
 - To confirm visually, open the official URL and compare page 6.
 - The counts are historical 2022 allocation weights, not current district seat totals.
+
+
+## Bundled real DGT supply evidence
+
+The package now includes the uploaded official DGT CTS-2026 Provisional Dynamic Seat Matrix PDF and an extracted Karnataka dataset:
+
+- `raw/dgt_cts_2026_provisional_seat_matrix.pdf`
+- `raw/dgt_cts_2026_karnataka_provisional.csv`
+- `clean/dgt_cts_2026_karnataka_supply_nco.csv`
+
+The DGT letter says the provisional matrix was generated from approved instructor mappings as of 08.07.2026 and could change until the 20.07.2026 cut-off. Therefore these rows are labelled provisional public evidence, not a final frozen seat matrix. The Karnataka extraction in this build contains 1,734 ITI/trade rows, 588 ITIs and 45,416 provisional seats. A pilot human-reviewed trade-to-NCO mapping places 39,984 seats (88.0%) into NCO 72/74; the remaining 12.0% stay unmapped/review. The full policy gate remains closed because two analytical geographies are absent from this provisional matrix and unmapped seats exceed the 5% threshold.

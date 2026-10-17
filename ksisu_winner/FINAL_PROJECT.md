@@ -14,7 +14,7 @@ A reproducible, source-driven manufacturing skill-alignment pilot for Karnataka.
 - 31 raw LGD district LGD-style matching
 - ASI Karnataka manufacturing state base
 - Karnataka Udyam district employment as a clearly labelled district allocator proxy
-- NCVT MIS File 1171 indexed real rows for Tumakuru and Kalaburagi as a partial district-trade evidence upgrade
+- DGT CTS-2026 provisional dynamic seat matrix: 1,734 Karnataka district×ITI×trade rows and 45,416 provisional seats; 39,984 seats map into the NCO 72/74 pilot
 - Seats -> fill -> completion -> sector entry -> NCO crosswalk
 - evidence update when partial/full district evidence replaces the proxy; partial rows are treated as floors and may legitimately widen the interval
 - corruption/review queue
@@ -23,7 +23,7 @@ A reproducible, source-driven manufacturing skill-alignment pilot for Karnataka.
 
 ## What is intentionally not claimed
 - No official Karnataka Skill Index formula
-- No complete district ITI supply without a complete current NCVT/DGT/Karnataka extract
+- DGT 2026 real supply is bundled, but the matrix is provisional, omits two analytical geographies in this build, and leaves 12.0% of published seats unmapped; full policy eligibility therefore remains blocked
 - No empirical occupation-by-industry prior until PLFS microdata is loaded
 - No policy gap call from proxy or partial evidence
 

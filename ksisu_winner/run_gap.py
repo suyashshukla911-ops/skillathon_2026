@@ -308,7 +308,9 @@ def load_actual_supply(path: Path | None, selected_groups) -> pd.DataFrame | Non
     if "coverage_status" not in df.columns:
         df["coverage_status"] = "unknown"
     # Actual ingestion deduplication: duplicate source rows are removed before aggregation.
-    key_cols = [c for c in ["district", "iti_code", "trade", "nco_group_2digit", "seats", "reference_period", "source_id"] if c in df.columns]
+    # Preserve distinct source rows. Real DGT files identify an ITI as `iti_mis_code`;
+    # using only district+trade+seats would collapse legitimate rows from different ITIs.
+    key_cols = [c for c in ["district", "source_district", "iti_code", "iti_mis_code", "iti_name", "trade", "nco_group_2digit", "seats", "reference_period", "source_period", "source_id", "pdf_page"] if c in df.columns]
     if key_cols:
         df["_duplicate_key"] = df[key_cols].astype(str).agg("|".join, axis=1)
         df = df.drop_duplicates("_duplicate_key").drop(columns=["_duplicate_key"])
@@ -800,6 +802,9 @@ def compute_model(paths=None, overrides=None, actual_supply_path=None, output_di
         "selected_nco_groups": selected_groups,
         "actual_supply_loaded": bool(actual_supply_loaded),
         "actual_supply_rows": int(len(actual_supply)) if actual_supply is not None else 0,
+        "actual_unmapped_share": float(unmapped_share),
+        "actual_unmapped_seats": float(unmapped_seats),
+        "actual_total_input_seats": float(total_input_seats),
         "actual_supply_full_ready": bool(actual_full_ready),
         "actual_unmapped_seat_share": float(unmapped_share),
         "actual_unmapped_seats": float(unmapped_seats),
@@ -863,6 +868,9 @@ def compute_model(paths=None, overrides=None, actual_supply_path=None, output_di
         "actual_required_district_group_pairs": int(len(required_pairs)) if actual_supply_loaded else 0,
         "actual_covered_district_group_pairs": int(len(covered_pairs)) if actual_supply_loaded else 0,
             "actual_supply_rows": int(len(actual_supply)) if actual_supply is not None else 0,
+        "actual_unmapped_share": float(unmapped_share),
+        "actual_unmapped_seats": float(unmapped_seats),
+        "actual_total_input_seats": float(total_input_seats),
             "partial_floor_cells": int((ratio_df.supply_coverage == "partial_floor").sum()),
             "unique_sci_values": int(district_df["SCI"].round(6).nunique()),
             "district_supply_proxy_correlation": proxy_share_correlation,

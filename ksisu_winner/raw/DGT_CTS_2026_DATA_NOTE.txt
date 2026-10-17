@@ -1,0 +1,20 @@
+DGT CTS-2026 real public supply evidence
+
+Source: Directorate General of Training, Provisional Dynamic Seat Matrix for Academic Session 2026.
+Official page: https://www.dgt.gov.in/en/node/4675
+Official PDF: provided in raw/dgt_cts_2026_provisional_seat_matrix.pdf
+
+The DGT letter states that the tentative seat matrix was generated from approved instructor mappings as of 08.07.2026 and that the matrix could change until 20.07.2026. The final matrix would be generated after the cut-off. Therefore this package calls the source PROVISIONAL, not final.
+
+Karnataka extraction in this build:
+- PDF pages: 376-440
+- Rows: 1,734
+- ITIs: 588
+- Published districts: 29
+- Total provisional seat capacity: 45,416
+- Mapped pilot NCO 72/74 seats: 39,984
+- Mapped share of seats: 88.0%
+- Unmapped seats: 5,432 (12.0%)
+- Missing analytical geographies in this PDF: Kodagu, Vijayanagara
+
+Interpretation: this is real public DGT supply evidence at district×ITI×trade grain, but it is not a complete current 31-district census and is provisional. The model therefore does not unlock policy calls from this file alone.

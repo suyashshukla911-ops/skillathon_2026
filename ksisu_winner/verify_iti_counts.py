@@ -1,7 +1,7 @@
 """Reproducible check of the historical ITI-count weights against Rajya Sabha Q131 Annexure-IV.
 
-Source of truth: raw/rajya_sabha_annexure_iv_official_text_extract.md, which is
-machine-extracted text of the official PDF (https://sansad.in/getFile/annex/258/AU131.pdf?source=pqars,
+Source representation: raw/rajya_sabha_annexure_iv_official_text_extract.md, which is
+a machine-extracted/transcribed representation of the referenced official PDF (https://sansad.in/getFile/annex/258/AU131.pdf?source=pqars,
 PDF page 6), with labels exactly as printed.
 
 What this script does
@@ -11,7 +11,7 @@ What this script does
    the printed row it maps to, using the explicit label map below.
 4. Checks clean/ and input_templates/ copies are identical.
 
-It does NOT prove the extract matches the PDF. For that, open the official URL, page 6.
+It does NOT prove the extract matches the government PDF binary. Independent visual comparison of the official PDF page is still required.
 
 Run:  python verify_iti_counts.py
 """
@@ -142,5 +142,5 @@ if __name__ == "__main__":
         for i in issues:
             print(" -", i)
         sys.exit(1)
-    print("PASS: 30/30 analytical ITI weights (Govt, Private, Total) match the Annexure-IV table as printed;")
+    print("PASS: 30/30 analytical ITI weights reproduce the bundled Annexure-IV transcription;")
     print("      printed totals 275 + 1,227 = 1,502 reproduced; clean/ and input_templates/ identical.")

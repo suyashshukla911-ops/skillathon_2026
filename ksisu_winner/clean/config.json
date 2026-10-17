@@ -96,5 +96,5 @@
     "Vijayanagara": "Ballari-Vijayanagara"
   },
   "analytical_geography_note": "Raw LGD has 31 districts; proxy analysis uses 30 analytical geographies by merging Ballari and Vijayanagara because the 2022 CTS source reports historical Bellary as one geography.",
-  "iti_weight_verification_note": "30/30 analytical ITI weights (Govt, Private, Total) match the official Rajya Sabha Q131 Annexure-IV table as printed, checked 2026-10-17 against machine-extracted text of the official PDF (verify_iti_counts.py). Ballari-Vijayanagara uses the printed Bellary total 89. Weights are historical 2022 allocation weights only."
+  "iti_weight_verification_note": "30/30 analytical ITI weights reproduce the bundled machine-extracted Annexure-IV transcription (Govt, Private, Total). This check does not independently prove the source PDF binary; visual verification against the government PDF is still required. Weights are historical 2022 allocation weights only."
 }

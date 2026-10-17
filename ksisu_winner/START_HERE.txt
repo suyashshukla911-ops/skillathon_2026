@@ -15,18 +15,15 @@ KSISU REAL-DATA EVIDENCE WORKBENCH — START HERE
    A. Open the GUI.
    B. Click Run Proxy Baseline.
    C. Open District Priority: explain this is a data-onboarding / VOI ranking, not a fake gap leaderboard.
-   D. Click Load Official NCVT Sample.
+   D. Click Load DGT 2026 Real Supply.
    E. Click Run With Loaded Supply.
    F. Open Gap Results and Validation & Linkage.
-   G. Show the Tumakuru/Kalaburagi partial-evidence update.
+   G. Show the real DGT provisional supply basis and the NEEDS DATA policy gate.
 
-5) Final empirical upgrade before submission:
-   Download the COMPLETE CURRENT district×trade ITI seat extract from NCVT MIS / DGT / Karnataka. Use only a real CSV. Accepted columns:
-      district, trade, seats
-   OR district, nco_group_2digit, seats
-   Then click Load Real District Supply CSV and Run With Loaded Supply.
+5) Real public supply already bundled:
+   The package includes the uploaded DGT CTS-2026 provisional dynamic seat matrix and an extracted Karnataka district×ITI×trade dataset. Use Load DGT 2026 Real Supply to demonstrate it. It contains 1,734 Karnataka trade rows, 588 ITIs and 45,416 provisional seats; 39,984 seats map into the NCO 72/74 pilot crosswalk.
 
-6) Do not enter invented numbers. The bundled NCVT File 1171 sample is real official evidence but is explicitly PARTIAL and HISTORICAL. It proves the workflow only.
+6) Do not enter invented numbers. The DGT source is real public evidence but provisional and incomplete for the analytical geography used here. Kodagu and Vijayanagara are absent from the extracted DGT rows, and 12.0% of published seats are outside the pilot NCO crosswalk.
 
 7) Source discipline:
    - observed = directly from public source
@@ -48,7 +45,7 @@ KSISU REAL-DATA EVIDENCE WORKBENCH — START HERE
    out/KSISU_Skillathon_2026_Final_10_Page.pdf
 
 
-IMPORTANT: A bundled NCVT partial sample is handled as observed seats + uncertain remainder (floor treatment). It is not treated as a complete district census. To unlock a provisional policy call, load a complete district x trade file and mark rows coverage_status=full_district_extract.
+IMPORTANT: DGT 2026 public rows are treated as real provisional district×ITI×trade evidence. They replace proxy supply where mapped, but the model keeps missing geographies and unmapped trades uncertain. A provisional policy call requires a complete district×trade file with all modeled district×NCO pairs and <=5% unmapped seats.
 
-V5 TEST CHECKS
-10 automated tests pass. The conservation check is against the triangular-mean expected statewide supply, not the mode. The full-actual gate is regression-tested with both a valid 31 raw LGD x2 file and a file with >5% UNMAPPED seats.
+SELF TEST CHECKS
+The bundled test suite covers proxy conservation, shared Monte Carlo, partial NCVT floor treatment, full-actual gating, DGT 2026 real-supply ingestion, district matching, and corruption/dedupe controls.

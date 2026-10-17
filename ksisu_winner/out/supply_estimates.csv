@@ -1,61 +1,61 @@
 district,lgd_code,year,nco_group_2digit,occupation_label,proxy_seats,actual_seats,supply_basis,supply_coverage,allocation_basis,supply_p10,supply_median,supply_p90
-Bagalkot,524,2022-23,72,Metal machinery and related trades,5609.713567154561,,district-proxy,proxy,NCVT ITI-count weighted,405.3920241381268,695.3022202270613,1119.2730354813423
-Bagalkot,524,2022-23,74,Electrical and electronic trades,2604.5098704646175,,district-proxy,proxy,NCVT ITI-count weighted,188.21772549270173,322.8188879625642,519.6624807591946
-Ballari-Vijayanagara,528|552,2022-23,72,Metal machinery and related trades,5600.423092175708,,district-proxy,proxy,NCVT ITI-count weighted,458.1226648713942,714.0244116930648,1069.4958072967765
-Ballari-Vijayanagara,528|552,2022-23,74,Electrical and electronic trades,2600.196435653007,,district-proxy,proxy,NCVT ITI-count weighted,212.69980869029015,331.5113340003515,496.5516248163605
-Belagavi,527,2022-23,72,Metal machinery and related trades,9152.690556936392,,district-proxy,proxy,NCVT ITI-count weighted,737.6568260887635,1159.1025407014217,1745.0788665448201
-Belagavi,527,2022-23,74,Electrical and electronic trades,4249.463472863325,,district-proxy,proxy,NCVT ITI-count weighted,342.4835263983544,538.1547510399458,810.2151880386665
-Bengaluru Rural,526,2022-23,72,Metal machinery and related trades,3248.8109337506526,,district-proxy,proxy,NCVT ITI-count weighted,187.69617984796682,390.8238225102648,709.1997945027657
-Bengaluru Rural,526,2022-23,74,Electrical and electronic trades,1508.37650495566,,district-proxy,proxy,NCVT ITI-count weighted,87.14465492941315,181.45391759405146,329.2713331619984
-Bengaluru Urban,525,2022-23,72,Metal machinery and related trades,8199.379975656408,,district-proxy,proxy,NCVT ITI-count weighted,649.9257179632054,1035.547438275339,1587.5822983874818
-Bengaluru Urban,525,2022-23,74,Electrical and electronic trades,3806.8549886976175,,district-proxy,proxy,NCVT ITI-count weighted,301.7512261972026,480.7898820564073,737.0917813941878
-Bidar,529,2022-23,72,Metal machinery and related trades,4656.531559786545,,district-proxy,proxy,NCVT ITI-count weighted,360.71531024911735,587.9204948514619,900.0144084681602
-Bidar,529,2022-23,74,Electrical and electronic trades,2161.961081329467,,district-proxy,proxy,NCVT ITI-count weighted,167.47496547280448,272.96308689532157,417.8638325030743
-Chamarajanagar,530,2022-23,72,Metal machinery and related trades,1205.6579687664528,,district-proxy,proxy,NCVT ITI-count weighted,44.70550050645177,133.98656083634705,310.88154934630495
-Chamarajanagar,530,2022-23,74,Electrical and electronic trades,559.7697712129959,,district-proxy,proxy,NCVT ITI-count weighted,20.75612523513832,62.208046102589705,144.33786219649875
-Chikkaballapur,531,2022-23,72,Metal machinery and related trades,3867.6320639888713,,district-proxy,proxy,NCVT ITI-count weighted,238.65340144680803,464.2817804612418,831.2279469572619
-Chikkaballapur,531,2022-23,74,Electrical and electronic trades,1795.6863154234045,,district-proxy,proxy,NCVT ITI-count weighted,110.80336495744658,215.55939807129084,385.9272610873001
-Chikkamagaluru,532,2022-23,72,Metal machinery and related trades,1522.9363815997299,,district-proxy,proxy,NCVT ITI-count weighted,65.74869135235699,173.23421954809544,366.6946739048187
-Chikkamagaluru,532,2022-23,74,Electrical and electronic trades,707.0776057427316,,district-proxy,proxy,NCVT ITI-count weighted,30.526178127880023,80.43017336161574,170.25109859866586
-Chitradurga,533,2022-23,72,Metal machinery and related trades,4061.1636842659464,,district-proxy,proxy,NCVT ITI-count weighted,290.72995944044885,507.43092810930136,832.5645998323184
-Chitradurga,533,2022-23,74,Electrical and electronic trades,1885.540281980618,,district-proxy,proxy,NCVT ITI-count weighted,134.98176688306555,235.59293090788992,386.5478499221478
-Dakshina Kannada,534,2022-23,72,Metal machinery and related trades,1840.214794433007,,district-proxy,proxy,NCVT ITI-count weighted,92.25697771204155,213.04828236869932,435.64665079426567
-Dakshina Kannada,534,2022-23,74,Electrical and electronic trades,854.3854402724675,,district-proxy,proxy,NCVT ITI-count weighted,42.833596794876435,98.9152739568961,202.26451644019483
-Davanagere,535,2022-23,72,Metal machinery and related trades,3616.9739062993585,,district-proxy,proxy,NCVT ITI-count weighted,241.07729041757517,447.4507579118896,751.0641272875376
-Davanagere,535,2022-23,74,Electrical and electronic trades,1679.3093136389878,,district-proxy,proxy,NCVT ITI-count weighted,111.92874197958845,207.74499474480584,348.70834481207095
-Dharwad,536,2022-23,72,Metal machinery and related trades,4207.2851753659215,,district-proxy,proxy,NCVT ITI-count weighted,275.99016659737634,509.04798290342114,883.9785306419743
-Dharwad,536,2022-23,74,Electrical and electronic trades,1953.3824028484637,,district-proxy,proxy,NCVT ITI-count weighted,128.13829163449617,236.3437063480169,410.4186035123451
-Gadag,537,2022-23,72,Metal machinery and related trades,3247.7289073000097,,district-proxy,proxy,NCVT ITI-count weighted,190.9446241082388,391.09357793536697,716.4644308029334
-Gadag,537,2022-23,74,Electrical and electronic trades,1507.8741355321472,,district-proxy,proxy,NCVT ITI-count weighted,88.65286119311087,181.57916118427752,332.64420001564764
-Hassan,538,2022-23,72,Metal machinery and related trades,4568.80914479919,,district-proxy,proxy,NCVT ITI-count weighted,332.08432804172253,571.8593075331719,919.6811398120727
-Hassan,538,2022-23,74,Electrical and electronic trades,2121.232817228195,,district-proxy,proxy,NCVT ITI-count weighted,154.18200944794262,265.5061070689727,426.9948149127479
-Haveri,539,2022-23,72,Metal machinery and related trades,3912.0370928841025,,district-proxy,proxy,NCVT ITI-count weighted,255.34384682598554,483.76224524239706,846.4719087497692
-Haveri,539,2022-23,74,Electrical and electronic trades,1816.3029359819047,,district-proxy,proxy,NCVT ITI-count weighted,118.55250031206471,224.6038995768272,393.0048147766786
-Kalaburagi,540,2022-23,72,Metal machinery and related trades,5222.8664792200425,60.0,partial-observed-floor,partial_floor,NCVT ITI-count weighted,404.19828831460484,649.308150484414,1015.6009636043875
-Kalaburagi,540,2022-23,74,Electrical and electronic trades,2424.902293923591,,district-proxy,proxy,NCVT ITI-count weighted,190.873905764682,304.39914263996076,462.72243040572346
+Bagalkot,524,2022-23,72,Metal machinery and related trades,5609.713567154561,1176.0,partial-observed-floor,partial_floor,NCVT ITI-count weighted,446.62179480999515,700.3586778997783,1074.5320608368163
+Bagalkot,524,2022-23,74,Electrical and electronic trades,2604.5098704646175,1076.0,partial-observed-floor,partial_floor,NCVT ITI-count weighted,228.89171667611606,330.60012262127316,472.3613519410823
+Ballari-Vijayanagara,528|552,2022-23,72,Metal machinery and related trades,5600.423092175708,1284.0,partial-observed-floor,partial_floor,NCVT ITI-count weighted,489.8961026121062,714.1340952907781,1027.1443202369464
+Ballari-Vijayanagara,528|552,2022-23,74,Electrical and electronic trades,2600.196435653007,984.0,partial-observed-floor,partial_floor,NCVT ITI-count weighted,238.2521175187453,333.88305816350584,462.2843896775826
+Belagavi,527,2022-23,72,Metal machinery and related trades,9152.690556936392,2156.0,partial-observed-floor,partial_floor,NCVT ITI-count weighted,792.6208414716134,1166.2368434083628,1667.0454883352413
+Belagavi,527,2022-23,74,Electrical and electronic trades,4249.463472863325,1744.0,partial-observed-floor,partial_floor,NCVT ITI-count weighted,391.29051598315453,547.3780900720867,747.4705324087369
+Bengaluru Rural,526,2022-23,72,Metal machinery and related trades,3248.8109337506526,472.0,partial-observed-floor,partial_floor,NCVT ITI-count weighted,213.76057237655777,393.26207584402175,684.2095173091801
+Bengaluru Rural,526,2022-23,74,Electrical and electronic trades,1508.37650495566,288.0,partial-observed-floor,partial_floor,NCVT ITI-count weighted,103.76700434966068,183.46277073741607,312.7709513483807
+Bengaluru Urban,525,2022-23,72,Metal machinery and related trades,8199.379975656408,648.0,partial-observed-floor,partial_floor,NCVT ITI-count weighted,660.3386067074587,1032.2483694154025,1574.1427232656083
+Bengaluru Urban,525,2022-23,74,Electrical and electronic trades,3806.8549886976175,956.0,partial-observed-floor,partial_floor,NCVT ITI-count weighted,329.9198289260311,483.54313268288513,701.0353225638629
+Bidar,529,2022-23,72,Metal machinery and related trades,4656.531559786545,140.0,partial-observed-floor,partial_floor,NCVT ITI-count weighted,359.000826208762,582.03011141045,904.0536538722475
+Bidar,529,2022-23,74,Electrical and electronic trades,2161.961081329467,212.0,partial-observed-floor,partial_floor,NCVT ITI-count weighted,172.06513223931486,271.512087710332,413.18804297457444
+Chamarajanagar,530,2022-23,72,Metal machinery and related trades,1205.6579687664528,164.0,partial-observed-floor,partial_floor,NCVT ITI-count weighted,57.28043313564127,136.34001923177533,293.4188667161795
+Chamarajanagar,530,2022-23,74,Electrical and electronic trades,559.7697712129959,244.0,partial-observed-floor,partial_floor,NCVT ITI-count weighted,40.78833388187529,67.23536796996203,116.36449109373972
+Chikkaballapur,531,2022-23,72,Metal machinery and related trades,3867.6320639888713,428.0,partial-observed-floor,partial_floor,NCVT ITI-count weighted,259.0743723790983,465.94604994703224,799.9387689062613
+Chikkaballapur,531,2022-23,74,Electrical and electronic trades,1795.6863154234045,472.0,partial-observed-floor,partial_floor,NCVT ITI-count weighted,135.8946394261852,220.9258621783972,354.58147510350705
+Chikkamagaluru,532,2022-23,72,Metal machinery and related trades,1522.9363815997299,380.0,partial-observed-floor,partial_floor,NCVT ITI-count weighted,95.74433101798104,178.8462682747736,329.9182420233466
+Chikkamagaluru,532,2022-23,74,Electrical and electronic trades,707.0776057427316,304.0,partial-observed-floor,partial_floor,NCVT ITI-count weighted,54.09498446705173,85.89937591636806,140.2937926084174
+Chitradurga,533,2022-23,72,Metal machinery and related trades,4061.1636842659464,304.0,partial-observed-floor,partial_floor,NCVT ITI-count weighted,298.7620964693717,506.37076665645554,818.9582545664883
+Chitradurga,533,2022-23,74,Electrical and electronic trades,1885.540281980618,512.0,partial-observed-floor,partial_floor,NCVT ITI-count weighted,155.11563264981723,237.68365836432034,360.8317442521409
+Dakshina Kannada,534,2022-23,72,Metal machinery and related trades,1840.214794433007,948.0,partial-observed-floor,partial_floor,NCVT ITI-count weighted,154.18713915930599,227.6401406207578,353.9591070650336
+Dakshina Kannada,534,2022-23,74,Electrical and electronic trades,854.3854402724675,1244.0,partial-observed-floor,partial_floor,NCVT ITI-count weighted,124.51484154470658,163.2218529859636,206.8245377348846
+Davanagere,535,2022-23,72,Metal machinery and related trades,3616.9739062993585,912.0,partial-observed-floor,partial_floor,NCVT ITI-count weighted,282.36033717044006,452.29729183516724,701.1835771057639
+Davanagere,535,2022-23,74,Electrical and electronic trades,1679.3093136389878,960.0,partial-observed-floor,partial_floor,NCVT ITI-count weighted,154.16223223524713,216.01369227054005,297.3709114567844
+Dharwad,536,2022-23,72,Metal machinery and related trades,4207.2851753659215,1104.0,partial-observed-floor,partial_floor,NCVT ITI-count weighted,330.8376540395062,516.7232230549639,820.8703874516276
+Dharwad,536,2022-23,74,Electrical and electronic trades,1953.3824028484637,784.0,partial-observed-floor,partial_floor,NCVT ITI-count weighted,165.8849691113271,243.56624019272493,365.9883691956812
+Gadag,537,2022-23,72,Metal machinery and related trades,3247.7289073000097,568.0,partial-observed-floor,partial_floor,NCVT ITI-count weighted,223.4646925176966,392.2593070180104,672.7125153173166
+Gadag,537,2022-23,74,Electrical and electronic trades,1507.8741355321472,656.0,partial-observed-floor,partial_floor,NCVT ITI-count weighted,124.90945773835662,188.28775469943685,284.623738270559
+Hassan,538,2022-23,72,Metal machinery and related trades,4568.80914479919,1240.0,partial-observed-floor,partial_floor,NCVT ITI-count weighted,376.9325543667632,576.3352569249666,865.097336532922
+Hassan,538,2022-23,74,Electrical and electronic trades,2121.232817228195,688.0,partial-observed-floor,partial_floor,NCVT ITI-count weighted,179.45655112119573,268.66424452687215,395.7383283404656
+Haveri,539,2022-23,72,Metal machinery and related trades,3912.0370928841025,728.0,partial-observed-floor,partial_floor,NCVT ITI-count weighted,290.3610853636662,486.54451008755547,794.0457840303931
+Haveri,539,2022-23,74,Electrical and electronic trades,1816.3029359819047,696.0,partial-observed-floor,partial_floor,NCVT ITI-count weighted,152.57490633195587,229.54117011554092,344.1809499919316
+Kalaburagi,540,2022-23,72,Metal machinery and related trades,5222.8664792200425,524.0,partial-observed-floor,partial_floor,NCVT ITI-count weighted,421.8750139720405,651.7208526568002,995.6616934914443
+Kalaburagi,540,2022-23,74,Electrical and electronic trades,2424.902293923591,332.0,partial-observed-floor,partial_floor,NCVT ITI-count weighted,199.41724670724943,303.1293174743641,458.5046408225137
 Kodagu,541,2022-23,72,Metal machinery and related trades,380.73409539993247,,district-proxy,proxy,NCVT ITI-count weighted,2.350385036098031,27.838400880521924,121.2981617253244
 Kodagu,541,2022-23,74,Electrical and electronic trades,176.7694014356829,,district-proxy,proxy,NCVT ITI-count weighted,1.0912501953312284,12.924971837385177,56.317003658186316
-Kolar,542,2022-23,72,Metal machinery and related trades,5724.09545470353,,district-proxy,proxy,NCVT ITI-count weighted,420.2900000541657,713.0394701449347,1150.2478383356854
-Kolar,542,2022-23,74,Electrical and electronic trades,2657.6157468266388,,district-proxy,proxy,NCVT ITI-count weighted,195.13464288229125,331.0540397101482,534.0436392272826
-Koppal,543,2022-23,72,Metal machinery and related trades,2894.6006993267706,,district-proxy,proxy,NCVT ITI-count weighted,191.09819990755005,357.63350191569543,613.5362190388541
-Koppal,543,2022-23,74,Electrical and electronic trades,1343.9217532588577,,district-proxy,proxy,NCVT ITI-count weighted,88.72416424279109,166.04412588943006,284.85610169661084
-Mandya,544,2022-23,72,Metal machinery and related trades,3363.151176032737,,district-proxy,proxy,NCVT ITI-count weighted,225.02198149773787,415.44720606498765,709.8046524635033
-Mandya,544,2022-23,74,Electrical and electronic trades,1561.4630460151993,,district-proxy,proxy,NCVT ITI-count weighted,104.47449140966401,192.88620281588715,329.5521600723408
-Mysuru,545,2022-23,72,Metal machinery and related trades,3236.239810899426,,district-proxy,proxy,NCVT ITI-count weighted,211.4803557207686,395.7270442377975,689.2436211576286
-Mysuru,545,2022-23,74,Electrical and electronic trades,1502.539912203305,,district-proxy,proxy,NCVT ITI-count weighted,98.18730801321404,183.7304133961203,320.00596696604185
-Raichur,546,2022-23,72,Metal machinery and related trades,2391.1918820525493,,district-proxy,proxy,NCVT ITI-count weighted,148.93737223613806,287.5412498864729,514.0904644803442
-Raichur,546,2022-23,74,Electrical and electronic trades,1110.1962309529692,,district-proxy,proxy,NCVT ITI-count weighted,69.14949425249269,133.50129459014812,238.68485850873117
-Ramanagara,547,2022-23,72,Metal machinery and related trades,4177.042629107982,,district-proxy,proxy,NCVT ITI-count weighted,270.3425457995766,508.3244213933971,886.6285475275264
-Ramanagara,547,2022-23,74,Electrical and electronic trades,1939.3412206572773,,district-proxy,proxy,NCVT ITI-count weighted,125.51618197837483,236.00776707550574,411.64896849492294
-Shivamogga,548,2022-23,72,Metal machinery and related trades,2665.138667799527,,district-proxy,proxy,NCVT ITI-count weighted,164.4400291621155,322.705373743442,581.2973444286764
-Shivamogga,548,2022-23,74,Electrical and electronic trades,1237.3858100497803,,district-proxy,proxy,NCVT ITI-count weighted,76.34715639669646,149.82749495231235,269.88805277045685
-Tumakuru,549,2022-23,72,Metal machinery and related trades,10984.075061728396,80.0,partial-observed-floor,partial_floor,NCVT ITI-count weighted,914.8342809363734,1392.606937321685,2078.2276294043268
-Tumakuru,549,2022-23,74,Electrical and electronic trades,5099.749135802469,60.0,partial-observed-floor,partial_floor,NCVT ITI-count weighted,425.7382778505332,647.0077828521332,963.770041748453
-Udupi,550,2022-23,72,Metal machinery and related trades,888.3795559331758,,district-proxy,proxy,NCVT ITI-count weighted,24.06631435308157,92.09043151366399,244.29418500222022
-Udupi,550,2022-23,74,Electrical and electronic trades,412.46193668326015,,district-proxy,proxy,NCVT ITI-count weighted,11.173645949645012,42.756271774201124,113.42230017960223
-Uttara Kannada,551,2022-23,72,Metal machinery and related trades,1771.4884948909146,,district-proxy,proxy,NCVT ITI-count weighted,73.83884511381015,203.1568624674976,444.2887237434365
-Uttara Kannada,551,2022-23,74,Electrical and electronic trades,822.4768011993531,,district-proxy,proxy,NCVT ITI-count weighted,34.28232094569757,94.32282900276672,206.27690745230979
-Vijayapura,553,2022-23,72,Metal machinery and related trades,7233.578020804567,,district-proxy,proxy,NCVT ITI-count weighted,558.6134324246297,912.3409123746567,1409.4910590686072
-Vijayapura,553,2022-23,74,Electrical and electronic trades,3358.4469382306916,,district-proxy,proxy,NCVT ITI-count weighted,259.3562364828638,423.58685217394776,654.4065631389961
-Yadgir,554,2022-23,72,Metal machinery and related trades,1950.7091669376061,,district-proxy,proxy,NCVT ITI-count weighted,113.6815171362402,235.4476321287187,437.8436794077247
-Yadgir,554,2022-23,74,Electrical and electronic trades,905.6863989353171,,district-proxy,proxy,NCVT ITI-count weighted,52.78070438468294,109.31497205976225,203.28456543930074
+Kolar,542,2022-23,72,Metal machinery and related trades,5724.09545470353,1024.0,partial-observed-floor,partial_floor,NCVT ITI-count weighted,456.78125553596806,714.4372747752017,1105.5582229862023
+Kolar,542,2022-23,74,Electrical and electronic trades,2657.6157468266388,376.0,partial-observed-floor,partial_floor,NCVT ITI-count weighted,207.74273176225168,330.49273583758395,517.7989063269129
+Koppal,543,2022-23,72,Metal machinery and related trades,2894.6006993267706,244.0,partial-observed-floor,partial_floor,NCVT ITI-count weighted,199.8807462592146,356.2694045631184,601.1727214651254
+Koppal,543,2022-23,74,Electrical and electronic trades,1343.9217532588577,272.0,partial-observed-floor,partial_floor,NCVT ITI-count weighted,101.8582509150438,166.9959132319152,269.25367193200196
+Mandya,544,2022-23,72,Metal machinery and related trades,3363.151176032737,640.0,partial-observed-floor,partial_floor,NCVT ITI-count weighted,253.741125876014,417.14696829280865,670.2125909065749
+Mandya,544,2022-23,74,Electrical and electronic trades,1561.4630460151993,760.0,partial-observed-floor,partial_floor,NCVT ITI-count weighted,138.58908153612478,197.40606241953645,284.41870856753513
+Mysuru,545,2022-23,72,Metal machinery and related trades,3236.239810899426,748.0,partial-observed-floor,partial_floor,NCVT ITI-count weighted,244.65860292600087,402.8664143278777,642.7595650185413
+Mysuru,545,2022-23,74,Electrical and electronic trades,1502.539912203305,868.0,partial-observed-floor,partial_floor,NCVT ITI-count weighted,137.01017585472445,193.04969206055722,266.55117963832714
+Raichur,546,2022-23,72,Metal machinery and related trades,2391.1918820525493,208.0,partial-observed-floor,partial_floor,NCVT ITI-count weighted,157.92429151101217,287.9565870067303,501.3659873754414
+Raichur,546,2022-23,74,Electrical and electronic trades,1110.1962309529692,224.0,partial-observed-floor,partial_floor,NCVT ITI-count weighted,80.3949249321242,135.7515349537387,223.47624332282896
+Ramanagara,547,2022-23,72,Metal machinery and related trades,4177.042629107982,412.0,partial-observed-floor,partial_floor,NCVT ITI-count weighted,284.61101174094216,507.71333879586996,868.1261404654367
+Ramanagara,547,2022-23,74,Electrical and electronic trades,1939.3412206572773,424.0,partial-observed-floor,partial_floor,NCVT ITI-count weighted,144.35307111342743,237.99143467182563,387.77285645308336
+Shivamogga,548,2022-23,72,Metal machinery and related trades,2665.138667799527,576.0,partial-observed-floor,partial_floor,NCVT ITI-count weighted,193.63962262289266,326.7868261591026,541.6499477691593
+Shivamogga,548,2022-23,74,Electrical and electronic trades,1237.3858100497803,576.0,partial-observed-floor,partial_floor,NCVT ITI-count weighted,105.43841279053163,155.31004067440034,229.2984653531127
+Tumakuru,549,2022-23,72,Metal machinery and related trades,10984.075061728396,1476.0,partial-observed-floor,partial_floor,NCVT ITI-count weighted,951.3225506983688,1398.4298816756814,2023.6541219620951
+Tumakuru,549,2022-23,74,Electrical and electronic trades,5099.749135802469,1328.0,partial-observed-floor,partial_floor,NCVT ITI-count weighted,458.4397454483065,653.1343778899625,917.4964182305222
+Udupi,550,2022-23,72,Metal machinery and related trades,888.3795559331758,400.0,partial-observed-floor,partial_floor,NCVT ITI-count weighted,62.029784334673614,103.819208785986,191.68776828697378
+Udupi,550,2022-23,74,Electrical and electronic trades,412.46193668326015,464.0,partial-observed-floor,partial_floor,NCVT ITI-count weighted,46.442834788379315,60.88017667643659,77.14355748310808
+Uttara Kannada,551,2022-23,72,Metal machinery and related trades,1771.4884948909146,876.0,partial-observed-floor,partial_floor,NCVT ITI-count weighted,140.12209621170643,218.05787427482278,353.6792670295615
+Uttara Kannada,551,2022-23,74,Electrical and electronic trades,822.4768011993531,596.0,partial-observed-floor,partial_floor,NCVT ITI-count weighted,75.86660613068317,104.72366110148812,146.425266788377
+Vijayapura,553,2022-23,72,Metal machinery and related trades,7233.578020804567,1048.0,partial-observed-floor,partial_floor,NCVT ITI-count weighted,584.0205853309611,911.0333607890466,1386.7705000759397
+Vijayapura,553,2022-23,74,Electrical and electronic trades,3358.4469382306916,812.0,partial-observed-floor,partial_floor,NCVT ITI-count weighted,283.98119955374034,425.62289028211694,629.4624958286926
+Yadgir,554,2022-23,72,Metal machinery and related trades,1950.7091669376061,128.0,partial-observed-floor,partial_floor,NCVT ITI-count weighted,120.00011261314992,234.27456991567743,431.7725572244429
+Yadgir,554,2022-23,74,Electrical and electronic trades,905.6863989353171,176.0,partial-observed-floor,partial_floor,NCVT ITI-count weighted,62.62813011044041,110.14553029183631,191.81406681436638
