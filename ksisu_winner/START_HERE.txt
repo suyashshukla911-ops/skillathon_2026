@@ -1,0 +1,51 @@
+KSISU REAL-DATA EVIDENCE WORKBENCH — START HERE
+
+1) Install:
+   python -m pip install -r requirements.txt
+
+2) Run the automated test:
+   SELF_TEST.bat
+   It must end with PASS: pipeline completed without exception.
+
+3) Run the baseline analysis:
+   python run_gap.py
+   or run run.bat
+
+4) Judge-demo workflow:
+   A. Open the GUI.
+   B. Click Run Proxy Baseline.
+   C. Open District Priority: explain this is a data-onboarding / VOI ranking, not a fake gap leaderboard.
+   D. Click Load Official NCVT Sample.
+   E. Click Run With Loaded Supply.
+   F. Open Gap Results and Validation & Linkage.
+   G. Show the Tumakuru/Kalaburagi partial-evidence update.
+
+5) Final empirical upgrade before submission:
+   Download the COMPLETE CURRENT district×trade ITI seat extract from NCVT MIS / DGT / Karnataka. Use only a real CSV. Accepted columns:
+      district, trade, seats
+   OR district, nco_group_2digit, seats
+   Then click Load Real District Supply CSV and Run With Loaded Supply.
+
+6) Do not enter invented numbers. The bundled NCVT File 1171 sample is real official evidence but is explicitly PARTIAL and HISTORICAL. It proves the workflow only.
+
+7) Source discipline:
+   - observed = directly from public source
+   - proxy = derived using an explicit rule
+   - prior = analyst assumption pending better data
+   - partial_floor = real district evidence but incomplete coverage; observed seats are a lower bound, remainder is uncertain
+
+8) Policy discipline:
+   Proxy-only and partial-actual rows stay NEEDS DATA. Only complete district-actual cells can become PROVISIONAL GAP / PROVISIONAL SURPLUS.
+
+9) Outputs:
+   out/ratio_intervals.csv
+   out/district_priority.csv
+   out/sensitivity.csv
+   out/corruption_test_summary.csv
+   out/interval_shrink_demo.csv
+   out/audit_log.jsonl
+   out/run_file_registry.csv
+   out/KSISU_Skillathon_2026_Final_10_Page.pdf
+
+
+IMPORTANT: A bundled NCVT partial sample is handled as observed seats + uncertain remainder (floor treatment). It is not treated as a complete district census. To unlock a provisional policy call, load a complete district x trade file and mark rows coverage_status=full_district_extract.

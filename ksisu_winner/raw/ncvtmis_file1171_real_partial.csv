@@ -1,0 +1,10 @@
+district,iti_code,iti_name,trade,seats,nco_group_2digit,reference_period,source_id,coverage_status
+Tumakuru,GU29001494,GOVT I.T.I. HONNAVALLI,Electrician (NSQF),20,74,historical NCVT MIS indexed extract,SRC-NCVT-1171,partial_official_extract
+Tumakuru,GU29001494,GOVT I.T.I. HONNAVALLI,Fitter (NSQF),20,72,historical NCVT MIS indexed extract,SRC-NCVT-1171,partial_official_extract
+Tumakuru,GR29000059,Govt Industrial Training Institute Tumkur,Electrician (NSQF),20,74,historical NCVT MIS indexed extract,SRC-NCVT-1171,partial_official_extract
+Tumakuru,GR29000059,Govt Industrial Training Institute Tumkur,Fitter (NSQF),20,72,historical NCVT MIS indexed extract,SRC-NCVT-1171,partial_official_extract
+Tumakuru,GR29000059,Govt Industrial Training Institute Tumkur,Turner (NSQF),0,72,historical NCVT MIS indexed extract,SRC-NCVT-1171,partial_official_extract
+Tumakuru,GR29000059,Govt Industrial Training Institute Tumkur,Welder (NSQF),40,72,historical NCVT MIS indexed extract,SRC-NCVT-1171,partial_official_extract
+Tumakuru,GR29000226,Govt Industrial Training Institute for Women Tiptur,Electrician (NSQF),20,74,historical NCVT MIS indexed extract,SRC-NCVT-1171,partial_official_extract
+Kalaburagi,GR29000196,"Govt Industrial Training Institute Wadi (Junction) Chittapur taluk, Dist: Kalaburagi",Fitter (NSQF),20,72,historical NCVT MIS indexed extract,SRC-NCVT-1171,partial_official_extract
+Kalaburagi,GR29000196,"Govt Industrial Training Institute Wadi (Junction) Chittapur taluk, Dist: Kalaburagi",Welder (NSQF),40,72,historical NCVT MIS indexed extract,SRC-NCVT-1171,partial_official_extract

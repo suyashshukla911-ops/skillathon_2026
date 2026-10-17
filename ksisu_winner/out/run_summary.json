@@ -1,0 +1,22 @@
+{
+  "run_id": "RUN-20261017-041553",
+  "districts": 31,
+  "rows": 62,
+  "analytical_shortfall_signals": 17,
+  "policy_gap_cells": 0,
+  "policy_surplus_cells": 0,
+  "needs_data_cells": 62,
+  "actual_supply_loaded": false,
+  "actual_supply_full_ready": false,
+  "actual_supply_rows": 0,
+  "partial_floor_cells": 0,
+  "unique_sci_values": 23,
+  "district_supply_proxy_correlation": 0.3381185008149404,
+  "statewide_supply_expected_mode": 25710.799689432,
+  "statewide_total_iti_seats": 216788.0,
+  "statewide_supply_median_sum": 21955.989795224625,
+  "statewide_supply_conservation_ratio": 0.8539598169032943,
+  "state_median_sci": 0.7708452789309959,
+  "relative_sci_min": 0.131237949890996,
+  "relative_sci_max": 1.2972771934035774
+}

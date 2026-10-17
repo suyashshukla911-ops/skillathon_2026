@@ -1,0 +1,4 @@
+nco_group_2digit,occupation_label,share_within_manufacturing,source_type,source_note
+72,Metal machinery and related trades,0.25,analyst_prior,"Used only until PLFS unit-level occupation-by-industry mix is loaded"
+74,Electrical and electronic trades,0.15,analyst_prior,"Used only until PLFS unit-level occupation-by-industry mix is loaded"
+81,Stationary plant and machine operators / assemblers,0.20,analyst_prior,"Used only until PLFS unit-level occupation-by-industry mix is loaded"

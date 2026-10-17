@@ -1,0 +1,89 @@
+{
+  "project": "KSISU Real-Data Skill Gap Pilot",
+  "sector": "Manufacturing",
+  "reference_fy": "2022-23",
+  "selected_nco_groups": [
+    "72",
+    "74"
+  ],
+  "district_fuzzy_threshold": 0.9,
+  "opening_rate": {
+    "low": 0.05,
+    "mode": 0.085,
+    "high": 0.12
+  },
+  "seat_fill_rate": {
+    "low": 0.5,
+    "mode": 0.813,
+    "high": 0.9,
+    "basis": "DGT/DITE tracer rates; replace when district MIS actual fill is available"
+  },
+  "completion_rate": {
+    "low": 0.5,
+    "mode": 0.593,
+    "high": 0.7,
+    "basis": "DGT/DITE tracer rates; replace when district MIS actual completion is available"
+  },
+  "sector_entry_rate": {
+    "low": 0.2,
+    "mode": 0.3,
+    "high": 0.4,
+    "basis": "explicit analyst prior pending district placement data"
+  },
+  "proxy_seat_uncertainty": {
+    "low": 0.75,
+    "mode": 1.0,
+    "high": 1.25
+  },
+  "actual_seat_uncertainty": {
+    "low": 0.98,
+    "mode": 1.0,
+    "high": 1.02
+  },
+  "monte_carlo_draws": 5000,
+  "random_seed": 20261016,
+  "interval": [
+    0.1,
+    0.9
+  ],
+  "decision_rule": "GAP if p90<1; SURPLUS if p10>1; otherwise NEEDS DATA",
+  "sci_formula": "weighted share of openings covered at R=min(S/D,1)",
+  "voi_formula": "interval width x annual openings",
+  "assumption_note": "State manufacturing employment comes from ASI; districts are allocated with Udyam employment shares as a proxy. NCO mix is an analyst prior until PLFS unit-level occupation-by-industry data is loaded. District ITI supply is proxy unless an NCVT MIS district/trade extract is supplied.",
+  "min_count_suppression": 5,
+  "occupation_share_note": "Selected NCO shares are fractions of total manufacturing employment. 0.25 + 0.15 = 0.40 is modeled; 0.60 remains outside the two-group pilot scope.",
+  "supply_note": "Pilot is restricted to NCO groups 72 and 74. Group 81 is intentionally excluded because the current ITI crosswalk support is weak for a defensible trade-to-occupation demonstration.",
+  "proxy_supply_note": "District proxy supply is allocated from historical DGT division pools. If clean/district_iti_counts.csv contains complete NCVT district ITI counts, those counts are used as within-division weights; otherwise the model uses an explicitly labelled equal-within-division fallback. Proxy district ranking is for data-collection prioritisation only.",
+  "actual_supply_note": "The bundled NCVT file is an indexed partial sample, not a downloaded complete extract. Full district-wide policy eligibility requires a supplied file marked coverage_status=full_district_extract and covering all 31 districts and modeled NCO groups.",
+  "sensitivity_parameters": [
+    "opening_rate",
+    "seat_fill_rate",
+    "completion_rate",
+    "sector_entry_rate",
+    "occupation_prior_uncertainty",
+    "allocation_uncertainty",
+    "proxy_seat_uncertainty"
+  ],
+  "allocation_uncertainty": {
+    "concentration": 50.0
+  },
+  "partial_remainder_uncertainty": {
+    "low": 0.75,
+    "mode": 1.0,
+    "high": 1.25
+  },
+  "evidence_scores": {
+    "demand": {
+      "state_actual_plus_district_proxy": 0.55,
+      "district_actual": 0.9
+    },
+    "supply": {
+      "proxy": 0.45,
+      "partial_floor": 0.55,
+      "full_actual": 0.95,
+      "actual_total": 0.75
+    }
+  },
+  "headline_note": "Proxy-only SCI is a relative prioritisation index; it is not a district skill-gap finding. Partial NCVT evidence is treated as a floor plus uncertain remainder. Only full district coverage can unlock a provisional policy call.",
+  "proxy_allocation_method": "district_iti_count_when_available_else_equal_within_division"
+}

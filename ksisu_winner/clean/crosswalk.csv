@@ -1,0 +1,12 @@
+course_or_trade,nco_group_2digit,nco_group_label,statewide_course_weight,basis
+Fitter,72,"Metal, machinery and related trades workers",0.13,Analyst course-mix allocation prior; replace with source-derived NCVT trade counts when available
+Electrician,74,Electrical and electronic trades workers,0.12,Analyst course-mix allocation prior; replace with source-derived NCVT trade counts when available
+Welder,72,"Metal, machinery and related trades workers",0.09,Analyst course-mix allocation prior; replace with source-derived NCVT trade counts when available
+Machinist,72,"Metal, machinery and related trades workers",0.08,Analyst course-mix allocation prior; replace with source-derived NCVT trade counts when available
+Turner,72,"Metal, machinery and related trades workers",0.07,Analyst course-mix allocation prior; replace with source-derived NCVT trade counts when available
+Mechanic Motor Vehicle,72,"Metal, machinery and related trades workers",0.08,Analyst course-mix allocation prior; replace with source-derived NCVT trade counts when available
+Electronics Mechanic,74,Electrical and electronic trades workers,0.07,Analyst course-mix allocation prior; replace with source-derived NCVT trade counts when available
+Mechanic Diesel,72,"Metal, machinery and related trades workers",0.05,Analyst course-mix allocation prior; replace with source-derived NCVT trade counts when available
+Instrument Mechanic,74,Electrical and electronic trades workers,0.04,Analyst course-mix allocation prior; replace with source-derived NCVT trade counts when available
+Refrigeration and Air Conditioning Technician,74,Electrical and electronic trades workers,0.03,Analyst course-mix allocation prior; replace with source-derived NCVT trade counts when available
+Sheet Metal Worker,72,"Metal, machinery and related trades workers",0.06,Analyst course-mix allocation prior; replace with source-derived NCVT trade counts when available

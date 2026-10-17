@@ -1,0 +1,63 @@
+district,lgd_code,year,nco_group_2digit,occupation_label,proxy_seats,actual_seats,supply_basis,supply_coverage,allocation_basis,supply_p10,supply_median,supply_p90
+Bagalkot,524,2022-23,72,Metal machinery and related trades,5019.217402190924,,district-proxy,proxy,equal-within-division fallback,343.4261747973517,628.0099856400446,1036.766453777084
+Bagalkot,524,2022-23,74,Electrical and electronic trades,2330.3509367315,,district-proxy,proxy,equal-within-division fallback,159.44786687019902,291.57606476144923,481.35585353936034
+Ballari,528,2022-23,72,Metal machinery and related trades,3245.1889827856025,,district-proxy,proxy,equal-within-division fallback,229.8613385426462,400.5548480088825,671.7217720589535
+Ballari,528,2022-23,74,Electrical and electronic trades,1506.694884864744,,district-proxy,proxy,equal-within-division fallback,106.72133575194289,185.97189371840972,311.87082274165704
+Belagavi,527,2022-23,72,Metal machinery and related trades,5019.217402190924,,district-proxy,proxy,equal-within-division fallback,351.4193628651945,624.3617959029253,1053.6025520897567
+Belagavi,527,2022-23,74,Electrical and electronic trades,2330.3509367315,,district-proxy,proxy,equal-within-division fallback,163.1589899016974,289.88226238350103,489.17261347024424
+Bengaluru Rural,526,2022-23,72,Metal machinery and related trades,6033.50601982264,,district-proxy,proxy,equal-within-division fallback,450.77461845571764,755.4544659404596,1205.102513623014
+Bengaluru Rural,526,2022-23,74,Electrical and electronic trades,2801.270652060511,,district-proxy,proxy,equal-within-division fallback,209.2882157115832,350.7467163294991,559.5118813249708
+Bengaluru Urban,525,2022-23,72,Metal machinery and related trades,6033.50601982264,,district-proxy,proxy,equal-within-division fallback,439.8426466673373,759.0065891310089,1210.7567052044608
+Bengaluru Urban,525,2022-23,74,Electrical and electronic trades,2801.270652060511,,district-proxy,proxy,equal-within-division fallback,204.21265738126374,352.3959163822541,562.1370417020711
+Bidar,529,2022-23,72,Metal machinery and related trades,3245.1889827856025,,district-proxy,proxy,equal-within-division fallback,228.17140668062126,400.6720697056975,661.7319339133678
+Bidar,529,2022-23,74,Electrical and electronic trades,1506.694884864744,,district-proxy,proxy,equal-within-division fallback,105.93672453028843,186.02631807764524,307.23268360263506
+Chamarajanagar,530,2022-23,72,Metal machinery and related trades,2486.309016929862,,district-proxy,proxy,equal-within-division fallback,151.78709264540976,295.4285708783624,543.719621075258
+Chamarajanagar,530,2022-23,74,Electrical and electronic trades,1154.357757860293,,district-proxy,proxy,equal-within-division fallback,70.47257872822597,137.16326505066826,252.4412526420841
+Chikkaballapur,531,2022-23,72,Metal machinery and related trades,6033.50601982264,,district-proxy,proxy,equal-within-division fallback,438.6627946449857,749.2005221959023,1204.6543097519511
+Chikkaballapur,531,2022-23,74,Electrical and electronic trades,2801.270652060511,,district-proxy,proxy,equal-within-division fallback,203.6648689423148,347.8430995909546,559.3037866705486
+Chikkamagaluru,532,2022-23,72,Metal machinery and related trades,2486.309016929862,,district-proxy,proxy,equal-within-division fallback,141.3446786660452,305.42734756592995,557.0391251874344
+Chikkamagaluru,532,2022-23,74,Electrical and electronic trades,1154.357757860293,,district-proxy,proxy,equal-within-division fallback,65.62431509494957,141.80555422703887,258.6253081227374
+Chitradurga,533,2022-23,72,Metal machinery and related trades,2486.309016929862,,district-proxy,proxy,equal-within-division fallback,144.5358518807589,300.9962610905322,548.7894120143679
+Chitradurga,533,2022-23,74,Electrical and electronic trades,1154.357757860293,,district-proxy,proxy,equal-within-division fallback,67.10593123035234,139.74826407774708,254.79508414952798
+Dakshina Kannada,534,2022-23,72,Metal machinery and related trades,2486.309016929862,,district-proxy,proxy,equal-within-division fallback,144.66063833894304,301.56395783516723,548.4759779751425
+Dakshina Kannada,534,2022-23,74,Electrical and electronic trades,1154.357757860293,,district-proxy,proxy,equal-within-division fallback,67.16386780022356,140.01183756632764,254.64956120274474
+Davanagere,535,2022-23,72,Metal machinery and related trades,2486.309016929862,,district-proxy,proxy,equal-within-division fallback,143.9247089437657,297.6845543910435,549.5829461046785
+Davanagere,535,2022-23,74,Electrical and electronic trades,1154.357757860293,,district-proxy,proxy,equal-within-division fallback,66.82218629531978,138.2106859672702,255.16351069145793
+Dharwad,536,2022-23,72,Metal machinery and related trades,5019.217402190924,,district-proxy,proxy,equal-within-division fallback,349.87763031778803,618.945083597126,1023.2535414708912
+Dharwad,536,2022-23,74,Electrical and electronic trades,2330.3509367315,,district-proxy,proxy,equal-within-division fallback,162.44318550468725,287.36736024152276,475.08200139719946
+Gadag,537,2022-23,72,Metal machinery and related trades,5019.217402190924,,district-proxy,proxy,equal-within-division fallback,354.6856193887186,622.525637793487,1028.1339982263548
+Gadag,537,2022-23,74,Electrical and electronic trades,2330.3509367315,,district-proxy,proxy,equal-within-division fallback,164.6754661447622,289.029760404119,477.34792774795034
+Hassan,538,2022-23,72,Metal machinery and related trades,2486.309016929862,,district-proxy,proxy,equal-within-division fallback,146.57627070810088,299.6286892502942,540.9594732838126
+Hassan,538,2022-23,74,Electrical and electronic trades,1154.357757860293,,district-proxy,proxy,equal-within-division fallback,68.05326854304684,139.11332000906515,251.15975545319873
+Haveri,539,2022-23,72,Metal machinery and related trades,5019.217402190924,,district-proxy,proxy,equal-within-division fallback,350.5867950060904,623.0688321664923,1013.3869202830191
+Haveri,539,2022-23,74,Electrical and electronic trades,2330.3509367315,,district-proxy,proxy,equal-within-division fallback,162.77244053854193,289.2819577915857,470.50107013140183
+Kalaburagi,540,2022-23,72,Metal machinery and related trades,3245.1889827856025,,district-proxy,proxy,equal-within-division fallback,229.06248680531,399.16867424420633,662.4811538380528
+Kalaburagi,540,2022-23,74,Electrical and electronic trades,1506.694884864744,,district-proxy,proxy,equal-within-division fallback,106.35044030246536,185.32831304195292,307.5805357105245
+Kodagu,541,2022-23,72,Metal machinery and related trades,2486.309016929862,,district-proxy,proxy,equal-within-division fallback,146.78445005002376,300.2808021702922,549.2021768596903
+Kodagu,541,2022-23,74,Electrical and electronic trades,1154.357757860293,,district-proxy,proxy,equal-within-division fallback,68.14992323751103,139.41608672192137,254.98672497057055
+Kolar,542,2022-23,72,Metal machinery and related trades,6033.50601982264,,district-proxy,proxy,equal-within-division fallback,442.04128178595306,755.8250846185203,1200.8875379093406
+Kolar,542,2022-23,74,Electrical and electronic trades,2801.270652060511,,district-proxy,proxy,equal-within-division fallback,205.23345225776396,350.91878928717017,557.5549283150509
+Koppal,543,2022-23,72,Metal machinery and related trades,3245.1889827856025,,district-proxy,proxy,equal-within-division fallback,226.44028471750028,404.3600303762572,664.8421551996006
+Koppal,543,2022-23,74,Electrical and electronic trades,1506.694884864744,,district-proxy,proxy,equal-within-division fallback,105.13298933312512,187.73858553183368,308.6767149141003
+Mandya,544,2022-23,72,Metal machinery and related trades,2486.309016929862,,district-proxy,proxy,equal-within-division fallback,145.69186286486683,298.35716981518124,542.8177273176846
+Mandya,544,2022-23,74,Electrical and electronic trades,1154.357757860293,,district-proxy,proxy,equal-within-division fallback,67.64265061583102,138.52297169990558,252.02251625463924
+Mysuru,545,2022-23,72,Metal machinery and related trades,2486.309016929862,,district-proxy,proxy,equal-within-division fallback,144.28326242643573,298.34536599751164,538.0284095086546
+Mysuru,545,2022-23,74,Electrical and electronic trades,1154.357757860293,,district-proxy,proxy,equal-within-division fallback,66.98865755513087,138.51749135598754,249.79890441473248
+Raichur,546,2022-23,72,Metal machinery and related trades,3245.1889827856025,,district-proxy,proxy,equal-within-division fallback,225.30276169642994,400.1210160391001,665.527084135786
+Raichur,546,2022-23,74,Electrical and electronic trades,1506.694884864744,,district-proxy,proxy,equal-within-division fallback,104.60485364477103,185.77047173243932,308.994717634472
+Ramanagara,547,2022-23,72,Metal machinery and related trades,6033.50601982264,,district-proxy,proxy,equal-within-division fallback,444.6600374779086,749.3869916001462,1217.7120436688654
+Ramanagara,547,2022-23,74,Electrical and electronic trades,2801.270652060511,,district-proxy,proxy,equal-within-division fallback,206.44930311474323,347.9296746714964,565.3663059891159
+Shivamogga,548,2022-23,72,Metal machinery and related trades,2486.309016929862,,district-proxy,proxy,equal-within-division fallback,145.13259616151566,302.8013043818712,560.7674737040871
+Shivamogga,548,2022-23,74,Electrical and electronic trades,1154.357757860293,,district-proxy,proxy,equal-within-division fallback,67.3829910749894,140.586319891583,260.35632707689757
+Tumakuru,549,2022-23,72,Metal machinery and related trades,6033.50601982264,,district-proxy,proxy,equal-within-division fallback,441.76956728347125,751.9462685564017,1218.9844295007206
+Tumakuru,549,2022-23,74,Electrical and electronic trades,2801.270652060511,,district-proxy,proxy,equal-within-division fallback,205.10729909589736,349.11791040118646,565.957056553906
+Udupi,550,2022-23,72,Metal machinery and related trades,2486.309016929862,,district-proxy,proxy,equal-within-division fallback,149.59272956892582,301.2885707877026,553.5155108654217
+Udupi,550,2022-23,74,Electrical and electronic trades,1154.357757860293,,district-proxy,proxy,equal-within-division fallback,69.45376729985838,139.88397929429055,256.98934433037437
+Uttara Kannada,551,2022-23,72,Metal machinery and related trades,5019.217402190924,,district-proxy,proxy,equal-within-division fallback,348.86981547332795,624.2646354041118,1015.6294778396064
+Uttara Kannada,551,2022-23,74,Electrical and electronic trades,2330.3509367315,,district-proxy,proxy,equal-within-division fallback,161.97527146975938,289.837152151909,471.54225756838866
+Vijayanagara,552,2022-23,72,Metal machinery and related trades,3245.1889827856025,,district-proxy,proxy,equal-within-division fallback,227.70755920336487,398.84265527378295,662.9724573987468
+Vijayanagara,552,2022-23,74,Electrical and electronic trades,1506.694884864744,,district-proxy,proxy,equal-within-division fallback,105.7213667729908,185.17694709139926,307.8086409351324
+Vijayapura,553,2022-23,72,Metal machinery and related trades,5019.217402190924,,district-proxy,proxy,equal-within-division fallback,350.1833968480831,622.2097102220916,1039.8065043128545
+Vijayapura,553,2022-23,74,Electrical and electronic trades,2330.3509367315,,district-proxy,proxy,equal-within-division fallback,162.58514853661,288.88307974597114,482.76730557382524
+Yadgir,554,2022-23,72,Metal machinery and related trades,3245.1889827856025,,district-proxy,proxy,equal-within-division fallback,230.43508868742538,404.6070037192096,672.678042299688
+Yadgir,554,2022-23,74,Electrical and electronic trades,1506.694884864744,,district-proxy,proxy,equal-within-division fallback,106.9877197477332,187.85325172677588,312.31480535342655
