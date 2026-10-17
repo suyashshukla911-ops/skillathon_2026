@@ -11,9 +11,9 @@ This build contains real public DGT seat-capacity evidence extracted from the up
 - 29 published districts in the extracted matrix.
 - 45,416 provisional seat-capacity records.
 - 39,984 seats (88.0%) map into the pilot NCO 72/74 scope through the versioned project crosswalk.
-- 5,432 seats (12.0%) remain unmapped/review.
-- Kodagu and Vijayanagara are absent from this extracted provisional matrix; Ballari is retained using the DGT source geography and the model's analytical merge.
+- 5,432 seats (12.0%) are explicitly OUT_OF_SCOPE for the NCO 72/74 pilot; true UNMAPPED seats are tracked separately.
+- Kodagu is absent from the analytical geography; Ballari covers the merged Ballari-Vijayanagara geography in the model.
 
 ## Interpretation
 
-These are real public DGT rows, not synthetic numbers. They are **provisional seat-capacity evidence**, not a final frozen matrix and not student completions, placements, or employment. The evidence is therefore used to replace district supply proxies where rows are mapped, while the policy gate remains closed until complete district x trade coverage and an acceptable unmapped-share threshold are achieved.
+These are real public DGT rows, not synthetic numbers. They are **provisional seat-capacity evidence**, not a final frozen matrix and not student completions, placements, or employment. The evidence is therefore used to replace district supply proxies where rows are mapped, while the policy gate remains closed until complete analytical district x trade coverage, acceptable UNMAPPED share, and non-provisional evidence are achieved.

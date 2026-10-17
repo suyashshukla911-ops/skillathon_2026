@@ -1,0 +1,21 @@
+# V11 Final Build Status
+
+- Version: V11
+- Proxy baseline: `out/proxy_baseline/`
+- DGT partial-floor evidence run: `out/dgt_run/`
+- DGT seat-share evidence-upgrade run: `out/dgt_share_run/`
+- Self-test: 14 PASS checks
+- Pytest: 13 passed
+- DGT coverage: 58/60 analytical district-group pairs
+- DGT UNMAPPED: 0.0%
+- DGT OUT_OF_SCOPE: 12.0%
+- DGT/NCVT seat scale: 20.9% (scale warning retained)
+- DGT seats vs 2022 ITI-count weights Spearman: 0.531
+- DGT-share mode vs proxy district-rank Spearman: 0.445
+- DGT-share primary mean supply conservation ratio: 0.999
+- DGT-share median-of-cell supply ratio (diagnostic only): 0.617
+- DGT-share allocation concentration: 20.0
+- Policy decisions remain NEEDS DATA because the DGT source is provisional/incomplete.
+- Crosswalk contains `reviewed_by` and `reviewed_on`.
+- PDF generator prefers `out/dgt_share_run` when present.
+- The 30 ITI-weight verification claim remains explicitly limited to the bundled transcription; independent PDF visual verification is still required.

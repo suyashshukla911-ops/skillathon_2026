@@ -70,6 +70,7 @@ class KSISUGUI(tk.Tk):
         ttk.Button(bar, text="Load DGT 2026 Real Supply", command=self.load_dgt_supply).pack(side="left", padx=3, pady=8)
         ttk.Button(bar, text="Load Other Real Supply CSV", command=self.load_real_supply).pack(side="left", padx=3, pady=8)
         ttk.Button(bar, text="Run With Loaded Supply", command=self.run_actual).pack(side="left", padx=3, pady=8)
+        ttk.Button(bar, text="Run DGT Share Upgrade", command=self.run_dgt_share).pack(side="left", padx=3, pady=8)
         ttk.Button(bar, text="Run 3-Min Judge Demo", command=self.run_judge_demo).pack(side="left", padx=3, pady=8)
         ttk.Button(bar, text="Open Output", command=self.open_output).pack(side="left", padx=3, pady=8)
         tk.Label(bar, textvariable=self.status, bg="#e6eef7", fg="#29425f", anchor="w").pack(side="left", padx=12, fill="x", expand=True)
@@ -161,16 +162,18 @@ class KSISUGUI(tk.Tk):
 
 3. Click Load DGT 2026 Real Supply. This loads the official DGT CTS-2026 provisional dynamic seat matrix extracted from the uploaded public PDF. It contains real Karnataka ITI/trade seat-capacity rows, but the source is provisional and does not cover every analytical geography in this build.
 
-4. Click Run With Loaded Supply. Explain that real district/trade observations replace the proxy where available, while missing geographies and unmapped trades remain uncertain and keep the policy gate closed.
+4. Click Run With Loaded Supply. Show the conservative partial-floor evidence run.
 
-5. Open Gap Results. Show the supply basis for Tumakuru / Kalaburagi or other covered districts, and the distinction between real provisional evidence and proxy supply.
+5. Click Run DGT Share Upgrade. Explain that DGT district/group seat shares are coverage-weighted with the historical ITI-count proxy; the statewide NCVT magnitude remains the level benchmark. A district absent from DGT retains its proxy share; policy calls remain gated.
 
-6. Open Sensitivity. Show rank stability across the shared Monte Carlo draws rather than a chart that merely reflects arbitrary parameter range widths.
+6. Open Gap Results. Show that the DGT-share ranking can change relative to the proxy baseline while the decision remains NEEDS DATA.
 
-7. Open Validation & Linkage. Show 80 seeded typos, 20 unseen aliases routed to review, duplicate removal, and source lineage.
+7. Open District Priority and Sensitivity. Show that the output is a data-collection queue and rank-stability diagnostic, not a validated shortage leaderboard.
+
+8. Open Validation & Linkage. Show 80 seeded typos, 20 unseen aliases routed to review, duplicate removal, proxy-vs-DGT Spearman, and source lineage.
 
 THE ONE-SENTENCE STORY
-"We replace proxy supply with real DGT evidence wherever it exists, keep uncertainty where coverage is incomplete, and only unlock district policy calls when the evidence gate is satisfied."
+"We use real DGT seat distribution with coverage-weighted shrinkage toward the historical proxy, keep the statewide level anchored to the NCVT benchmark, retain uncertainty for sparse or missing areas, and only unlock district policy calls when complete evidence is available."
 '''
         txt.insert('1.0',text); txt.configure(state='disabled')
 
@@ -231,6 +234,33 @@ THE ONE-SENTENCE STORY
         except Exception as e:
             messagebox.showerror("Analysis failed",str(e)); self.status.set("Analysis failed")
 
+    def run_dgt_share(self):
+        p = CLEAN / "dgt_cts_2026_karnataka_supply_nco.csv"
+        if not p.exists():
+            messagebox.showerror("DGT supply missing", f"Expected bundled file not found:\n{p}")
+            return
+        try:
+            self.actual_supply = p
+            self.supply_path.set(str(p))
+            self.supply_label.config(
+                text=f"DGT 2026 coverage-weighted share allocation selected:\n{p.name}\nReal DGT distribution blended with historical ITI-count coverage weights; provisional/incomplete evidence."
+            )
+            self.status.set("Running DGT seat-share evidence upgrade...")
+            self.update_idletasks()
+            self.last = compute_model(
+                actual_supply_path=str(p),
+                overrides={**self._override_config(), "proxy_allocation_method": "dgt_2026_seat_share"},
+                output_dir=OUT / "dgt_share_run",
+            )
+            self._display(
+                self.last,
+                "DGT share upgrade complete — coverage-weighted real DGT distribution changed the allocation; policy gate remains conservative."
+            )
+            self.nb.select(self.t_results)
+        except Exception as e:
+            messagebox.showerror("DGT share upgrade failed", str(e))
+            self.status.set("DGT share upgrade failed")
+
     def run_judge_demo(self):
         try:
             self.status.set("Running 3-minute judge demo: proxy baseline → official partial NCVT evidence...")
@@ -284,7 +314,8 @@ THE ONE-SENTENCE STORY
         self.val_text.insert("1.0", "Corruption rows are never dropped; review rows remain visible. Source provenance is regenerated from the curated source registry and retains official URLs.\n")
         for item in self.val_tree.get_children(): self.val_tree.delete(item)
         rows=[
-            ("District count",len(d),"PASS" if len(d)==31 else "REVIEW"),
+            ("Raw LGD districts",31,"PASS"),
+            ("Analytical geographies",len(d),"PASS" if len(d)==30 else "REVIEW"),
             ("Seeded corruption test",f"{int(c.iloc[0].seeded_corruptions)} cases; {float(c.iloc[0].seeded_typo_recovery_rate)*100:.1f}% typo recovery","PASS" if float(c.iloc[0].seeded_typo_recovery_rate)>=0.9 else "REVIEW"),
             ("Unmatched review rows",int(c.iloc[0].unmatched_review_rows),"REVIEW QUEUE" if int(c.iloc[0].unmatched_review_rows)>0 else "PASS"),
             ("Selected occupation share",f"{res['audit']['occupation_share_sum_selected']:.2f}","72 + 74 only; not normalized"),
@@ -292,10 +323,17 @@ THE ONE-SENTENCE STORY
             ("Monte Carlo draws",res['audit']['monte_carlo_draws'],"PASS"),
             ("Relative uncapped ratio", "Median R / statewide median R", "PRIORITY INDEX"),
             ("Proxy allocation diagnostic",f"{res['audit'].get('district_supply_proxy_correlation',float('nan')):.3f}","NOT VALIDATION"),
+            ("DGT vs ITI-count Spearman",f"{res['audit'].get('proxy_vs_dgt_spearman',float('nan')):.3f}","PROXY DIAGNOSTIC"),
+            ("DGT / NCVT seat scale",f"{res['audit'].get('actual_to_state_seat_ratio',0.0):.3f}","SCALE CHECK"),
+            ("Allocation method",res['audit'].get('proxy_allocation_method',''),"MODEL CONTROL"),
+            ("Mean supply conservation",f"{res['audit'].get('statewide_supply_mean_conservation_ratio',float('nan')):.3f}","CONSERVATION"),
         ]
         demo=res.get("interval_demo")
         if demo is not None and not demo.empty:
-            rows.append(("Partial evidence update",f"{(demo.evidence_effect=='WIDER').sum()} cells widened; partial rows are floors + uncertain remainder","EVIDENCE UPDATE"))
+            if str(res['audit'].get('proxy_allocation_method','')) == 'dgt_2026_seat_share':
+                rows.append(("DGT share evidence update",f"{len(demo)} cells compared with proxy; DGT distribution is used for district shares","EVIDENCE UPGRADE"))
+            else:
+                rows.append(("Partial evidence update",f"{(demo.evidence_effect=='WIDER').sum()} cells widened; partial rows are floors + uncertain remainder","EVIDENCE UPDATE"))
         for row in rows: self.val_tree.insert("","end",values=row)
 
     def _fill(self,tv,df,fn):

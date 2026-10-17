@@ -1,0 +1,16 @@
+KSISU V11 TEST REPORT
+======================
+Self-test: 14/14 PASS
+Pytest: 13 passed
+Proxy baseline: exit 0
+DGT partial-floor run: exit 0
+DGT seat-share run: exit 0
+DGT analytical coverage: 58/60 district-group pairs
+DGT UNMAPPED seats: 0.0%
+DGT OUT_OF_SCOPE seats: 12.0%
+DGT/NCVT state seat ratio: 0.209
+DGT seats vs 2022 ITI-count weights Spearman: 0.531
+DGT-share vs proxy district-rank Spearman: 0.445
+DGT-share primary mean conservation ratio: 0.999
+Policy decisions in DGT-share run: 60 NEEDS DATA
+PDF pages: 10

@@ -46,7 +46,7 @@ Proxy supply is a research assumption, not a finding.
 
 ### Actual supply
 
-When a real NCVT MIS/DGT/Karnataka district×trade file is loaded, full district rows replace the proxy for the relevant district/trade cells. A file labelled partial is treated as observed floor + uncertain remainder. Missing trade cells stay proxy or missing; they are never silently treated as actual.
+When a real NCVT MIS/DGT/Karnataka district×trade file is loaded, full district rows replace the proxy for the relevant district/trade cells. A file labelled partial is treated as observed floor + uncertain remainder. The DGT-share upgrade uses a coverage-weighted blend: DGT group share is blended with the historical 2022 ITI-count proxy using DGT-ITI / 2022-ITI coverage. This avoids treating sparse DGT districts as zero-supply districts. Missing trade cells stay proxy or missing; they are never silently treated as actual.
 
 The bundled `raw/ncvtmis_file1171_real_partial.csv` contains a small official NCVT MIS indexed subset for Tumakuru and Kalaburagi. It is labelled **partial_floor** in the model: observed seats are a lower bound and the unobserved remainder stays uncertain. It cannot trigger a policy call by itself.
 

@@ -23,7 +23,7 @@ A reproducible, source-driven manufacturing skill-alignment pilot for Karnataka.
 
 ## What is intentionally not claimed
 - No official Karnataka Skill Index formula
-- DGT 2026 real supply is bundled, but the matrix is provisional, omits two analytical geographies in this build, and leaves 12.0% of published seats unmapped; full policy eligibility therefore remains blocked
+- DGT 2026 real supply is bundled, but the matrix is provisional, covers 58/60 analytical district-group pairs, and has 12.0% of published seats explicitly OUT_OF_SCOPE for the pilot; full policy eligibility therefore remains blocked. The DGT-share upgrade uses coverage-weighted shrinkage toward the historical 2022 ITI-count proxy, so missing districts such as Kodagu retain nonzero proxy allocation rather than collapsing to zero.
 - No empirical occupation-by-industry prior until PLFS microdata is loaded
 - No policy gap call from proxy or partial evidence
 

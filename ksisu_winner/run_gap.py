@@ -33,6 +33,7 @@ DEFAULT_CONFIG = {
     "partial_remainder_uncertainty": {"low": 0.75, "mode": 1.00, "high": 1.25},
     "occupation_prior_uncertainty": {"low": 0.80, "mode": 1.00, "high": 1.20},
     "allocation_uncertainty": {"concentration": 50.0},
+    "dgt_share_allocation_uncertainty": {"concentration": 20.0},
     "demand_allocation_uncertainty": {"lognormal_sigma": 0.35},
     "confidence_weights": {"demand_evidence": 0.35, "supply_evidence": 0.30, "mapping": 0.15, "interval": 0.20},
     "evidence_scores": {
@@ -43,6 +44,8 @@ DEFAULT_CONFIG = {
     "decision_rule": "GAP if p90 < 1; SURPLUS if p10 > 1; otherwise NEEDS DATA",
     "proxy_allocation_method": "official_2022_district_iti_count_weight",
     "max_unmapped_supply_share": 0.05,
+    "dgt_scale_warning_threshold": 0.5,
+    "provisional_sources": ["provisional_dgt_2026"],
 }
 
 
@@ -168,6 +171,8 @@ def source_registry(paths: dict[str, Path] | None = None) -> pd.DataFrame:
         "crosswalk.csv": ("SRC-HUMAN-CROSSWALK", "course-to-NCO"),
         "ncvtmis_file1171_real_partial.csv": ("SRC-NCVT-1171", "district-x-ITI-x-trade"),
         "district_iti_counts.csv": ("SRC-RAJYA-ITI-2022", "district historical weight"),
+        "dgt_cts_2026_karnataka_supply_nco.csv": ("SRC-DGT-CTS2026-KA", "district-x-ITI-x-trade-x-NCO"),
+        "dgt_cts_2026_provisional_seat_matrix.pdf": ("SRC-DGT-CTS2026-KA", "state-x-district-x-ITI-x-trade"),
     }
     meta = pd.read_csv(RAW / "source_registry.csv") if (RAW / "source_registry.csv").exists() else pd.DataFrame()
     citations_path = ROOT / "CITATIONS.csv"
@@ -292,7 +297,8 @@ def load_actual_supply(path: Path | None, selected_groups) -> pd.DataFrame | Non
     df = df.copy()
     if "nco_group_2digit" not in df.columns:
         if "trade" in df.columns:
-            cw = pd.read_csv(CLEAN / "crosswalk.csv")
+            cw_path = CLEAN / "dgt_trade_nco_crosswalk.csv" if (CLEAN / "dgt_trade_nco_crosswalk.csv").exists() else CLEAN / "crosswalk.csv"
+            cw = pd.read_csv(cw_path)
             cw2 = cw.copy()
             cw2["_trade"] = cw2["course_or_trade"].astype(str).str.strip().str.lower()
             df["_trade"] = df["trade"].astype(str).str.replace(r"\s*\(NSQF\).*", "", regex=True).str.strip().str.lower()
@@ -334,6 +340,94 @@ def _shared_allocation_draws(rng, districts_df: pd.DataFrame, draws: int, concen
         samples /= samples.sum(axis=1, keepdims=True)
         out[:, positions] = samples / np.maximum(base[None, :], 1e-12)
     return out
+
+
+
+def _spearman_series(a: pd.Series, b: pd.Series) -> float:
+    x = pd.to_numeric(a, errors="coerce")
+    y = pd.to_numeric(b, errors="coerce")
+    mask = x.notna() & y.notna()
+    if mask.sum() < 2:
+        return float("nan")
+    return float(x[mask].rank(method="average").corr(y[mask].rank(method="average")))
+
+
+def _dgt_share_allocation_draws(
+    rng: np.random.Generator,
+    dmap: pd.DataFrame,
+    actual_map: pd.DataFrame | None,
+    selected_groups: list[str],
+    group_weights: dict[str, float],
+    total_state_seats: float,
+    draws: int,
+    concentration: float,
+    mean_retention: float = 0.75,
+):
+    """Allocate statewide in-scope seats using DGT shares shrunk toward the historical proxy.
+
+    For each district:
+        w_d = min(DGT ITIs in matrix / 2022 ITI count, 1)
+        share_d = w_d * DGT_share_d + (1-w_d) * proxy_share_d
+
+    This prevents sparse DGT coverage from creating artificial zero-supply districts.
+    A district absent from DGT (w=0) remains on the historical proxy. Dirichlet/Gamma
+    draws perturb the blended shares with deliberately wider uncertainty because DGT is
+    provisional and incomplete.
+    """
+    reset = dmap.reset_index(drop=True)
+    shares_by_group = {}
+    mult_by_group = {}
+    state_total_by_group = {}
+    observed_by_group = {}
+    proxy_share_by_group = {}
+    dgt_share_by_group = {}
+
+    coverage = pd.to_numeric(reset["matrix_iti_coverage"], errors="coerce").fillna(0.0).to_numpy(dtype=float)
+    coverage = np.clip(coverage, 0.0, 1.0)
+
+    for group in selected_groups:
+        proxy_base = pd.to_numeric(reset["proxy_seats_total"], errors="coerce").fillna(0.0).to_numpy(dtype=float)
+        proxy_base = proxy_base * float(group_weights.get(group, 0.0))
+        proxy_total = float(proxy_base.sum())
+        proxy_share = proxy_base / max(proxy_total, 1e-12)
+
+        observed = {}
+        if actual_map is not None and not actual_map.empty:
+            sub = actual_map[actual_map["nco_group_2digit"].astype(str).eq(str(group))]
+            if not sub.empty:
+                observed = dict(zip(
+                    sub["matched_district"].astype(str),
+                    pd.to_numeric(sub["seats"], errors="coerce").fillna(0.0)
+                ))
+
+        observed_total = float(sum(v for v in observed.values() if v >= 0))
+        dgt_share = np.zeros(len(reset), dtype=float)
+        if observed_total > 0:
+            for i, district in enumerate(reset["matched_district"].astype(str)):
+                dgt_share[i] = float(observed.get(district, 0.0)) / observed_total
+
+        raw = coverage * dgt_share + (1.0 - coverage) * proxy_share
+        raw = raw / max(raw.sum(), 1e-12)
+
+        alpha = np.maximum(float(concentration) * raw, 1e-6)
+        samples = rng.gamma(shape=alpha, scale=1.0, size=(draws, len(reset)))
+        samples /= np.maximum(samples.sum(axis=1, keepdims=True), 1e-12)
+        # Keep a large fraction of the evidence-weighted mean so tiny districts do not
+        # collapse toward zero merely because their Dirichlet alpha is < 1.
+        retention = float(np.clip(mean_retention, 0.0, 0.99))
+        samples = retention * raw[None, :] + (1.0 - retention) * samples
+        samples /= np.maximum(samples.sum(axis=1, keepdims=True), 1e-12)
+        mult = samples / np.maximum(raw[None, :], 1e-12)
+
+        shares_by_group[group] = raw
+        mult_by_group[group] = mult
+        state_total_by_group[group] = float(total_state_seats) * float(group_weights.get(group, 0.0))
+        observed_by_group[group] = observed
+        proxy_share_by_group[group] = proxy_share
+        dgt_share_by_group[group] = dgt_share
+
+    return shares_by_group, mult_by_group, state_total_by_group, observed_by_group, proxy_share_by_group, dgt_share_by_group
+
 
 
 def _rank_stats_from_draws(district_draws: dict[str, np.ndarray]) -> pd.DataFrame:
@@ -525,11 +619,15 @@ def compute_model(paths=None, overrides=None, actual_supply_path=None, output_di
     actual_map = None
     actual_full_ready = False
     actual_duplicate_rows_removed = 0
-    required_pairs = {(d, g) for d in lgd["district_name"] for g in selected_groups}
+    analytical_districts = sorted(set(dmap["district"].astype(str).map(apply_analytical_merge)))
+    required_pairs = {(d, g) for d in analytical_districts for g in selected_groups}
     covered_pairs = set()
     unmapped_share = 0.0
     unmapped_seats = 0.0
+    out_of_scope_share = 0.0
+    out_of_scope_seats = 0.0
     total_input_seats = 0.0
+    actual_scale_ratio = 0.0
     if actual_supply is not None:
         actual_match = match_districts(actual_supply["district"], lgd, fuzzy_threshold)
         actual_match_df = pd.concat([actual_supply.reset_index(drop=True), actual_match.reset_index(drop=True)], axis=1)
@@ -542,18 +640,22 @@ def compute_model(paths=None, overrides=None, actual_supply_path=None, output_di
         # Re-evaluate exact duplicate rows here for reporting even though loader already deduped.
         raw_rows = len(pd.read_csv(actual_supply_path)) if actual_supply_path else len(actual_supply)
         actual_duplicate_rows_removed = max(int(raw_rows - len(actual_supply)), 0)
-        covered_districts = set(matched["matched_district"])
+        covered_districts_raw = set(matched["matched_district"])
+        covered_districts = {apply_analytical_merge(x) for x in covered_districts_raw}
         covered_groups = set(matched["nco_group_2digit"])
-        selected_pair_rows = matched[matched["nco_group_2digit"].isin(selected_groups)]
-        covered_pairs = set(zip(selected_pair_rows["matched_district"], selected_pair_rows["nco_group_2digit"]))
-        required_pairs = {(d, g) for d in lgd["district_name"] for g in selected_groups}
+        selected_pair_rows = matched[matched["nco_group_2digit"].isin(selected_groups)].copy()
+        selected_pair_rows["matched_analytical_district"] = selected_pair_rows["matched_district"].map(apply_analytical_merge)
+        covered_pairs = set(zip(selected_pair_rows["matched_analytical_district"], selected_pair_rows["nco_group_2digit"]))
         total_input_seats = float(valid_seat_rows["seats"].sum()) if not valid_seat_rows.empty else 0.0
         unmapped_seats = float(valid_seat_rows.loc[valid_seat_rows["nco_group_2digit"].eq("UNMAPPED"), "seats"].sum()) if not valid_seat_rows.empty else 0.0
+        out_of_scope_seats = float(valid_seat_rows.loc[valid_seat_rows["nco_group_2digit"].eq("OUT_OF_SCOPE"), "seats"].sum()) if not valid_seat_rows.empty else 0.0
         unmapped_share = unmapped_seats / total_input_seats if total_input_seats > 0 else 1.0
+        out_of_scope_share = out_of_scope_seats / total_input_seats if total_input_seats > 0 else 0.0
+        actual_scale_ratio = total_input_seats / max(total_current_seats, 1e-9) if total_input_seats > 0 else 0.0
         actual_full_ready = bool(
             not actual_match_df["matched_district"].eq("").any()
             and actual_match_df["coverage_status_norm"].isin(actual_full_flags).all()
-            and covered_districts >= set(lgd["district_name"])
+            and covered_districts >= set(analytical_districts)
             and required_pairs.issubset(covered_pairs)
             and unmapped_share <= float(cfg.get("max_unmapped_supply_share", 0.05))
         )
@@ -569,8 +671,37 @@ def compute_model(paths=None, overrides=None, actual_supply_path=None, output_di
     else:
         unmapped_share = 0.0
         unmapped_seats = 0.0
+        out_of_scope_share = 0.0
+        out_of_scope_seats = 0.0
         total_input_seats = 0.0
+        actual_scale_ratio = 0.0
 
+    # Approximate district coverage of the DGT matrix against the historical 2022 ITI-count denominator.
+    # The two sources differ in period/definition, so this is a blending weight, not exact coverage.
+    dgt_iti_count_by_district = {}
+    if actual_supply_loaded and not actual_match_df.empty:
+        id_candidates = [c for c in ["iti_mis_code", "iti_code", "iti_name"] if c in actual_match_df.columns]
+        if id_candidates:
+            id_col = id_candidates[0]
+            _iti_rows = actual_match_df[actual_match_df["matched_district"].ne("")].copy()
+            if not _iti_rows.empty:
+                _iti_rows["matched_analytical_district"] = _iti_rows["matched_district"].map(apply_analytical_merge)
+                dgt_iti_count_by_district = (
+                    _iti_rows.groupby("matched_analytical_district")[id_col]
+                    .nunique(dropna=True)
+                    .astype(float)
+                    .to_dict()
+                )
+
+    dmap["dgt_itis_in_matrix"] = dmap["matched_district"].map(dgt_iti_count_by_district).fillna(0.0)
+    dmap["iti_2022_count"] = pd.to_numeric(dmap["iti_count"], errors="coerce").fillna(0.0)
+    dmap["matrix_iti_coverage"] = np.where(
+        dmap["iti_2022_count"] > 0,
+        np.clip(dmap["dgt_itis_in_matrix"] / dmap["iti_2022_count"], 0.0, 1.0),
+        0.0,
+    )
+
+    allocation_method = str(cfg.get("proxy_allocation_method", "official_2022_district_iti_count_weight"))
     rng = np.random.default_rng(seed)
     rate_open = triangular(rng, cfg["opening_rate"], draws)
     rate_fill = triangular(rng, cfg["seat_fill_rate"], draws)
@@ -581,10 +712,36 @@ def compute_model(paths=None, overrides=None, actual_supply_path=None, output_di
     actual_seat_mult = triangular(rng, cfg["actual_seat_uncertainty"], draws)
     partial_remainder_mult = triangular(rng, cfg["partial_remainder_uncertainty"], draws)
     alloc_draws = _shared_allocation_draws(rng, dmap, draws, float(cfg.get("allocation_uncertainty", {}).get("concentration", 50.0)))
+    dgt_share_shares = {}
+    dgt_share_mult = {}
+    dgt_share_state_total = {}
+    dgt_share_observed = {}
+    dgt_share_proxy_share = {}
+    dgt_share_dgt_share = {}
+    if allocation_method == "dgt_2026_seat_share":
+        (
+            dgt_share_shares,
+            dgt_share_mult,
+            dgt_share_state_total,
+            dgt_share_observed,
+            dgt_share_proxy_share,
+            dgt_share_dgt_share,
+        ) = _dgt_share_allocation_draws(
+            rng,
+            dmap,
+            actual_map,
+            selected_groups,
+            group_weights,
+            total_current_seats,
+            draws,
+            float(cfg.get("dgt_share_allocation_uncertainty", {}).get("concentration", 18.0)),
+            float(cfg.get("dgt_share_allocation_uncertainty", {}).get("mean_retention", 0.75)),
+        )
     demand_sigma = float(cfg.get("demand_allocation_uncertainty", {}).get("lognormal_sigma", 0.35))
     demand_alloc_mult = rng.lognormal(mean=-0.5 * demand_sigma * demand_sigma, sigma=demand_sigma, size=(draws, len(dmap))) if demand_sigma > 0 else np.ones((draws, len(dmap)))
 
     results, demand_rows, supply_rows = [], [], []
+    statewide_supply_draw_mean_sum = 0.0
     district_sci_draws: dict[str, np.ndarray] = {}
     district_ratio_uncapped_draws: dict[str, np.ndarray] = {}
     year = str(cfg.get("reference_fy", "2022-23"))
@@ -616,9 +773,26 @@ def compute_model(paths=None, overrides=None, actual_supply_path=None, output_di
             proxy_seats_draw = proxy_seats_total * alloc_vec * proxy_group_weight * proxy_seat_mult
             supply_basis = "district-proxy"
             actual_seats_value = np.nan
+            observed_supply_share = 0.0
+            dgt_observed_to_modeled_supply = 0.0
             coverage = "proxy"
 
-            if actual_map is not None:
+            # DGT share mode: use real DGT district/trade seat shares to allocate
+            # the same statewide in-scope seat magnitude used by the proxy model.
+            # Missing districts/groups fall back to historical ITI-count proxy shares.
+            if allocation_method == "dgt_2026_seat_share" and group in dgt_share_mult:
+                state_group_total = dgt_share_state_total.get(group, total_current_seats * proxy_group_weight)
+                group_mult = dgt_share_mult[group][:, pos]
+                share_alloc_seats = state_group_total * dgt_share_shares[group][pos] * group_mult
+                exact_dgt = dgt_share_observed.get(group, {}).get(str(district), 0.0)
+                actual_seats_value = float(exact_dgt) if exact_dgt > 0 else np.nan
+                modeled_median = float(np.quantile(share_alloc_seats * rate_fill * rate_completion * rate_entry, 0.50))
+                if actual_seats_value == actual_seats_value:
+                    observed_supply_share = float(actual_seats_value / max(modeled_median, 1e-9))
+                supply_draw = share_alloc_seats * rate_fill * rate_completion * rate_entry
+                supply_basis = "dgt-seat-share-calibrated"
+                coverage = "dgt_share_proxy"
+            elif actual_map is not None:
                 exact = actual_map[(actual_map.matched_district == district) & (actual_map.nco_group_2digit == group)]
                 all_rows = actual_map[(actual_map.matched_district == district) & (actual_map.nco_group_2digit == "ALL")]
                 if not exact.empty:
@@ -631,6 +805,7 @@ def compute_model(paths=None, overrides=None, actual_supply_path=None, output_di
                     else:
                         proxy_group_seats = proxy_seats_total * proxy_group_weight
                         remainder = max(proxy_group_seats - actual_seats_value, 0.0)
+                        observed_supply_share = float(min(actual_seats_value / max(proxy_group_seats, 1e-9), 1.0))
                         total_seats_draw = actual_seats_value + remainder * partial_remainder_mult * alloc_vec * proxy_seat_mult
                         supply_draw = total_seats_draw * rate_fill * rate_completion * rate_entry
                         supply_basis = "partial-observed-floor"
@@ -647,6 +822,10 @@ def compute_model(paths=None, overrides=None, actual_supply_path=None, output_di
                 supply_draw = proxy_seats_draw * rate_fill * rate_completion * rate_entry
 
             p10_s, p50_s, p90_s = np.quantile(supply_draw, [0.10, 0.50, 0.90])
+            statewide_supply_draw_mean_sum += float(np.mean(supply_draw))
+            if actual_seats_value == actual_seats_value:
+                dgt_observed_to_modeled_supply = float(actual_seats_value / max(p50_s, 1e-9))
+                observed_supply_share = dgt_observed_to_modeled_supply
             p10_d, p50_d, p90_d = np.quantile(demand_draw, [0.10, 0.50, 0.90])
             ratio_draw = supply_draw / np.maximum(demand_draw, 1e-9)
             p10, p50, p90 = np.quantile(ratio_draw, [0.10, 0.50, 0.90])
@@ -661,6 +840,7 @@ def compute_model(paths=None, overrides=None, actual_supply_path=None, output_di
                 "full_actual": float(evidence_cfg.get("supply", {}).get("full_actual", 0.95)),
                 "partial_floor": float(evidence_cfg.get("supply", {}).get("partial_floor", 0.55)),
                 "actual_total": float(evidence_cfg.get("supply", {}).get("actual_total", 0.75)),
+                "dgt_share_proxy": float(evidence_cfg.get("supply", {}).get("dgt_share_proxy", 0.60)),
                 "proxy": float(evidence_cfg.get("supply", {}).get("proxy", 0.45)),
             }.get(coverage, float(evidence_cfg.get("supply", {}).get("proxy", 0.45)))
             interval_component = 1.0 / (1.0 + width)
@@ -701,6 +881,11 @@ def compute_model(paths=None, overrides=None, actual_supply_path=None, output_di
                 "supply_coverage": coverage,
                 "allocation_basis": dm["allocation_basis"].iloc[0],
                 "supply_p10": p10_s, "supply_median": p50_s, "supply_p90": p90_s,
+                "observed_supply_share": observed_supply_share,
+                "dgt_observed_seats_to_supply_median": dgt_observed_to_modeled_supply,
+                "dgt_itis_in_matrix": float(dm["dgt_itis_in_matrix"].iloc[0]),
+                "iti_2022_count": float(dm["iti_2022_count"].iloc[0]),
+                "matrix_iti_coverage": float(dm["matrix_iti_coverage"].iloc[0]),
             })
             results.append({
                 "district": district, "lgd_code": d["lgd_code"], "year": year, "industry": "Manufacturing",
@@ -712,6 +897,10 @@ def compute_model(paths=None, overrides=None, actual_supply_path=None, output_di
                 "evidence_ready": bool(actual_full_ready and coverage == "full_actual"), "confidence_score": confidence,
                 "annual_openings_median": annual_openings_median, "voi_score": voi, "data_priority_score": priority,
                 "mapping_rate": mapping_rate_global,
+                "observed_supply_share": observed_supply_share,
+                "dgt_observed_seats_to_supply_median": dgt_observed_to_modeled_supply,
+                "actual_unmapped_share_run": unmapped_share if actual_supply_loaded else 0.0,
+                "actual_out_of_scope_share_run": out_of_scope_share if actual_supply_loaded else 0.0,
             })
         if district_group_ratios:
             numer = np.sum(np.vstack(district_group_ratios), axis=0)
@@ -731,6 +920,7 @@ def compute_model(paths=None, overrides=None, actual_supply_path=None, output_di
         ratios = g["ratio_median"].clip(lower=0)
         sci = float((wts * np.minimum(ratios, 1.0)).sum() / max(wts.sum(), 1e-9))
         uncapped_ratio = float((wts * ratios).sum() / max(wts.sum(), 1e-9))
+        obs_to_supply = float(g["dgt_observed_seats_to_supply_median"].sum()) if "dgt_observed_seats_to_supply_median" in g.columns else 0.0
         district_summary.append({
             "district": district,
             "SCI": sci,
@@ -744,9 +934,25 @@ def compute_model(paths=None, overrides=None, actual_supply_path=None, output_di
             "decision_gap_cells": int(g.decision_status.str.contains("GAP", na=False).sum()),
             "needs_data_cells": int((g.decision_status == "NEEDS DATA").sum()),
             "actual_cells": int((g.supply_coverage == "full_actual").sum()),
+            "dgt_observed_seats_to_supply_median": obs_to_supply,
             "allocation_basis": ",".join(sorted(g.allocation_basis.unique())),
         })
     district_df = pd.DataFrame(district_summary)
+    dmap_cov = dmap[["matched_district", "dgt_itis_in_matrix", "iti_2022_count", "matrix_iti_coverage"]].drop_duplicates().rename(columns={"matched_district":"district"})
+    if not dmap_cov.empty:
+        district_df = district_df.merge(dmap_cov, on="district", how="left")
+    if not supply_df.empty:
+        obs_supply = (
+            supply_df.groupby("district", as_index=False)
+            .agg(
+                dgt_observed_seats_72_74=("actual_seats", lambda s: float(pd.to_numeric(s, errors="coerce").fillna(0.0).sum())),
+                modeled_supply_median_72_74=("supply_median", "sum"),
+            )
+        )
+        obs_supply["dgt_observed_seats_to_modeled_supply_median"] = (
+            obs_supply["dgt_observed_seats_72_74"] / np.maximum(obs_supply["modeled_supply_median_72_74"], 1e-9)
+        )
+        district_df = district_df.merge(obs_supply, on="district", how="left")
     state_median_sci = float(district_df["SCI"].median()) if not district_df.empty else float("nan")
     district_df["state_median_SCI"] = state_median_sci
     district_df["relative_SCI_vs_state_median"] = district_df["SCI"] / max(state_median_sci, 1e-9)
@@ -769,6 +975,23 @@ def compute_model(paths=None, overrides=None, actual_supply_path=None, output_di
         proxy_share_correlation = float(proxy_share_check["district_proxy_share"].corr(proxy_share_check["proxy_supply_share"])) if len(proxy_share_check) > 1 else float("nan")
     else:
         proxy_share_correlation = float("nan")
+
+    proxy_vs_dgt_spearman = float("nan")
+    dgt_observed_by_district = pd.DataFrame()
+    if actual_supply_loaded and actual_map is not None and not actual_map.empty:
+        selected_actual = actual_map[actual_map["nco_group_2digit"].astype(str).isin(selected_groups)].copy()
+        if not selected_actual.empty:
+            dgt_observed_by_district = (
+                selected_actual.groupby("matched_district", as_index=False)["seats"].sum()
+                .rename(columns={"matched_district": "district", "seats": "dgt_selected_seats"})
+            )
+            dgt_observed_by_district["district"] = dgt_observed_by_district["district"].map(apply_analytical_merge)
+            proxy_iti = dmap[["matched_district", "iti_count"]].drop_duplicates().copy()
+            proxy_iti["district"] = proxy_iti["matched_district"]
+            proxy_iti.drop(columns=["matched_district"], inplace=True)
+            proxy_dgt_check = dgt_observed_by_district.merge(proxy_iti, on="district", how="inner")
+            if len(proxy_dgt_check) >= 3:
+                proxy_vs_dgt_spearman = _spearman_series(proxy_dgt_check["dgt_selected_seats"], proxy_dgt_check["iti_count"])
     district_variation = pd.DataFrame([{
         "district_count": int(district_df.shape[0]),
         "unique_sci_values": int(district_df["SCI"].round(6).nunique()),
@@ -804,7 +1027,22 @@ def compute_model(paths=None, overrides=None, actual_supply_path=None, output_di
         "actual_supply_rows": int(len(actual_supply)) if actual_supply is not None else 0,
         "actual_unmapped_share": float(unmapped_share),
         "actual_unmapped_seats": float(unmapped_seats),
+        "actual_out_of_scope_share": float(out_of_scope_share),
+        "actual_out_of_scope_seats": float(out_of_scope_seats),
         "actual_total_input_seats": float(total_input_seats),
+        "actual_to_state_seat_ratio": float(actual_scale_ratio),
+        "actual_scale_warning": bool(actual_supply_loaded and actual_scale_ratio < float(cfg.get("dgt_scale_warning_threshold", 0.5))),
+        "proxy_vs_dgt_spearman": float(proxy_vs_dgt_spearman),
+        "allocation_method": allocation_method,
+        "dgt_share_allocation_concentration": float(cfg.get("dgt_share_allocation_uncertainty", {}).get("concentration", 12.0)) if allocation_method == "dgt_2026_seat_share" else None,
+        "dgt_matrix_iti_total": float(dmap["dgt_itis_in_matrix"].sum()) if "dgt_itis_in_matrix" in dmap.columns else 0.0,
+        "dgt_matrix_iti_coverage_mean": float(dmap["matrix_iti_coverage"].mean()) if "matrix_iti_coverage" in dmap.columns else 0.0,
+        "dgt_matrix_iti_coverage_min": float(dmap["matrix_iti_coverage"].min()) if "matrix_iti_coverage" in dmap.columns else 0.0,
+        "dgt_matrix_iti_coverage_max": float(dmap["matrix_iti_coverage"].max()) if "matrix_iti_coverage" in dmap.columns else 0.0,
+        "dgt_matrix_coverage_basis": "unique DGT ITIs / historical 2022 ITI count; approximate across periods/definitions",
+        "statewide_supply_mean_conservation_ratio": float(statewide_supply_draw_mean_sum / max(expected_mean_supply, 1e-9)),
+        "statewide_supply_median_conservation_ratio": float(median_supply_total / max(expected_mean_supply, 1e-9)),
+        "dgt_observed_seats_to_supply_median_median": float(district_df.get("dgt_observed_seats_to_supply_median", pd.Series(dtype=float)).replace([np.inf, -np.inf], np.nan).dropna().median()) if "dgt_observed_seats_to_supply_median" in district_df.columns else None,
         "actual_supply_full_ready": bool(actual_full_ready),
         "actual_unmapped_seat_share": float(unmapped_share),
         "actual_unmapped_seats": float(unmapped_seats),
@@ -816,15 +1054,27 @@ def compute_model(paths=None, overrides=None, actual_supply_path=None, output_di
         "selected_course_weight_sum": float(sum(group_weights.values())),
         "statewide_supply_expected_mean": expected_mean_supply,
         "statewide_supply_expected_mode": expected_mode_supply,
+        "statewide_supply_draw_mean_sum": float(statewide_supply_draw_mean_sum),
         "statewide_total_iti_seats": total_current_seats,
         "statewide_supply_median_sum": median_supply_total,
-        "statewide_supply_conservation_ratio": median_supply_total / max(expected_mean_supply, 1e-9),
+        "statewide_supply_conservation_ratio": float(statewide_supply_draw_mean_sum / max(expected_mean_supply, 1e-9)),
+        "statewide_supply_mean_conservation_ratio": float(statewide_supply_draw_mean_sum / max(expected_mean_supply, 1e-9)),
+        "statewide_supply_median_conservation_ratio": float(median_supply_total / max(expected_mean_supply, 1e-9)),
         "decision_rule": cfg["decision_rule"],
         "source_files": registry.to_dict(orient="records"),
         "unmatched_employment_rows": int(len(emp_review)),
         "unique_sci_values": int(district_df["SCI"].round(6).nunique()),
         "district_supply_proxy_correlation": proxy_share_correlation,
-        "proxy_allocation_method": cfg.get("proxy_allocation_method"),
+        "proxy_allocation_method": allocation_method,
+        "dgt_share_allocation_concentration": float(cfg.get("dgt_share_allocation_uncertainty", {}).get("concentration", 12.0)) if allocation_method == "dgt_2026_seat_share" else None,
+        "proxy_vs_dgt_spearman": proxy_vs_dgt_spearman,
+        "dgt_matrix_iti_total": float(dmap["dgt_itis_in_matrix"].sum()) if "dgt_itis_in_matrix" in dmap.columns else 0.0,
+        "dgt_matrix_iti_coverage_mean": float(dmap["matrix_iti_coverage"].mean()) if "matrix_iti_coverage" in dmap.columns else 0.0,
+        "dgt_matrix_iti_coverage_min": float(dmap["matrix_iti_coverage"].min()) if "matrix_iti_coverage" in dmap.columns else 0.0,
+        "dgt_matrix_iti_coverage_max": float(dmap["matrix_iti_coverage"].max()) if "matrix_iti_coverage" in dmap.columns else 0.0,
+        "dgt_matrix_coverage_basis": "unique DGT ITIs / historical 2022 ITI count; approximate across periods/definitions",
+        "dgt_observed_seats_to_supply_median_median": float(district_df.get("dgt_observed_seats_to_supply_median", pd.Series(dtype=float)).replace([np.inf, -np.inf], np.nan).dropna().median()) if "dgt_observed_seats_to_supply_median" in district_df.columns else float("nan"),
+        "dgt_share_mode_uses_real_dgt_distribution": bool(allocation_method == "dgt_2026_seat_share" and actual_supply_loaded),
         "allocation_basis_counts": dmap["allocation_basis"].value_counts().to_dict(),
     }
 
@@ -846,6 +1096,7 @@ def compute_model(paths=None, overrides=None, actual_supply_path=None, output_di
         interval_demo.to_csv(output_dir / "interval_shrink_demo.csv", index=False)
         proxy_share_check.to_csv(output_dir / "district_supply_independence.csv", index=False)
         district_variation.to_csv(output_dir / "district_variation_diagnostic.csv", index=False)
+        dgt_observed_by_district.to_csv(output_dir / "dgt_observed_supply_by_district.csv", index=False)
         emp_review.to_csv(output_dir / "unmatched.csv", index=False)
         if actual_match_df is not None and not actual_match_df.empty:
             actual_match_df.to_csv(output_dir / "actual_supply_match_results.csv", index=False)
@@ -862,9 +1113,20 @@ def compute_model(paths=None, overrides=None, actual_supply_path=None, output_di
             "needs_data_cells": int((ratio_df.decision_status == "NEEDS DATA").sum()),
             "actual_supply_loaded": bool(actual_supply_loaded),
             "actual_supply_full_ready": bool(actual_full_ready),
-        "actual_unmapped_seat_share": float(unmapped_share),
-        "actual_unmapped_seats": float(unmapped_seats),
-        "actual_input_seats": float(total_input_seats),
+            "actual_unmapped_seat_share": float(unmapped_share),
+            "actual_unmapped_seats": float(unmapped_seats),
+            "actual_out_of_scope_seat_share": float(out_of_scope_share),
+            "actual_out_of_scope_seats": float(out_of_scope_seats),
+            "actual_input_seats": float(total_input_seats),
+            "actual_to_state_seat_ratio": float(actual_scale_ratio),
+            "actual_scale_warning": bool(actual_supply_loaded and actual_scale_ratio < float(cfg.get("dgt_scale_warning_threshold", 0.5))),
+            "proxy_vs_dgt_spearman": float(proxy_vs_dgt_spearman),
+            "allocation_method": allocation_method,
+            "dgt_share_allocation_concentration": audit.get("dgt_share_allocation_concentration"),
+            "proxy_vs_dgt_spearman": audit.get("proxy_vs_dgt_spearman"),
+            "statewide_supply_mean_conservation_ratio": float(statewide_supply_draw_mean_sum / max(expected_mean_supply, 1e-9)),
+            "statewide_supply_median_conservation_ratio": float(median_supply_total / max(expected_mean_supply, 1e-9)),
+            "dgt_observed_seats_to_supply_median_median": float(district_df.get("dgt_observed_seats_to_supply_median", pd.Series(dtype=float)).replace([np.inf, -np.inf], np.nan).dropna().median()) if "dgt_observed_seats_to_supply_median" in district_df.columns else None,
         "actual_required_district_group_pairs": int(len(required_pairs)) if actual_supply_loaded else 0,
         "actual_covered_district_group_pairs": int(len(covered_pairs)) if actual_supply_loaded else 0,
             "actual_supply_rows": int(len(actual_supply)) if actual_supply is not None else 0,
@@ -876,9 +1138,12 @@ def compute_model(paths=None, overrides=None, actual_supply_path=None, output_di
             "district_supply_proxy_correlation": proxy_share_correlation,
             "statewide_supply_expected_mean": expected_mean_supply,
         "statewide_supply_expected_mode": expected_mode_supply,
+        "statewide_supply_draw_mean_sum": float(statewide_supply_draw_mean_sum),
         "statewide_total_iti_seats": total_current_seats,
             "statewide_supply_median_sum": median_supply_total,
-            "statewide_supply_conservation_ratio": median_supply_total / max(expected_mean_supply, 1e-9),
+            "statewide_supply_conservation_ratio": float(statewide_supply_draw_mean_sum / max(expected_mean_supply, 1e-9)),
+        "statewide_supply_mean_conservation_ratio": float(statewide_supply_draw_mean_sum / max(expected_mean_supply, 1e-9)),
+        "statewide_supply_median_conservation_ratio": float(median_supply_total / max(expected_mean_supply, 1e-9)),
             "state_median_sci": float(district_df["SCI"].median()) if not district_df.empty else None,
             "relative_sci_min": float(district_df["relative_SCI_vs_state_median"].min()) if not district_df.empty else None,
             "relative_sci_max": float(district_df["relative_SCI_vs_state_median"].max()) if not district_df.empty else None,
@@ -901,7 +1166,15 @@ def compute_model(paths=None, overrides=None, actual_supply_path=None, output_di
 
 
 def main():
-    res = compute_model()
+    import argparse
+    ap = argparse.ArgumentParser(description="KSISU evidence-first gap model")
+    ap.add_argument("--actual-supply", help="CSV containing district supply evidence")
+    ap.add_argument("--out", help="Output directory (default: out)")
+    ap.add_argument("--proxy-allocation-method", choices=["official_2022_district_iti_count_weight", "dgt_2026_seat_share"], help="Supply allocation mode")
+    args = ap.parse_args()
+    out_dir = Path(args.out) if args.out else OUT
+    overrides = {"proxy_allocation_method": args.proxy_allocation_method} if args.proxy_allocation_method else None
+    res = compute_model(actual_supply_path=args.actual_supply, overrides=overrides, output_dir=out_dir)
     print(json.dumps({
         "districts": len(res["district"]),
         "ratio_rows": len(res["ratio"]),
@@ -909,6 +1182,11 @@ def main():
         "policy_decisions": res["ratio"]["decision_status"].value_counts().to_dict(),
         "actual_supply_loaded": res["audit"]["actual_supply_loaded"],
         "actual_supply_full_ready": res["audit"]["actual_supply_full_ready"],
+        "actual_required_district_group_pairs": res["audit"]["actual_required_district_group_pairs"],
+        "actual_covered_district_group_pairs": res["audit"]["actual_covered_district_group_pairs"],
+        "actual_unmapped_share": res["audit"]["actual_unmapped_share"],
+        "actual_out_of_scope_share": res["audit"].get("actual_out_of_scope_share", 0.0),
+        "actual_to_state_seat_ratio": res["audit"].get("actual_to_state_seat_ratio", 0.0),
         "occupation_share_sum_selected": res["audit"]["occupation_share_sum_selected"],
         "selected_course_weight_sum": res["audit"]["selected_course_weight_sum"],
         "statewide_supply_conservation_ratio": res["audit"]["statewide_supply_conservation_ratio"],

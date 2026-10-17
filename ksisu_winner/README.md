@@ -49,11 +49,21 @@ The registry keeps source URL, grain, year, SHA-256 and source ID. The raw sourc
 
 ## Run it
 
+Create a clean virtual environment and run the two documented model passes:
+
 ```text
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
 python -m pip install -r requirements.txt
-SELF_TEST.bat
-run.bat
+python self_test.py
+python run_gap.py --out out/proxy_baseline
+python run_gap.py --actual-supply clean/dgt_cts_2026_karnataka_supply_nco.csv --out out/dgt_run
+python -m pytest -q
+python make_submission_pdf.py
+python ksisu_gui.py
 ```
+
+The first run is the proxy baseline. The second is the DGT-share evidence-upgrade run. The PDF reads both run directories so its numbers cannot silently drift from the model.
 
 ## GUI judge demonstration
 
@@ -85,7 +95,7 @@ The corruption test now runs 100 seeded corruptions plus a 5% duplicate batch. I
 
 V5 critical fixes
 - Partial evidence retains allocation and proxy-seat uncertainty; observed partial rows are floors, not exact district totals.
-- Full actual gate requires all 31 raw LGD districts / 30 analytical geographies x both modeled NCO groups and <=5% unmapped seat share.
+- Full actual gate requires all 30 analytical geographies x both modeled NCO groups and <=5% truly UNMAPPED seat share; OUT_OF_SCOPE trades are reported separately.
 - District allocation uses populated historical 2022 district ITI-count weights from an official Rajya Sabha CTS table, scaled to the NCVT statewide seat magnitude.
 - Demand includes independent per-district lognormal allocation uncertainty (sigma 0.35, configuration assumption).
 - District ranking is by uncapped median R; SCI is reported separately.
@@ -93,8 +103,8 @@ V5 critical fixes
 - GUI and PDF use the same model outputs and configuration.
 
 
-### Annexure-IV evidence (how the ITI weights were checked)
-All 30 positive historical analytical-geography ITI counts (Government, Private, Total) were compared row by row with the official Rajya Sabha Q131 Annexure-IV table (PDF p.6, https://sansad.in/getFile/annex/258/AU131.pdf?source=pqars) on 2026-10-17. All 30 match, and the printed totals 275 Government + 1,227 Private = 1,502 are reproduced.
+### Annexure-IV evidence (what is and is not verified)
+The package reproduces 30 historical analytical-geography ITI weights from the bundled machine-extracted Annexure-IV source representation. This reproduces the printed totals 275 Government + 1,227 Private = 1,502, but the package does not claim independent visual verification of the government PDF binary.
 
 - The comparison uses `raw/rajya_sabha_annexure_iv_official_text_extract.md`, which is machine-extracted **text** of the official PDF with labels as printed (Belgaum, Bellary, Bijapur...). It is not a scan, and the PDF binary itself is not stored here because it could not be downloaded into the build environment.
 - Re-run the check any time: `python verify_iti_counts.py` (also run by `SELF_TEST.bat`).
@@ -111,4 +121,22 @@ The package now includes the uploaded official DGT CTS-2026 Provisional Dynamic 
 - `raw/dgt_cts_2026_karnataka_provisional.csv`
 - `clean/dgt_cts_2026_karnataka_supply_nco.csv`
 
-The DGT letter says the provisional matrix was generated from approved instructor mappings as of 08.07.2026 and could change until the 20.07.2026 cut-off. Therefore these rows are labelled provisional public evidence, not a final frozen seat matrix. The Karnataka extraction in this build contains 1,734 ITI/trade rows, 588 ITIs and 45,416 provisional seats. A pilot human-reviewed trade-to-NCO mapping places 39,984 seats (88.0%) into NCO 72/74; the remaining 12.0% stay unmapped/review. The full policy gate remains closed because two analytical geographies are absent from this provisional matrix and unmapped seats exceed the 5% threshold.
+The DGT letter says the provisional matrix was generated from approved instructor mappings as of 08.07.2026 and could change until the 20.07.2026 cut-off. Therefore these rows are labelled provisional public evidence, not a final frozen seat matrix. The Karnataka extraction in this build contains 1,734 ITI/trade rows, 588 ITIs and 45,416 provisional seats. A pilot human-reviewed trade-to-NCO mapping places 39,984 seats (88.0%) into NCO 72/74; 5,432 seats (12.0%) are explicitly OUT_OF_SCOPE for the pilot. True UNMAPPED seats are tracked separately. The full policy gate remains closed because 58 of 60 analytical district-group pairs are covered and the source is provisional.
+
+
+## V12 Coverage-Weighted DGT Share Evidence Upgrade
+
+V11 adds a third supply allocation mode:
+
+`dgt_2026_seat_share`
+
+It uses the real DGT CTS-2026 district/group seat distribution as an evidence signal, but first shrinks each district/group share toward the historical 2022 ITI-count proxy using approximate matrix coverage = DGT ITIs in the matrix / 2022 ITI count. A district absent from DGT therefore keeps its proxy share instead of receiving zero supply. The blended distribution is perturbed with shared Dirichlet uncertainty (concentration 18, 75% mean retention) because the DGT matrix is provisional and incomplete. The mode remains policy-gated and reports the DGT/ITI proxy Spearman diagnostic, matrix-coverage fields, and DGT observed-seats-to-modeled-supply ratio.
+
+Run:
+```text
+python run_gap.py --out out/proxy_baseline
+python run_gap.py --actual-supply clean/dgt_cts_2026_karnataka_supply_nco.csv --out out/dgt_run
+python run_gap.py --actual-supply clean/dgt_cts_2026_karnataka_supply_nco.csv --proxy-allocation-method dgt_2026_seat_share --out out/dgt_share_run
+```
+
+The primary conservation benchmark is the mean across Monte Carlo draws; the prior median-of-cell-medians figure is retained separately for diagnostics.

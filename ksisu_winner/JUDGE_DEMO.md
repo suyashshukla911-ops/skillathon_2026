@@ -59,7 +59,7 @@ Say:
 
 > “This experiment shows how the same model responds to better evidence. With a partial file the interval can widen; a complete district extract is the condition for a genuine uncertainty reduction.”
 
-For the DGT 2026 evidence, describe the result as a **real but incomplete evidence update**. Mapped district×trade seats replace proxy supply where available; missing geographies and unmapped trades remain uncertain, so the policy gate stays NEEDS DATA.
+For the DGT 2026 evidence, describe the result as a **real but incomplete evidence update**. Mapped district×trade seats inform a coverage-weighted share allocation; the historical proxy remains in proportion to matrix coverage, so sparse or missing geographies do not become artificial zero-supply districts. The policy gate stays NEEDS DATA.
 
 ## 6. Sensitivity
 
@@ -93,7 +93,7 @@ Before submission, replace/augment the bundled provisional DGT matrix with the *
 
 - District proxy allocation uses the populated historical 2022 district ITI-count weights; these are allocation weights only, not current district seat totals.
 - District ranking is by the uncapped median ratio R. SCI is shown separately because it is capped at 1.
-- Full district-actual evidence requires all 31 raw LGD districts / 30 analytical geographies x both modeled NCO groups (72, 74) and no more than 5% of input seats unmapped.
-- If the real file contains trades outside the human crosswalk, they remain `UNMAPPED`; they are not silently dropped. Exceeding the 5% threshold keeps the policy gate closed.
+- Full district-actual evidence requires all 30 analytical geographies x both modeled NCO groups (72, 74) and no more than 5% of input seats unmapped.
+- If the real file contains trades outside the 72/74 pilot, label them `OUT_OF_SCOPE` and report their seats separately. Only truly `UNMAPPED` seats count toward the 5% mapping gate.
 - Full supply evidence does not upgrade demand evidence: district demand is still a proxy until district employment / DSDP / MIS evidence is loaded.
 - Demand allocation has its own shared per-district lognormal uncertainty (sigma 0.35; documented as an analyst assumption) so demand uncertainty is not accidentally treated as zero.

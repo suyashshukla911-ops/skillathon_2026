@@ -1,0 +1,2 @@
+district_count,unique_sci_values,sci_min,sci_max,demand_supply_proxy_share_correlation,interpretation
+30,25,0.11310057661902682,1.0,0.4378594198384567,Diagnostic only. Proxy district ranking is not treated as empirical validation; it is used for data-collection prioritisation.

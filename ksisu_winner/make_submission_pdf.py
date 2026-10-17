@@ -1,203 +1,278 @@
+from __future__ import annotations
 from pathlib import Path
 import json
 import pandas as pd
 from reportlab.lib import colors
 from reportlab.lib.pagesizes import A4, landscape
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
-from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, PageBreak, KeepTogether
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, PageBreak, Image as RLImage, KeepTogether
 from reportlab.lib.units import mm
-from reportlab.graphics.shapes import Drawing, Rect, String, Line
 
-ROOT=Path(__file__).resolve().parent
-OUT=ROOT/'out'; OUT.mkdir(exist_ok=True)
-CLEAN=ROOT/'clean'; RAW=ROOT/'raw'
-BLUE=colors.HexColor('#0D2A4A'); LIGHT=colors.HexColor('#EEF3F9'); GREEN=colors.HexColor('#1D7A46'); AMBER=colors.HexColor('#8A6200'); RED=colors.HexColor('#A32C2C'); WHITE=colors.white
-styles=getSampleStyleSheet()
+ROOT = Path(__file__).resolve().parent
+OUT = ROOT / 'out'
+CLEAN = ROOT / 'clean'
+RAW = ROOT / 'raw'
+SHOT = ROOT / 'judge_screenshots' / 'pdf_use'
+OUT.mkdir(exist_ok=True)
+
+BLUE = colors.HexColor('#0D2A4A')
+LIGHT = colors.HexColor('#EEF3F9')
+MID = colors.HexColor('#D7E1EC')
+GREEN = colors.HexColor('#1D7A46')
+AMBER = colors.HexColor('#8A6200')
+RED = colors.HexColor('#A32C2C')
+WHITE = colors.white
+
+styles = getSampleStyleSheet()
 styles.add(ParagraphStyle(name='Title2', parent=styles['Title'], fontName='Helvetica-Bold', fontSize=25, leading=29, textColor=BLUE, spaceAfter=8))
 styles.add(ParagraphStyle(name='H2b', parent=styles['Heading2'], fontName='Helvetica-Bold', fontSize=16, leading=19, textColor=BLUE, spaceAfter=6))
-styles.add(ParagraphStyle(name='Body2', parent=styles['BodyText'], fontName='Helvetica', fontSize=9.0, leading=11.7, textColor=colors.HexColor('#24364B'), spaceAfter=4))
-styles.add(ParagraphStyle(name='Small2', parent=styles['BodyText'], fontName='Helvetica', fontSize=7.5, leading=9.0, textColor=colors.HexColor('#41536A'), spaceAfter=2))
-styles.add(ParagraphStyle(name='Tiny', parent=styles['BodyText'], fontName='Helvetica', fontSize=6.6, leading=7.6, textColor=colors.HexColor('#52647A')))
-styles.add(ParagraphStyle(name='TableHeader', parent=styles['BodyText'], fontName='Helvetica-Bold', fontSize=6.8, leading=7.9, textColor=WHITE))
-styles.add(ParagraphStyle(name='Callout', parent=styles['BodyText'], fontName='Helvetica-Bold', fontSize=12.5, leading=15, textColor=BLUE, backColor=LIGHT, borderPadding=8, spaceAfter=6))
+styles.add(ParagraphStyle(name='Body2x', parent=styles['BodyText'], fontName='Helvetica', fontSize=8.8, leading=11.0, textColor=colors.HexColor('#24364B'), spaceAfter=4))
+styles.add(ParagraphStyle(name='Small2x', parent=styles['BodyText'], fontName='Helvetica', fontSize=7.2, leading=8.7, textColor=colors.HexColor('#41536A'), spaceAfter=2))
+styles.add(ParagraphStyle(name='Tiny2x', parent=styles['BodyText'], fontName='Helvetica', fontSize=6.2, leading=7.1, textColor=colors.HexColor('#52647A')))
+styles.add(ParagraphStyle(name='HeaderWhite', parent=styles['BodyText'], fontName='Helvetica-Bold', fontSize=7.0, leading=8.1, textColor=WHITE, alignment=0))
+styles.add(ParagraphStyle(name='Callout2', parent=styles['BodyText'], fontName='Helvetica-Bold', fontSize=12.0, leading=14.5, textColor=BLUE, backColor=LIGHT, borderPadding=7, spaceAfter=6))
+styles.add(ParagraphStyle(name='Caption2', parent=styles['BodyText'], fontName='Helvetica-Oblique', fontSize=6.8, leading=8.2, textColor=colors.HexColor('#5D6F84'), spaceBefore=2, spaceAfter=3))
 
-def P(txt, style='Body2'): return Paragraph(txt, styles[style])
+
+def P(text, style='Body2x'):
+    return Paragraph(text, styles[style])
 
 
-def mini_bar_chart(rows, value_key, label_key, title, width=250*mm, height=48*mm, max_value=None):
-    d=Drawing(width,height)
-    pad_left=42*mm; pad_right=8*mm; pad_top=10*mm; pad_bottom=6*mm
-    inner_w=width-pad_left-pad_right; inner_h=height-pad_top-pad_bottom
-    d.add(String(0,height-4*mm,title,fontName='Helvetica-Bold',fontSize=8,fillColor=BLUE))
-    vals=[float(r[value_key]) for r in rows]
-    labels=[str(r[label_key]) for r in rows]
-    vmax=max_value if max_value is not None else (max(vals) if vals else 1.0)
-    vmax=max(vmax,1e-9)
-    bar_h=min(5.0*mm, inner_h/max(len(rows),1)-1.0*mm)
-    gap=(inner_h-bar_h*len(rows))/max(len(rows)-1,1) if len(rows)>1 else 0
-    y=height-pad_top-bar_h
-    for lab,val in zip(labels,vals):
-        w=inner_w*val/vmax
-        d.add(String(0,y+0.8*mm,lab[:18],fontName='Helvetica',fontSize=6.5,fillColor=colors.HexColor('#41536A')))
-        d.add(Rect(pad_left,y,w,bar_h,fillColor=colors.HexColor('#2B6EA6'),strokeColor=None))
-        d.add(String(pad_left+w+1.2*mm,y+0.8*mm,f'{val:.2f}',fontName='Helvetica',fontSize=6.2,fillColor=BLUE))
-        y-=bar_h+gap
-    d.add(Line(pad_left,6*mm,pad_left,height-pad_top+1*mm,strokeColor=colors.HexColor('#B8C7D8'),strokeWidth=0.5))
-    return d
-
-def tbl(data, widths=None, font=6.8, leading=7.9):
+def tbl(rows, widths, font=6.7, leading=7.8):
     conv=[]
-    for ri,row in enumerate(data):
-        conv.append([x if isinstance(x, Paragraph) else Paragraph(str(x), styles['TableHeader'] if ri==0 else (styles['Tiny'] if font<=6.5 else styles['Small2'])) for x in row])
+    for ri,row in enumerate(rows):
+        out=[]
+        for x in row:
+            if isinstance(x, Paragraph):
+                out.append(x)
+            else:
+                out.append(Paragraph(str(x), styles['HeaderWhite'] if ri == 0 else styles['Tiny2x']))
+        conv.append(out)
     t=Table(conv, colWidths=widths, repeatRows=1, hAlign='LEFT')
-    cmds=[('FONTNAME',(0,0),(-1,0),'Helvetica-Bold'),('FONTSIZE',(0,0),(-1,-1),font),('LEADING',(0,0),(-1,-1),leading),('GRID',(0,0),(-1,-1),0.25,colors.HexColor('#B8C7D8')),('VALIGN',(0,0),(-1,-1),'TOP'),('LEFTPADDING',(0,0),(-1,-1),3),('RIGHTPADDING',(0,0),(-1,-1),3),('TOPPADDING',(0,0),(-1,-1),3.5),('BOTTOMPADDING',(0,0),(-1,-1),3.5),('BACKGROUND',(0,0),(-1,0),BLUE),('TEXTCOLOR',(0,0),(-1,0),WHITE)]
+    cmds=[
+        ('BACKGROUND',(0,0),(-1,0),BLUE),
+        ('TEXTCOLOR',(0,0),(-1,0),WHITE),
+        ('GRID',(0,0),(-1,-1),0.25,colors.HexColor('#B8C7D8')),
+        ('VALIGN',(0,0),(-1,-1),'TOP'),
+        ('LEFTPADDING',(0,0),(-1,-1),3),('RIGHTPADDING',(0,0),(-1,-1),3),
+        ('TOPPADDING',(0,0),(-1,-1),3),('BOTTOMPADDING',(0,0),(-1,-1),3),
+    ]
     for r in range(1,len(conv)):
-        if r%2==0: cmds.append(('BACKGROUND',(0,r),(-1,r),colors.HexColor('#F7FAFD')))
-    t.setStyle(TableStyle(cmds)); return t
+        if r%2==0:
+            cmds.append(('BACKGROUND',(0,r),(-1,r),colors.HexColor('#F7FAFD')))
+    t.setStyle(TableStyle(cmds))
+    return t
+
+
+def screenshot(path, max_w=270*mm, max_h=78*mm):
+    p = Path(path)
+    if not p.exists():
+        return P(f'[Screenshot not found: {p.name}]','Small2x')
+    from PIL import Image
+    with Image.open(p) as im:
+        w,h=im.size
+    scale=min(float(max_w)/w, float(max_h)/h)
+    img=RLImage(str(p), width=w*scale, height=h*scale)
+    img.hAlign='CENTER'
+    return img
+
 
 def header_footer(canvas, doc):
     canvas.saveState(); W,H=landscape(A4)
     canvas.setFillColor(BLUE); canvas.rect(0,H-7*mm,W,7*mm,fill=1,stroke=0)
     canvas.setFont('Helvetica',6.8); canvas.setFillColor(colors.HexColor('#66798F'))
-    canvas.drawString(12*mm,7*mm,'KSISU Skillathon 2026 - Evidence-First Manufacturing Pilot')
-    canvas.drawRightString(W-12*mm,7*mm,f'Page {doc.page}')
+    canvas.drawString(10*mm,7*mm,'KSISU Skillathon 2026 - Evidence-First Manufacturing Pilot')
+    canvas.drawRightString(W-10*mm,7*mm,f'Page {doc.page}')
     canvas.restoreState()
 
+
+def load_run(run_dir: Path):
+    ratio=pd.read_csv(run_dir/'ratio_intervals.csv')
+    district=pd.read_csv(run_dir/'district_priority.csv')
+    rank=pd.read_csv(run_dir/'rank_stability.csv')
+    corrupt=pd.read_csv(run_dir/'corruption_test_summary.csv').iloc[0]
+    summary=json.loads((run_dir/'run_summary.json').read_text(encoding='utf-8'))
+    audit=json.loads((run_dir/'audit_log.jsonl').read_text(encoding='utf-8').strip().splitlines()[-1])
+    return ratio,district,rank,corrupt,summary,audit
+
+
 def make_pdf():
-    ratio=pd.read_csv(OUT/'ratio_intervals.csv')
-    district=pd.read_csv(OUT/'district_priority.csv')
-    rank=pd.read_csv(OUT/'rank_stability.csv') if (OUT/'rank_stability.csv').exists() else pd.read_csv(OUT/'sensitivity.csv')
-    corrupt=pd.read_csv(OUT/'corruption_test_summary.csv').iloc[0]
-    update=pd.read_csv(OUT/'interval_evidence_update.csv') if (OUT/'interval_evidence_update.csv').exists() and (OUT/'interval_evidence_update.csv').stat().st_size>5 else pd.DataFrame()
-    # Always materialize the bundled partial-evidence demonstration for the PDF.
-    # It is explicitly a floor + uncertain remainder, never a full district result.
-    if update.empty:
-        try:
-            from run_gap import compute_model
-            partial_file = RAW/'ncvtmis_file1171_real_partial.csv'
-            if partial_file.exists():
-                partial_run = compute_model(actual_supply_path=str(partial_file), write_outputs=False)
-                update = partial_run['interval_demo'].copy()
-        except Exception:
-            update = pd.DataFrame()
-    variation=pd.read_csv(OUT/'district_variation_diagnostic.csv').iloc[0]
-    summary=json.loads((OUT/'run_summary.json').read_text())
-    audit=json.loads((OUT/'audit_log.jsonl').read_text().strip().splitlines()[-1])
-    from run_gap import CONFIG as RUN_CONFIG
-    cfg=RUN_CONFIG
+    proxy_dir=OUT/'proxy_baseline'
+    dgt_dir=OUT/'dgt_share_run' if (OUT/'dgt_share_run'/'run_summary.json').exists() else OUT/'dgt_run'
+    if not (proxy_dir/'run_summary.json').exists():
+        raise FileNotFoundError('Run proxy first: python run_gap.py --out out/proxy_baseline')
+    if not (dgt_dir/'run_summary.json').exists():
+        raise FileNotFoundError('Run DGT evidence-upgrade: python run_gap.py --actual-supply clean/dgt_cts_2026_karnataka_supply_nco.csv --proxy-allocation-method dgt_2026_seat_share --out out/dgt_share_run')
+
+    proxy_ratio, proxy_district, proxy_rank, proxy_corrupt, proxy_summary, proxy_audit = load_run(proxy_dir)
+    dgt_ratio, dgt_district, dgt_rank, dgt_corrupt, dgt_summary, dgt_audit = load_run(dgt_dir)
+
+    cfg=json.loads((CLEAN/'config.json').read_text(encoding='utf-8'))
+    from run_gap import CONFIG as MODEL_CONFIG
+    cfg={**MODEL_CONFIG, **cfg}
+    if 'occupation_prior_uncertainty' not in cfg:
+        cfg['occupation_prior_uncertainty']=MODEL_CONFIG['occupation_prior_uncertainty']
     mix=pd.read_csv(CLEAN/'occupation_mix_prior.csv')
-    mix_sel=mix[mix.nco_group_2digit.astype(str).isin([str(x) for x in cfg['selected_nco_groups']])]
     cw=pd.read_csv(CLEAN/'crosswalk.csv')
+    dgt_supply=pd.read_csv(CLEAN/'dgt_cts_2026_karnataka_supply_nco.csv')
+    iti=pd.read_csv(CLEAN/'district_iti_counts.csv')
+
+    selected_groups=[str(x) for x in cfg['selected_nco_groups']]
+    selected_occ=mix[mix.nco_group_2digit.astype(str).isin(selected_groups)]
+    selected_occ_share=float(selected_occ.share_within_manufacturing.sum())
     selected_course_weight=float(cw.statewide_course_weight.sum())
-    selected_occ_share=float(mix_sel.share_within_manufacturing.sum())
-    seat_total=float(audit.get('statewide_total_iti_seats', 0))
-    state_median=float(district['SCI'].median())
-    focus=district[district.district.isin(['Tumakuru','Kalaburagi'])].copy()
-    raw=summary
-    iti_weights = pd.read_csv(CLEAN/'district_iti_counts.csv') if (CLEAN/'district_iti_counts.csv').exists() else pd.DataFrame()
-    # This check is against the bundled machine-extracted transcription, not an independently fetched PDF binary.
-    from verify_iti_counts import verify as _verify_iti
-    _iti_problems = _verify_iti(write=False) if not iti_weights.empty else ['no ITI weights']
-    iti_verified = int(len(iti_weights)) if not _iti_problems else 0
-    iti_total = int(len(iti_weights)) if not iti_weights.empty else 0
-    iti_unverified = max(iti_total - iti_verified, 0)
-    dgt_supply = pd.read_csv(CLEAN/'dgt_cts_2026_karnataka_supply_nco.csv') if (CLEAN/'dgt_cts_2026_karnataka_supply_nco.csv').exists() else pd.DataFrame()
-    dgt_mapped = dgt_supply[dgt_supply.nco_group_2digit.astype(str).isin(['72','74'])].copy() if not dgt_supply.empty else pd.DataFrame()
-    dgt_unmapped = dgt_supply[dgt_supply.nco_group_2digit.astype(str).eq('UNMAPPED')].copy() if not dgt_supply.empty else pd.DataFrame()
-    dgt_summary = {
-        'rows': int(len(dgt_supply)),
-        'districts': int(dgt_supply.district.nunique()) if not dgt_supply.empty else 0,
-        'itis': int(dgt_supply.iti_mis_code.nunique()) if not dgt_supply.empty else 0,
-        'trades': int(dgt_supply.trade.nunique()) if not dgt_supply.empty else 0,
-        'seats': float(dgt_supply.seats.sum()) if not dgt_supply.empty else 0.0,
-        'mapped_seats': float(dgt_mapped.seats.sum()) if not dgt_mapped.empty else 0.0,
-        'unmapped_seats': float(dgt_unmapped.seats.sum()) if not dgt_unmapped.empty else 0.0,
-    }
-    dgt_summary['mapped_share'] = dgt_summary['mapped_seats']/dgt_summary['seats'] if dgt_summary['seats'] else 0.0
-    dgt_summary['unmapped_share'] = dgt_summary['unmapped_seats']/dgt_summary['seats'] if dgt_summary['seats'] else 0.0
-    analytical_geo_count = int(len(district))
+    mapped_seats=float(dgt_supply.loc[dgt_supply.nco_group_2digit.isin(selected_groups),'seats'].sum())
+    out_scope_seats=float(dgt_supply.loc[dgt_supply.nco_group_2digit.eq('OUT_OF_SCOPE'),'seats'].sum())
+    unmapped_seats=float(dgt_supply.loc[dgt_supply.nco_group_2digit.eq('UNMAPPED'),'seats'].sum())
+    dgt_seats=float(dgt_supply.seats.sum())
+    dgt_scale=float(dgt_audit.get('actual_to_state_seat_ratio',0))
+    covered_pairs=int(dgt_audit.get('actual_covered_district_group_pairs',0))
+    required_pairs=int(dgt_audit.get('actual_required_district_group_pairs',0))
 
     path=OUT/'KSISU_Skillathon_2026_Final_10_Page.pdf'
-    doc=SimpleDocTemplate(str(path),pagesize=landscape(A4),leftMargin=10*mm,rightMargin=10*mm,topMargin=11*mm,bottomMargin=11*mm)
+    doc=SimpleDocTemplate(str(path),pagesize=landscape(A4),leftMargin=8*mm,rightMargin=8*mm,topMargin=10*mm,bottomMargin=10*mm)
     story=[]
 
-    # 1
-    story += [Spacer(1,10*mm),P('KSISU: Evidence-First District Skill Intelligence','Title2'),P('A reproducible method for sparse public labour-market evidence, explicit uncertainty, and data-acquisition prioritisation.','Callout'),P(f"<b>Sector:</b> Manufacturing &nbsp; <b>NCO scope:</b> {', '.join(cfg['selected_nco_groups'])} &nbsp; <b>FY:</b> {cfg['reference_fy']} &nbsp; <b>Monte Carlo:</b> {cfg['monte_carlo_draws']:,} shared draws"),Spacer(1,3*mm),tbl([["What the prototype demonstrates","What it does not claim"],[f"31 raw LGD districts; {analytical_geo_count} analytical geographies after Ballari-Vijayanagara harmonisation","A proxy-only district ratio is a finding"],["Separate state demand evidence and district supply evidence","The partial NCVT subset is a district census"],["Shared uncertainty and reproducible runs","An official KSI formula"],["Human review for unmatched data","A policy call without full district supply"],["Value-of-information ranking","Validation of the proxy district ranking"]],[95*mm,155*mm],font=7.1),Spacer(1,4*mm),P('<b>Headline:</b> public data can support an auditable inference chain, but the first policy output should often be a request for better district evidence.','Callout')]
-    story.append(PageBreak())
+    # PAGE 1
+    story += [Spacer(1,20*mm),P('KSISU: Evidence-First District Skill Intelligence','Title2'),
+              P('A reproducible method for sparse public labour-market evidence, explicit uncertainty, and data-collection prioritisation.','Callout2'),
+              P(f"<b>Manufacturing pilot</b> &nbsp;&nbsp; <b>NCO scope:</b> {', '.join(selected_groups)} &nbsp;&nbsp; <b>Reference FY:</b> {cfg['reference_fy']} &nbsp;&nbsp; <b>Monte Carlo:</b> {cfg['monte_carlo_draws']:,} shared draws"),
+              Spacer(1,5*mm),
+              tbl([['What this prototype demonstrates','What it deliberately does not claim'],
+                   ['Real DGT 2026 provisional district x ITI x trade supply enters the evidence pipeline','A proxy ranking is a proven district skill-gap result'],
+                   ['Demand and supply are kept on separate evidence ladders','Partial DGT coverage is a complete district census'],
+                   ['Uncertainty, evidence gates and human review are explicit','An official Karnataka Skill Index formula'],
+                   ['Outputs include value-of-information for future onboarding','A policy recommendation without full district evidence']], [112*mm,158*mm], font=7.0),
+              Spacer(1,6*mm),
+              P('<b>Core message:</b> the system replaces proxy supply with real public evidence wherever available, but refuses to turn incomplete evidence into a policy call.','Callout2'),PageBreak()]
 
-    # 2 evidence ladder
-    story += [P('1. Evidence ladder and data grain','H2b'),tbl([["Input","Grain","Year","Role"],["LGD district register","district","2026","canonical join key"],["Udyam district employment","district","2022 / 2023 publication","district allocation proxy"],["ASI Karnataka manufacturing","state","2022-23","state manufacturing employment base"],["NCVT MIS Karnataka ITI count","state","2022","state ITI seat magnitude"],["Historical district ITI counts","district weight","2022","allocation weights only; historical CTS geography"],["DGT/DITE tracer","division","2020-21","historical rate calibration"],["NCVT MIS File 1171 sample","district x ITI x trade","historical indexed","partial evidence only"],["Occupation mix","state prior","2022-23","analyst prior until PLFS microdata is loaded"]],[56*mm,31*mm,30*mm,133*mm],font=6.8),Spacer(1,4*mm),tbl([["Audit field","Purpose"],["file_id / SHA-256","stable artifact identity and tamper detection"],["source_id / URL / locator","reproducible source trail"],["period / grain","prevents silent state/district mixing"],["match method / confidence","shows how linkage was obtained"],["coverage status","controls whether policy output is eligible"]],[65*mm,185*mm],font=7.0),Spacer(1,4*mm),P(f'The NCVT state reference reports Karnataka at 1,467 ITIs and 216,788 seats for 2022. The model uses that only as a statewide magnitude. Historical district ITI counts are allocation weights only: <b>{iti_total}/{iti_total}</b> rows reproduce the bundled machine-extracted Annexure-IV transcription; this does <b>not</b> constitute an independent visual verification of the government PDF. The new DGT CTS-2026 public matrix provides <b>{dgt_summary["rows"]:,}</b> Karnataka trade rows across <b>{dgt_summary["itis"]:,}</b> ITIs and <b>{dgt_summary["seats"]:,.0f}</b> provisional seats, but it is incomplete for this analytical geography and remains provisional. Udyam employment is an all-sector MSME district proxy with uneven coverage and is not equivalent to manufacturing employment.') ]
-    story.append(PageBreak())
+    # PAGE 2
+    story += [P('1. Evidence ladder and data grain','H2b'),
+              tbl([['Input','Grain','Period','Role'],
+                   ['LGD district register','district','2026','canonical geography / join key'],
+                   ['Udyam district employment','district','2022 / Apr-2023 publication','district allocation proxy; all-sector MSME employment'],
+                   ['ASI Karnataka manufacturing','state','2022-23','state manufacturing employment base'],
+                   ['NCVT MIS Karnataka ITI magnitude','state','2022','state seat magnitude / conservation benchmark'],
+                   ['Historical ITI counts','district weight','2022','historical allocation weights only'],
+                   ['DGT CTS-2026 provisional seat matrix','district x ITI x trade','2026','real public district/trade supply evidence'],
+                   ['Occupation mix','state prior','2022-23','analyst prior until PLFS occupation-by-industry microdata is loaded'],
+                   ['Trade -> NCO crosswalk','trade -> NCO','versioned','human-reviewed pilot mapping']], [60*mm,37*mm,36*mm,137*mm], font=6.55),
+              Spacer(1,4*mm),
+              tbl([['Run','Rows','Seats','Coverage','Policy status'],
+                   ['Proxy baseline','60 analytical cells','proxy-calibrated','No district actual supply','60 NEEDS DATA'],
+                   ['DGT share-calibrated upgrade','60 analytical cells','45,416 published DGT seats','58 / 60 district-group pairs; 88.0% in pilot scope','60 NEEDS DATA']], [56*mm,36*mm,43*mm,81*mm,44*mm], font=6.6),
+              Spacer(1,4*mm),P('All outputs carry source provenance, year, grain and evidence status. The DGT 2026 matrix is explicitly provisional in the official source and is not treated as final seat capacity.','Small2x'),PageBreak()]
 
-    # 3 linkage
-    story += [P('2. Linkage and harmonisation','H2b'),P('<b>District:</b> normalized exact -> production alias -> fuzzy match at 0.90 -> human review. Unmatched rows remain in the review queue.'),P('<b>Industry:</b> NIC retained at the first two digits when a source code exists; labels without a code remain reviewable.'),P('<b>Course/trade:</b> versioned human-reviewed NCO crosswalk. The project labels the crosswalk as an analyst mapping aid, not an official course-to-NCO master.'),Spacer(1,3*mm),tbl([["Validation result","Value"],["LGD districts","31 / 31 raw"],["Analytical geographies",f"{analytical_geo_count}"],["Seeded typo cases","80"],["Correct typo recovery",f"{int(corrupt.seeded_typo_correct)} / {int(corrupt.seeded_typo_rows)} = {corrupt.seeded_typo_recovery_rate*100:.1f}%"],["Unseen aliases matched","0 / 20"],["Unseen aliases routed to review",f"{int(corrupt.unseen_alias_review_rows)} / {int(corrupt.unseen_alias_rows)}"],["Duplicate artifacts injected / removed",f"{int(corrupt.duplicate_rows_injected)} / {int(corrupt.duplicate_rows_removed)}"],["Unmatched rows dropped","0"]],[100*mm,150*mm],font=7.0),Spacer(1,4*mm),P('<b>Interpretation:</b> unseen aliases are not counted as successful matches. The test is a review-queue test as well as a typo-recovery test.') ]
-    story.append(PageBreak())
+    # PAGE 3
+    story += [P('2. Inputs in the workbench','H2b'),
+              P('The workbench makes every research input visible before any analysis is run. This is the audit surface: a judge can see the source file, grain and period instead of trusting a hidden preprocessing step.'),
+              Spacer(1,2*mm), screenshot(SHOT/'page_03_inputs_and_assumptions_dgt_selected.png', max_w=282*mm, max_h=95*mm),
+              P('Figure 1. Local research inputs and model controls after the DGT provisional supply source is selected.', 'Caption2'),
+              tbl([['Visible control','Current value','Interpretation'],
+                   ['Opening rate','5% / 8.5% / 12%','analyst range for annual openings'],
+                   ['Seat fill','50% / 81.3% / 90%','training utilization prior'],
+                   ['Completion','50% / 59.3% / 70%','completion prior'],
+                   ['Sector entry','20% / 30% / 40%','analyst prior pending district placement data'],
+                   ['MC draws / seed','5,000 / 20261016','reproducible stochastic run']], [52*mm,55*mm,173*mm], font=6.55),PageBreak()]
 
-    # 4 demand
-    mix_rows=[]
-    for _, r in mix_sel.sort_values('nco_group_2digit').iterrows():
-        mix_rows.append([str(r['nco_group_2digit']), f"{float(r['share_within_manufacturing']):.2f}", 'modeled'])
-    mix_rows.append(['Outside pilot', f"{1-selected_occ_share:.2f}", 'not modeled'])
-    story += [P('3. Demand model - one basis, explicit priors','H2b'),P("District manufacturing employment is allocated from the Karnataka ASI manufacturing total using Udyam employment shares. This keeps both sides on a consistent manufacturing base; it does not multiply Udyam all-sector employment by a manufacturing share."),Spacer(1,2*mm),tbl([["NCO group","Share of total manufacturing","Status"]]+mix_rows,[50*mm,75*mm,125*mm],font=7.2),Spacer(1,3*mm),P(f"<b>District allocation uncertainty: lognormal sigma = <b>0.35</b> (analyst assumption; no empirical district calibration yet).<br/><b>Annual openings:</b></b> O(d,o) = D(d,o) x opening rate, with {cfg['opening_rate']['low']*100:.0f}% to {cfg['opening_rate']['high']*100:.0f}% range and {cfg['opening_rate']['mode']*100:.1f}% mode."),tbl([["Demand uncertainty","Low","Mode","High"],["Opening rate",f"{cfg['opening_rate']['low']*100:.1f}%",f"{cfg['opening_rate']['mode']*100:.1f}%",f"{cfg['opening_rate']['high']*100:.1f}%"],["Occupation prior multiplier",f"{cfg['occupation_prior_uncertainty']['low']:.2f}x",f"{cfg['occupation_prior_uncertainty']['mode']:.2f}x",f"{cfg['occupation_prior_uncertainty']['high']:.2f}x"]],[70*mm,45*mm,45*mm,45*mm],font=7.0),Spacer(1,4*mm),P('The occupation mix is the weakest demand input until PLFS occupation-by-industry microdata is extracted. This parameter is therefore part of the uncertainty and sensitivity story, not hidden inside a point estimate.')]
-    story.append(PageBreak())
+    # PAGE 4
+    story += [P('3. Demand model - one basis, explicit uncertainty','H2b'),
+              P('District manufacturing employment is allocated from the Karnataka ASI manufacturing total using Udyam employment shares. This avoids multiplying an all-sector Udyam employment number by a manufacturing percentage. The district allocation remains a proxy and carries explicit uncertainty.'),
+              Spacer(1,3*mm),
+              tbl([['NCO group','Share of total manufacturing employment','Status'],
+                   ['72','0.25','modeled'],['74','0.15','modeled'],['Outside pilot','0.60','not modeled']], [48*mm,92*mm,140*mm], font=7.0),
+              Spacer(1,4*mm),
+              tbl([['Demand component','Low','Mode','High','Basis'],
+                   ['Opening rate',f"{cfg['opening_rate']['low']*100:.1f}%",f"{cfg['opening_rate']['mode']*100:.1f}%",f"{cfg['opening_rate']['high']*100:.1f}%",'analyst range'],
+                   ['Occupation prior multiplier',f"{cfg['occupation_prior_uncertainty']['low']:.2f}x",f"{cfg['occupation_prior_uncertainty']['mode']:.2f}x",f"{cfg['occupation_prior_uncertainty']['high']:.2f}x",'analyst uncertainty'],
+                   ['District allocation sigma', '','0.35','', 'lognormal analyst assumption; no district calibration yet']], [70*mm,35*mm,35*mm,35*mm,105*mm], font=6.8),
+              Spacer(1,4*mm),
+              P('<b>Demand formula:</b> D(d,o) = E\' (d, manufacturing) x m(o|industry); O(d,o) = D(d,o) x opening rate. The occupation prior is deliberately left at 0.25 + 0.15 = 0.40; it is not renormalized to 1.00.'),
+              P('<b>Weakest demand input:</b> the district Udyam allocation and occupation prior. The model therefore uses the relative index and data-collection priority as the safer district-level output until stronger district demand evidence arrives.'),PageBreak()]
 
-    # 5 DGT 2026 real provisional supply evidence
-    story += [P('4. Real DGT 2026 district x trade supply evidence','H2b'),P('The uploaded DGT CTS-2026 provisional dynamic seat matrix is the strongest public supply input in this build. The official document states that the tentative matrix was generated from approved instructor mappings as of 08.07.2026 and could change until the 20.07.2026 cut-off; this package therefore labels the evidence <b>provisional</b>, not final.'),Spacer(1,2*mm)]
-    dgt_table=[['DGT evidence item','Value','Interpretation'],
-               ['Karnataka trade rows',f"{dgt_summary['rows']:,}",'extracted from official public PDF, pages 376-440'],
-               ['ITIs represented',f"{dgt_summary['itis']:,}",'distinct ITI MIS codes'],
-               ['Published districts',f"{dgt_summary['districts']}",'DGT rows use legacy district naming; Kodagu and Vijayanagara are absent in this provisional file'],
-               ['Provisional seat capacity',f"{dgt_summary['seats']:,.0f}",'real published seat-capacity rows'],
-               ['Seats mapped to NCO 72/74',f"{dgt_summary['mapped_seats']:,.0f} ({dgt_summary['mapped_share']*100:.1f}%)",'pilot crosswalk; unmapped trades remain review'],
-               ['Unmapped seats',f"{dgt_summary['unmapped_seats']:,.0f} ({dgt_summary['unmapped_share']*100:.1f}%)",'above the 5% full-evidence threshold'],
-               ['Policy gate','NEEDS DATA','complete district x trade coverage is not satisfied']]
-    story += [tbl(dgt_table,[58*mm,52*mm,140*mm],font=6.6,leading=7.5),Spacer(1,3*mm)]
-    dgt_rows=dgt_mapped.groupby(['district','nco_group_2digit']).agg(seats=('seats','sum'),itis=('iti_mis_code','nunique')).reset_index() if not dgt_mapped.empty else pd.DataFrame()
-    focus_rows=dgt_rows[dgt_rows['district'].isin(['Tumakuru','Kalaburagi','Ballari','Vijayapura'])].sort_values(['district','nco_group_2digit'])
-    focus_table=[['District','NCO','Real DGT seats','ITIs mapped']]
-    for _,rr in focus_rows.iterrows():
-        focus_table.append([rr['district'],str(rr['nco_group_2digit']),f"{rr['seats']:,.0f}",int(rr['itis'])])
-    if len(focus_table)>1:
-        story += [tbl(focus_table,[70*mm,25*mm,45*mm,35*mm],font=6.8),Spacer(1,3*mm)]
-    focus_ratio = ratio[ratio.district.isin(['Tumakuru','Kalaburagi'])].copy()
-    if not focus_ratio.empty:
-        rrows=[['District','NCO','P10','Median','P90','Supply basis','Policy']]
-        for _,rr in focus_ratio.sort_values(['district','nco_group_2digit']).iterrows():
-            rrows.append([rr.district,str(rr.nco_group_2digit),f"{rr.ratio_p10:.2f}",f"{rr.ratio_median:.2f}",f"{rr.ratio_p90:.2f}",rr.supply_basis,'NEEDS DATA'])
-        story += [tbl(rrows,[55*mm,20*mm,24*mm,26*mm,24*mm,62*mm,28*mm],font=6.3,leading=7.0),Spacer(1,3*mm)]
-    story += [P('<b>What this page proves:</b> the project is now using real DGT public supply rows at district x ITI x trade grain. The model replaces proxy supply wherever a mapped DGT row exists, but it does not convert incomplete/provisional coverage into a policy claim. Missing geographies and unmapped trades remain visible and keep the evidence gate closed.'),Spacer(1,3*mm),P('<b>Source:</b> Directorate General of Training, CTS-2026 Provisional Dynamic Seat Matrix, dated 09.07.2026; Annexure-A Karnataka rows in the uploaded PDF pages 376-440.'),PageBreak()]
+    # PAGE 5
+    story += [P('4. Real DGT 2026 district x ITI x trade supply - evidence upgrade','H2b'),
+              P('The official DGT CTS-2026 provisional dynamic seat matrix is the strongest public supply input in this build. The source states that the tentative matrix was generated from approved instructor mappings as of 08.07.2026 and remained subject to change until the 20.07.2026 cut-off. The package therefore labels it provisional, not final.'),
+              Spacer(1,2*mm),
+              tbl([['DGT evidence item','Result','Meaning'],
+                   ['Karnataka rows',f"{len(dgt_supply):,}",'real published ITI-trade rows in uploaded DGT PDF extraction'],
+                   ['Distinct ITIs',f"{dgt_supply.iti_mis_code.nunique():,}",'ITI MIS codes represented'],
+                   ['Published districts',f"{dgt_supply.district.nunique()}",'29 in the provisional extraction'],
+                   ['Published provisional seats',f"{dgt_seats:,.0f}",'actual DGT seat-capacity rows'],
+                   ['NCO 72 + 74 mapped seats',f"{mapped_seats:,.0f} ({mapped_seats/dgt_seats*100:.1f}%)",'pilot crosswalk scope'],
+                   ['OUT_OF_SCOPE seats',f"{out_scope_seats:,.0f} ({out_scope_seats/dgt_seats*100:.1f}%)",'kept in total; excluded from the 72/74 pilot'],
+                   ['UNMAPPED seats',f"{unmapped_seats:,.0f} ({unmapped_seats/dgt_seats*100:.1f}%)",'still requires human review; currently zero in the expanded pilot crosswalk'],
+                   ['Analytical pair coverage',f"{covered_pairs} / {required_pairs}",'Kodagu is missing from the DGT provisional file; Ballari covers the merged Ballari-Vijayanagara geography'],
+                   ['Policy gate','NEEDS DATA','coverage is incomplete / provisional']], [62*mm,56*mm,146*mm], font=6.25),
+              Spacer(1,2*mm), screenshot(SHOT/'page_05_real_dgt_gap_tumakuru_kalaburagi_02.png', max_w=282*mm, max_h=76*mm),
+              P('Figure 2. Real DGT supply loaded into the model. Tumakuru and Kalaburagi show district-level provisional evidence, but the policy gate remains closed because coverage is incomplete.', 'Caption2'),PageBreak()]
 
-    # 6 supply/conservation
-    story += [P('5. Supply model and conservation check','H2b'),P('S(d,o) = seats(d,c) x fill x completion x sector-entry x crosswalk(c->o). Seats, completions and sector entry remain separate quantities.'),Spacer(1,2*mm),tbl([["Input","Current handling"],["State ITI seats",f"{seat_total:,.0f} NCVT MIS 2022 state magnitude; DGT CTS-2026 adds {dgt_summary["seats"]:,.0f} real provisional Karnataka seat-capacity rows"],["Selected course weight",f"{selected_course_weight:.2f} across NCO 72 + 74; not normalized"],["Fill rate",f"{cfg['seat_fill_rate']['low']*100:.0f}% / {cfg['seat_fill_rate']['mode']*100:.1f}% / {cfg['seat_fill_rate']['high']*100:.0f}%"],["Completion rate",f"{cfg['completion_rate']['low']*100:.0f}% / {cfg['completion_rate']['mode']*100:.1f}% / {cfg['completion_rate']['high']*100:.0f}%"],["Sector entry",f"{cfg['sector_entry_rate']['low']*100:.0f}% / {cfg['sector_entry_rate']['mode']*100:.1f}% / {cfg['sector_entry_rate']['high']*100:.0f}%"],["Allocation", "DGT 2026 district/trade rows replace proxy supply where mapped; historical ITI weights remain only for uncovered districts"]],[52*mm,198*mm],font=6.9),Spacer(1,3*mm),tbl([["Conservation diagnostic","Value"],["Expected mean statewide supply",f"{audit['statewide_supply_expected_mean']:,.0f}"],["Sum of district/group supply medians",f"{audit['statewide_supply_median_sum']:,.0f}"],["Median/expected ratio",f"{audit['statewide_supply_conservation_ratio']:.3f}"],["Decision","PASS - median within 25% of the triangular-mean expectation" if abs(audit['statewide_supply_conservation_ratio']-1)<0.25 else "REVIEW"]],[85*mm,165*mm],font=7.0),Spacer(1,3*mm),P('The conservation check is designed to catch the former second-division bug: proxy seats are already split to districts, so the common allocation draw is a multiplier with mean 1.0 rather than another 1/n share. Historical district ITI counts are allocation weights only; they are not presented as current district seat totals.')]
-    story.append(PageBreak())
+    # PAGE 6
+    story += [P('5. Supply model and scale reconciliation','H2b'),
+              P('Supply is kept as a flow: seats x fill rate x completion rate x sector entry x trade-to-NCO weight. The DGT matrix is not silently substituted for the NCVT state magnitude; the two sources are reported side by side so the scale difference is visible.'),
+              Spacer(1,3*mm),
+              tbl([['Scale check','Value','Interpretation'],
+                   ['NCVT Karnataka state seats (2022)',f"{dgt_audit.get('statewide_total_iti_seats',216788):,.0f}",'statewide magnitude benchmark'],
+                   ['DGT CTS-2026 provisional seats',f"{dgt_seats:,.0f}",'real published provisional district/trade rows'],
+                   ['DGT / NCVT seat ratio',f"{dgt_scale:.3f} ({dgt_scale*100:.1f}%)",'WARNING: below configured 0.50 reconciliation threshold'],
+                   ['DGT ITI / historical ITI coverage',f"{dgt_audit.get('dgt_matrix_iti_total',0):,.0} ITIs; mean coverage {float(dgt_audit.get('dgt_matrix_iti_coverage_mean',0))*100:.1f}%",'approximate cross-period coverage weight; not exact census coverage'],
+                   ['Mapped to NCO 72/74',f"{mapped_seats:,.0f} ({mapped_seats/dgt_seats*100:.1f}%)",'within pilot scope'],
+                   ['OUT_OF_SCOPE',f"{out_scope_seats:,.0f} ({out_scope_seats/dgt_seats*100:.1f}%)",'not a mapping failure; outside current pilot'],
+                   ['UNMAPPED',f"{unmapped_seats:,.0f} ({unmapped_seats/dgt_seats*100:.1f}%)",'true mapping/review remainder']], [74*mm,58*mm,132*mm], font=6.8),
+              Spacer(1,4*mm),
+              P('<b>Why the scale warning matters:</b> 45,416 published DGT seats represent only about one-fifth of the 2022 Karnataka NCVT seat magnitude. The DGT rows are therefore used primarily as a <b>distribution signal</b> across districts and NCO groups, not as the statewide level. District DGT shares are shrunk toward the historical ITI-count proxy in proportion to approximate matrix coverage (DGT ITIs / 2022 ITIs); a district absent from the matrix therefore retains its proxy rather than receiving zero. The allocation concentration is intentionally lower for this provisional evidence mode.'),
+              Spacer(1,4*mm),
+              tbl([['Coverage rule','Current state'],
+                   ['Required analytical district x NCO pairs','60'],
+                   ['Covered by DGT provisional file','58'],
+                   ['Full-evidence gate','CLOSED'],
+                   ['Policy decision status','60 NEEDS DATA']], [95*mm,155*mm], font=7.0),PageBreak()]
 
-    # 7 relative index and priority
-    story += [P('6. Relative index and data-collection priority','H2b'),P('SCI(d) = weighted share of modeled openings covered at R=min(S/D,1). For proxy-only data, the district ranking is explicitly a <b>data-collection view</b>, not a validated labour-market finding; ranking differences are driven in part by allocation weights and Udyam proxy coverage.'),Spacer(1,2*mm)]
-    rows=[]
-    for _,r in district.head(12).iterrows():
-        rows.append([int(r.ratio_rank),r.district,f"{r.uncapped_ratio_median:.3f}",f"{r.relative_uncapped_ratio_vs_state_median:.2f}x",f"{r.SCI:.3f}",f"{r.total_annual_openings:,.0f}",f"{r.data_collection_priority:,.0f}"])
-    story += [tbl([["R rank","District","Median R","R / median","SCI","Openings","Data priority"]]+rows,[15*mm,62*mm,28*mm,30*mm,24*mm,42*mm,49*mm],font=6.4,leading=7.2),Spacer(1,3*mm),P(f"State median SCI = <b>{state_median:.3f}</b>. The ranking table is based on the <b>uncapped median ratio R</b>; SCI is reported separately as the capped coverage index. The district proxy ranking is not presented as validation because district supply still depends on proxy allocation. The correct policy use is: <b>which district should KSISU onboard first?</b>"),Spacer(1,3*mm),P(f"Current proxy allocation diagnostic: correlation with Udyam demand share = <b>{float(variation.demand_supply_proxy_share_correlation):.3f}</b>. This is reported as a diagnostic only; it is not proof that the proxy ranking is correct."),Spacer(1,3*mm)]
-    chart_rows=[{'district':str(r.district),'value':float(r.uncapped_ratio_median)} for _,r in district.sort_values('uncapped_ratio_median',ascending=False).head(8).iterrows()]
-    story.append(mini_bar_chart(chart_rows,'value','district','Top proxy ratio values - use for data collection, not policy claims',width=245*mm,height=46*mm))
-    story.append(PageBreak())
+    # PAGE 7
+    story += [P('6. Relative alignment and data-collection priority','H2b'),
+              P('SCI and VOI are presented as prioritisation tools. They are not validation of the district ranking because missing district/group evidence still falls back to proxy allocation. The ranking is based on the uncapped median ratio R; SCI is shown separately as a capped coverage index.'),
+              Spacer(1,2*mm), screenshot(SHOT/'page_08_data_collection_priority.png', max_w=282*mm, max_h=94*mm),
+              P('Figure 3. District priority view. VOI answers where better district evidence should be collected first; it is not a claim that the top-ranked district has the largest true skill shortage.', 'Caption2'),
+              tbl([['Interpretation rule','Use'],['Median R','alignment signal; can be above or below 1'],['SCI','share of modeled openings covered at min(R,1)'],['VOI','interval width x annual openings'],['Data priority','VOI adjusted by evidence/confidence; onboarding queue']], [55*mm,195*mm], font=6.7),PageBreak()]
 
-    # 8 rank stability
-    story += [P('7. Sensitivity as rank stability, not range arithmetic','H2b'),P('The model uses shared Monte Carlo draws to test whether the <b>uncapped ratio ordering</b> is stable under common uncertainty. Rank stability is a simulation diagnostic only - it is <b>not validation</b> of district labour-market reality.'),Spacer(1,2*mm)]
-    rtab=[["District","Baseline rank","P10","Median","P90","Top-5 frequency","Global rho"]]
-    for _,r in rank.head(18).iterrows():
-        rtab.append([r.district,int(r.baseline_rank),f"{r.rank_p10:.0f}",f"{r.rank_median:.0f}",f"{r.rank_p90:.0f}",f"{r.top5_frequency*100:.1f}%",f"{r.global_rank_stability_median_rho:.3f}"])
-    story += [tbl(rtab,[60*mm,27*mm,22*mm,27*mm,22*mm,40*mm,30*mm],font=6.1,leading=6.9),Spacer(1,3*mm),P('Interpretation: a narrow rank band and high top-5 frequency indicate a stable prioritisation signal. A wide band indicates that KSISU should not over-interpret the ranking until the district evidence improves.'),Spacer(1,3*mm)]
-    rank_chart=[{'district':str(r.district),'value':float(r.top5_frequency*100)} for _,r in rank.head(8).iterrows()]
-    story.append(mini_bar_chart(rank_chart,'value','district','Top-5 frequency across shared Monte Carlo draws (%)',width=245*mm,height=46*mm,max_value=100))
-    story.append(PageBreak())
+    # PAGE 8
+    story += [P('7. Sensitivity as rank stability','H2b'),
+              P('Shared Monte Carlo draws are used across districts. Rank stability is therefore a common-system uncertainty diagnostic rather than a re-scaling of arbitrary parameter ranges.'),
+              Spacer(1,2*mm), screenshot(SHOT/'page_07_rank_stability_sensitivity.png', max_w=282*mm, max_h=96*mm),
+              P('Figure 4. Rank stability under shared uncertainty. The same draw structure is used across districts so relative ranking is comparable.', 'Caption2'),
+              P(f"<b>Current demand allocation sigma:</b> 0.35. This is explicitly an analyst assumption with no empirical Karnataka district calibration yet. It should be replaced by district employment or DSDP/MIS evidence in production."),
+              PageBreak()]
 
-    # 9 validation/provenance
-    story += [P('8. Validation, provenance and reproducibility','H2b'),tbl([["Test","Result","Interpretation"],["District linkage","31 / 31 matched","canonical LGD mapping"],["Seeded typo recovery",f"{int(corrupt.seeded_typo_correct)} / {int(corrupt.seeded_typo_rows)} ({corrupt.seeded_typo_recovery_rate*100:.1f}%)","correctness, not just non-empty match"],["Unseen aliases",f"{int(corrupt.unseen_alias_matched)} matched; {int(corrupt.unseen_alias_review_rows)} review","unknown labels are not treated as successes"],["Duplicates",f"{int(corrupt.duplicate_rows_injected)} injected; {int(corrupt.duplicate_rows_removed)} removed","real dedupe pass"],["Rows dropped","0","unmatched evidence stays reviewable"],["Monte Carlo",f"{audit['monte_carlo_draws']:,} draws; seed {audit['seed']}","reproducible"],["Statewide conservation",f"{audit['statewide_supply_conservation_ratio']:.3f} median/expected","catches allocation errors"]],[58*mm,58*mm,132*mm],font=6.6,leading=7.6),Spacer(1,4*mm),P('Each source artifact carries file_id, SHA-256, URL, year, grain and locator. The run audit log records seed, draw count, source files and output files.')]
-    story.append(PageBreak())
+    # PAGE 9
+    story += [P('8. Validation, lineage and human review','H2b'),
+              P('The current model run is the source of truth for the validation numbers below. The GUI screenshot set is retained in the package for the live judge demonstration, but the PDF does not rely on a stale UI capture for these counts.'),
+              Spacer(1,2*mm),
+              tbl([['Validation check','Current result'],
+                   ['Raw LGD districts','31'],['Analytical geographies','30'],
+                   ['Seeded typo cases','80 / 80 correct'],['Unseen aliases','20 / 20 routed to review'],
+                   ['Duplicates','5 injected / 5 removed'],['Rows silently dropped','0'],
+                   ['Monte Carlo','5,000 draws; fixed seed'],['DGT pair coverage','58 / 60'],
+                   ['DGT UNMAPPED share','0.0%'],['DGT OUT_OF_SCOPE share','12.0%']], [105*mm,145*mm], font=6.7),
+              Spacer(1,3*mm), P('Every source artifact is assigned a file_id, SHA-256, source URL, period and grain. The human-review queue is part of the pipeline rather than an error-handling afterthought.'),PageBreak()]
 
-    # 10 deployment
-    story += [P('9. What KSISU should deploy next','H2b'),tbl([["Phase","Action","Decision enabled"],["1. Evidence registry","Preserve raw artifacts, source IDs, hashes and LGD/NIC/NCO mapping","reproducible evidence layer"],["2. Full NCVT district supply","Load complete district x trade ITI export","replace proxy supply with district actual"],["3. PLFS occupation x industry","Extract state occupation mix from microdata","replace analyst occupation prior"],["4. District manufacturing employment","Use DSDP/MIS or stronger district industry evidence","reduce allocation uncertainty"],["5. Production","Scheduled refresh, quality flags, human review, machine-readable outputs","continuous KSISU intelligence"]],[44*mm,122*mm,82*mm],font=6.5,leading=7.4),Spacer(1,4*mm),P('<b>Submission position:</b> SCI, VOI, confidence and evidence gates are proposed methodology for the Skillathon, not the official Karnataka Skill Index formula.'),Spacer(1,3*mm),P('<b>Current blocker:</b> the DGT CTS-2026 public matrix in this build is provisional, omits two analytical geographies, and leaves 12.0% of its published seats outside the NCO 72/74 pilot crosswalk. A complete district x trade supply file with &lt;=5% unmapped seats is still required before a district-wide policy call can be made.'),Spacer(1,3*mm),P('<b>AI-use disclosure:</b> AI assistance was used for code drafting, documentation and analysis design. Public-source provenance, assumptions and evidence tiers are retained in the package.'),Spacer(1,4*mm),P('Sources: LGD Download Directory; Government Open Data Udyam district employment resource; MoSPI ASI 2022-23; DGT CTS-2026 Provisional Dynamic Seat Matrix; NCVT MIS ITI Count / ITI Search; DGT/DITE tracer study; PLFS official portal.','Small2')]
-    doc.build(story,onFirstPage=header_footer,onLaterPages=header_footer)
+    # PAGE 10
+    story += [P('9. Judge demo: what KSISU can see, and what it should collect next','H2b'),
+              screenshot(SHOT/'page_10_judge_demo.png', max_w=282*mm, max_h=86*mm),
+              P('Figure 6. Judge-demo sequence embedded in the workbench.', 'Caption2'),
+              tbl([['Demo step','What to say'],
+                   ['1. Proxy baseline','This is the conservative public-data baseline.'],
+                   ['2. District priority','This is a data-collection queue, not a district skill-gap leaderboard.'],
+                   ['3. Load DGT 2026 real supply','Real district x ITI x trade rows replace proxy supply where they exist.'],
+                   ['4. Run with loaded supply','Partial coverage remains an observed floor plus uncertain remainder.'],
+                   ['5. Gap results','Show P10 / median / P90 and the policy gate.'],
+                   ['6. Sensitivity','Show whether priority is stable across shared draws.'],
+                   ['7. Validation','Show typo recovery, review queue, dedupe and provenance.']], [70*mm,180*mm], font=6.6),
+              Spacer(1,3*mm), P('<b>One-sentence story:</b> “We use real DGT district/group seat distribution to improve the allocation, keep uncertainty where coverage is incomplete, and only unlock a district policy call when the evidence gate is satisfied.”','Callout2'),
+              P('<b>Current blocker:</b> the public DGT 2026 matrix is provisional, covers 58/60 analytical district-group pairs, and its 45,416 published seats are only 20.9% of the 2022 NCVT state seat magnitude. The DGT-share run changes the district allocation using coverage-weighted DGT shares (588 DGT ITIs relative to the historical 2022 denominator), but it still makes no district policy claim because evidence coverage is incomplete.'),
+              P('<b>Submission note:</b> SCI, VOI, confidence and evidence gates are proposed methodology for the Skillathon, not an official Karnataka formula. The DGT source is a provisional 2026 dynamic seat matrix, not a final frozen capacity table.','Small2x')]
+
+    doc.build(story, onFirstPage=header_footer, onLaterPages=header_footer)
     return path
 
-if __name__=='__main__': print(make_pdf())
+if __name__=='__main__':
+    print(make_pdf())

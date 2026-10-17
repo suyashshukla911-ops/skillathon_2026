@@ -1,51 +1,52 @@
-KSISU REAL-DATA EVIDENCE WORKBENCH — START HERE
+KSISU REAL-DATA EVIDENCE WORKBENCH - START HERE
 
 1) Install:
    python -m pip install -r requirements.txt
 
-2) Run the automated test:
-   SELF_TEST.bat
-   It must end with PASS: pipeline completed without exception.
+2) Run self-test:
+   python self_test.py
+   Expected: all PASS.
 
-3) Run the baseline analysis:
-   python run_gap.py
-   or run run.bat
+3) Run proxy baseline:
+   python run_gap.py --out out/proxy_baseline
 
-4) Judge-demo workflow:
-   A. Open the GUI.
-   B. Click Run Proxy Baseline.
-   C. Open District Priority: explain this is a data-onboarding / VOI ranking, not a fake gap leaderboard.
-   D. Click Load DGT 2026 Real Supply.
-   E. Click Run With Loaded Supply.
-   F. Open Gap Results and Validation & Linkage.
-   G. Show the real DGT provisional supply basis and the NEEDS DATA policy gate.
+4) Run DGT real evidence upgrade:
+   python run_gap.py --actual-supply clean/dgt_cts_2026_karnataka_supply_nco.csv --out out/dgt_run
 
-5) Real public supply already bundled:
-   The package includes the uploaded DGT CTS-2026 provisional dynamic seat matrix and an extracted Karnataka district×ITI×trade dataset. Use Load DGT 2026 Real Supply to demonstrate it. It contains 1,734 Karnataka trade rows, 588 ITIs and 45,416 provisional seats; 39,984 seats map into the NCO 72/74 pilot crosswalk.
+5) Run tests:
+   python -m pytest -q
 
-6) Do not enter invented numbers. The DGT source is real public evidence but provisional and incomplete for the analytical geography used here. Kodagu and Vijayanagara are absent from the extracted DGT rows, and 12.0% of published seats are outside the pilot NCO crosswalk.
+6) Regenerate the 10-page PDF from the two runs:
+   python make_submission_pdf.py
 
-7) Source discipline:
-   - observed = directly from public source
-   - proxy = derived using an explicit rule
-   - prior = analyst assumption pending better data
-   - partial_floor = real district evidence but incomplete coverage; observed seats are a lower bound, remainder is uncertain
+7) Open GUI:
+   python ksisu_gui.py
 
-8) Policy discipline:
-   Proxy-only and partial-actual rows stay NEEDS DATA. Only complete district-actual cells can become PROVISIONAL GAP / PROVISIONAL SURPLUS.
+GUI demo:
+   A. Run Proxy Baseline.
+   B. Show Gap Results.
+   C. Show District Priority.
+   D. Load DGT 2026 Real Supply.
+   E. Run With Loaded Supply.
+   F. Show Tumakuru/Kalaburagi in Gap Results.
+   G. Show Sensitivity.
+   H. Show Validation & Linkage.
+   I. Use Judge Demo as the presentation script.
 
-9) Outputs:
-   out/ratio_intervals.csv
-   out/district_priority.csv
-   out/sensitivity.csv
-   out/corruption_test_summary.csv
-   out/interval_shrink_demo.csv
-   out/audit_log.jsonl
-   out/run_file_registry.csv
-   out/KSISU_Skillathon_2026_Final_10_Page.pdf
+DGT 2026 public supply:
+   1,734 Karnataka ITI-trade rows / 588 ITIs / 45,416 provisional seats.
+   58/60 analytical district-group pairs are covered.
+   12.0% of published seats are OUT_OF_SCOPE for the NCO 72/74 pilot; UNMAPPED is reported separately.
+   The full policy gate remains closed until full analytical coverage and full evidence status are supplied.
 
+Source discipline:
+   observed = directly from public source
+   proxy = derived using an explicit rule
+   prior = analyst assumption pending better data
+   partial_floor = real district evidence but incomplete coverage
+   OUT_OF_SCOPE = trade deliberately outside the NCO 72/74 pilot
+   UNMAPPED = trade still awaiting a mapping decision
 
-IMPORTANT: DGT 2026 public rows are treated as real provisional district×ITI×trade evidence. They replace proxy supply where mapped, but the model keeps missing geographies and unmapped trades uncertain. A provisional policy call requires a complete district×trade file with all modeled district×NCO pairs and <=5% unmapped seats.
-
-SELF TEST CHECKS
-The bundled test suite covers proxy conservation, shared Monte Carlo, partial NCVT floor treatment, full-actual gating, DGT 2026 real-supply ingestion, district matching, and corruption/dedupe controls.
+V11 additions:
+- python run_gap.py --actual-supply clean/dgt_cts_2026_karnataka_supply_nco.csv --proxy-allocation-method dgt_2026_seat_share --out out/dgt_share_run
+- DGT share mode uses real DGT district/group seat shares to set the district distribution, falls back to historical ITI-count weights for missing district/group cells, and remains policy-gated.
