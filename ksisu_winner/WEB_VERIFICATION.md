@@ -6,6 +6,10 @@ https://lgdirectory.gov.in/demo/downloadDirectory.do
 
 Use the live Karnataka district export before final submission. The prototype currently carries 31 district rows as its join-key working copy.
 
+## Rajya Sabha Q131 Annexure-IV (historical ITI counts)
+Official PDF: https://sansad.in/getFile/annex/258/AU131.pdf?source=pqars (Annexure-IV, page 6).
+Checked 2026-10-17: the official PDF was run through a PDF text extractor and the CTS table was compared with `clean/district_iti_counts.csv` by `verify_iti_counts.py`. All 30 analytical rows match (Govt, Private, Total) and the printed totals 275 + 1,227 = 1,502 are reproduced. The PDF binary is not bundled; the check is against extracted text, so confirm visually on page 6 if needed.
+
 ## Karnataka Udyam district employment
 Official OGD resource:
 https://data.gov.in/resource/karnataka-udyam-registration-units-employment-details-district-wise-april-2023

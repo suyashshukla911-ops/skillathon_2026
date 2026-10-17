@@ -82,6 +82,5 @@ Build this as one Python script, `run_gap.py`. I can write it once you tell me w
 
 ## V7 data-quality status
 - Analytical geography count: 30 (31 raw LGD districts; Ballari + Vijayanagara merged analytically).
-- Historical CTS ITI weights: 30/30 analytical weights supported by an explicit source check in this build; 16 remain unverified.
-- Gadag (44) and Ramanagara (27) are independently checked against Rajya Sabha Q131 Annexure-IV.
+- Historical CTS ITI weights: 30/30 analytical weights (Govt, Private, Total) match the official Rajya Sabha Q131 Annexure-IV table as printed (checked 2026-10-17 against machine-extracted text of the official PDF; `python verify_iti_counts.py`). None remain unverified.
 - All historical weights are allocation weights only, not current district seat totals.

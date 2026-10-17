@@ -71,4 +71,8 @@ print('PASS: proxy-only policy gate -> NEEDS DATA')
 print('PASS: partial NCVT sample treated as floor + uncertain remainder')
 print('PASS: full-district extract unlocks evidence_ready gate')
 print('PASS: 80 seeded typo cases + 20 unseen aliases + 5 real dedupe removals')
+from verify_iti_counts import verify as verify_iti
+_iti_problems=verify_iti(write=False)
+assert not _iti_problems, _iti_problems
+print('PASS: 30/30 ITI weights (Govt/Private/Total) match the official Annexure-IV table as printed; 275 + 1,227 = 1,502')
 print('PASS: pipeline completed without exception')

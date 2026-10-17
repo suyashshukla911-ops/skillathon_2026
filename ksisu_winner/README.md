@@ -93,5 +93,11 @@ V5 critical fixes
 - GUI and PDF use the same model outputs and configuration.
 
 
-### Annexure-IV evidence
-All 30 positive historical analytical geography ITI weights are checked against the official Rajya Sabha Q131 Annexure-IV table. The project stores the government/private split and a project-generated evidence transcription in `raw/rajya_sabha_annexure_iv_page6_evidence.pdf` and `.png`. The official source remains the authoritative document.
+### Annexure-IV evidence (how the ITI weights were checked)
+All 30 positive historical analytical-geography ITI counts (Government, Private, Total) were compared row by row with the official Rajya Sabha Q131 Annexure-IV table (PDF p.6, https://sansad.in/getFile/annex/258/AU131.pdf?source=pqars) on 2026-10-17. All 30 match, and the printed totals 275 Government + 1,227 Private = 1,502 are reproduced.
+
+- The comparison uses `raw/rajya_sabha_annexure_iv_official_text_extract.md`, which is machine-extracted **text** of the official PDF with labels as printed (Belgaum, Bellary, Bijapur...). It is not a scan, and the PDF binary itself is not stored here because it could not be downloaded into the build environment.
+- Re-run the check any time: `python verify_iti_counts.py` (also run by `SELF_TEST.bat`).
+- `raw/rajya_sabha_annexure_iv_page6_PROJECT_TRANSCRIPTION_not_official.*` is a project-made summary table. It is **not** the official document and is not evidence.
+- To confirm visually, open the official URL and compare page 6.
+- The counts are historical 2022 allocation weights, not current district seat totals.

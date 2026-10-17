@@ -32,4 +32,4 @@ Run `run.bat`, then click `Run 3-Min Judge Demo` or follow `JUDGE_DEMO.md`.
 
 
 ### Historical ITI weight verification update
-All 30 positive historical analytical geography ITI totals used in this build are checked against Rajya Sabha Q131 Annexure-IV (PDF p.6). Government/private splits are preserved. The counts remain historical allocation weights only. The project stores a generated audit transcription/image plus the official source URL.
+All 30 positive historical analytical geography ITI counts (Government, Private, Total) were compared row by row with the official Rajya Sabha Q131 Annexure-IV table (PDF p.6) on 2026-10-17 and all match; the printed totals 275 + 1,227 = 1,502 are reproduced. The comparison runs against machine-extracted text of the official PDF (`raw/rajya_sabha_annexure_iv_official_text_extract.md`) and is reproducible with `python verify_iti_counts.py`. The PDF binary is not stored in the package; open the official URL, page 6, to confirm visually. The counts remain historical allocation weights only.
