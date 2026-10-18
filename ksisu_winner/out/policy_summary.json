@@ -1,0 +1,41 @@
+{
+  "district_count": 30,
+  "district_specific_clause_count": 23,
+  "dsdp_triangulation": {
+    "benchmark_rows": 7,
+    "comparable_sample_n": 5,
+    "inside_model_p10_p90": "2/5",
+    "interpretation": "Directional triangulation, not validation; benchmark scopes differ from the NCO 72/74 pilot.",
+    "reporting_note": "Do not headline rho without n and p; publish per-district benchmark/model-P50 ratios instead. P-value is the conventional Spearman asymptotic diagnostic and is not a policy gate.",
+    "spearman_p_value_asymptotic": 0.623837664781073,
+    "spearman_rank_correlation": 0.3
+  },
+  "evidence_levels": {
+    "A_EXPLORATORY": 27,
+    "B_PROVISIONAL_WATCHLIST": 3,
+    "C_POLICY_READY": 0
+  },
+  "generic_fallback_districts": [
+    "Bengaluru Urban",
+    "Bidar",
+    "Chitradurga",
+    "Davanagere",
+    "Kalaburagi",
+    "Koppal",
+    "Vijayapura"
+  ],
+  "policy_ready_districts": [],
+  "provisional_watchlist": [
+    "Gadag",
+    "Tumakuru",
+    "Vijayapura"
+  ],
+  "source_validation": {
+    "bundled_hashes_match": true,
+    "bundled_source_files_present": true,
+    "manifest_files_resolve": true,
+    "missing_bundle_files": [],
+    "pages_in_range": true,
+    "rows": 72
+  }
+}

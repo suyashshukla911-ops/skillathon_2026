@@ -1,0 +1,6 @@
+check,value,status,detail
+Policy register row count,75,PASS,"Operationalised policy rows, including explicit generic fallback rows."
+Districts with district-specific clauses,23/30,PASS,All remaining districts use an explicit generic fallback; no unrelated district citation is shown.
+Generic fallback districts,"Bengaluru Urban, Bidar, Chitradurga, Davanagere, Kalaburagi, Koppal, Vijayapura",PASS,Fallback rows are labelled generic and carry no misleading source page.
+Policy source manifest/page/hash integrity,72 source-backed rows,PASS,"{""bundled_hashes_match"": true, ""bundled_source_files_present"": true, ""manifest_files_resolve"": true, ""missing_bundle_files"": [], ""pages_in_range"": true, ""rows"": 72}"
+Current evidence levels,"{'A_EXPLORATORY': 27, 'B_PROVISIONAL_WATCHLIST': 3}",PASS,Evidence levels are derived from the frozen model outputs; Level B is stability-only.

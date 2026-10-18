@@ -75,18 +75,33 @@ python make_submission_pdf.py
 python ksisu_gui.py
 ```
 
+> [!NOTE]
+> `python -m pytest -q` executes 35 end-to-end integration tests across multiple full Monte Carlo simulations (5,000 draws each) and takes approximately 3 minutes to complete. It has not hung.
+
 The first run is the proxy baseline. The second is the DGT-share evidence-upgrade run. The PDF reads both run directories so its numbers cannot silently drift from the model.
 
 ## GUI judge demonstration
 
-1. Click **Run Proxy Baseline**.
+You can run the complete 3-minute sequence automatically or step-by-step:
+
+### Automated 3-Minute Judge Flow
+1. Click **Run 3-Min Judge Demo** on the top toolbar.
+2. The flow runs all six scenarios, regenerates public exports, and applies the V17 policy layer.
+3. Automatically opens **3. District Priority**:
+   - Inspect **Evidence Level**: 27 districts in `A – Exploratory`, 3 districts in `B – Watchlist` (Gadag, Tumakuru, Vijayapura).
+   - Inspect **Robust 6-Scen**: Highlights Vijayapura with the `★ robust` badge as the sole district top-5 in all 6 scenarios.
+4. Switch to **4. Policy Actions**:
+   - Notice the prominent evidence banner: *"Gate status: NEEDS DATA for all cells; levels A/B are data-collection and verification actions, not seat decisions."*
+   - Inspect operationalised DSDP clauses, decision-makers, and evidence limitations.
+   - Note on **Vijayapura**: While Vijayapura is the headline structurally robust priority, no official district skill development plan (DSDP) is bundled in the source register; it explicitly relies on the generic evidence safeguard (`ALL_DISTRICTS`) rather than an invented or substituted plan.
+
+### Manual Step-by-Step Flow
+1. Click **Run Proxy Baseline**. Say: "This is what KSISU can infer before complete district ITI supply is available. Mathematical ratios are shown, but policy status remains NEEDS DATA."
 2. Show **District Priority** and explain the VOI/data-collection ranking.
-3. Click **Load Official NCVT Sample**.
+3. Click **Load DGT 2026 Real Supply** (or **Load Official NCVT Sample**).
 4. Click **Run With Loaded Supply**.
-5. Show Tumakuru and Kalaburagi switching from proxy to partial floor and the partial-evidence update table.
-6. Show Sensitivity.
-7. Show Validation & Linkage.
-8. For the final empirical demo, replace the bundled partial sample with the full current district×trade NCVT MIS / DGT / Karnataka extract.
+5. Click **Run DGT Share Upgrade**.
+6. Inspect **District Priority**, **Policy Actions**, **Sensitivity**, and **Validation & Linkage**.
 
 ## Final competition requirement
 
@@ -164,3 +179,18 @@ Use `--demand-allocation-method` to choose a method. The default run writes `dem
 
 ### Six-scenario judge check
 Run `RUN_DEMAND_SCENARIOS.bat` to execute proxy and DGT-share supply routes under all three demand allocators. The combined `out/scenario_robustness.csv` is the judge-facing robustness table. A district is structurally robust only if it remains top-five across all six scenarios; otherwise describe the ordering as assumption-driven.
+
+
+
+
+## V18 Policy-to-Evidence Refinements
+
+The policy layer remains a separate add-on around the frozen model outputs. `policy_layer.py <root>` derives every output path from the supplied root, reads district aliases from `clean/district_aliases.csv`, and writes policy state to `out/policy_summary.json` rather than mutating the model `out/run_summary.json`.
+
+`out/policy_actions.csv` now presents `evidence_level_name` and `model_gate_status` separately (for example, `Provisional watchlist | gate: NEEDS DATA`) and includes `action_basis` to distinguish a KSISU rule from the cited district-plan channel. The `main_evidence_limitation` field is deliberately a limitation statement, not a measured sensitivity driver.
+
+The policy register has 23/30 analytical districts with district-specific clauses. The other seven use an explicit `ALL_DISTRICTS` generic safeguard and no longer cite another district's plan. Vijayapura therefore no longer displays Ballari p.24 as its policy source; the bundled policy-source manifest is the audit surface for all source-backed clauses.
+
+Benchmark comparison is reported as district-level benchmark-to-model-P50 ratios and P10-P90 inclusion. The current rank correlation is retained only with its sample size and exact permutation p-value; it is explicitly labelled directional triangulation, not validation.
+
+The package now bundles the supplied policy PDFs under `docs/policy_sources/`, together with `docs/policy_source_manifest.csv`, so a judge can independently inspect every source-backed page citation. If a future official Vijayapura DSDP is added, add it to the supplied policy bundle and then promote the generic Vijayapura fallback to a district-specific register row; do not substitute another district's plan.

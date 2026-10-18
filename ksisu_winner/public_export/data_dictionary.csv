@@ -1,31 +1,31 @@
-indicator,definition,formula,reporting_level,update_frequency
-district,Analytical KSISU geography,Source geography after configured Ballari/Vijayanagara merge,district,When LGD geography refreshes
-ratio_sci,SCI: weighted share of openings covered,"sum(min(S_i/D_i,1)*D_i)/sum(D_i)",district,On each model refresh
-ratio_median,Median uncapped supply-to-demand ratio across Monte Carlo draws,median(S/D),district,On each model refresh
-mean_confidence,Mean evidence confidence across modeled district cells,mean(cell confidence score),district,On each model refresh
-demand_annual_openings,Median modeled annual openings for the selected NCO groups,median(opening rate × state demand × district allocation),district,On each model refresh; demand source refresh as available
-demand_voi,Value of information score,interval width × annual openings,district,On each model refresh
-demand_data_collection_priority,Composite evidence-collection priority,VOI weighted by data/evidence quality signals,district,On each model refresh
-needs_data_cells,Number of NCO cells blocked by the policy gate,count(decision_status = NEEDS DATA),district,On each model refresh
-actual_cells,Number of modeled NCO cells with full actual evidence,count(supply_coverage = full_actual),district,On each model refresh
-dgt_itis_in_matrix,Distinct DGT ITIs represented in the provisional matrix,count distinct ITI codes from DGT matrix,district,On DGT source refresh
-iti_2022_count,Historical 2022 ITI count used only as an allocation weight,source total,district,Historical snapshot; replace when current district totals arrive
-matrix_iti_coverage,DGT matrix ITI coverage relative to the historical 2022 count,DGT ITIs in matrix / 2022 ITI count,district,On DGT source refresh
-ratio_rank,District rank by uncapped median ratio,rank descending on ratio_median,district,On each model refresh
-policy_status,Public policy gate status across the district's modeled NCO cells,NEEDS DATA unless all cells share an actionable status,district,On each model refresh; policy gate remains NEEDS DATA until evidence is complete
-rank_range,Maximum minus minimum district rank across the six scenarios,max(rank) − min(rank),district,On six-scenario run
-top5_appearances,Number of the six scenarios in which a district is top five,count(rank <= 5),district,On six-scenario run
-robust_priority,Structural robustness flag,top5_appearances = 6,district,On six-scenario run
-supply_seats,Observed institutional seat capacity used for public small-cell suppression,sum(source seat rows),district or ITI-trade,On DGT/NCVT source refresh
-not_observed,No selected DGT rows were observed for the analytical district,supply_seats is missing before suppression,district,On each public export
-suppressed,Small-cell suppression flag,supply_seats > 0 and supply_seats < 5,public row,On each public export
-suppression_note,Human-readable publication status,derived from not_observed and suppressed flags,public row,On each public export
-rank_proxy_udyam_employment,Rank Proxy Udyam Employment,Derived from the six-scenario robustness output,scenario/district,On each six-scenario run
-rank_dgt_share_udyam_employment,Rank Dgt Share Udyam Employment,Derived from the six-scenario robustness output,scenario/district,On each six-scenario run
-rank_proxy_udyam_units,Rank Proxy Udyam Units,Derived from the six-scenario robustness output,scenario/district,On each six-scenario run
-rank_dgt_share_udyam_units,Rank Dgt Share Udyam Units,Derived from the six-scenario robustness output,scenario/district,On each six-scenario run
-rank_proxy_blend,Rank Proxy Blend,Derived from the six-scenario robustness output,scenario/district,On each six-scenario run
-rank_dgt_share_blend,Rank Dgt Share Blend,Derived from the six-scenario robustness output,scenario/district,On each six-scenario run
-rank_min,Rank Min,Derived from the six-scenario robustness output,scenario/district,On each six-scenario run
-rank_max,Rank Max,Derived from the six-scenario robustness output,scenario/district,On each six-scenario run
-top5_all_six,Top5 All Six,Derived from the six-scenario robustness output,scenario/district,On each six-scenario run
+indicator,source_file,definition,formula,reporting_level,update_frequency
+district,"district_indicators.csv, scenario_robustness.csv",Analytical KSISU geography,Source geography after configured Ballari/Vijayanagara merge,district,When LGD geography refreshes
+ratio_sci,district_indicators.csv,SCI: weighted share of openings covered,"sum(min(S_i/D_i,1)*D_i)/sum(D_i)",district,On each model refresh
+ratio_median,district_indicators.csv,Median uncapped supply-to-demand ratio across Monte Carlo draws,median(S/D),district,On each model refresh
+mean_confidence,district_indicators.csv,Mean evidence confidence across modeled district cells,mean(cell confidence score),district,On each model refresh
+demand_annual_openings,district_indicators.csv,Median modeled annual openings for the selected NCO groups,median(opening rate × state demand × district allocation),district,On each model refresh; demand source refresh as available
+demand_voi,district_indicators.csv,Value of information score,interval width × annual openings,district,On each model refresh
+demand_data_collection_priority,district_indicators.csv,Composite evidence-collection priority,VOI weighted by data/evidence quality signals,district,On each model refresh
+needs_data_cells,district_indicators.csv,Number of NCO cells blocked by the policy gate,count(decision_status = NEEDS DATA),district,On each model refresh
+actual_cells,district_indicators.csv,Number of modeled NCO cells with full actual evidence,count(supply_coverage = full_actual),district,On each model refresh
+dgt_itis_in_matrix,district_indicators.csv,Distinct DGT ITIs represented in the provisional matrix,count distinct ITI codes from DGT matrix,district,On DGT source refresh
+iti_2022_count,district_indicators.csv,Historical 2022 ITI count used only as an allocation weight,source total,district,Historical snapshot; replace when current district totals arrive
+matrix_iti_coverage,district_indicators.csv,DGT matrix ITI coverage relative to the historical 2022 count,DGT ITIs in matrix / 2022 ITI count,district,On DGT source refresh
+ratio_rank,district_indicators.csv,District rank by uncapped median ratio,rank descending on ratio_median,district,On each model refresh
+policy_status,district_indicators.csv,Public policy gate status across the district's modeled NCO cells,NEEDS DATA unless all cells share an actionable status,district,On each model refresh; policy gate remains NEEDS DATA until evidence is complete
+rank_range,"district_indicators.csv, scenario_robustness.csv",Maximum minus minimum district rank across the six scenarios,max(rank) − min(rank),district,On six-scenario run
+top5_appearances,"district_indicators.csv, scenario_robustness.csv",Number of the six scenarios in which a district is top five,count(rank <= 5),district,On six-scenario run
+robust_priority,"district_indicators.csv, scenario_robustness.csv",Structural robustness flag,top5_appearances = 6,district,On six-scenario run
+supply_seats,district_indicators.csv,Observed institutional seat capacity used for public small-cell suppression,sum(source seat rows),district or ITI-trade,On DGT/NCVT source refresh
+not_observed,district_indicators.csv,No selected DGT rows were observed for the analytical district,supply_seats is missing before suppression,district,On each public export
+suppressed,district_indicators.csv,Small-cell suppression flag,supply_seats > 0 and supply_seats < 5,public row,On each public export
+suppression_note,district_indicators.csv,Human-readable publication status,derived from not_observed and suppressed flags,public row,On each public export
+rank_proxy_udyam_employment,scenario_robustness.csv,Rank Proxy Udyam Employment,Derived from the six-scenario robustness output,scenario/district,On each six-scenario run
+rank_dgt_share_udyam_employment,scenario_robustness.csv,Rank Dgt Share Udyam Employment,Derived from the six-scenario robustness output,scenario/district,On each six-scenario run
+rank_proxy_udyam_units,scenario_robustness.csv,Rank Proxy Udyam Units,Derived from the six-scenario robustness output,scenario/district,On each six-scenario run
+rank_dgt_share_udyam_units,scenario_robustness.csv,Rank Dgt Share Udyam Units,Derived from the six-scenario robustness output,scenario/district,On each six-scenario run
+rank_proxy_blend,scenario_robustness.csv,Rank Proxy Blend,Derived from the six-scenario robustness output,scenario/district,On each six-scenario run
+rank_dgt_share_blend,scenario_robustness.csv,Rank Dgt Share Blend,Derived from the six-scenario robustness output,scenario/district,On each six-scenario run
+rank_min,scenario_robustness.csv,Rank Min,Derived from the six-scenario robustness output,scenario/district,On each six-scenario run
+rank_max,scenario_robustness.csv,Rank Max,Derived from the six-scenario robustness output,scenario/district,On each six-scenario run
+top5_all_six,scenario_robustness.csv,Top5 All Six,Derived from the six-scenario robustness output,scenario/district,On each six-scenario run

@@ -144,8 +144,15 @@ def build_public_exports(run_dir: Path, export_dir: Path) -> dict[str, Path]:
         if col not in definitions:
             definitions[col] = (col.replace("_", " ").title(), "Derived from the six-scenario robustness output", "scenario/district", "On each six-scenario run")
         definition, formula, level, freq = definitions[col]
+        if col in public.columns and col in scenarios.columns:
+            src_file = "district_indicators.csv, scenario_robustness.csv"
+        elif col in public.columns:
+            src_file = "district_indicators.csv"
+        else:
+            src_file = "scenario_robustness.csv"
         dictionary_rows.append({
             "indicator": col,
+            "source_file": src_file,
             "definition": definition,
             "formula": formula,
             "reporting_level": level,

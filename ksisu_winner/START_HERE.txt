@@ -3,7 +3,7 @@ KSISU REAL-DATA EVIDENCE WORKBENCH - JUDGE START HERE
 1) Install the pinned core data stack:
    python -m pip install -r requirements.txt
 
-2) Run the full judge package (refresh QA + baseline + DGT runs + six scenarios + public export):
+2) Run the single judge entry point (source verification + refresh QA + model + six scenarios + public export + policy layer):
    RUN_ALL.bat
 
 3) Run the tests:
@@ -21,18 +21,41 @@ KSISU REAL-DATA EVIDENCE WORKBENCH - JUDGE START HERE
    public_export/district_trade_seats.csv
    public_export/suppression_check.csv
 
-6) Refresh QA outputs:
+6) Policy layer outputs:
+   out/district_evidence_levels.csv
+   out/policy_actions.csv
+   out/dsdp_benchmark_comparison.csv
+   out/dsdp_benchmark_summary.csv
+   out/policy_mapping_quality.csv
+
+Evidence levels are deliberately progressive:
+   A_EXPLORATORY = data-collection priority
+   B_PROVISIONAL_WATCHLIST = stable across six scenarios; verify before any seat decision
+   C_POLICY_READY = existing full-evidence gate; unchanged
+
+Current frozen run: 27 districts are exploratory, Gadag/Tumakuru/Vijayapura are provisional watchlist districts, and 0 districts are policy-ready.
+
+The policy register in clean/policy_register.csv is sourced only from the attached district plans/annual work plans and carries page citations. The DSDP benchmark file is directional triangulation, not model validation.
+
+7) Refresh QA outputs:
    out/data_quality_report.csv
    out/review_queue.csv
 
-7) Six-scenario summary:
+8) Six-scenario summary:
    out/run_summary.json
 
-8) After a legitimate official source update, reset the refresh baseline before the next scheduled run:
+9) After a legitimate official source update, reset the refresh baseline before the next scheduled run:
    python refresh_pipeline.py --make-baseline
 
-Guardrail note: seat data in the public exports are institutional aggregate data, not personal data.
-Rows below min_count_suppression (5) are flagged and their public supply/demand/ratio values are blanked.
+Guardrail note: seat data in the public exports are institutional aggregate data, not personal data. Rows below min_count_suppression (5) are flagged and their public supply/demand/ratio values are blanked.
 
 Interactive GUI after RUN_ALL completes:
    python ksisu_gui.py
+
+Policy evidence layer:
+  python policy_layer.py .
+Outputs: out/district_evidence_levels.csv, out/policy_actions.csv, out/dsdp_benchmark_comparison.csv, out/dsdp_benchmark_summary.csv, out/policy_summary.json, out/policy_mapping_quality.csv
+Source-to-analysis geography is explicit in clean/policy_register.csv; Ballari and Vijayanagara map to analytical Ballari-Vijayanagara with deterministic source priority.
+
+
+Policy-source audit: docs/policy_sources/ contains the supplied PDFs used by the register; docs/policy_source_manifest.csv records page counts and SHA-256 hashes.

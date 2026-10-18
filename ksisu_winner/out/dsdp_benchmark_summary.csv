@@ -1,0 +1,2 @@
+benchmark_rows,comparable_sample_n,inside_model_p10_p90,spearman_rank_correlation,spearman_p_value_asymptotic,interpretation,reporting_note
+7,5,2/5,0.3,0.623837664781073,"Directional triangulation, not validation; benchmark scopes differ from the NCO 72/74 pilot.",Do not headline rho without n and p; publish per-district benchmark/model-P50 ratios instead. P-value is the conventional Spearman asymptotic diagnostic and is not a policy gate.

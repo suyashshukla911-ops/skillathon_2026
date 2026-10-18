@@ -1,12 +1,15 @@
 KSISU Skillathon 2026 - Judge Package
-Version: V16 final code freeze
-Date: 2026-10-17
+Version: V18 policy-to-evidence refinement
+Date: 2026-10-18
 
 Scope of this freeze:
-- Public export geography harmonisation fix for Ballari-Vijayanagara
-- Explicit not_observed flag for absent DGT district rows (e.g. Kodagu)
-- Stable review_queue.csv header when empty
-- Refresh baseline update instruction
-- Component B refresh/human-review evidence added to submission PDF
-- Rajya Sabha Annexure-IV page 6 ITI transcription verified 30/30
-- Six-scenario robustness summary retained in out/run_summary.json
+- V17 policy register retained; misleading district fallback citation removed
+- District aliases loaded from clean/district_aliases.csv
+- Policy outputs are fully rooted under the run argument; model run_summary.json is not mutated
+- Evidence-level name and model gate are separated in public policy actions
+- main_evidence_limitation replaces the unmeasured-driver wording
+- action_basis distinguishes KSISU rule from policy-source channel
+- DSDP benchmark reports per-district benchmark/model-P50 ratios and exact permutation p-value with n
+- Source manifest/page/hash integrity checks added; policy source PDFs bundled for audit
+- Mapping-quality audit reports district-specific clauses vs explicit generic fallbacks
+- RUN_ALL still verifies ITI counts first and runs the policy layer last
